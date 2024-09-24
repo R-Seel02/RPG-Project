@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CommonTileset extends Tileset {
 
     public CommonTileset() {
-        super(ImageLoader.load("CommonTileset.png"), 16, 16, 3);
+        super(ImageLoader.load("CommonTilesV2.png"), 16, 16, 3);
     }
 
     @Override
@@ -138,8 +138,8 @@ public class CommonTileset extends Tileset {
 
         mapTiles.add(yellowFlowerTile);
 
-        // purple flower
-        Frame[] purpleFlowerFrames = new Frame[] {
+        // wall
+        Frame[] wallFrames = new Frame[] {
                 new FrameBuilder(getSubImage(0, 2), 65)
                         .withScale(tileScale)
                         .build(),
@@ -154,9 +154,8 @@ public class CommonTileset extends Tileset {
                         .build()
         };
 
-        MapTileBuilder purpleFlowerTile = new MapTileBuilder(purpleFlowerFrames);
-
-        mapTiles.add(purpleFlowerTile);
+        MapTileBuilder wallTile = new MapTileBuilder(wallFrames).withTileType(TileType.NOT_PASSABLE);;
+        mapTiles.add(wallTile);
 
         // middle branch
         Frame middleBranchFrame = new FrameBuilder(getSubImage(2, 3))
@@ -318,7 +317,6 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(topWaterTile);
-
 
         return mapTiles;
     }

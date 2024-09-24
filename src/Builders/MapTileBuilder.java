@@ -4,7 +4,6 @@ import GameObject.Frame;
 import GameObject.GameObject;
 import Level.MapTile;
 import Level.TileType;
-
 import java.util.HashMap;
 
 // Builder class to instantiate a MapTile class
