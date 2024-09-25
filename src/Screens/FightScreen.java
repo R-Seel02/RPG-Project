@@ -5,7 +5,7 @@ import SpriteFont.SpriteFont;
 
 import java.awt.*;
 
-// This class is for the win level screen
+// This class is for the fight level screen
 public class FightScreen extends Screen {
     protected SpriteFont fightMessage;
     protected SpriteFont instructions;
