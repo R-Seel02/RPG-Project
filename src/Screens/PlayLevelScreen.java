@@ -17,6 +17,7 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected FightScreen fightScreen;
     protected FlagManager flagManager;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -31,6 +32,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToDinosaur", false);
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToTestNPC", false);
+        flagManager.addFlag("isFighting", false);
 
         // define/setup map
         map = new TestMap();
@@ -52,6 +54,7 @@ public class PlayLevelScreen extends Screen {
         map.preloadScripts();
 
         winScreen = new WinScreen(this);
+        fightScreen = new FightScreen(this);
     }
 
     public void update() {
@@ -66,11 +69,19 @@ public class PlayLevelScreen extends Screen {
             case LEVEL_COMPLETED:
                 winScreen.update();
                 break;
+            // if the player is fighting, change the screen to a fight screen
+            case FIGHTING:
+                fightScreen.update();
+                break;
         }
 
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+        }
+
+        if (map.getFlagManager().isFlagSet("isFighting")) {
+            playLevelScreenState = PlayLevelScreenState.FIGHTING;
         }
     }
 
@@ -82,6 +93,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
+                break;
+            case FIGHTING:
+                fightScreen.draw(graphicsHandler);
                 break;
         }
     }
@@ -99,8 +113,13 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
+    public void backToGame() {
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        flagManager.unsetFlag("isFighting");
+    }
+
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED
+        RUNNING, LEVEL_COMPLETED, FIGHTING
     }
 }
