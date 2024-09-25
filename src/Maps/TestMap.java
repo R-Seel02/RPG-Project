@@ -5,6 +5,7 @@ import Level.*;
 import NPCs.Bug;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import NPCs.TestNPC;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -45,6 +46,10 @@ public class TestMap extends Map {
         Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
         bug.setInteractScript(new BugScript());
         npcs.add(bug);
+
+        TestNPC testNPC = new TestNPC(4, getMapTile(10, 18).getLocation().subtractY(40));
+        testNPC.setInteractScript(new TestNPCScript());
+        npcs.add(testNPC);
 
         return npcs;
     }
