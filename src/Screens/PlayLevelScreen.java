@@ -14,7 +14,7 @@ import Utils.Point;
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Player player;
+    protected Cat player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected FightScreen fightScreen;
@@ -54,7 +54,7 @@ public class PlayLevelScreen extends Screen {
         map.preloadScripts();
 
         winScreen = new WinScreen(this);
-        fightScreen = new FightScreen(this);
+        fightScreen = new FightScreen(this, player, "Walrus.png");
     }
 
     public void update() {

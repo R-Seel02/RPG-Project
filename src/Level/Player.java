@@ -21,6 +21,9 @@ public abstract class Player extends GameObject {
     protected Direction lastWalkingXDirection;
     protected Direction lastWalkingYDirection;
 
+    protected int health;
+    protected boolean isDead;
+
     // values used to handle player movement
     protected float moveAmountX, moveAmountY;
     protected float lastAmountMovedX, lastAmountMovedY;
@@ -47,6 +50,8 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
+        health = 100;
+        isDead = false;
     }
 
     public void update() {
@@ -113,7 +118,7 @@ public abstract class Player extends GameObject {
             currentWalkingXDirection = Direction.LEFT;
             lastWalkingXDirection = Direction.LEFT;
         }
-
+        
         // if walk right key is pressed, move player to the right
         else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY)) {
             moveAmountX += walkSpeed;
@@ -253,6 +258,36 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.RIGHT) {
             moveX(speed);
         }
+    }
+
+    //Make the player take damage
+    public void takeDamage(int damage){
+        this.health -= damage;
+        if(damage >= health){
+            isDead = true;
+            health = 0;
+        }
+    }
+    
+    public void heal(int healValue){
+        this.health += healValue;
+    }
+
+    public void revive(){
+        this.isDead = false;
+        this.health = 100;
+    }
+
+    public void setHealth(int newHealth){
+        this.health = newHealth;
+    }
+
+    public int getHealth(){
+        return this.health;
+    }
+
+    public boolean isDead(){
+        return isDead;
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
