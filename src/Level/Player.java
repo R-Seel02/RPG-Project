@@ -262,14 +262,8 @@ public abstract class Player extends GameObject {
         }
     }
 
-    
-
-    public void playerInventory(int[]inventory){
-        playerState = playerState.STANDING;
-        
 
 
-    }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
     /*
