@@ -267,7 +267,6 @@ public abstract class Player extends GameObject {
         }
     }
 
-<<<<<<< HEAD
     //Make the player take damage
     public void takeDamage(int damage){
         this.health -= damage;

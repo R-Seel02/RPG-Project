@@ -78,10 +78,10 @@ public class FightScreen extends Screen {
 
     @Override
     public void update() {
-        if (Keyboard.isKeyDown(Key.LEFT) && keyPressTimer == 0) {
+        if (Keyboard.isKeyDown(Key.A) && keyPressTimer == 0) {
             keyPressTimer = 14;
             currentMenuItemHovered++;
-        } else if (Keyboard.isKeyDown(Key.RIGHT) && keyPressTimer == 0) {
+        } else if (Keyboard.isKeyDown(Key.D) && keyPressTimer == 0) {
             keyPressTimer = 14;
             currentMenuItemHovered--;
         } else {
