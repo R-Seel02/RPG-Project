@@ -7,14 +7,13 @@ import GameObject.Frame;
 import GameObject.ImageEffect;
 import Level.TileType;
 import Level.Tileset;
-
 import java.util.ArrayList;
 
 // This class represents a "common" tileset of standard tiles defined in the CommonTileset.png file
 public class CommonTileset extends Tileset {
 
     public CommonTileset() {
-        super(ImageLoader.load("CommonTilesV2.png"), 16, 16, 3);
+        super(ImageLoader.load("CommonTilesTest.png"), 16, 16, 3);
     }
 
     @Override
@@ -61,15 +60,13 @@ public class CommonTileset extends Tileset {
         mapTiles.add(rockTile);
 
         // tree trunk with full hole
-        Frame treeTrunkWithFullHoleFrame = new FrameBuilder(getSubImage(2, 2))
+        Frame gravelFrame = new FrameBuilder(getSubImage(2, 2))
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder treeTrunkWithFullHoleTile = new MapTileBuilder(grassFrame)
-                .withTopLayer(treeTrunkWithFullHoleFrame)
-                .withTileType(TileType.PASSABLE);
+        MapTileBuilder gravelTile = new MapTileBuilder(gravelFrame);
 
-        mapTiles.add(treeTrunkWithFullHoleTile);
+        mapTiles.add(gravelTile);
 
         // left end branch
         Frame leftEndBranchFrame = new FrameBuilder(getSubImage(2, 4))
@@ -119,43 +116,43 @@ public class CommonTileset extends Tileset {
         mapTiles.add(treeTopLeavesTile);
         
         // yellow flower
-        Frame[] yellowFlowerFrames = new Frame[] {
+        Frame[] redFlowerFrames = new Frame[] {
                 new FrameBuilder(getSubImage(1, 2), 65)
                     .withScale(tileScale)
                     .build(),
-                new FrameBuilder(getSubImage(1, 3), 65)
+                new FrameBuilder(getSubImage(1, 3), 45)
                         .withScale(tileScale)
                         .build(),
-                new FrameBuilder(getSubImage(1, 2), 65)
+                new FrameBuilder(getSubImage(1, 4), 25)
                         .withScale(tileScale)
                         .build(),
-                new FrameBuilder(getSubImage(1, 4), 65)
+                new FrameBuilder(getSubImage(1, 3), 25)
                         .withScale(tileScale)
                         .build()
         };
 
-        MapTileBuilder yellowFlowerTile = new MapTileBuilder(yellowFlowerFrames);
+        MapTileBuilder redFlowerTile = new MapTileBuilder(redFlowerFrames);
 
-        mapTiles.add(yellowFlowerTile);
+        mapTiles.add(redFlowerTile);
 
         // wall
-        Frame[] wallFrames = new Frame[] {
-                new FrameBuilder(getSubImage(0, 2), 65)
+        Frame[] blueFlowerFrames = new Frame[] {
+                new FrameBuilder(getSubImage(0, 2), 160)
                         .withScale(tileScale)
                         .build(),
-                new FrameBuilder(getSubImage(0, 3), 65)
+                new FrameBuilder(getSubImage(0, 3), 20)
                         .withScale(tileScale)
                         .build(),
-                new FrameBuilder(getSubImage(0, 2), 65)
+                new FrameBuilder(getSubImage(0, 4), 30)
                         .withScale(tileScale)
                         .build(),
-                new FrameBuilder(getSubImage(0, 4), 65)
+                new FrameBuilder(getSubImage(0, 3), 20)
                         .withScale(tileScale)
                         .build()
         };
 
-        MapTileBuilder wallTile = new MapTileBuilder(wallFrames).withTileType(TileType.NOT_PASSABLE);;
-        mapTiles.add(wallTile);
+        MapTileBuilder blueFlowerTile = new MapTileBuilder(blueFlowerFrames);
+        mapTiles.add(blueFlowerTile);
 
         // middle branch
         Frame middleBranchFrame = new FrameBuilder(getSubImage(2, 3))
@@ -317,6 +314,43 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(topWaterTile);
+
+        // horizontal gravel path
+        Frame gravelPathHFrame = new FrameBuilder(getSubImage(0, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder gravelPathHTile = new MapTileBuilder(gravelPathHFrame);
+
+        mapTiles.add(gravelPathHTile);
+
+        // vertical gravel path
+        Frame gravelPathVFrame = new FrameBuilder(getSubImage(1, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder gravelPathVTile = new MapTileBuilder(gravelPathVFrame);
+
+        mapTiles.add(gravelPathVTile);
+
+        // cross section gravel path
+        Frame gravelPathXFrame = new FrameBuilder(getSubImage(2, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder gravelPathXTile = new MapTileBuilder(gravelPathXFrame);
+
+        mapTiles.add(gravelPathXTile);
+
+        // invisible barrier
+        Frame barrierFrame = new FrameBuilder(getSubImage(3, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder barrierTile = new MapTileBuilder(barrierFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(barrierTile);
 
         return mapTiles;
     }
