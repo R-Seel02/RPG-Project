@@ -51,6 +51,8 @@ public class TestMap extends Map {
         testNPC.setInteractScript(new TestNPCScript());
         npcs.add(testNPC);
 
+        // shopkeeper id 5
+
         return npcs;
     }
 

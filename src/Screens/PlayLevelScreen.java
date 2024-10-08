@@ -9,6 +9,8 @@ import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
 import Utils.Point;
+import SpriteFont.SpriteFont;
+import java.awt.Color;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -17,8 +19,10 @@ public class PlayLevelScreen extends Screen {
     protected Cat player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
     protected FlagManager flagManager;
+    protected SpriteFont coinCounter;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -33,7 +37,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToTestNPC", false);
         flagManager.addFlag("isFighting", false);
-
+        flagManager.addFlag("inShop", false);
+        
         // define/setup map
         map = new TestMap();
         map.setFlagManager(flagManager);
@@ -46,6 +51,11 @@ public class PlayLevelScreen extends Screen {
 
         map.setPlayer(player);
 
+        // set up coin counter text
+        coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 700, 20, "Arial", 20, Color.white);
+        coinCounter.setOutlineColor(Color.black);
+        coinCounter.setOutlineThickness(2);
+
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
 
@@ -55,6 +65,9 @@ public class PlayLevelScreen extends Screen {
 
         winScreen = new WinScreen(this);
         fightScreen = new FightScreen(this, player, "Walrus.png");
+        shopScreen = new ShopScreen(this, this.player);
+
+        // shop screen
     }
 
     public void update() {
@@ -64,6 +77,7 @@ public class PlayLevelScreen extends Screen {
             case RUNNING:
                 player.update();
                 map.update(player);
+                coinCounter.setText("Coins: " + player.getCoinCount());
                 break;
             // if level has been completed, bring up level cleared screen
             case LEVEL_COMPLETED:
@@ -72,6 +86,10 @@ public class PlayLevelScreen extends Screen {
             // if the player is fighting, change the screen to a fight screen
             case FIGHTING:
                 fightScreen.update();
+                break;
+            // if the player enters the shop, change to the shop screen
+            case SHOPPING:
+                shopScreen.update();
                 break;
         }
 
@@ -83,6 +101,10 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("isFighting")) {
             playLevelScreenState = PlayLevelScreenState.FIGHTING;
         }
+
+        if (map.getFlagManager().isFlagSet("inShop")) {
+            playLevelScreenState = PlayLevelScreenState.SHOPPING;
+        }
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
@@ -90,12 +112,16 @@ public class PlayLevelScreen extends Screen {
         switch (playLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
+                coinCounter.draw(graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
                 break;
             case FIGHTING:
                 fightScreen.draw(graphicsHandler);
+                break;
+            case SHOPPING:
+                shopScreen.draw(graphicsHandler);
                 break;
         }
     }
@@ -116,10 +142,12 @@ public class PlayLevelScreen extends Screen {
     public void backToGame() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         flagManager.unsetFlag("isFighting");
+        flagManager.unsetFlag("inShop");
     }
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED, FIGHTING
+        // add shopping
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING
     }
 }
