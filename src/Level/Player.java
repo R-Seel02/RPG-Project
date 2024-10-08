@@ -30,6 +30,7 @@ public abstract class Player extends GameObject {
     protected PlayerState previousPlayerState;
     protected Direction facingDirection;
     protected Direction lastMovementDirection;
+    protected int coinCount = 0;
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
@@ -190,6 +191,16 @@ public abstract class Player extends GameObject {
 
     public void setFacingDirection(Direction facingDirection) {
         this.facingDirection = facingDirection;
+    }
+
+    // returns player's coin count
+    public int getCoinCount(){
+        return this.coinCount;
+    }
+
+    // changes player's coin count
+    public void setCoinCount(int coinCount){
+        this.coinCount = coinCount;
     }
 
     public Rectangle getInteractionRange() {

@@ -19,6 +19,14 @@ public class FlagManager {
             flags.put(flagName, true);
         }
     }
+    
+    public boolean getFlag(String flagName){
+        boolean isFlag = false;
+        if (flags.containsKey(flagName)) {
+            isFlag = flags.get(flagName);
+        }
+        return isFlag;
+    }
 
     public void unsetFlag(String flagName) {
         if (flags.containsKey(flagName)) {
