@@ -1,6 +1,7 @@
 package GameObject;
 
 import Engine.GraphicsHandler;
+import Engine.Keyboard;
 import Level.*;
 import Utils.Direction;
 import Utils.ImageUtils;
@@ -208,6 +209,7 @@ public class GameObject extends AnimatedSprite {
 					setY(collisionCheckResult.getAdjustedLocation().y);
 				}
 				break;
+				
 			}
 			amountMoved = i + 1;
 		}
@@ -229,6 +231,17 @@ public class GameObject extends AnimatedSprite {
 					amountMoved += Math.abs(yLocationBeforeAdjustment - getY());
 				}
 			}
+
+			// if (hasCollided == true ){
+			// 	if(Keyboard.isKeyDown(PICK_UP_KEY)){
+			// 		//code to make the rock disapper
+			// 		//code to make rock reapper
+			// 	}
+
+			// }
+
+	
+
 			else {
 				amountMoved += moveAmountYRemainder;
 			}
