@@ -20,6 +20,9 @@ public abstract class Player extends GameObject {
     protected Direction currentWalkingYDirection;
     protected Direction lastWalkingXDirection;
     protected Direction lastWalkingYDirection;
+    protected int inventory;
+   
+
 
     // values used to handle player movement
     protected float moveAmountX, moveAmountY;
@@ -33,11 +36,12 @@ public abstract class Player extends GameObject {
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
-    protected Key MOVE_LEFT_KEY = Key.LEFT;
-    protected Key MOVE_RIGHT_KEY = Key.RIGHT;
-    protected Key MOVE_UP_KEY = Key.UP;
-    protected Key MOVE_DOWN_KEY = Key.DOWN;
+    protected Key MOVE_LEFT_KEY = Key.A;
+    protected Key MOVE_RIGHT_KEY = Key.D;
+    protected Key MOVE_UP_KEY = Key.W;
+    protected Key MOVE_DOWN_KEY = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
+    protected Key PICK_UP_KEY = Key.E;
 
     protected boolean isLocked = false;
 
@@ -97,7 +101,10 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             playerState = PlayerState.WALKING;
         }
+
+        
     }
+
 
     // player WALKING state logic
     protected void playerWalking() {
@@ -253,6 +260,15 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.RIGHT) {
             moveX(speed);
         }
+    }
+
+    
+
+    public void playerInventory(int[]inventory){
+        playerState = playerState.STANDING;
+        
+
+
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize

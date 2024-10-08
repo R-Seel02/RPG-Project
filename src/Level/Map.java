@@ -55,8 +55,10 @@ public abstract class Map {
 
     // lists to hold map entities that are a part of the map
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
+    protected ArrayList<PickableObject> pickableObjects;
     protected ArrayList<NPC> npcs;
     protected ArrayList<Trigger> triggers;
+    
 
     // current script that is being executed (if any)
     protected Script activeScript;
@@ -110,6 +112,11 @@ public abstract class Map {
         this.triggers = loadTriggers();
         for (Trigger trigger: this.triggers) {
             trigger.setMap(this);
+        }
+
+        this.pickableObjects = loadPickableObjects();
+        for (PickableObject pickableObject: this.pickableObjects){
+            pickableObject.setMap(this);
         }
 
         this.loadScripts();
@@ -282,7 +289,10 @@ public abstract class Map {
     protected ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         return new ArrayList<>();
     }
-
+    protected ArrayList<PickableObject> loadPickableObjects() {
+        return new ArrayList<>();
+    }
+ 
     // list of npcs defined to be a part of the map, should be overridden in a subclass
     protected ArrayList<NPC> loadNPCs() {
         return new ArrayList<>();
@@ -298,6 +308,9 @@ public abstract class Map {
 
     public ArrayList<EnhancedMapTile> getEnhancedMapTiles() {
         return enhancedMapTiles;
+    }
+    public ArrayList<PickableObject> getPickableObjects() {
+        return pickableObjects;
     }
 
     public ArrayList<NPC> getNPCs() {
@@ -362,6 +375,14 @@ public abstract class Map {
                 trigger.getTriggerScript().initialize();
             }
         }
+        for(PickableObject pickableObject : pickableObjects){
+            if ( pickableObject.getInteractScript() != null){
+                pickableObject.getInteractScript().setMap(this);
+                pickableObject.getInteractScript().setPlayer(player);
+                pickableObject.getInteractScript().initialize();
+            }
+        }
+
     }
 
     public NPC getNPCById(int id) {
@@ -386,6 +407,9 @@ public abstract class Map {
     public ArrayList<Trigger> getActiveTriggers() {
         return camera.getActiveTriggers();
     }
+    public ArrayList<PickableObject> getActivePickableObjects(){
+        return camera.getActivePickableObjects();
+    }
 
     // add an enhanced map tile to the map's list of enhanced map tiles
     public void addEnhancedMapTile(EnhancedMapTile enhancedMapTile) {
@@ -403,6 +427,10 @@ public abstract class Map {
     public void addTrigger(Trigger trigger) {
         trigger.setMap(this);
         this.triggers.add(trigger);
+    }
+    public void addPickableObject(PickableObject pickableObject){
+        pickableObject.setMap(this);
+        this.pickableObjects.add(pickableObject);
     }
 
     public void setAdjustCamera(boolean adjustCamera) {
@@ -426,6 +454,7 @@ public abstract class Map {
         // gets active surrounding npcs
         surroundingMapEntities.addAll(getActiveNPCs());
         surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
+        surroundingMapEntities.addAll(getActivePickableObjects());
         return surroundingMapEntities;
     }
 
