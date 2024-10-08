@@ -26,6 +26,7 @@ public class Camera extends Rectangle {
     private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
+    private ArrayList<PickableObject> activePickableObjects = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;
@@ -66,6 +67,7 @@ public class Camera extends Rectangle {
         activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
         activeNPCs = loadActiveNPCs();
         activeTriggers = loadActiveTriggers();
+        activePickableObjects = loadActivePickableObjects();
 
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
             enhancedMapTile.update(player);
@@ -73,6 +75,10 @@ public class Camera extends Rectangle {
 
         for (NPC npc : activeNPCs) {
             npc.update(player);
+        }
+
+        for (PickableObject pickableObject : activePickableObjects ){
+            pickableObject.update(player);
         }
     }
 
@@ -123,6 +129,27 @@ public class Camera extends Rectangle {
             }
         }
         return activeNPCs;
+    }
+
+    private ArrayList<PickableObject> loadActivePickableObjects(){
+        ArrayList<PickableObject> activePickableObjects = new ArrayList<>();
+        for (int i = map.getActivePickableObjects().size() - 1; i>=0; i--){
+            PickableObject pickableObject = map.getPickableObjects().get(i);
+
+            if( isMapEntityActive(pickableObject)){
+                activePickableObjects.add(pickableObject);
+                if(pickableObject.mapEntityStatus == MapEntityStatus.INACTIVE){
+                    pickableObject.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            }
+            else if (pickableObject.getMapEntityStatus() == MapEntityStatus.ACTIVE){
+                pickableObject.setMapEntityStatus(MapEntityStatus.INACTIVE);
+            } else if (pickableObject.getMapEntityStatus() == MapEntityStatus.REMOVED){
+                map.getPickableObjects().remove(i);
+            }
+        } 
+        return activePickableObjects;
+
     }
 
     // determine which trigger map tiles are active (exist and are within range of the camera)
@@ -271,6 +298,9 @@ public class Camera extends Rectangle {
 
     public ArrayList<Trigger> getActiveTriggers() {
         return activeTriggers;
+    }
+    public ArrayList<PickableObject> getActivePickableObjects(){
+        return activePickableObjects;
     }
 
     // gets end bound X position of the camera (start position is always 0)
