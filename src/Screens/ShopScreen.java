@@ -6,11 +6,9 @@ import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
-import Game.GameState;
 import GameObject.Sprite;
 import GameObject.SpriteSheet;
 import Level.Player;
-import NPCs.Bug;
 import SpriteFont.SpriteFont;
 
 import java.awt.Color;
@@ -43,30 +41,30 @@ public class ShopScreen extends Screen{
 
     @Override
     public void initialize() {
-        background = new Sprite(ImageLoader.load("ShopBackgroundV2.png"));
+        background = new Sprite(ImageLoader.load("ShopBackgroundV3.png"));
         shopkeeperSheet = new SpriteSheet(ImageLoader.load("Bug.png"), 24, 15);
         shopkeeper = new Sprite(shopkeeperSheet.getSprite(0,0));
-        shopkeeper.setX(325);
-        shopkeeper.setY(225);
-        shopkeeper.setScale(5);
-        coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 700, 20, "Arial", 20, Color.white);
+        shopkeeper.setX(700);
+        shopkeeper.setY(350);
+        shopkeeper.setScale(10);
+        coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1350, 20, "Arial", 50, Color.white);
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
-        shopkeeperMessage = new SpriteFont("", 220, 100, "Arial", 30, Color.white);
-        choice1 = new SpriteFont("-1 coin", 50, 100, "Arial", 25, Color.white);
-        choice2 = new SpriteFont("-2 coins", 50, 225, "Arial", 25, Color.white);
-        choice3 = new SpriteFont("-3 coins", 50, 325, "Arial", 25, Color.white);
-        returnToGame = new SpriteFont("Leave?", 50, 450, "Arial", 25, Color.white);
+        shopkeeperMessage = new SpriteFont("", 600, 125, "Arial", 30, Color.white);
+        choice1 = new SpriteFont("-1 coin", 50, 150, "Arial", 50, Color.white);
+        choice2 = new SpriteFont("-2 coins", 50, 350, "Arial", 50, Color.white);
+        choice3 = new SpriteFont("-3 coins", 50, 525, "Arial", 50, Color.white);
+        returnToGame = new SpriteFont("Leave?", 50, 725, "Arial", 50, Color.white);
         keyPressTimer = 0;
         keyLocker.lockKey(Key.SPACE);
     }
 
     @Override
     public void update() {
-        if (Keyboard.isKeyDown(Key.DOWN) && keyPressTimer == 0) {
+        if (Keyboard.isKeyDown(Key.S) && keyPressTimer == 0) {
             keyPressTimer = 20;
             currentMenuItemHovered++;
-        } else if (Keyboard.isKeyDown(Key.UP) && keyPressTimer == 0) {
+        } else if (Keyboard.isKeyDown(Key.W) && keyPressTimer == 0) {
             keyPressTimer = 20;
             currentMenuItemHovered--;
         }
@@ -88,7 +86,7 @@ public class ShopScreen extends Screen{
             choice3.setColor(Color.white);
             returnToGame.setColor(Color.white);
             pointerLocationX = 15;
-            pointerLocationY = 100;
+            pointerLocationY = 150;
         } 
         else if (currentMenuItemHovered == 1) {
             choice1.setColor(Color.white);
@@ -96,7 +94,7 @@ public class ShopScreen extends Screen{
             choice3.setColor(Color.white);
             returnToGame.setColor(Color.white);
             pointerLocationX = 15;
-            pointerLocationY = 225;
+            pointerLocationY = 350;
         }
         else if (currentMenuItemHovered == 2) {
             choice1.setColor(Color.white);
@@ -104,7 +102,7 @@ public class ShopScreen extends Screen{
             choice3.setColor(Color.yellow);
             returnToGame.setColor(Color.white);
             pointerLocationX = 15;
-            pointerLocationY = 325;
+            pointerLocationY = 525;
         }
         else if (currentMenuItemHovered == 3) {
             choice1.setColor(Color.white);
@@ -112,13 +110,13 @@ public class ShopScreen extends Screen{
             choice3.setColor(Color.white);
             returnToGame.setColor(Color.yellow);
             pointerLocationX = 15;
-            pointerLocationY = 450;
+            pointerLocationY = 725;
         }
 
-        if (Keyboard.isKeyUp(Key.SPACE)) {
-            keyLocker.unlockKey(Key.SPACE);
+        if (Keyboard.isKeyUp(Key.E)) {
+            keyLocker.unlockKey(Key.E);
         }
-        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0) {
+        if (!keyLocker.isKeyLocked(Key.E) && Keyboard.isKeyDown(Key.E) && keyPressTimer == 0) {
             keyPressTimer = 25;
             menuItemSelected = currentMenuItemHovered;
             if (menuItemSelected == 0) {
@@ -174,7 +172,7 @@ public class ShopScreen extends Screen{
         shopkeeperMessage.draw(graphicsHandler);
         coinCounter.draw(graphicsHandler);
         returnToGame.draw(graphicsHandler);
-        graphicsHandler.drawFilledRectangle(pointerLocationX, pointerLocationY, 20, 20, Color.yellow);
+        graphicsHandler.drawFilledRectangle(pointerLocationX, pointerLocationY, 25, 25, Color.yellow);
     }
     
 }
