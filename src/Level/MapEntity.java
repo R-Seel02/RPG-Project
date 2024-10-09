@@ -70,6 +70,7 @@ public class MapEntity extends GameObject {
         this.interactScript.setMapEntity(this);
     }
 
+
     protected Script loadScript() {
         return null;
     }

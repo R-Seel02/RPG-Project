@@ -33,6 +33,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToTestNPC", false);
         flagManager.addFlag("isFighting", false);
+        flagManager.addFlag("hasPickedupRock", false);
+
 
         // define/setup map
         map = new TestMap();

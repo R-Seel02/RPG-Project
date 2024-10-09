@@ -1,6 +1,7 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
+import GameObject.Frame;
 import Level.*;
 import NPCs.Bug;
 import NPCs.Dinosaur;
@@ -11,6 +12,8 @@ import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
 
 import java.util.ArrayList;
+
+import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
@@ -62,6 +65,18 @@ public class TestMap extends Map {
         triggers.add(new Trigger(645, 830, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(540, 900, 100, 10, new LostBallScript(), "hasLostBall"));
         return triggers;
+    }
+
+    @Override
+    public ArrayList<PickableObject> loadPickableObjects(){
+         ArrayList<PickableObject> pickableObjects = new ArrayList<>();
+         PickableObject pickableObject = new PickableObject(getMapTile(5, 10).getLocation().subtractY(40), new Frame(ImageLoader.load("Rock.png")));
+         pickableObjects.add(pickableObject);
+         pickableObject.setInteractScript(new RockScript(pickableObject));
+         return pickableObjects;
+ 
+
+
     }
 
     @Override

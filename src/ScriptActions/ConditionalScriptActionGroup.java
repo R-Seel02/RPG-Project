@@ -2,6 +2,8 @@ package ScriptActions;
 
 import java.util.ArrayList;
 
+import Level.MapEntityStatus;
+
 public class ConditionalScriptActionGroup {
     protected ArrayList<ScriptAction> scriptActions;
     protected ArrayList<Requirement> requirements;
