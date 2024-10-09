@@ -5,12 +5,12 @@ import Level.*;
 import NPCs.Bug;
 import NPCs.Dinosaur;
 import NPCs.TestNPC;
-<<<<<<< HEAD
+
 import NPCs.Amongus;
 import NPCs.Bird;
-=======
+
 import NPCs.Walrus;
->>>>>>> 72ab50925ea5a486df47380c788b1960ad08fcf4
+
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -55,7 +55,7 @@ public class TestMap extends Map {
         testNPC.setInteractScript(new TestNPCScript());
         npcs.add(testNPC);
 
-        Amongus amongus = new Amongus(5, getMapTile(30, 18).getLocation().subtractY(40));
+        Amongus amongus = new Amongus(5, getMapTile(24, 19).getLocation().subtractY(40));
         amongus.setInteractScript(new AmongusScript3());
         npcs.add(amongus);
 

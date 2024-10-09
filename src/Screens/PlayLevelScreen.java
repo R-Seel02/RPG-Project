@@ -59,7 +59,7 @@ public class PlayLevelScreen extends Screen {
 
         map.setPlayer(player);
 
-        quest1 = new SpriteFont("Retrieve the axe\n for the bird", 1200, 20, "Arial", 30, Color.white);
+        quest1 = new SpriteFont("Retrieve the axe for the bird", 1000, 75, "Arial", 0, Color.white);
         quest1.setOutlineColor(Color.black);
         quest1.setOutlineThickness(3);
 
@@ -125,6 +125,14 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("inShop")) {
             playLevelScreenState = PlayLevelScreenState.SHOPPING;
         }
+        if (map.getFlagManager().isFlagSet("hasQuest1")) {
+            quest1.setFontSize(30);
+        }
+        if (map.getFlagManager().isFlagSet("hasCompletedQuest1")) {
+            quest1.setFontSize(0);
+        }
+        
+        
         // if (map.getFlagManager().isFlagSet("")) {
             
         // }
@@ -137,6 +145,7 @@ public class PlayLevelScreen extends Screen {
             case RUNNING:
                 map.draw(player, graphicsHandler);
                 coinCounter.draw(graphicsHandler);
+                quest1.draw(graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
