@@ -7,6 +7,7 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
+import ScriptActions.ChangeFlagScriptAction;
 import Utils.Direction;
 import Utils.Point;
 import SpriteFont.SpriteFont;
@@ -24,6 +25,9 @@ public class PlayLevelScreen extends Screen {
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
 
+    //quest stuff
+    protected SpriteFont quest1;
+
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
@@ -38,6 +42,10 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToTestNPC", false);
         flagManager.addFlag("isFighting", false);
         flagManager.addFlag("inShop", false);
+        flagManager.addFlag("hasAxe", false);
+        flagManager.addFlag("HasQuest", false);
+        flagManager.addFlag("hasQuest1", false);
+        flagManager.addFlag("hasCompletedQuest1", false);
         
         // define/setup map
         map = new TestMap();
@@ -51,10 +59,16 @@ public class PlayLevelScreen extends Screen {
 
         map.setPlayer(player);
 
+        quest1 = new SpriteFont("Retrieve the axe\n for the bird", 1200, 20, "Arial", 30, Color.white);
+        quest1.setOutlineColor(Color.black);
+        quest1.setOutlineThickness(3);
+
         // set up coin counter text
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
+
+        
 
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
@@ -68,6 +82,12 @@ public class PlayLevelScreen extends Screen {
         shopScreen = new ShopScreen(this, this.player);
 
         // shop screen
+
+        //quest stuff
+        // quest1 = new SpriteFont("Retrieve the axe", 800, 75, "Arial", 30, Color.white);
+        // quest1.setOutlineColor(Color.black);
+        // quest1.setOutlineThickness(3);
+
     }
 
     public void update() {
@@ -105,6 +125,10 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("inShop")) {
             playLevelScreenState = PlayLevelScreenState.SHOPPING;
         }
+        // if (map.getFlagManager().isFlagSet("")) {
+            
+        // }
+
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
