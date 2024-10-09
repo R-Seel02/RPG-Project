@@ -137,16 +137,16 @@ public class CommonTileset extends Tileset {
 
         // wall
         Frame[] blueFlowerFrames = new Frame[] {
-                new FrameBuilder(getSubImage(0, 2), 160)
+                new FrameBuilder(getSubImage(0, 2), 100)
                         .withScale(tileScale)
                         .build(),
-                new FrameBuilder(getSubImage(0, 3), 20)
+                new FrameBuilder(getSubImage(0, 3), 30)
                         .withScale(tileScale)
                         .build(),
-                new FrameBuilder(getSubImage(0, 4), 30)
+                new FrameBuilder(getSubImage(0, 4), 40)
                         .withScale(tileScale)
                         .build(),
-                new FrameBuilder(getSubImage(0, 3), 20)
+                new FrameBuilder(getSubImage(0, 3), 30)
                         .withScale(tileScale)
                         .build()
         };
@@ -351,6 +351,102 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(barrierTile);
+
+        Frame[] chimneyFrames = new Frame[] {
+                new FrameBuilder(getSubImage(4, 5), 40)
+                        .withScale(tileScale)
+                        .build(),
+                new FrameBuilder(getSubImage(5, 5), 40)
+                        .withScale(tileScale)
+                        .build()
+        };
+
+        MapTileBuilder chimneyTile = new MapTileBuilder(grassFrame).withTopLayer(chimneyFrames);
+        mapTiles.add(chimneyTile);
+
+        Frame logoTopTFrame = new FrameBuilder(getSubImage(0,6))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoTopTTile = new MapTileBuilder(grassFrame).withTopLayer(logoTopTFrame);
+        mapTiles.add(logoTopTTile);
+
+        Frame logoBottomTFrame = new FrameBuilder(getSubImage(1,6))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoBottomTTile = new MapTileBuilder(grassFrame).withTopLayer(logoBottomTFrame);
+        mapTiles.add(logoBottomTTile);
+
+        Frame logoHFrame = new FrameBuilder(getSubImage(0,7))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoHTile = new MapTileBuilder(grassFrame).withTopLayer(logoHFrame);
+        mapTiles.add(logoHTile);
+
+        Frame logoIFrame = new FrameBuilder(getSubImage(0,8))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoITile = new MapTileBuilder(grassFrame).withTopLayer(logoIFrame);
+        mapTiles.add(logoITile);
+
+        Frame logoMFrame = new FrameBuilder(getSubImage(1,7))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoMTile = new MapTileBuilder(grassFrame).withTopLayer(logoMFrame);
+        mapTiles.add(logoMTile);
+
+        Frame logoNFrame = new FrameBuilder(getSubImage(1,8))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoNTile = new MapTileBuilder(grassFrame).withTopLayer(logoNFrame);
+        mapTiles.add(logoNTile);
+
+        Frame logoEFrame = new FrameBuilder(getSubImage(2,7))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoETile = new MapTileBuilder(grassFrame).withTopLayer(logoEFrame);
+        mapTiles.add(logoETile);
+
+        Frame logoUFrame = new FrameBuilder(getSubImage(2,8))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoUTile = new MapTileBuilder(grassFrame).withTopLayer(logoUFrame);
+        mapTiles.add(logoUTile);
+
+        Frame logoRFrame = new FrameBuilder(getSubImage(2,6))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoRTile = new MapTileBuilder(grassFrame).withTopLayer(logoRFrame);
+        mapTiles.add(logoRTile);
+
+        Frame logoTHFrame = new FrameBuilder(getSubImage(3,6))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoTHTile = new MapTileBuilder(grassFrame).withTopLayer(logoTHFrame);
+        mapTiles.add(logoTHTile);
+
+        Frame logoELFrame = new FrameBuilder(getSubImage(3,7))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoELTile = new MapTileBuilder(grassFrame).withTopLayer(logoELFrame);
+        mapTiles.add(logoELTile);
+
+        Frame logoEGEFrame = new FrameBuilder(getSubImage(3,8))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoEGETile = new MapTileBuilder(grassFrame).withTopLayer(logoEGEFrame);
+        mapTiles.add(logoEGETile);
+
+        Frame logoNDFrame = new FrameBuilder(getSubImage(4,6))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoNDTile = new MapTileBuilder(grassFrame).withTopLayer(logoNDFrame);
+        mapTiles.add(logoNDTile);
+
+        Frame logoOFFrame = new FrameBuilder(getSubImage(4,7))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder logoOFTile = new MapTileBuilder(grassFrame).withTopLayer(logoOFFrame);
+        mapTiles.add(logoOFTile);
 
         return mapTiles;
     }
