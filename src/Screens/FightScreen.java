@@ -22,7 +22,7 @@ public class FightScreen extends Screen {
     protected int keyPressTimer;
     protected int menuItemSelected = -1;
     protected int currentMenuItemHovered = 0;
-    protected Map background;
+    protected FightMap background;
 
     public FightScreen(PlayLevelScreen playLevelScreen, Cat player, String enemySprite) {
         this.playLevelScreen = playLevelScreen;
@@ -67,10 +67,14 @@ public class FightScreen extends Screen {
     public void updateMessages(){
         if(player.isDead() && enemyHealth <= 0){
             healthMessage = new SpriteFont("You have died, but in your last stand, you took your enemy with you.", 150, 319, "Arial", 20, Color.orange);
+            background.flipPlayer();
+            background.flipEnemy();
         }else if(player.isDead()){
             healthMessage = new SpriteFont("You have died. The enemy had " + enemyHealth + " health left. Better luck next time.", 150, 319, "Arial", 20, Color.red);
+            background.flipPlayer();
         }else if(enemyHealth <= 0){
             healthMessage = new SpriteFont("You have killed the enemy! Congratulations.", 150, 319, "Arial", 20, Color.green);
+            background.flipEnemy();
         }else{
             healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 150, 319, "Arial", 20, Color.white);
         }
@@ -118,11 +122,12 @@ public class FightScreen extends Screen {
                 //This area intentionally left blank.
                 //If the player is dead, they can't attack. Simple as.
             }else if(menuItemSelected == 1) {
+                playLevelScreen.backToGame();
                 currentMenuItemHovered = 0;
+                background.rightSprites();
                 enemyHealth = 100;
                 player.revive();
                 updateMessages();
-                playLevelScreen.backToGame();
             }
         }
     }

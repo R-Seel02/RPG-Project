@@ -17,8 +17,8 @@ public class FightMap extends Map {
 
     public FightMap(String enemySprite) {
         super("title_screen_map.txt", new CommonTileset());
-        Point catLocation = getMapTile(8, 2).getLocation().subtractX(6).subtractY(7);
-        Point enemyLocation = getMapTile(4, 2).getLocation().subtractX(6).subtractY(7);
+        Point catLocation = getMapTile(19, 5).getLocation().subtractX(6).subtractY(7);
+        Point enemyLocation = getMapTile(15, 5).getLocation().subtractX(6).subtractY(7);
         cat = new Sprite(ImageLoader.loadSubImage("Cat.png", Colors.MAGENTA, 0, 0, 24, 24));
         cat.setScale(3);
         cat.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
@@ -33,5 +33,22 @@ public class FightMap extends Map {
         super.draw(graphicsHandler);
         cat.draw(graphicsHandler);
         enemy.draw(graphicsHandler);
+    }
+
+    public void flipPlayer(){
+        cat.setImageEffect(ImageEffect.FLIP_VERTICAL);
+    }
+
+    public void flipEnemy(){
+        enemy.setImageEffect(ImageEffect.FLIP_VERTICAL);
+    }
+
+    public void rightSprites(){
+        if(cat.getImageEffect() == ImageEffect.FLIP_VERTICAL){
+            cat.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
+        }
+        if(enemy.getImageEffect() == ImageEffect.FLIP_VERTICAL){
+            enemy.setImageEffect(ImageEffect.NONE);
+        }
     }
 }
