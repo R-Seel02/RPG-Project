@@ -52,7 +52,7 @@ public class PlayLevelScreen extends Screen {
         map.setPlayer(player);
 
         // set up coin counter text
-        coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1350, 20, "Arial", 50, Color.white);
+        coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
 

@@ -41,20 +41,20 @@ public class ShopScreen extends Screen{
 
     @Override
     public void initialize() {
-        background = new Sprite(ImageLoader.load("ShopBackgroundV3.png"));
+        background = new Sprite(ImageLoader.load("ShopBackgroundV2.png"));
         shopkeeperSheet = new SpriteSheet(ImageLoader.load("Bug.png"), 24, 15);
         shopkeeper = new Sprite(shopkeeperSheet.getSprite(0,0));
-        shopkeeper.setX(700);
-        shopkeeper.setY(350);
+        shopkeeper.setX(600);
+        shopkeeper.setY(250);
         shopkeeper.setScale(10);
-        coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1350, 20, "Arial", 50, Color.white);
+        coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
-        shopkeeperMessage = new SpriteFont("", 600, 125, "Arial", 30, Color.white);
-        choice1 = new SpriteFont("-1 coin", 50, 150, "Arial", 50, Color.white);
-        choice2 = new SpriteFont("-2 coins", 50, 350, "Arial", 50, Color.white);
-        choice3 = new SpriteFont("-3 coins", 50, 525, "Arial", 50, Color.white);
-        returnToGame = new SpriteFont("Leave?", 50, 725, "Arial", 50, Color.white);
+        shopkeeperMessage = new SpriteFont("", 500, 125, "Arial", 30, Color.white);
+        choice1 = new SpriteFont("-1 coin", 50, 125, "Arial", 40, Color.white);
+        choice2 = new SpriteFont("-2 coins", 50, 300, "Arial", 40, Color.white);
+        choice3 = new SpriteFont("-3 coins", 50, 425, "Arial", 40, Color.white);
+        returnToGame = new SpriteFont("Leave?", 50, 575, "Arial", 40, Color.white);
         keyPressTimer = 0;
         keyLocker.lockKey(Key.SPACE);
     }
@@ -86,7 +86,7 @@ public class ShopScreen extends Screen{
             choice3.setColor(Color.white);
             returnToGame.setColor(Color.white);
             pointerLocationX = 15;
-            pointerLocationY = 150;
+            pointerLocationY = 125;
         } 
         else if (currentMenuItemHovered == 1) {
             choice1.setColor(Color.white);
@@ -94,7 +94,7 @@ public class ShopScreen extends Screen{
             choice3.setColor(Color.white);
             returnToGame.setColor(Color.white);
             pointerLocationX = 15;
-            pointerLocationY = 350;
+            pointerLocationY = 300;
         }
         else if (currentMenuItemHovered == 2) {
             choice1.setColor(Color.white);
@@ -102,7 +102,7 @@ public class ShopScreen extends Screen{
             choice3.setColor(Color.yellow);
             returnToGame.setColor(Color.white);
             pointerLocationX = 15;
-            pointerLocationY = 525;
+            pointerLocationY = 425;
         }
         else if (currentMenuItemHovered == 3) {
             choice1.setColor(Color.white);
@@ -110,7 +110,7 @@ public class ShopScreen extends Screen{
             choice3.setColor(Color.white);
             returnToGame.setColor(Color.yellow);
             pointerLocationX = 15;
-            pointerLocationY = 725;
+            pointerLocationY = 575;
         }
 
         if (Keyboard.isKeyUp(Key.E)) {
