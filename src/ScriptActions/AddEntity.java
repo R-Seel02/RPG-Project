@@ -4,7 +4,7 @@ import Level.MapEntity;
 import Level.MapEntityStatus;
 import Level.PickableObject;
 import Level.ScriptState;
-import Scripts.TestMap.RockScript;
+
 
 
 public class AddEntity extends ScriptAction {

@@ -208,6 +208,7 @@ public class Camera extends Rectangle {
                 }
             }
         }
+        
 
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
             if (containsDraw(enhancedMapTile)) {
@@ -233,11 +234,17 @@ public class Camera extends Rectangle {
                 enhancedMapTile.drawTopLayer(graphicsHandler);
             }
         }
+        // for (PickableObject pickableObject : activePickableObjects) {
+        //     if (containsDraw(pickableObject) && pickableObject.getTopLayer() != null) {
+        //         pickableObject.drawTopLayer(graphicsHandler);
+        //     }
+        // }
     }
 
     // draws active map entities to the screen
     public void drawMapEntities(Player player, GraphicsHandler graphicsHandler) {
         ArrayList<NPC> drawNpcsAfterPlayer = new ArrayList<>();
+        ArrayList<PickableObject> drawPickableObjectsAfterPlayer = new ArrayList<>();
 
         // goes through each active npc and determines if it should be drawn at this time based on their location relative to the player
         // if drawn here, npc will later be "overlapped" by player
@@ -259,6 +266,22 @@ public class Camera extends Rectangle {
         // npcs determined to be drawn after player from the above step are drawn here
         for (NPC npc : drawNpcsAfterPlayer) {
             npc.draw(graphicsHandler);
+        }
+
+        // for (PickableObject pickableObject : activePickableObjects) {
+        //     if (containsDraw(pickableObject)) {
+        //         if (pickableObject.getBounds().getY() < player.getBounds().getY1()  + (player.getBounds().getHeight() / 2f)) {
+        //             pickableObject.draw(graphicsHandler);
+        //         }
+        //         else {
+        //             drawPickableObjectsAfterPlayer.add(pickableObject);
+        //         }
+        //     }
+        // }
+
+        for (PickableObject pickableObject : activePickableObjects) {
+            System.out.println("testing");
+            pickableObject.draw(graphicsHandler);
         }
 
         // Uncomment this to see triggers drawn on screen

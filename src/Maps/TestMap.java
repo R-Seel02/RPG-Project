@@ -70,9 +70,10 @@ public class TestMap extends Map {
     @Override
     public ArrayList<PickableObject> loadPickableObjects(){
          ArrayList<PickableObject> pickableObjects = new ArrayList<>();
-         PickableObject pickableObject = new PickableObject(getMapTile(5, 10).getLocation().subtractY(40), new Frame(ImageLoader.load("Rock.png")));
+         PickableObject pickableObject = new PickableObject(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Rock.png")));
          pickableObjects.add(pickableObject);
-         pickableObject.setInteractScript(new RockScript(pickableObject));
+        //  pickableObject.setInteractScript(new RockScript(pickableObject));
+
          return pickableObjects;
  
 

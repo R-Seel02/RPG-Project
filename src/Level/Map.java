@@ -539,7 +539,17 @@ public abstract class Map {
         if (textbox.isActive()) {
             textbox.update();
         }
+
+        for (PickableObject object : new ArrayList<>(this.pickableObjects)) {
+            if (object.getMapEntityStatus() != MapEntityStatus.REMOVED) {
+                object.update(player);
+            } else {
+                // Optionally, remove the object from the pickableObjects list
+                pickableObjects.remove(object);
+            }
+        }
     }
+    
 
     // based on the player's current X position (which in a level can potentially be updated each frame),
     // adjust the player's and camera's positions accordingly in order to properly create the map "scrolling" effect
@@ -607,6 +617,10 @@ public abstract class Map {
         camera.draw(player, graphicsHandler);
         if (textbox.isActive()) {
             textbox.draw(graphicsHandler);
+        }
+
+        for (PickableObject object : this.pickableObjects) {
+            object.draw(graphicsHandler);
         }
     }
 
