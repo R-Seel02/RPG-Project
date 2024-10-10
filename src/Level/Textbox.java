@@ -21,27 +21,27 @@ public class Textbox {
     protected boolean isActive;
 
     // textbox constants
-    protected final int x = 22;
-    protected final int bottomY = 460;
+    protected final int x = 325;
+    protected final int bottomY = 650;
     protected final int topY = 22;
-    protected final int fontX = 35;
-    protected final int fontBottomY = 472;
+    protected final int fontX = 340;
+    protected final int fontBottomY = 662;
     protected final int fontTopY = 34;
     protected final int width = 750;
     protected final int height = 100;
 
     // options textbox constants
-    protected final int optionX = 680;
-    protected final int optionBottomY = 350;
+    protected final int optionX = 983;
+    protected final int optionBottomY = 550;
     protected final int optionTopY = 130;
     protected final int optionWidth = 92;
     protected final int optionHeight = 100;
-    protected final int fontOptionX = 706;
-    protected final int fontOptionBottomYStart = 365;
+    protected final int fontOptionX = 1009;
+    protected final int fontOptionBottomYStart = 565;
     protected final int fontOptionTopYStart = 145;
     protected final int fontOptionSpacing = 35;
-    protected final int optionPointerX = 690;
-    protected final int optionPointerYBottomStart = 378;
+    protected final int optionPointerX = 993;
+    protected final int optionPointerYBottomStart = 578;
     protected final int optionPointerYTopStart = 158;
 
     // core vars that make textbox work

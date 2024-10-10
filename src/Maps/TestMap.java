@@ -5,12 +5,16 @@ import GameObject.Frame;
 import Level.*;
 import NPCs.Bug;
 import NPCs.Dinosaur;
-import NPCs.Walrus;
 import NPCs.TestNPC;
+
+import NPCs.Amongus;
+import NPCs.Bird;
+
+import NPCs.Walrus;
+
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
-
 import java.util.ArrayList;
 
 import Engine.ImageLoader;
@@ -28,7 +32,7 @@ public class TestMap extends Map {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
         PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
-        enhancedMapTiles.add(pushableRock);
+        // enhancedMapTiles.add(pushableRock);
 
         return enhancedMapTiles;
     }
@@ -53,6 +57,16 @@ public class TestMap extends Map {
         TestNPC testNPC = new TestNPC(4, getMapTile(10, 18).getLocation().subtractY(40));
         testNPC.setInteractScript(new TestNPCScript());
         npcs.add(testNPC);
+
+        Amongus amongus = new Amongus(5, getMapTile(24, 19).getLocation().subtractY(40));
+        amongus.setInteractScript(new AmongusScript3());
+        npcs.add(amongus);
+
+        Bird bird = new Bird(6, getMapTile(5, 20).getLocation().subtractY(40));
+        bird.setInteractScript(new BirdScript2());
+        npcs.add(bird);
+
+        // shopkeeper id 5
 
         return npcs;
     }

@@ -1,8 +1,5 @@
 package Level;
 
-import java.awt.Color;
-
-import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
@@ -24,6 +21,9 @@ public abstract class Player extends GameObject {
    
 
 
+    protected int health;
+    protected boolean isDead;
+
     // values used to handle player movement
     protected float moveAmountX, moveAmountY;
     protected float lastAmountMovedX, lastAmountMovedY;
@@ -33,6 +33,7 @@ public abstract class Player extends GameObject {
     protected PlayerState previousPlayerState;
     protected Direction facingDirection;
     protected Direction lastMovementDirection;
+    protected int coinCount = 0;
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
@@ -40,8 +41,8 @@ public abstract class Player extends GameObject {
     protected Key MOVE_RIGHT_KEY = Key.D;
     protected Key MOVE_UP_KEY = Key.W;
     protected Key MOVE_DOWN_KEY = Key.S;
-    protected Key INTERACT_KEY = Key.SPACE;
     protected Key PICK_UP_KEY = Key.E;
+    protected Key INTERACT_KEY = Key.E;
 
     protected boolean isLocked = false;
 
@@ -51,6 +52,8 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
+        health = 100;
+        isDead = false;
     }
 
     public void update() {
@@ -120,7 +123,7 @@ public abstract class Player extends GameObject {
             currentWalkingXDirection = Direction.LEFT;
             lastWalkingXDirection = Direction.LEFT;
         }
-
+        
         // if walk right key is pressed, move player to the right
         else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY)) {
             moveAmountX += walkSpeed;
@@ -199,6 +202,16 @@ public abstract class Player extends GameObject {
         this.facingDirection = facingDirection;
     }
 
+    // returns player's coin count
+    public int getCoinCount(){
+        return this.coinCount;
+    }
+
+    // changes player's coin count
+    public void setCoinCount(int coinCount){
+        this.coinCount = coinCount;
+    }
+
     public Rectangle getInteractionRange() {
         return new Rectangle(
                 getBounds().getX1() - interactionRange,
@@ -262,8 +275,35 @@ public abstract class Player extends GameObject {
         }
     }
 
+    //Make the player take damage
+    public void takeDamage(int damage){
+        this.health -= damage;
+        if(damage >= health){
+            isDead = true;
+            health = 0;
+        }
+    }
+    
+    public void heal(int healValue){
+        this.health += healValue;
+    }
 
+    public void revive(){
+        this.isDead = false;
+        this.health = 100;
+    }
 
+    public void setHealth(int newHealth){
+        this.health = newHealth;
+    }
+
+    public int getHealth(){
+        return this.health;
+    }
+
+    public boolean isDead(){
+        return isDead;
+    }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
     /*
