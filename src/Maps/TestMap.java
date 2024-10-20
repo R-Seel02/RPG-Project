@@ -11,7 +11,7 @@ import NPCs.Amongus;
 import NPCs.Bird;
 
 import NPCs.Walrus;
-
+import PickableObjects.ItemRock;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -84,8 +84,9 @@ public class TestMap extends Map {
     @Override
     public ArrayList<PickableObject> loadPickableObjects(){
          ArrayList<PickableObject> pickableObjects = new ArrayList<>();
-         PickableObject pickableObject = new PickableObject(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Rock.png")));
-         pickableObjects.add(pickableObject);
+
+         ItemRock itemRock = new ItemRock(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Rock.png")));
+         pickableObjects.add(itemRock);
         //  pickableObject.setInteractScript(new RockScript(pickableObject));
 
          return pickableObjects;
