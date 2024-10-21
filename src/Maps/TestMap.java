@@ -6,6 +6,8 @@ import EnhancedMapTiles.PushableRock;
 import GameObject.Frame;
 import Level.*;
 import NPCs.Bug;
+import NPCs.Chest;
+import NPCs.Chest2;
 import NPCs.Dinosaur;
 import NPCs.TestNPC;
 
@@ -72,6 +74,16 @@ public class TestMap extends Map {
         Bed bed = new Bed(7, getMapTile(7, 22).getLocation().subtractY(40));
         bed.setInteractScript(new BedScript());
         npcs.add(bed);
+
+        Chest chest = new Chest(7, getMapTile(13, 10).getLocation());
+        chest.setInteractScript(new ChestScript());
+        npcs.add(chest);
+        
+        Chest2 chest2 = new Chest2(8, getMapTile(25, 12).getLocation());
+        chest2.setInteractScript(new Chest2Script());
+        npcs.add(chest2);
+
+        // shopkeeper id 5
 
         return npcs;
     }
