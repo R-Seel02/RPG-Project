@@ -49,6 +49,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("HasQuest", false);
         flagManager.addFlag("hasQuest1", false);
         flagManager.addFlag("hasCompletedQuest1", false);
+        flagManager.addFlag("hasOpenedChest", false);
+        flagManager.addFlag("hasOpenedChest2", false);
         
         // define/setup map
         map = new TestMap();

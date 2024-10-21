@@ -33,7 +33,7 @@ public class TestNPCScript extends Script{
                 //addScriptAction(new TextboxScriptAction("ahhhh I love my coin!"));
                 addScriptAction(new TextboxScriptAction("Here ya go!"));
                 // below line contains a created class that handles adding a coin, may be useful when it's more complicated
-                addScriptAction(new AddCoin("hasTalkedToTestNPC"));
+                addScriptAction(new AddCoin("hasTalkedToTestNPC",1));
 
                 
             }});
