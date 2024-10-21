@@ -38,7 +38,7 @@ public class TestNPCScript extends Script{
                 
             }});
 
-            
+
         }});
 
         scriptActions.add(new UnlockPlayerScriptAction());

@@ -126,7 +126,9 @@ public class FightScreen extends Screen {
                 currentMenuItemHovered = 0;
                 background.rightSprites();
                 enemyHealth = 100;
-                player.revive();
+                if(player.isDead()){
+                    player.revive();
+                }
                 updateMessages();
             }
         }
@@ -140,5 +142,13 @@ public class FightScreen extends Screen {
         attackButton.draw(graphicsHandler);
         fleeButton.draw(graphicsHandler);
         instructions.draw(graphicsHandler);
+        
+        // player health bar
+        graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+        graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, Color.red);
+
+        // enemy health bar
+        graphicsHandler.drawFilledRectangleWithBorder(1175, 25, 200, 25, Color.gray, Color.black, 3);
+        graphicsHandler.drawFilledRectangle(1175, 25, (enemyHealth * 2), 25, Color.red);
     }
 }

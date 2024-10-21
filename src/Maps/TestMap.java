@@ -1,6 +1,8 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
+// import EnhancedMapTiles.SleepableBedTop;
+// import EnhancedMapTiles.SleepableBedBottom;
 import GameObject.Frame;
 import Level.*;
 import NPCs.Bug;
@@ -8,6 +10,7 @@ import NPCs.Dinosaur;
 import NPCs.TestNPC;
 
 import NPCs.Amongus;
+import NPCs.Bed;
 import NPCs.Bird;
 
 import NPCs.Walrus;
@@ -31,7 +34,7 @@ public class TestMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-        PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
+        // PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
         // enhancedMapTiles.add(pushableRock);
 
         return enhancedMapTiles;
@@ -66,7 +69,9 @@ public class TestMap extends Map {
         bird.setInteractScript(new BirdScript2());
         npcs.add(bird);
 
-        // shopkeeper id 5
+        Bed bed = new Bed(7, getMapTile(7, 22).getLocation().subtractY(40));
+        bed.setInteractScript(new BedScript());
+        npcs.add(bed);
 
         return npcs;
     }

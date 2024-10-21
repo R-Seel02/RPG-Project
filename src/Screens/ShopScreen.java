@@ -51,7 +51,7 @@ public class ShopScreen extends Screen{
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
         shopkeeperMessage = new SpriteFont("", 500, 125, "Arial", 30, Color.white);
-        choice1 = new SpriteFont("-1 coin", 50, 125, "Arial", 40, Color.white);
+        choice1 = new SpriteFont("Health Potion", 50, 125, "Arial", 40, Color.white);
         choice2 = new SpriteFont("-2 coins", 50, 300, "Arial", 40, Color.white);
         choice3 = new SpriteFont("-3 coins", 50, 425, "Arial", 40, Color.white);
         returnToGame = new SpriteFont("Leave?", 50, 575, "Arial", 40, Color.white);
@@ -122,6 +122,7 @@ public class ShopScreen extends Screen{
             if (menuItemSelected == 0) {
                 if(player.getCoinCount() >= 1){
                     player.setCoinCount(player.getCoinCount() - 1);
+                    // player.heal(10);
                     shopkeeperMessage.setText("Thanks for the coins pal.");
                     coinCounter.setText("Coins: " + player.getCoinCount());
                 }
@@ -173,6 +174,8 @@ public class ShopScreen extends Screen{
         coinCounter.draw(graphicsHandler);
         returnToGame.draw(graphicsHandler);
         graphicsHandler.drawFilledRectangle(pointerLocationX, pointerLocationY, 25, 25, Color.yellow);
+        graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+        graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, Color.red);
     }
     
 }
