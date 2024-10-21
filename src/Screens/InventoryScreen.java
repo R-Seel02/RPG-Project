@@ -47,14 +47,16 @@ public class InventoryScreen extends Screen {
     protected Sprite item14;
     protected Sprite item15;
 
-    public InventoryScreen(PlayLevelScreen playLevelScreen, PickableObject pickableObject) {
+    public InventoryScreen(PlayLevelScreen playLevelScreen, PickableObject pickableObject, Cat player) {
         this.playLevelScreen = playLevelScreen;
         this.pickableObject = pickableObject;
+        this.player = player;
         initialize();
     }
 
     @Override
     public void initialize() {
+        
         background = new Sprite(ImageLoader.load("InventoryScreen.png"));
         if (isInInventoryList("0", inventoryList)) {
             item1 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
@@ -102,14 +104,14 @@ public class InventoryScreen extends Screen {
             item15 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
         }
 
-        
+        inventoryList = new PickableObject[15];
         returnToGame = new SpriteFont("Leave?", 136, 580, "Arial", 40, Color.white);
         keyPressTimer = 0;
         keyLocker.lockKey(Key.SPACE);
     }
-    private boolean isInInventoryList(String item, PickableObject[] inventoryList) {
+    private boolean isInInventoryList(String string, PickableObject[] inventoryList) {
         for (PickableObject inventoryItem : inventoryList) {
-            if (inventoryItem != null && inventoryItem.equals(item)) {
+            if (inventoryItem != null && inventoryItem.equals(string)) {
                 return true;
             }
         }
@@ -133,15 +135,18 @@ public class InventoryScreen extends Screen {
         else{
             returnToGame.setColor(Color.white);
         }
-        
+
         if (Keyboard.isKeyUp(Key.SPACE)) {
             keyLocker.unlockKey(Key.SPACE);
         }
         if (Keyboard.isKeyUp(Key.ESC)) {
             keyLocker.unlockKey(Key.ESC);
         }
+        if (Keyboard.isKeyUp(Key.I)) {
+            keyLocker.unlockKey(Key.I);
+        }
 
-        // if space is pressed, reset level. if escape is pressed, go back to main menu
+        //if space is pressed, reset level. if escape is pressed, go back to main menu
         if (Keyboard.isKeyDown(Key.SPACE) && !keyLocker.isKeyLocked(Key.SPACE)) {
             playLevelScreen.resetLevel();
         } else if (Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)) {

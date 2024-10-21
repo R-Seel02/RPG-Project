@@ -34,6 +34,7 @@ public abstract class Player extends GameObject {
     protected Direction facingDirection;
     protected Direction lastMovementDirection;
     protected int coinCount = 0;
+    
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
@@ -43,6 +44,7 @@ public abstract class Player extends GameObject {
     protected Key MOVE_DOWN_KEY = Key.S;
     protected Key PICK_UP_KEY = Key.E;
     protected Key INTERACT_KEY = Key.E;
+    protected Key INVENTORY = Key.I;
 
     protected boolean isLocked = false;
 
@@ -80,6 +82,9 @@ public abstract class Player extends GameObject {
         // update player's animation
         super.update();
     }
+    public boolean isInventoryKeyPressed() {
+        return Keyboard.isKeyDown(INVENTORY);
+    }
 
     // based on player's current state, call appropriate player state handling method
     protected void handlePlayerState() {
@@ -92,6 +97,20 @@ public abstract class Player extends GameObject {
                 break;
         }
     }
+    // protected void inventoryState() {
+    //     if (!keyLocker.isKeyLocked(INVENTORY) && Keyboard.isKeyDown(INVENTORY)) {
+    //         keyLocker.lockKey(INVENTORY);
+    //         map.entityInteract(this);
+    //     }
+
+        
+    //     if (Keyboard.isKeyDown(INVENTORY) ) {
+    //         playerState = PlayerState.INVENTORY;
+    //     }
+
+        
+    // }
+
 
     // player STANDING state logic
     protected void playerStanding() {
@@ -166,6 +185,10 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyUp(INTERACT_KEY) && !isLocked) {
             keyLocker.unlockKey(INTERACT_KEY);
         }
+    
+        if (Keyboard.isKeyUp(INVENTORY)) {
+            keyLocker.unlockKey(INVENTORY); 
+        }
     }
 
     // anything extra the player should do based on interactions can be handled here
@@ -210,6 +233,10 @@ public abstract class Player extends GameObject {
     // changes player's coin count
     public void setCoinCount(int coinCount){
         this.coinCount = coinCount;
+    }
+
+    public void inventory(){
+        
     }
 
     public Rectangle getInteractionRange() {
