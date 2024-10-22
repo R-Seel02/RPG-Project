@@ -1,20 +1,21 @@
 package Screens;
 
 import Engine.GraphicsHandler;
-import Engine.Key;
-import Engine.KeyLocker;
-import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
+import GameObject.Rectangle;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
 import ScriptActions.ChangeFlagScriptAction;
 import Utils.Direction;
+import Utils.ImageUtils;
 import Utils.Point;
 import SpriteFont.SpriteFont;
 import java.awt.Color;
+
+import javax.swing.Timer;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -27,10 +28,6 @@ public class PlayLevelScreen extends Screen {
     protected FightScreen fightScreen;
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
-    protected InventoryScreen inventoryScreen;
-    protected PickableObject itemRock;
-    protected KeyLocker keyLocker = new KeyLocker(); // Initialize KeyLocker for key press handling
-
 
     // quest stuff
     protected SpriteFont quest1;
@@ -49,6 +46,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToTestNPC", false);
         flagManager.addFlag("isFighting", false);
         flagManager.addFlag("hasPickedupRock", false);
+
 
         flagManager.addFlag("inShop", false);
         flagManager.addFlag("hasAxe", false);
@@ -79,6 +77,8 @@ public class PlayLevelScreen extends Screen {
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
+
+        
 
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
@@ -162,15 +162,15 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("hasCompletedQuest1")) {
             quest1.setFontSize(0);
         }
-        if (map.getFlagManager().isFlagSet("InInventory")) {
-            playLevelScreenState = PlayLevelScreenState.INVENTORY;
-        }
-
+        
+        
         // if (map.getFlagManager().isFlagSet("")) {
 
         // }
 
     }
+
+
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
@@ -179,6 +179,9 @@ public class PlayLevelScreen extends Screen {
                 map.draw(player, graphicsHandler);
                 coinCounter.draw(graphicsHandler);
                 quest1.draw(graphicsHandler);
+                // health bar
+                graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+                graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
@@ -188,9 +191,6 @@ public class PlayLevelScreen extends Screen {
                 break;
             case SHOPPING:
                 shopScreen.draw(graphicsHandler);
-                break;
-            case INVENTORY:
-                inventoryScreen.draw(graphicsHandler);
                 break;
         }
     }
@@ -215,12 +215,11 @@ public class PlayLevelScreen extends Screen {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         flagManager.unsetFlag("isFighting");
         flagManager.unsetFlag("inShop");
-        flagManager.unsetFlag("InInventory");
     }
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        // add shopping & inventory
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, INVENTORY
+        // add shopping
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING
     }
 }
