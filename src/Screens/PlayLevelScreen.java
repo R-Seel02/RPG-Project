@@ -81,7 +81,7 @@ public class PlayLevelScreen extends Screen {
         map.preloadScripts();
 
         winScreen = new WinScreen(this);
-        fightScreen = new FightScreen(this, player, "Walrus.png");
+        fightScreen = new FightScreen(this, player, "error.png");
         shopScreen = new ShopScreen(this, this.player);
 
         // shop screen
@@ -122,6 +122,9 @@ public class PlayLevelScreen extends Screen {
         }
 
         if (map.getFlagManager().isFlagSet("isFighting")) {
+            if(!fightScreen.getEnemySprite().equals(map.getEnemySprite())){
+                setFightScreen(map.getEnemySprite());
+            }
             playLevelScreenState = PlayLevelScreenState.FIGHTING;
         }
 
@@ -179,6 +182,10 @@ public class PlayLevelScreen extends Screen {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         flagManager.unsetFlag("isFighting");
         flagManager.unsetFlag("inShop");
+    }
+
+    public void setFightScreen(String enemySprite){
+        fightScreen = new FightScreen(this, player, enemySprite);
     }
 
     // This enum represents the different states this screen can be in

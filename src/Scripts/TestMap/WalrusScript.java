@@ -31,6 +31,7 @@ public class WalrusScript extends Script {
                 addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
                 addScriptAction(new TextboxScriptAction("Oh... you want to fight, huh?"));
                 addScriptAction(new TextboxScriptAction("Alright. Let's rock."));
+                addScriptAction(new StartFightScriptAction("Walrus.png"));
                 addScriptAction(new ChangeFlagScriptAction("isFighting", true));
             }});
         }});

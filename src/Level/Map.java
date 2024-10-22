@@ -78,6 +78,9 @@ public abstract class Map {
     // reference to current player
     protected Player player;
 
+    // Reference to the sprite of the enemy the player is fighting - MC
+    protected String currentEnemy;
+
     public Map(String mapFileName, Tileset tileset) {
         this.mapFileName = mapFileName;
         this.tileset = tileset;
@@ -89,6 +92,7 @@ public abstract class Map {
         this.xMidPoint = ScreenManager.getScreenWidth() / 2;
         this.yMidPoint = (ScreenManager.getScreenHeight() / 2);
         this.playerStartPosition = new Point(0, 0);
+        this.currentEnemy = "error.png";
     }
 
     // sets up map by reading in the map file to create the tile map
@@ -123,6 +127,16 @@ public abstract class Map {
 
         this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
         this.textbox = new Textbox(this);
+    }
+
+    // Sets the sprite of the NPC the player is fighting
+    public void setEnemySprite(String sprite){
+        this.currentEnemy = sprite;
+    }
+
+    // Returns the name of the sprite file of the enemy the player is fighting
+    public String getEnemySprite(){
+        return this.currentEnemy;
     }
 
     // reads in a map file to create the map's tilemap

@@ -14,6 +14,7 @@ public class FightMap extends Map {
 
     private Sprite cat;
     private Sprite enemy;
+    private String enemySprite;
 
     public FightMap(String enemySprite) {
         super("title_screen_map.txt", new CommonTileset());
@@ -26,6 +27,7 @@ public class FightMap extends Map {
         enemy = new Sprite(ImageLoader.loadSubImage(enemySprite, Colors.MAGENTA, 0, 0, 24, 24));
         enemy.setScale(3);
         enemy.setLocation(enemyLocation.x, enemyLocation.y);
+        this.enemySprite = enemySprite;
     }
 
     @Override
@@ -50,5 +52,9 @@ public class FightMap extends Map {
         if(enemy.getImageEffect() == ImageEffect.FLIP_VERTICAL){
             enemy.setImageEffect(ImageEffect.NONE);
         }
+    }
+
+    public String getEnemySprite(){
+        return this.enemySprite;
     }
 }

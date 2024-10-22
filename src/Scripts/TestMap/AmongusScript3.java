@@ -47,6 +47,8 @@ public class AmongusScript3 extends Script {
 
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("No more axe :c"));
+                    addScriptAction(new StartFightScriptAction("amongus.png"));
+                    addScriptAction(new ChangeFlagScriptAction("isFighting", true));
                  }});
                 
             }});
