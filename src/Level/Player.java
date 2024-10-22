@@ -185,14 +185,14 @@ public abstract class Player extends GameObject {
 
     public void addToInventory(PickableObject item){
         for (int i = 0; i < inventoryList.length; i++) {
-            if (inventoryList[i] == null) { // Check if the slot is null and not occupied
+            if (inventoryList[i] == null) { // Check if the slot is null and not
                 inventoryList[i] = item; 
                 System.out.println("Item picked up and placed at index: " + i);
                 break; 
             }
 
         }
-        
+        System.out.println("Inventory is full!");
     }
    
 
@@ -331,6 +331,7 @@ public abstract class Player extends GameObject {
         if(health > 100){
             health = 100;
         }
+        
     }
 
     public void revive(){
