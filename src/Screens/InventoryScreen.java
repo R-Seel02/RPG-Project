@@ -31,25 +31,9 @@ public class InventoryScreen extends Screen {
     protected  int keyPressTimer;
     protected PickableObject pickableObject;
     protected PickableObject [] inventoryList;
-    protected Sprite item1;
-    protected Sprite item2;
-    protected Sprite item3;
-    protected Sprite item4;
-    protected Sprite item5;
-    protected Sprite item6;
-    protected Sprite item7;
-    protected Sprite item8;
-    protected Sprite item9;
-    protected Sprite item10;
-    protected Sprite item11;
-    protected Sprite item12;
-    protected Sprite item13;
-    protected Sprite item14;
-    protected Sprite item15;
-
-    public InventoryScreen(PlayLevelScreen playLevelScreen, PickableObject pickableObject, Cat player) {
+  
+    public InventoryScreen(PlayLevelScreen playLevelScreen, Cat player) {
         this.playLevelScreen = playLevelScreen;
-        this.pickableObject = pickableObject;
         this.player = player;
         initialize();
     }
@@ -57,66 +41,16 @@ public class InventoryScreen extends Screen {
     @Override
     public void initialize() {
         
+        
         background = new Sprite(ImageLoader.load("InventoryScreen.png"));
-        if (isInInventoryList("0", inventoryList)) {
-            item1 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("1", inventoryList)) {
-            item2 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("2", inventoryList)) {
-            item3 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("3", inventoryList)) {
-            item4 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("4", inventoryList)) {
-            item5 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("5", inventoryList)) {
-            item6 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("6", inventoryList)) {
-            item7 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("7", inventoryList)) {
-            item8 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("8", inventoryList)) {
-            item9 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("9", inventoryList)) {
-            item10 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("10", inventoryList)) {
-            item11 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("11", inventoryList)) {
-            item12 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("12", inventoryList)) {
-            item13 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("13", inventoryList)) {
-            item14 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
-        if (isInInventoryList("14", inventoryList)) {
-            item15 = new Sprite(ImageLoader.load("Rock.png"), 14, 17);
-        }
+       
 
-        inventoryList = new PickableObject[15];
-        returnToGame = new SpriteFont("Leave?", 136, 580, "Arial", 40, Color.white);
+        
+        returnToGame = new SpriteFont("Leave?", 136, 680, "Arial", 40, Color.white);
         keyPressTimer = 0;
         keyLocker.lockKey(Key.SPACE);
     }
-    private boolean isInInventoryList(String string, PickableObject[] inventoryList) {
-        for (PickableObject inventoryItem : inventoryList) {
-            if (inventoryItem != null && inventoryItem.equals(string)) {
-                return true;
-            }
-        }
-        return false;
-    }
+ 
 
     @Override
     public void update() {
@@ -155,23 +89,34 @@ public class InventoryScreen extends Screen {
     }
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        item1.draw(graphicsHandler);
-        item2.draw(graphicsHandler);
-        item3.draw(graphicsHandler);
-        item4.draw(graphicsHandler);
-        item5.draw(graphicsHandler);
-        item6.draw(graphicsHandler);
-        item7.draw(graphicsHandler);
-        item8.draw(graphicsHandler);
-        item9.draw(graphicsHandler);
-        item10.draw(graphicsHandler);
-        item11.draw(graphicsHandler);
-        item12.draw(graphicsHandler);
-        item13.draw(graphicsHandler);
-        item14.draw(graphicsHandler);
-        item15.draw(graphicsHandler);
+        // item1.draw(graphicsHandler);
+        // item2.draw(graphicsHandler);
+        // item3.draw(graphicsHandler);
+        // item4.draw(graphicsHandler);
+        // item5.draw(graphicsHandler);
+        // item6.draw(graphicsHandler);
+        // item7.draw(graphicsHandler);
+        // item8.draw(graphicsHandler);
+        // item9.draw(graphicsHandler);
+        // item10.draw(graphicsHandler);
+        // item11.draw(graphicsHandler);
+        // item12.draw(graphicsHandler);
+        // item13.draw(graphicsHandler);
+        // item14.draw(graphicsHandler);
+        // item15.draw(graphicsHandler);
+
 
         background.draw(graphicsHandler);
+        PickableObject[] inventoryList = player.getInventoryList(); 
+
+        //logic to see if the inventory list is filled with valid pickableObject
+        for (int i = 0; i < inventoryList.length; i++) {
+            if (inventoryList[i] != null) {
+                
+                Sprite itemSprite = new Sprite(ImageLoader.load("Rock.png"), 210 + (i * 200), 68); // Adjust position for each item
+                itemSprite.draw(graphicsHandler);
+            }
+        }
         returnToGame.draw(graphicsHandler);
         graphicsHandler.drawFilledRectangle(pointerLocationX, pointerLocationY, 25, 25, Color.yellow);
     }

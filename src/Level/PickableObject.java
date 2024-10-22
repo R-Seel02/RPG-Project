@@ -35,17 +35,10 @@ public class PickableObject extends MapEntity{
 
         if (distance <= 55 && Keyboard.isKeyDown(INTERACT_KEY )) {
             this.setMapEntityStatus(MapEntityStatus.REMOVED);
-
-            for (int i = 0; i < inventoryList.length; i++) {
-                if (inventoryList[i] == null) { // Check if the slot is empty
-                    inventoryList[i] = pickableObject; 
-                    System.out.println("Item picked up and placed at index: " + i);
-                    break; 
-                }
-            }
-
-             
             
+            player.addToInventory(this);
+            
+
         }
         
         super.update();

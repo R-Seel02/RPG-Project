@@ -1,6 +1,8 @@
 package Screens;
 
 import Engine.GraphicsHandler;
+import Engine.Key;
+import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
@@ -27,8 +29,10 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont coinCounter;
     protected InventoryScreen inventoryScreen;
     protected PickableObject itemRock;
+    protected KeyLocker keyLocker = new KeyLocker(); // Initialize KeyLocker for key press handling
 
-    //quest stuff
+
+    // quest stuff
     protected SpriteFont quest1;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -46,7 +50,6 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("isFighting", false);
         flagManager.addFlag("hasPickedupRock", false);
 
-
         flagManager.addFlag("inShop", false);
         flagManager.addFlag("hasAxe", false);
         flagManager.addFlag("HasQuest", false);
@@ -55,9 +58,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasOpenedChest", false);
         flagManager.addFlag("hasOpenedChest2", false);
         flagManager.addFlag("InInventory", false);
-        
 
-        
         // define/setup map
         map = new TestMap();
         map.setFlagManager(flagManager);
@@ -79,8 +80,6 @@ public class PlayLevelScreen extends Screen {
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
 
-        
-
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
 
@@ -91,29 +90,38 @@ public class PlayLevelScreen extends Screen {
         winScreen = new WinScreen(this);
         fightScreen = new FightScreen(this, player, "Walrus.png");
         shopScreen = new ShopScreen(this, this.player);
-        inventoryScreen = new InventoryScreen(this, itemRock, player);
+        inventoryScreen = new InventoryScreen(this, player);
 
         // shop screen
 
-        //quest stuff
-        // quest1 = new SpriteFont("Retrieve the axe", 800, 75, "Arial", 30, Color.white);
+        // quest stuff
+        // quest1 = new SpriteFont("Retrieve the axe", 800, 75, "Arial", 30,
+        // Color.white);
         // quest1.setOutlineColor(Color.black);
         // quest1.setOutlineThickness(3);
 
     }
 
     public void update() {
-        if (playLevelScreenState == PlayLevelScreenState.RUNNING && player.isInventoryKeyPressed()) {
-            flagManager.setFlag("InInventory"); // Set the flag to switch to the inventory screen
-            playLevelScreenState = PlayLevelScreenState.INVENTORY;
-        } else if (playLevelScreenState == PlayLevelScreenState.INVENTORY && player.isInventoryKeyPressed()) {
-            flagManager.unsetFlag("InInventory"); // Unset the flag to close the inventory screen
-            playLevelScreenState = PlayLevelScreenState.RUNNING;
+        
+        Object playLevelScreen;
+        if (Keyboard.isKeyDown(Key.I) && !keyLocker.isKeyLocked(Key.I)) {
+            if (playLevelScreenState == PlayLevelScreenState.RUNNING) {
+                playLevelScreenState = PlayLevelScreenState.INVENTORY; // Switch to inventory
+            } else if (playLevelScreenState == PlayLevelScreenState.INVENTORY) {
+                playLevelScreenState = PlayLevelScreenState.RUNNING; // Switch back to the game
+            }
+            keyLocker.lockKey(Key.I); 
+        }
+    
+        if (Keyboard.isKeyUp(Key.I)) {
+            keyLocker.unlockKey(Key.I); // Unlock the key once it's released
         }
 
         // based on screen state, perform specific actions
         switch (playLevelScreenState) {
-            // if level is "running" update player and map to keep game logic for the platformer level going
+            // if level is "running" update player and map to keep game logic for the
+            // platformer level going
             case RUNNING:
                 player.update();
                 map.update(player);
@@ -157,11 +165,9 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("InInventory")) {
             playLevelScreenState = PlayLevelScreenState.INVENTORY;
         }
-        
-        
-        
+
         // if (map.getFlagManager().isFlagSet("")) {
-            
+
         // }
 
     }
@@ -193,7 +199,6 @@ public class PlayLevelScreen extends Screen {
         return playLevelScreenState;
     }
 
-
     public void resetLevel() {
         initialize();
     }
@@ -201,7 +206,8 @@ public class PlayLevelScreen extends Screen {
     public void goBackToMenu() {
         screenCoordinator.setGameState(GameState.MENU);
     }
-    public void goToInventory(){
+
+    public void goToInventory() {
         screenCoordinator.setGameState(GameState.INVENTORY);
     }
 
@@ -215,6 +221,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping & inventory
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING,INVENTORY
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, INVENTORY
     }
 }

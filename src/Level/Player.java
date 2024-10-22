@@ -17,9 +17,9 @@ public abstract class Player extends GameObject {
     protected Direction currentWalkingYDirection;
     protected Direction lastWalkingXDirection;
     protected Direction lastWalkingYDirection;
-    protected int inventory;
+    private PickableObject[] inventoryList;
    
-
+    
 
     protected int health;
     protected boolean isDead;
@@ -56,6 +56,7 @@ public abstract class Player extends GameObject {
         this.affectedByTriggers = true;
         health = 100;
         isDead = false;
+        this.inventoryList = new PickableObject[15];
     }
 
     public void update() {
@@ -97,19 +98,10 @@ public abstract class Player extends GameObject {
                 break;
         }
     }
-    // protected void inventoryState() {
-    //     if (!keyLocker.isKeyLocked(INVENTORY) && Keyboard.isKeyDown(INVENTORY)) {
-    //         keyLocker.lockKey(INVENTORY);
-    //         map.entityInteract(this);
-    //     }
+   
 
         
-    //     if (Keyboard.isKeyDown(INVENTORY) ) {
-    //         playerState = PlayerState.INVENTORY;
-    //     }
-
-        
-    // }
+    
 
 
     // player STANDING state logic
@@ -180,6 +172,29 @@ public abstract class Player extends GameObject {
             playerState = PlayerState.STANDING;
         }
     }
+    public void initializeInventory() {
+        inventoryList = new PickableObject[15]; // Or any size you'd like
+    }
+    public PickableObject[] getInventoryList() {
+        return inventoryList;
+    }
+
+    public void setInventoryList(PickableObject[] inventoryList) {
+        this.inventoryList = inventoryList;
+    }
+
+    public void addToInventory(PickableObject item){
+        for (int i = 0; i < inventoryList.length; i++) {
+            if (inventoryList[i] == null) { // Check if the slot is null and not occupied
+                inventoryList[i] = item; 
+                System.out.println("Item picked up and placed at index: " + i);
+                break; 
+            }
+
+        }
+        
+    }
+   
 
     protected void updateLockedKeys() {
         if (Keyboard.isKeyUp(INTERACT_KEY) && !isLocked) {

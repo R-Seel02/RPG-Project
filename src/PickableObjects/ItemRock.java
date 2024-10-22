@@ -9,7 +9,7 @@ import Utils.Point;
 public class ItemRock extends PickableObject {
 
     public ItemRock(Point location, Frame frame){
-        super(location, frame); new SpriteSheet(ImageLoader.load("Rock.png"), 14, 17);
+        super(location, frame); new SpriteSheet(ImageLoader.load("Rock.png"), 24, 24);
 
     }
  }
