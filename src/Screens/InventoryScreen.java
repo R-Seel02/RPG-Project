@@ -79,13 +79,6 @@ public class InventoryScreen extends Screen {
         if (Keyboard.isKeyUp(Key.I)) {
             keyLocker.unlockKey(Key.I);
         }
-
-        //if space is pressed, reset level. if escape is pressed, go back to main menu
-        if (Keyboard.isKeyDown(Key.SPACE) && !keyLocker.isKeyLocked(Key.SPACE)) {
-            playLevelScreen.resetLevel();
-        } else if (Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)) {
-            playLevelScreen.goBackToMenu();
-        }
     }
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
