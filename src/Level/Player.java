@@ -286,14 +286,12 @@ public abstract class Player extends GameObject {
     
     public void heal(int healValue){
         this.health += healValue;
-        if(health > 100){
+        if(health >= 100){
             health = 100;
         }
-    }
-
-    public void revive(){
-        this.isDead = false;
-        this.health = 100;
+        if(isDead){
+            isDead = false;
+        }
     }
 
     public void setHealth(int newHealth){

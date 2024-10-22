@@ -15,6 +15,8 @@ public class FightScreen extends Screen {
     protected SpriteFont healthMessage;
     protected SpriteFont attackButton;
     protected SpriteFont fleeButton;
+    protected SpriteFont healButton;
+    protected SpriteFont coinCounter;
     protected KeyLocker keyLocker = new KeyLocker();
     protected PlayLevelScreen playLevelScreen;
     protected Cat player;
@@ -41,18 +43,26 @@ public class FightScreen extends Screen {
     @Override
     public void initialize() {
         turnMessage = new SpriteFont("It is your turn.", 150, 239, "Arial", 30, Color.white);
-        instructions = new SpriteFont("Press the attack button to attack. This is a fight to the death. Good luck.", 75, 279, "Arial", 20, Color.white);
+        instructions = new SpriteFont("Press the attack button to attack. This is a fight for your honor. Good luck.", 75, 279, "Arial", 20, Color.white);
         healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 150, 319, "Arial", 20, Color.white);
         //instructions = new SpriteFont("Press Escape to go back to the game.", 160, 279,"Arial", 20, Color.white);
+        coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 60, "Arial", 40, Color.white);
 
         attackButton = new SpriteFont("Attack!", 75, 350, "Arial", 50, Color.white);
-        fleeButton = new SpriteFont("Flee!", 375, 350, "Arial", 50, Color.white);
+        fleeButton = new SpriteFont("Flee!", 675, 350, "Arial", 50, Color.white);
+        healButton = new SpriteFont("Heal!", 375, 350, "Arial", 50, Color.white);
 
         attackButton.setOutlineColor(Color.white);
         attackButton.setOutlineThickness(3);
 
         fleeButton.setOutlineColor(Color.white);
         fleeButton.setOutlineThickness(3);;
+
+        healButton.setOutlineColor(Color.white);
+        healButton.setOutlineThickness(3);
+
+        coinCounter.setOutlineColor(Color.black);
+        coinCounter.setOutlineThickness(2);
 
         keyLocker.lockKey(Key.E);
     }
@@ -75,32 +85,52 @@ public class FightScreen extends Screen {
     }
 
     public void updateMessages(){
+        yesMoney();
         if(isPlayerTurn){
-            turnMessage = new SpriteFont("It is your turn.", 150, 239, "Arial", 30, Color.white);
+            //turnMessage = new SpriteFont("It is your turn.", 150, 239, "Arial", 30, Color.white);
+            turnMessage.setText("It is your turn!");
         }else{
-            turnMessage = new SpriteFont("The enemy attacks!", 150, 239, "Arial", 30, Color.white);
+            //turnMessage = new SpriteFont("The enemy attacks!", 150, 239, "Arial", 30, Color.white);
+            turnMessage.setText("The enemy attacks!");
         }
         if(player.isDead() && enemyHealth <= 0){
-            healthMessage = new SpriteFont("You have died, but in your last stand, you took your enemy with you.", 150, 319, "Arial", 20, Color.orange);
+            //healthMessage = new SpriteFont("You have died, but in your last stand, you took your enemy with you.", 150, 319, "Arial", 20, Color.orange);
+            healthMessage.setText("You have fallen, but in your last stand, you took your enemy with you.");
+            healthMessage.setColor(Color.yellow);
             background.flipPlayer();
             background.flipEnemy();
         }else if(player.isDead()){
-            healthMessage = new SpriteFont("You have died. The enemy had " + enemyHealth + " health left. Better luck next time.", 150, 319, "Arial", 20, Color.red);
+            //healthMessage = new SpriteFont("You have been bested by your foe!", 150, 319, "Arial", 20, Color.red);
+            healthMessage.setText("You have been bested by your foe!");
+            healthMessage.setColor(Color.red);
             background.flipPlayer();
         }else if(enemyHealth <= 0){
-            healthMessage = new SpriteFont("You have killed the enemy! Congratulations.", 150, 319, "Arial", 20, Color.green);
+            //healthMessage = new SpriteFont("You have killed the enemy! Congratulations.", 150, 319, "Arial", 20, Color.green);
+            healthMessage.setText("You have beaten your enemy! Congratulations!");
+            healthMessage.setColor(Color.green);
             background.flipEnemy();
         }else{
-            healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 150, 319, "Arial", 20, Color.white);
+            //healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 150, 319, "Arial", 20, Color.white);
+            healthMessage.setText("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.");
         }
+    }
+
+    public void noMoney(){
+        healButton.setText("You don't have enough money!");
+        healButton.setFontSize(20);
+    }
+
+    public void yesMoney(){
+        healButton.setText("Heal!");
+        healButton.setFontSize(50);
     }
 
     @Override
     public void update() {
-        if (Keyboard.isKeyDown(Key.A) && keyPressTimer == 0) {
+        if (Keyboard.isKeyDown(Key.D) && keyPressTimer == 0) {
             keyPressTimer = 14;
             currentMenuItemHovered++;
-        } else if (Keyboard.isKeyDown(Key.D) && keyPressTimer == 0) {
+        } else if (Keyboard.isKeyDown(Key.A) && keyPressTimer == 0) {
             keyPressTimer = 14;
             currentMenuItemHovered--;
         } else {
@@ -109,20 +139,25 @@ public class FightScreen extends Screen {
             }
         }
 
-        if (currentMenuItemHovered > 1) {
+        if (currentMenuItemHovered > 2) {
             currentMenuItemHovered = 0;
         } else if (currentMenuItemHovered < 0) {
-            currentMenuItemHovered = 1;
+            currentMenuItemHovered = 2;
         }
 
         if (currentMenuItemHovered == 0) {
             attackButton.setColor(Color.blue);
+            healButton.setColor(Color.white);
             fleeButton.setColor(Color.white);
         } else if (currentMenuItemHovered == 1) {
             attackButton.setColor(Color.white);
+            healButton.setColor(Color.blue);
+            fleeButton.setColor(Color.white);
+        }else if(currentMenuItemHovered == 2){
+            attackButton.setColor(Color.white);
+            healButton.setColor(Color.white);
             fleeButton.setColor(Color.blue);
         }
-        
         if (Keyboard.isKeyUp(Key.E)) {
             keyLocker.unlockKey(Key.E);
         }
@@ -134,19 +169,34 @@ public class FightScreen extends Screen {
                     isPlayerTurn = false;
                     updateMessages();
                     keyLocker.lockKey(Key.E);
-                }else if(menuItemSelected == 0 && player.isDead()){
+                }else if((menuItemSelected == 0 || menuItemSelected == 1) && player.isDead()){
                     //This area intentionally left blank.
-                }else if(menuItemSelected == 1) {
+                }else if(menuItemSelected == 1){
+                    if(player.getHealth() == 100){
+                        healButton.setText("You are at full health!");
+                        healButton.setFontSize(20);
+                    }else{
+                        if(player.getCoinCount() >= 1){
+                            player.heal(10);
+                            player.setCoinCount(player.getCoinCount() - 1);
+                            coinCounter.setText("Coins: " + player.getCoinCount());
+                            updateMessages();
+                        }else{
+                            noMoney();
+                        }
+                    }
+                }else if(menuItemSelected == 2) {
                     playLevelScreen.backToGame();
                     currentMenuItemHovered = 0;
                     background.rightSprites();
                     enemyHealth = 100;
-                    player.revive();
                     updateMessages();
                 }
             }
         }else{
-            if(turnTimer == 0){
+            if(enemyHealth <= 0){
+                //This area intentionally left blank.
+            }else if(turnTimer == 0){
                 damagePlayer();
                 turnTimer = 60;
                 isPlayerTurn = true;
@@ -162,8 +212,10 @@ public class FightScreen extends Screen {
         background.draw(graphicsHandler);
         turnMessage.draw(graphicsHandler);
         healthMessage.draw(graphicsHandler);
+        coinCounter.draw(graphicsHandler);
         attackButton.draw(graphicsHandler);
         fleeButton.draw(graphicsHandler);
+        healButton.draw(graphicsHandler);
         instructions.draw(graphicsHandler);
         
         // player health bar

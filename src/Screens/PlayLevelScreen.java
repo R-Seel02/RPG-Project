@@ -76,7 +76,7 @@ public class PlayLevelScreen extends Screen {
         player.setFacingDirection(Direction.LEFT);
 
         map.setPlayer(player);
-
+    
         quest1 = new SpriteFont("Retrieve the axe for the bird", 1000, 75, "Arial", 0, Color.white);
         quest1.setOutlineColor(Color.black);
         quest1.setOutlineThickness(3);
