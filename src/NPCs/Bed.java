@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Bed extends NPC {
     
     public Bed(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("bedSpriteV3.png"), 48, 80), "STAND_RIGHT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("bedSpriteV4.png"), 16, 28), "STAND_RIGHT");
     }
 
     @Override
@@ -22,15 +22,15 @@ public class Bed extends NPC {
         return new HashMap<String, Frame[]>() {{
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
-                            .withScale(1)
-                            .withBounds(0, 0, 48, 80)
+                            .withScale(3)
+                            .withBounds(0, 0, 16, 28)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
-                           .withScale(1)
-                           .withBounds(0, 0, 48, 80)
+                           .withScale(3)
+                           .withBounds(0, 0, 16, 28)
                            .build()
            });
         }};
