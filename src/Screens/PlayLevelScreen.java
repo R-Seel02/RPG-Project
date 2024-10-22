@@ -178,7 +178,7 @@ public class PlayLevelScreen extends Screen {
                 quest1.draw(graphicsHandler);
                 // health bar
                 graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
-                graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, Color.red);
+                graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
@@ -210,7 +210,7 @@ public class PlayLevelScreen extends Screen {
                     quest1.draw(graphicsHandler);
                     // health bar
                     graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
-                    graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, Color.red);
+                    graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
                     graphicsHandler.drawFilledRectangle(0, 0, 1400, 800, new Color(0, 0, 0, alphaLevel));
                     sleepMessage.draw(graphicsHandler);
                 }

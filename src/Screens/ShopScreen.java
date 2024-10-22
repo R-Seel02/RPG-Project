@@ -175,7 +175,7 @@ public class ShopScreen extends Screen{
         returnToGame.draw(graphicsHandler);
         graphicsHandler.drawFilledRectangle(pointerLocationX, pointerLocationY, 25, 25, Color.yellow);
         graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
-        graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, Color.red);
+        graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
     }
     
 }
