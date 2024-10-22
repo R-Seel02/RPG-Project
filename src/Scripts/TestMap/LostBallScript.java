@@ -16,9 +16,9 @@ public class LostBallScript extends Script {
         scriptActions.add(new LockPlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction() {{
-            addText("Where did my ball go!?");
-            addText("I left it right here before I took my 22 hour cat nap.");
-            addText("Maybe Walrus has seen it.");
+            addText("Another fine day in the land of Thimineur.");
+            addText("I wonder if anyone has anything for me to do.");
+            addText("Perhaps.");
         }});
 
         scriptActions.add(new ChangeFlagScriptAction("hasLostBall", true));

@@ -196,6 +196,7 @@ public class FightScreen extends Screen {
         }else{
             if(enemyHealth <= 0){
                 //This area intentionally left blank.
+                isPlayerTurn = true;
             }else if(turnTimer == 0){
                 damagePlayer();
                 turnTimer = 60;
