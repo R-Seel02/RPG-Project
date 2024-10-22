@@ -1,13 +1,18 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
+// import EnhancedMapTiles.SleepableBedTop;
+// import EnhancedMapTiles.SleepableBedBottom;
 import GameObject.Frame;
 import Level.*;
 import NPCs.Bug;
+import NPCs.Chest;
+import NPCs.Chest2;
 import NPCs.Dinosaur;
 import NPCs.TestNPC;
 
 import NPCs.Amongus;
+import NPCs.Bed;
 import NPCs.Bird;
 
 import NPCs.Walrus;
@@ -31,7 +36,7 @@ public class TestMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-        PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
+        // PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
         // enhancedMapTiles.add(pushableRock);
 
         return enhancedMapTiles;
@@ -65,6 +70,18 @@ public class TestMap extends Map {
         Bird bird = new Bird(6, getMapTile(5, 20).getLocation().subtractY(40));
         bird.setInteractScript(new BirdScript2());
         npcs.add(bird);
+
+        Bed bed = new Bed(7, getMapTile(7, 22).getLocation().subtractY(40));
+        bed.setInteractScript(new BedScript());
+        npcs.add(bed);
+
+        Chest chest = new Chest(7, getMapTile(13, 10).getLocation());
+        chest.setInteractScript(new ChestScript());
+        npcs.add(chest);
+        
+        Chest2 chest2 = new Chest2(8, getMapTile(25, 12).getLocation());
+        chest2.setInteractScript(new Chest2Script());
+        npcs.add(chest2);
 
         // shopkeeper id 5
 

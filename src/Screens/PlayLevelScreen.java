@@ -1,17 +1,24 @@
 package Screens;
 
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
+import Engine.Key;
+import Engine.KeyLocker;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
+import GameObject.Rectangle;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
 import ScriptActions.ChangeFlagScriptAction;
 import Utils.Direction;
+import Utils.ImageUtils;
 import Utils.Point;
 import SpriteFont.SpriteFont;
 import java.awt.Color;
+
+import javax.swing.Timer;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -24,6 +31,12 @@ public class PlayLevelScreen extends Screen {
     protected FightScreen fightScreen;
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
+    protected SpriteFont sleepMessage;
+    protected KeyLocker keyLocker = new KeyLocker();
+    protected Timer timer = new Timer(20, null);
+    protected int i = 0;
+    //protected Rectangle healthBG;
+    //protected Rectangle health;
 
     //quest stuff
     protected SpriteFont quest1;
@@ -43,12 +56,14 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("isFighting", false);
         flagManager.addFlag("hasPickedupRock", false);
 
-
+        flagManager.addFlag("isSleeping", false);
         flagManager.addFlag("inShop", false);
         flagManager.addFlag("hasAxe", false);
         flagManager.addFlag("HasQuest", false);
         flagManager.addFlag("hasQuest1", false);
         flagManager.addFlag("hasCompletedQuest1", false);
+        flagManager.addFlag("hasOpenedChest", false);
+        flagManager.addFlag("hasOpenedChest2", false);
         
         // define/setup map
         map = new TestMap();
@@ -70,6 +85,13 @@ public class PlayLevelScreen extends Screen {
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
+
+        // set up blank sleep message
+        sleepMessage = new SpriteFont("You sleep to recover your strength.", 450, 650, "Arial", 30, Color.white);
+        sleepMessage.setOutlineColor(Color.black);
+        sleepMessage.setOutlineThickness(2);
+
+        
 
         
 
@@ -137,6 +159,9 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("hasCompletedQuest1")) {
             quest1.setFontSize(0);
         }
+        if (map.getFlagManager().isFlagSet("isSleeping")) {
+            playLevelScreenState = PlayLevelScreenState.SLEEPING;
+        }
         
         
         // if (map.getFlagManager().isFlagSet("")) {
@@ -145,6 +170,8 @@ public class PlayLevelScreen extends Screen {
 
     }
 
+
+
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
         switch (playLevelScreenState) {
@@ -152,6 +179,9 @@ public class PlayLevelScreen extends Screen {
                 map.draw(player, graphicsHandler);
                 coinCounter.draw(graphicsHandler);
                 quest1.draw(graphicsHandler);
+                // health bar
+                graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+                graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
@@ -161,6 +191,42 @@ public class PlayLevelScreen extends Screen {
                 break;
             case SHOPPING:
                 shopScreen.draw(graphicsHandler);
+                break;
+            case SLEEPING:
+                if(i == 0){
+                    keyLocker.lockKey(Key.E);
+                    keyLocker.lockKey(Key.UP);
+                    keyLocker.lockKey(Key.DOWN);
+                    keyLocker.lockKey(Key.LEFT);
+                    keyLocker.lockKey(Key.RIGHT);
+                }
+
+                i++;
+
+                if(i < 230){
+                    int alphaLevel = i * 2;
+                    if(alphaLevel > 255){
+                        alphaLevel = 255;
+                    }
+                    map.draw(player, graphicsHandler);
+                    coinCounter.draw(graphicsHandler);
+                    quest1.draw(graphicsHandler);
+                    // health bar
+                    graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+                    graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
+                    graphicsHandler.drawFilledRectangle(0, 0, 1400, 800, new Color(0, 0, 0, alphaLevel));
+                    sleepMessage.draw(graphicsHandler);
+                }
+                else{
+                    i = 0;
+                    player.heal(100);
+                    keyLocker.unlockKey(Key.E);
+                    keyLocker.unlockKey(Key.UP);
+                    keyLocker.unlockKey(Key.DOWN);
+                    keyLocker.unlockKey(Key.LEFT);
+                    keyLocker.unlockKey(Key.RIGHT);
+                    this.backToGame();
+                }
                 break;
         }
     }
@@ -182,6 +248,7 @@ public class PlayLevelScreen extends Screen {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         flagManager.unsetFlag("isFighting");
         flagManager.unsetFlag("inShop");
+        flagManager.unsetFlag("isSleeping");
     }
 
     public void setFightScreen(String enemySprite){
@@ -191,6 +258,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING
     }
 }

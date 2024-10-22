@@ -31,6 +31,19 @@ public class ImageUtils {
 		return newImage;
 	}
 
+	// changes alpha level
+	public static void changeAlphaLevel(BufferedImage image, int alphaLevel) {
+		BufferedImage newImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = newImage.createGraphics();
+		float newAlpha = ((float)alphaLevel/(float)255);
+
+		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, newAlpha));
+
+		g.drawImage(image, 0, 0, null);
+		
+		g.dispose();
+	}
+
 	// https://stackoverflow.com/a/4216315
 	// resizes an image
 	public static BufferedImage resizeImage(BufferedImage image, int newWidth, int newHeight) {

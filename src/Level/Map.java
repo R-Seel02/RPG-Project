@@ -103,6 +103,7 @@ public abstract class Map {
 
         loadMapFile();
 
+        
         this.enhancedMapTiles = loadEnhancedMapTiles();
         for (EnhancedMapTile enhancedMapTile: this.enhancedMapTiles) {
             enhancedMapTile.setMap(this);
