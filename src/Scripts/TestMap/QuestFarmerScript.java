@@ -146,15 +146,15 @@ public class QuestFarmerScript extends Script {
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("Thanks a lot!"));
                     addScriptAction(new TextboxScriptAction("Have these coins as a reward!"));
-                    addScriptAction(new AddCoin("hasQuestFarmer"));
+                    addScriptAction(new AddCoin("hasQuestFarmer",1));
                     addScriptAction(new WaitScriptAction(10));
-                    addScriptAction(new AddCoin("hasQuestFarmer"));
+                    addScriptAction(new AddCoin("hasQuestFarmer",1));
                     addScriptAction(new WaitScriptAction(10));
-                    addScriptAction(new AddCoin("hasQuestFarmer"));
+                    addScriptAction(new AddCoin("hasQuestFarmer",1));
                     addScriptAction(new WaitScriptAction(10));
-                    addScriptAction(new AddCoin("hasQuestFarmer"));
+                    addScriptAction(new AddCoin("hasQuestFarmer",1));
                     addScriptAction(new WaitScriptAction(10));
-                    addScriptAction(new AddCoin("hasQuestFarmer"));
+                    addScriptAction(new AddCoin("hasQuestFarmer",1));
                     addScriptAction(new TextboxScriptAction("Spend those coins wisely I'll see you around!"));
                  }});
                  addScriptAction(new ChangeFlagScriptAction("hasCompletedQuestFarmer", true));

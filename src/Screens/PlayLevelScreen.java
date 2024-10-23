@@ -93,7 +93,7 @@ public class PlayLevelScreen extends Screen {
 
         flagManager.addFlag("hasQuestOldGuy", false);
         flagManager.addFlag("hasCompletedQuestOldGuy", false);
-        flagManager.addFlag("hasKilledSkeleton", false);
+        flagManager.addFlag("hasFoughtSkeleton", false);
 
 
         
@@ -312,7 +312,7 @@ public class PlayLevelScreen extends Screen {
                     }
                     map.draw(player, graphicsHandler);
                     coinCounter.draw(graphicsHandler);
-                    quest1.draw(graphicsHandler);
+                    //quest1.draw(graphicsHandler);
                     // health bar
                     graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
                     graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));

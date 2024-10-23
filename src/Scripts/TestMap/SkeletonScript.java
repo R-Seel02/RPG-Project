@@ -20,7 +20,21 @@ public class SkeletonScript extends Script {
         
         scriptActions.add(new TextboxScriptAction("RAHHHHHHHHHHHH!!!"));
 
+        scriptActions.add(new StartFightScriptAction("Skeleton.png"));
+
         scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
+
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasQuestOldGuy", true));
+                addRequirement(new FlagRequirement("hasCompletedQuestOldGuy", false));
+                addRequirement(new FlagRequirement("hasFoughtSkeleton", false));
+                 scriptActions.add(new ChangeFlagScriptAction("hasFoughtSkeleton", true));
+            }});
+
+        }});
+
 
         scriptActions.add(new NPCUnlockScriptAction());
         scriptActions.add(new UnlockPlayerScriptAction());

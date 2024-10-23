@@ -46,7 +46,7 @@ public class QuestOldGuyScript extends Script {
 
 
                  addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("So what was the book about, I never bothered reading it."));
+                    addScriptAction(new TextboxScriptAction("So what was the book about, \nI never bothered reading it."));
                     addScriptAction(new TextboxScriptAction("did you say it was called how to kill skeletons 101?"));
                     addScriptAction(new TextboxScriptAction("."));
                     addScriptAction(new TextboxScriptAction(".."));
@@ -62,6 +62,7 @@ public class QuestOldGuyScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasQuestOldGuy", true));
                 addRequirement(new FlagRequirement("hasCompletedQuestOldGuy", false));
+                addRequirement(new FlagRequirement("hasFoughtSkeleton", false));
 
 
                  addScriptAction(new TextboxScriptAction() {{
@@ -135,13 +136,13 @@ public class QuestOldGuyScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasQuestOldGuy", true));
-                addRequirement(new FlagRequirement("hasKilledSkeleton", true));
+                addRequirement(new FlagRequirement("hasFoughtSkeleton", true));
                 addRequirement(new FlagRequirement("hasCompletedQuestOldGuy", false));
 
 
                  addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("Did you really kill them?"));
-                    addScriptAction(new TextboxScriptAction("Thanks a lot!"));
+                    addScriptAction(new TextboxScriptAction("Did you really Fight him?"));
+                    addScriptAction(new TextboxScriptAction("That'll show him \nThanks a lot!"));
                     addScriptAction(new TextboxScriptAction("Have this book I found in my house in return!"));
                     addScriptAction(new TextboxScriptAction("Hope you'll make good use of it!"));
                  }});

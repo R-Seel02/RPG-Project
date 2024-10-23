@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class FarmerNPC extends NPC {
 
     public FarmerNPC(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Farmer NPC.png"), 30, 40), "STAND_RIGHT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("FarmerNPC.png"), 30, 40), "STAND_RIGHT");
     }
 
     @Override
