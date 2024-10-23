@@ -6,7 +6,7 @@ import Level.Script;
 import ScriptActions.*;
 
 
-public class BirdScript2 extends Script {
+public class QuestOldGuyScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -18,28 +18,18 @@ public class BirdScript2 extends Script {
         scriptActions.add(new NPCFacePlayerScriptAction());
 
         scriptActions.add(new ConditionalScriptAction());
-
-        scriptActions.add(new ConditionalScriptAction() {{
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuestFarmer", true));
-                addRequirement(new FlagRequirement("hasCompletedQuestFarmer", false));
-                addRequirement(new FlagRequirement("hasTalkedToChickenRed", true));
-                addRequirement(new FlagRequirement("hasTalkedToChickenYellow", true));
-                addRequirement(new FlagRequirement("hasTalkedToChickenOrange", true));
-                addRequirement(new FlagRequirement("hasTalkedToChickenBlue", false));
-
-
-                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("I'm not a chicken..."));
-                 }});
-            }});
-
-        }});
+        
+      //farmer chicken finding man
+        
+        // scriptActions.add(new TextboxScriptAction() {{
+        //     addText("You seem worthy...");
+        //     addText("Would you like to go on a journey?", new String[] { "Yes", "No" });
+        // }});
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasQuest", true));
-                addRequirement(new FlagRequirement("hasQuestBird", false));
+                addRequirement(new FlagRequirement("hasQuestOldGuy", false));
 
 
 
@@ -50,21 +40,19 @@ public class BirdScript2 extends Script {
 
         }});
 
-        
-      
-        
-        // scriptActions.add(new TextboxScriptAction() {{
-        //     addText("You seem worthy...");
-        //     addText("Would you like to go on a journey?", new String[] { "Yes", "No" });
-        // }});
-
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasCompletedQuestBird", true));
+                addRequirement(new FlagRequirement("hasCompletedQuestOldGuy", true));
 
 
                  addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("I wish you luck on your future journeys!"));
+                    addScriptAction(new TextboxScriptAction("So what was the book about, I never bothered reading it."));
+                    addScriptAction(new TextboxScriptAction("did you say it was called how to kill skeletons 101?"));
+                    addScriptAction(new TextboxScriptAction("."));
+                    addScriptAction(new TextboxScriptAction(".."));
+                    addScriptAction(new TextboxScriptAction("..."));
+                    addScriptAction(new TextboxScriptAction("...."));
+                    addScriptAction(new TextboxScriptAction("....."));
                  }});
             }});
 
@@ -72,14 +60,13 @@ public class BirdScript2 extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuestBird", true));
-                addRequirement(new FlagRequirement("hasCompletedQuestBird", false));
-                addRequirement(new FlagRequirement("hasAxe", false));
+                addRequirement(new FlagRequirement("hasQuestOldGuy", true));
+                addRequirement(new FlagRequirement("hasCompletedQuestOldGuy", false));
 
 
                  addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("It appears that you have yet to find my axe..."));
-                    addScriptAction(new TextboxScriptAction("I believe the RED man still has it."));
+                    addScriptAction(new TextboxScriptAction("Are they dead yet?"));
+                    addScriptAction(new TextboxScriptAction("Wait a second... \n can you even kill skeletons?"));
                  }});
                 
             }});
@@ -88,19 +75,21 @@ public class BirdScript2 extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuestBird", false));
+                addRequirement(new FlagRequirement("hasQuestOldGuy", false));
                 addRequirement(new FlagRequirement("hasQuest", false));
 
                  addScriptAction(new TextboxScriptAction() {{
-                    addText("You seem worthy...");
-                    addText("Would you like to go on a journey?", new String[] { "Yes", "No" });
+                    //addText("You seem worthy...");
+                    addText("Hey... you...");
+                    addText("Some pesky skeletons keep haunting me at night. \n I can't sleep like this anymore.");
+                    addText("Think you could get rid of them for me.", new String[] { "Yes", "No" });
                  }});
             }});   
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuestBird", false));
+                addRequirement(new FlagRequirement("hasQuestOldGuy", false));
                 addRequirement(new FlagRequirement("hasQuest", false));
                 addRequirement(new CustomRequirement() {
                     @Override
@@ -112,10 +101,10 @@ public class BirdScript2 extends Script {
                 });
 
                  addScriptAction(new TextboxScriptAction() {{
-                     addText("My axe has been taken by the RED man...");
-                     addText("please retrieve it for me.");
+                     addText("You're a life saver! \n theres one of them in the forest over there.");
+                     addText("Good luck!");
                  }});
-                addScriptAction(new ChangeFlagScriptAction("hasQuestBird", true));
+                addScriptAction(new ChangeFlagScriptAction("hasQuestOldGuy", true));
                 addScriptAction(new ChangeFlagScriptAction("hasQuest", true));
             }});
 
@@ -124,7 +113,7 @@ public class BirdScript2 extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuestBird", false));
+                addRequirement(new FlagRequirement("hasQuestOldGuy", false));
                 addRequirement(new FlagRequirement("hasQuest", false));
                 addRequirement(new CustomRequirement() {
                     @Override
@@ -136,7 +125,7 @@ public class BirdScript2 extends Script {
                 });
 
                  addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("What a pity..."));
+                    addScriptAction(new TextboxScriptAction("Is anyone up to the task in this town?"));
                  }});
                 
             }});
@@ -145,17 +134,18 @@ public class BirdScript2 extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuestBird", true));
-                addRequirement(new FlagRequirement("hasAxe", true));
-                addRequirement(new FlagRequirement("hasCompletedQuestBird", false));
+                addRequirement(new FlagRequirement("hasQuestOldGuy", true));
+                addRequirement(new FlagRequirement("hasKilledSkeleton", true));
+                addRequirement(new FlagRequirement("hasCompletedQuestOldGuy", false));
 
 
                  addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("Well done!"));
-                    addScriptAction(new TextboxScriptAction("As a token of my appreciation you can keep the axe."));
+                    addScriptAction(new TextboxScriptAction("Did you really kill them?"));
+                    addScriptAction(new TextboxScriptAction("Thanks a lot!"));
+                    addScriptAction(new TextboxScriptAction("Have this book I found in my house in return!"));
+                    addScriptAction(new TextboxScriptAction("Hope you'll make good use of it!"));
                  }});
-                 addScriptAction(new ChangeFlagScriptAction("hasCompletedQuestBird", true));
-                 addScriptAction(new ChangeFlagScriptAction("hasQuest", false));
+                 addScriptAction(new ChangeFlagScriptAction("hasCompletedQuestOldGuy", true));
             }});
 
         }});

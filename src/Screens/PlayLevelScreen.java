@@ -26,7 +26,10 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont coinCounter;
 
     //quest stuff
-    protected SpriteFont quest1;
+    protected SpriteFont questBird;
+    protected SpriteFont questFarmer;
+    protected SpriteFont questWoman;
+    protected SpriteFont questOldGuy;
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -46,9 +49,30 @@ public class PlayLevelScreen extends Screen {
 
         flagManager.addFlag("inShop", false);
         flagManager.addFlag("hasAxe", false);
-        flagManager.addFlag("HasQuest", false);
-        flagManager.addFlag("hasQuest1", false);
-        flagManager.addFlag("hasCompletedQuest1", false);
+        flagManager.addFlag("hasQuest", false);
+        flagManager.addFlag("hasQuestBird", false);
+        flagManager.addFlag("hasCompletedQuestBird", false);
+
+        flagManager.addFlag("hasTalkedToChickenRed", false);
+        flagManager.addFlag("hasTalkedToChickenGreen", false);
+        flagManager.addFlag("hasTalkedToChickenYellow", false);
+        flagManager.addFlag("hasTalkedToChickenBlue", false);
+        flagManager.addFlag("hasTalkedToChickenOrange", false);
+        flagManager.addFlag("hasQuestFarmer", false);
+        flagManager.addFlag("hasCompletedQuestFarmer", false);
+
+        flagManager.addFlag("hasQuestWoman", false);
+        flagManager.addFlag("hasCompletedQuestWoman", false);
+        flagManager.addFlag("hasBottle", false);
+        flagManager.addFlag("hasWaterTome", false);
+        flagManager.addFlag("hasAnchor", false);
+
+        flagManager.addFlag("hasQuestOldGuy", false);
+        flagManager.addFlag("hasCompletedQuestOldGuy", false);
+        flagManager.addFlag("hasKilledSkeleton", false);
+
+
+        
         
         // define/setup map
         map = new TestMap();
@@ -62,9 +86,21 @@ public class PlayLevelScreen extends Screen {
 
         map.setPlayer(player);
 
-        quest1 = new SpriteFont("Retrieve the axe for the bird", 1000, 75, "Arial", 0, Color.white);
-        quest1.setOutlineColor(Color.black);
-        quest1.setOutlineThickness(3);
+        questBird = new SpriteFont("Retrieve the axe for the bird", 1000, 75, "Arial", 0, Color.white);
+        questBird.setOutlineColor(Color.black);
+        questBird.setOutlineThickness(3);
+
+        questFarmer = new SpriteFont("Find the Farmer's Chickens", 1000, 75, "Arial", 0, Color.white);
+        questFarmer.setOutlineColor(Color.black);
+        questFarmer.setOutlineThickness(3);
+        
+        questWoman = new SpriteFont("Check the fountain for the woman.", 900, 75, "Arial", 0, Color.white);
+        questWoman.setOutlineColor(Color.black);
+        questWoman.setOutlineThickness(3);
+
+        questOldGuy = new SpriteFont("Kill the skeleton in the forest.", 950, 75, "Arial", 0, Color.white);
+        questOldGuy.setOutlineColor(Color.black);
+        questOldGuy.setOutlineThickness(3);
 
         // set up coin counter text
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
@@ -128,12 +164,31 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("inShop")) {
             playLevelScreenState = PlayLevelScreenState.SHOPPING;
         }
-        if (map.getFlagManager().isFlagSet("hasQuest1")) {
-            quest1.setFontSize(30);
+        if (map.getFlagManager().isFlagSet("hasQuestBird")) {
+            questBird.setFontSize(30);
         }
-        if (map.getFlagManager().isFlagSet("hasCompletedQuest1")) {
-            quest1.setFontSize(0);
+        if (map.getFlagManager().isFlagSet("hasCompletedQuestBird")) {
+            questBird.setFontSize(0);
         }
+        if (map.getFlagManager().isFlagSet("hasQuestFarmer")) {
+            questFarmer.setFontSize(30);
+        }
+        if (map.getFlagManager().isFlagSet("hasCompletedQuestFarmer")) {
+            questFarmer.setFontSize(0);
+        }
+        if (map.getFlagManager().isFlagSet("hasQuestWoman")) {
+            questWoman.setFontSize(30);
+        }
+        if (map.getFlagManager().isFlagSet("hasCompletedQuestWoman")) {
+            questWoman.setFontSize(0);
+        }
+        if (map.getFlagManager().isFlagSet("hasQuestOldGuy")) {
+            questOldGuy.setFontSize(30);
+        }
+        if (map.getFlagManager().isFlagSet("hasCompletedQuestOldGuy")) {
+            questOldGuy.setFontSize(0);
+        }
+        
         
         
         // if (map.getFlagManager().isFlagSet("")) {
@@ -148,7 +203,10 @@ public class PlayLevelScreen extends Screen {
             case RUNNING:
                 map.draw(player, graphicsHandler);
                 coinCounter.draw(graphicsHandler);
-                quest1.draw(graphicsHandler);
+                questBird.draw(graphicsHandler);
+                questFarmer.draw(graphicsHandler);
+                questWoman.draw(graphicsHandler);
+                questOldGuy.draw(graphicsHandler);
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);

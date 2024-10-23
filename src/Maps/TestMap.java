@@ -10,6 +10,20 @@ import NPCs.TestNPC;
 import NPCs.Amongus;
 import NPCs.Bird;
 
+import NPCs.FarmerNPC;
+import NPCs.ChickenRed;
+import NPCs.ChickenYellow;
+import NPCs.ChickenOrange;
+import NPCs.ChickenBlue;
+import NPCs.ChickenGreen;
+
+import NPCs.QuestWoman;
+import NPCs.Bottle;
+import NPCs.Anchor;
+
+import NPCs.OldGuy;
+import NPCs.Skeleton;
+
 import NPCs.Walrus;
 
 import Scripts.SimpleTextScript;
@@ -65,6 +79,59 @@ public class TestMap extends Map {
         Bird bird = new Bird(6, getMapTile(5, 20).getLocation().subtractY(40));
         bird.setInteractScript(new BirdScript2());
         npcs.add(bird);
+        
+
+        FarmerNPC farmerNPC = new FarmerNPC(7, getMapTile(15, 28).getLocation().subtractY(40));
+        farmerNPC.setInteractScript(new QuestFarmerScript());
+        npcs.add(farmerNPC);
+
+        ChickenRed chickenRed = new ChickenRed(8, getMapTile(20, 25).getLocation().subtractY(40));
+        //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
+        chickenRed.setInteractScript(new ChickenRedScript());
+        npcs.add(chickenRed);
+
+        ChickenYellow chickenYellow = new ChickenYellow(9, getMapTile(30, 25).getLocation().subtractY(40));
+        //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
+        chickenYellow.setInteractScript(new ChickenYellowScript());
+        npcs.add(chickenYellow);
+
+        ChickenOrange chickenOrange = new ChickenOrange(10, getMapTile(30, 10).getLocation().subtractY(40));
+        //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
+        chickenOrange.setInteractScript(new ChickenOrangeScript());
+        npcs.add(chickenOrange);
+
+          ChickenBlue chickenBlue = new ChickenBlue(11, getMapTile(8, 10).getLocation().subtractY(40));
+          //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
+          chickenBlue.setInteractScript(new ChickenBlueScript());
+          npcs.add(chickenBlue);
+
+         ChickenGreen chickenGreen = new ChickenGreen(12, getMapTile(2, 30).getLocation().subtractY(40));
+         //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
+         chickenGreen.setInteractScript(new ChickenGreenScript());
+         npcs.add(chickenGreen);
+
+         QuestWoman questWoman = new QuestWoman(13, getMapTile(22,5 ).getLocation().subtractY(40));
+         questWoman.setInteractScript(new QuestWomanScript());
+         npcs.add(questWoman);
+
+         Bottle bottle = new Bottle(14, getMapTile(30, 5 ).getLocation().subtractY(40));
+         bottle.setExistenceFlag("hasBottle");
+         bottle.setInteractScript(new BottleScript());
+         npcs.add(bottle);
+
+         Anchor anchor = new Anchor(15, getMapTile(32, 5 ).getLocation().subtractY(40));
+         anchor.setExistenceFlag("hasAnchor");
+         anchor.setInteractScript(new AnchorScript());
+         npcs.add(anchor);
+
+         Skeleton skeleton = new Skeleton(16, getMapTile(20, 10 ).getLocation().subtractY(40));
+         skeleton.setInteractScript(new SkeletonScript());
+         npcs.add(skeleton);
+
+         OldGuy oldGuy = new OldGuy(17, getMapTile(2, 15 ).getLocation().subtractY(40));
+         oldGuy.setInteractScript(new QuestOldGuyScript());
+         npcs.add(oldGuy);
+
 
         // shopkeeper id 5
 
@@ -86,6 +153,8 @@ public class TestMap extends Map {
          ArrayList<PickableObject> pickableObjects = new ArrayList<>();
          PickableObject pickableObject = new PickableObject(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Rock.png")));
          pickableObjects.add(pickableObject);
+
+         
         //  pickableObject.setInteractScript(new RockScript(pickableObject));
 
          return pickableObjects;

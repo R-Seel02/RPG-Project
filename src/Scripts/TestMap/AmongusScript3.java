@@ -55,8 +55,8 @@ public class AmongusScript3 extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuest1", true));
-                addRequirement(new FlagRequirement("hasCompletetedQuest1", false));
+                addRequirement(new FlagRequirement("hasQuestBird", true));
+                addRequirement(new FlagRequirement("hasCompletetedQuestBird", false));
                 addRequirement(new FlagRequirement("hasAxe", false));
 
                  addScriptAction(new TextboxScriptAction() {{
@@ -68,8 +68,8 @@ public class AmongusScript3 extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuest1", true));
-                addRequirement(new FlagRequirement("hasCompletetedQuest1", false));
+                addRequirement(new FlagRequirement("hasQuestBird", true));
+                addRequirement(new FlagRequirement("hasCompletetedQuestBird", false));
                 addRequirement(new FlagRequirement("hasAxe", false));
                 addRequirement(new CustomRequirement() {
                     @Override
@@ -91,8 +91,8 @@ public class AmongusScript3 extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuest1", true));
-                addRequirement(new FlagRequirement("hasCompletetedQuest1", false));
+                addRequirement(new FlagRequirement("hasQuestBird", true));
+                addRequirement(new FlagRequirement("hasCompletetedQuestBird", false));
                 addRequirement(new FlagRequirement("hasAxe", false));
                 addRequirement(new CustomRequirement() {
                     @Override

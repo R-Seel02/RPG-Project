@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Level.Script;
 import ScriptActions.*;
+import Utils.Visibility;
 
 
 public class BirdScript extends Script {
@@ -43,6 +44,8 @@ public class BirdScript extends Script {
                  }});
                 addScriptAction(new ChangeFlagScriptAction("hasQuest1", true));
                 addScriptAction(new ChangeFlagScriptAction("hasQuest", true));
+                
+
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
