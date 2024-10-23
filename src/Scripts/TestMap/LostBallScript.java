@@ -18,7 +18,7 @@ public class LostBallScript extends Script {
         scriptActions.add(new TextboxScriptAction() {{
             addText("Another fine day in the land of Thimineur.");
             addText("I wonder if anyone has anything for me to do.");
-            addText("Perhaps.");
+            addText("Perchance.");
         }});
 
         scriptActions.add(new ChangeFlagScriptAction("hasLostBall", true));

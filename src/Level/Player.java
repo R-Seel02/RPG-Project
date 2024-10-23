@@ -331,8 +331,8 @@ public abstract class Player extends GameObject {
         if(health >= 100){
             health = 100;
         }
-        if(isDead){
-            isDead = false;
+        if(this.isDead){
+            this.isDead = false;
         }
     }
 

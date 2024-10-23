@@ -23,6 +23,7 @@ public class TestNPCScript extends Script{
                     addText("OOGLY BOOGLY");
                     addText("Bet I spooked ya there! hehe"); 
                     addText("You want this coin?");
+                    addText("Here ya go!");
                     //addText("Well too bad because I don't know how to give it to you.");
                 }});
                 // below line contains a created class that handles adding a coin, may be useful when it's more complicated

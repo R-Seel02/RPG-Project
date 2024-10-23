@@ -31,6 +31,7 @@ public class SkeletonScript extends Script {
                 addRequirement(new FlagRequirement("hasCompletedQuestOldGuy", false));
                 addRequirement(new FlagRequirement("hasFoughtSkeleton", false));
                  scriptActions.add(new ChangeFlagScriptAction("hasFoughtSkeleton", true));
+                 scriptActions.add(new ChangeFlagScriptAction("hasQuest", false));
             }});
 
         }});

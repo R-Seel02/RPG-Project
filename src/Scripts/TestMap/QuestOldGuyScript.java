@@ -147,6 +147,7 @@ public class QuestOldGuyScript extends Script {
                     addScriptAction(new TextboxScriptAction("Hope you'll make good use of it!"));
                  }});
                  addScriptAction(new ChangeFlagScriptAction("hasCompletedQuestOldGuy", true));
+                 addScriptAction(new ChangeFlagScriptAction("hasQuest", false));
             }});
 
         }});

@@ -68,7 +68,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToTestNPC", false);
         flagManager.addFlag("isFighting", false);
-        flagManager.addFlag("hasPickedupRock", false);
+        flagManager.addFlag("hasPickedup]", false);
 
         flagManager.addFlag("isSleeping", false);
         flagManager.addFlag("inShop", false);

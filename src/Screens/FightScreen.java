@@ -27,6 +27,7 @@ public class FightScreen extends Screen {
     protected FightMap background;
     protected boolean isPlayerTurn;
     protected boolean playerPerformedAction;
+    protected boolean playerHasHealed;
     protected int turnTimer;
 
     public FightScreen(PlayLevelScreen playLevelScreen, Cat player, String enemySprite) {
@@ -37,6 +38,7 @@ public class FightScreen extends Screen {
         this.background = new FightMap(enemySprite);
         this.isPlayerTurn = true;
         this.turnTimer = 100;
+        this.playerHasHealed = false;
         initialize();
     }
 
@@ -65,6 +67,8 @@ public class FightScreen extends Screen {
         coinCounter.setOutlineThickness(2);
 
         keyLocker.lockKey(Key.E);
+
+        background.rightSprites();
     }
 
     //Temporary method. Hurts the "enemy" by a random value from 1 - 10.
@@ -86,6 +90,7 @@ public class FightScreen extends Screen {
 
     public void updateMessages(){
         yesMoney();
+        background.rightSprites();
         if(isPlayerTurn){
             //turnMessage = new SpriteFont("It is your turn.", 150, 239, "Arial", 30, Color.white);
             turnMessage.setText("It is your turn!");
@@ -94,24 +99,24 @@ public class FightScreen extends Screen {
             turnMessage.setText("The enemy attacks!");
         }
         if(player.isDead() && enemyHealth <= 0){
-            //healthMessage = new SpriteFont("You have died, but in your last stand, you took your enemy with you.", 150, 319, "Arial", 20, Color.orange);
-            healthMessage.setText("You have fallen, but in your last stand, you took your enemy with you.");
-            healthMessage.setColor(Color.yellow);
+            healthMessage = new SpriteFont("You have died, but in your last stand, you took your enemy with you.", 150, 319, "Arial", 20, Color.orange);
+            //healthMessage.setText("You have fallen, but in your last stand, you took your enemy with you.");
+            //healthMessage.setColor(Color.yellow);
             background.flipPlayer();
             background.flipEnemy();
         }else if(player.isDead()){
-            //healthMessage = new SpriteFont("You have been bested by your foe!", 150, 319, "Arial", 20, Color.red);
-            healthMessage.setText("You have been bested by your foe!");
-            healthMessage.setColor(Color.red);
+            healthMessage = new SpriteFont("You have been bested by your foe!", 150, 319, "Arial", 20, Color.red);
+            //healthMessage.setText("You have been bested by your foe!");
+            //healthMessage.setColor(Color.red);
             background.flipPlayer();
         }else if(enemyHealth <= 0){
-            //healthMessage = new SpriteFont("You have killed the enemy! Congratulations.", 150, 319, "Arial", 20, Color.green);
-            healthMessage.setText("You have beaten your enemy! Congratulations!");
-            healthMessage.setColor(Color.green);
+            healthMessage = new SpriteFont("You have killed the enemy! Congratulations.", 150, 319, "Arial", 20, Color.green);
+            //healthMessage.setText("You have beaten your enemy! Congratulations!");
+            //healthMessage.setColor(Color.green);
             background.flipEnemy();
         }else{
-            //healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 150, 319, "Arial", 20, Color.white);
-            healthMessage.setText("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.");
+            healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 150, 319, "Arial", 20, Color.white);
+            //healthMessage.setText("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.");
         }
     }
 
@@ -172,7 +177,10 @@ public class FightScreen extends Screen {
                 }else if((menuItemSelected == 0 || menuItemSelected == 1) && player.isDead()){
                     //This area intentionally left blank.
                 }else if(menuItemSelected == 1){
-                    if(player.getHealth() == 100){
+                    if(playerHasHealed){
+                        healButton.setText("You have already healed this turn.");
+                        healButton.setFontSize(20);
+                    }else if(player.getHealth() == 100){
                         healButton.setText("You are at full health!");
                         healButton.setFontSize(20);
                     }else{
@@ -180,16 +188,19 @@ public class FightScreen extends Screen {
                             player.heal(10);
                             player.setCoinCount(player.getCoinCount() - 1);
                             coinCounter.setText("Coins: " + player.getCoinCount());
+                            playerHasHealed = true;
                             updateMessages();
                         }else{
                             noMoney();
                         }
                     }
+                    keyLocker.lockKey(Key.E);
                 }else if(menuItemSelected == 2) {
                     playLevelScreen.backToGame();
                     currentMenuItemHovered = 0;
                     background.rightSprites();
                     enemyHealth = 100;
+                    healthMessage.setColor(Color.white);
                     updateMessages();
                 }
             }
@@ -201,6 +212,7 @@ public class FightScreen extends Screen {
                 damagePlayer();
                 turnTimer = 60;
                 isPlayerTurn = true;
+                playerHasHealed = false;
                 updateMessages();
             }else{
                 turnTimer--;
