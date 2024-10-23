@@ -17,9 +17,9 @@ public abstract class Player extends GameObject {
     protected Direction currentWalkingYDirection;
     protected Direction lastWalkingXDirection;
     protected Direction lastWalkingYDirection;
-    protected int inventory;
+    private PickableObject[] inventoryList;
    
-
+    
 
     protected int health;
     protected boolean isDead;
@@ -34,6 +34,7 @@ public abstract class Player extends GameObject {
     protected Direction facingDirection;
     protected Direction lastMovementDirection;
     protected int coinCount = 0;
+    
 
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
@@ -43,6 +44,7 @@ public abstract class Player extends GameObject {
     protected Key MOVE_DOWN_KEY = Key.S;
     protected Key PICK_UP_KEY = Key.E;
     protected Key INTERACT_KEY = Key.E;
+    protected Key INVENTORY = Key.I;
 
     protected boolean isLocked = false;
 
@@ -54,6 +56,7 @@ public abstract class Player extends GameObject {
         this.affectedByTriggers = true;
         health = 100;
         isDead = false;
+        this.inventoryList = new PickableObject[15];
     }
 
     public void update() {
@@ -80,6 +83,9 @@ public abstract class Player extends GameObject {
         // update player's animation
         super.update();
     }
+    public boolean isInventoryKeyPressed() {
+        return Keyboard.isKeyDown(INVENTORY);
+    }
 
     // based on player's current state, call appropriate player state handling method
     protected void handlePlayerState() {
@@ -92,6 +98,11 @@ public abstract class Player extends GameObject {
                 break;
         }
     }
+   
+
+        
+    
+
 
     // player STANDING state logic
     protected void playerStanding() {
@@ -161,10 +172,37 @@ public abstract class Player extends GameObject {
             playerState = PlayerState.STANDING;
         }
     }
+    public void initializeInventory() {
+        inventoryList = new PickableObject[15]; // Or any size you'd like
+    }
+    public PickableObject[] getInventoryList() {
+        return inventoryList;
+    }
+
+    public void setInventoryList(PickableObject[] inventoryList) {
+        this.inventoryList = inventoryList;
+    }
+
+    public void addToInventory(PickableObject item){
+        for (int i = 0; i < inventoryList.length; i++) {
+            if (inventoryList[i] == null) { // Check if the slot is null and not
+                inventoryList[i] = item; 
+                System.out.println("Item picked up and placed at index: " + i);
+                break; 
+            }
+
+        }
+        System.out.println("Inventory is full!");
+    }
+   
 
     protected void updateLockedKeys() {
         if (Keyboard.isKeyUp(INTERACT_KEY) && !isLocked) {
             keyLocker.unlockKey(INTERACT_KEY);
+        }
+    
+        if (Keyboard.isKeyUp(INVENTORY)) {
+            keyLocker.unlockKey(INVENTORY); 
         }
     }
 
@@ -210,6 +248,10 @@ public abstract class Player extends GameObject {
     // changes player's coin count
     public void setCoinCount(int coinCount){
         this.coinCount = coinCount;
+    }
+
+    public void inventory(){
+        
     }
 
     public Rectangle getInteractionRange() {
@@ -286,11 +328,12 @@ public abstract class Player extends GameObject {
     
     public void heal(int healValue){
         this.health += healValue;
-    }
-
-    public void revive(){
-        this.isDead = false;
-        this.health = 100;
+        if(health >= 100){
+            health = 100;
+        }
+        if(isDead){
+            isDead = false;
+        }
     }
 
     public void setHealth(int newHealth){

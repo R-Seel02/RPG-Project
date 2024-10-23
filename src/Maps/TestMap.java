@@ -1,13 +1,18 @@
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
+// import EnhancedMapTiles.SleepableBedTop;
+// import EnhancedMapTiles.SleepableBedBottom;
 import GameObject.Frame;
 import Level.*;
 import NPCs.Bug;
+import NPCs.Chest;
+import NPCs.Chest2;
 import NPCs.Dinosaur;
 import NPCs.TestNPC;
 
 import NPCs.Amongus;
+import NPCs.Bed;
 import NPCs.Bird;
 
 import NPCs.FarmerNPC;
@@ -25,7 +30,7 @@ import NPCs.OldGuy;
 import NPCs.Skeleton;
 
 import NPCs.Walrus;
-
+import PickableObjects.ItemRock;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -45,7 +50,7 @@ public class TestMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-        PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
+        // PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
         // enhancedMapTiles.add(pushableRock);
 
         return enhancedMapTiles;
@@ -133,6 +138,18 @@ public class TestMap extends Map {
          npcs.add(oldGuy);
 
 
+        Bed bed = new Bed(18, getMapTile(7, 22).getLocation().subtractY(40));
+        bed.setInteractScript(new BedScript());
+        npcs.add(bed);
+
+        Chest chest = new Chest(19, getMapTile(13, 10).getLocation());
+        chest.setInteractScript(new ChestScript());
+        npcs.add(chest);
+        
+        Chest2 chest2 = new Chest2(20, getMapTile(25, 12).getLocation());
+        chest2.setInteractScript(new Chest2Script());
+        npcs.add(chest2);
+
         // shopkeeper id 5
 
         return npcs;
@@ -151,10 +168,9 @@ public class TestMap extends Map {
     @Override
     public ArrayList<PickableObject> loadPickableObjects(){
          ArrayList<PickableObject> pickableObjects = new ArrayList<>();
-         PickableObject pickableObject = new PickableObject(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Rock.png")));
-         pickableObjects.add(pickableObject);
 
-         
+         ItemRock itemRock = new ItemRock(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Rock.png")));
+         pickableObjects.add(itemRock);
         //  pickableObject.setInteractScript(new RockScript(pickableObject));
 
          return pickableObjects;
