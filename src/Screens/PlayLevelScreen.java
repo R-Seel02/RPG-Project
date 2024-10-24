@@ -1,37 +1,36 @@
 package Screens;
 
 import Engine.GraphicsHandler;
-import Engine.ImageLoader;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
-import GameObject.Rectangle;
 import Level.*;
 import Maps.TestMap;
-import Players.Cat;
-import ScriptActions.ChangeFlagScriptAction;
-import Utils.Direction;
-import Utils.Point;
+import Players.Knight;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import java.awt.Color;
-
 import javax.swing.Timer;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Cat player;
+    protected Knight player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
+    protected InventoryScreen inventoryScreen;
+    protected PickableObject itemRock;
+    protected KeyLocker keyLocker = new KeyLocker();
+    protected SpriteFont sleepMessage;
+    protected Keyboard keyboard;
 
     //quest stuff
     protected SpriteFont questBird;
@@ -317,6 +316,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, INVENTORY, SLEEPING
     }
 }

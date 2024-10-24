@@ -1,16 +1,10 @@
 package Screens;
 
 import Engine.*;
-import Game.GameState;
-import Game.ScreenCoordinator;
 import GameObject.Sprite;
-import GameObject.SpriteSheet;
-import Level.Map;
 import Level.PickableObject;
 import Level.Player;
-import Maps.FightMap;
-import Maps.TitleScreenMap;
-import Players.Cat;
+import Players.Knight;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 
@@ -32,7 +26,7 @@ public class InventoryScreen extends Screen {
     protected PickableObject pickableObject;
     protected PickableObject [] inventoryList;
   
-    public InventoryScreen(PlayLevelScreen playLevelScreen, Cat player) {
+    public InventoryScreen(PlayLevelScreen playLevelScreen, Knight player) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         initialize();
