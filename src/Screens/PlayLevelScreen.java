@@ -64,7 +64,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("isFighting", false);
         flagManager.addFlag("hasPickedup]", false);
 
-
+        flagManager.addFlag("isSleeping", false);
         flagManager.addFlag("inShop", false);
         flagManager.addFlag("hasAxe", false);
         flagManager.addFlag("hasQuest", false);
@@ -200,6 +200,9 @@ public class PlayLevelScreen extends Screen {
             case SHOPPING:
                 shopScreen.update();
                 break;
+            case INVENTORY:
+                inventoryScreen.update();
+                break;
         }
 
         // if flag is set at any point during gameplay, game is "won"
@@ -252,7 +255,7 @@ public class PlayLevelScreen extends Screen {
         
         
         // if (map.getFlagManager().isFlagSet("")) {
-            
+
         // }
 
     }
@@ -281,6 +284,45 @@ public class PlayLevelScreen extends Screen {
                 break;
             case SHOPPING:
                 shopScreen.draw(graphicsHandler);
+                break;
+            case INVENTORY:
+                inventoryScreen.draw(graphicsHandler);
+                break;
+            case SLEEPING:
+                if(i == 0){
+                    keyLocker.lockKey(Key.E);
+                    keyLocker.lockKey(Key.UP);
+                    keyLocker.lockKey(Key.DOWN);
+                    keyLocker.lockKey(Key.LEFT);
+                    keyLocker.lockKey(Key.RIGHT);
+                }
+
+                i++;
+
+                if(i < 230){
+                    int alphaLevel = i * 2;
+                    if(alphaLevel > 255){
+                        alphaLevel = 255;
+                    }
+                    map.draw(player, graphicsHandler);
+                    coinCounter.draw(graphicsHandler);
+                    //quest1.draw(graphicsHandler);
+                    // health bar
+                    graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+                    graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
+                    graphicsHandler.drawFilledRectangle(0, 0, 1400, 800, new Color(0, 0, 0, alphaLevel));
+                    sleepMessage.draw(graphicsHandler);
+                }
+                else{
+                    i = 0;
+                    player.heal(100);
+                    keyLocker.unlockKey(Key.E);
+                    keyLocker.unlockKey(Key.UP);
+                    keyLocker.unlockKey(Key.DOWN);
+                    keyLocker.unlockKey(Key.LEFT);
+                    keyLocker.unlockKey(Key.RIGHT);
+                    this.backToGame();
+                }
                 break;
         }
     }
@@ -316,6 +358,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, INVENTORY, SLEEPING
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING,INVENTORY
     }
 }
