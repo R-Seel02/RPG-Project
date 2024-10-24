@@ -20,17 +20,18 @@ public class WalrusScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToWalrus", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Hi Cat!");
-                    addText("...oh, you lost your ball?");
-                    addText("Hmmm...my walrus brain remembers seeing Dino with\nit last. Maybe you can check with him?");
+                    addText("Hello, good sire!");
+                    addText("Such a lovely day.");
+                    addText("Feel free to stay a while!");
                 }});
                 addScriptAction(new ChangeFlagScriptAction("hasTalkedToWalrus", true));
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
-                addScriptAction(new TextboxScriptAction("Oh... you want to fight, huh?"));
-                addScriptAction(new TextboxScriptAction("Alright. Let's rock."));
+                addScriptAction(new TextboxScriptAction("You want a duel, you say?"));
+                addScriptAction(new TextboxScriptAction("Have at thee!"));
+                addScriptAction(new StartFightScriptAction("Walrus.png"));
                 addScriptAction(new ChangeFlagScriptAction("isFighting", true));
             }});
         }});

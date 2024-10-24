@@ -23,22 +23,21 @@ public class TestNPCScript extends Script{
                     addText("OOGLY BOOGLY");
                     addText("Bet I spooked ya there! hehe"); 
                     addText("You want this coin?");
+                    addText("Here ya go!");
                     //addText("Well too bad because I don't know how to give it to you.");
                 }});
+                // below line contains a created class that handles adding a coin, may be useful when it's more complicated
                 addScriptAction(new ChangeFlagScriptAction("hasTalkedToTestNPC", true));
+                addScriptAction(new AddCoin("hasTalkedToTestNPC",1));
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToTestNPC", true));
                 //addScriptAction(new TextboxScriptAction("ahhhh I love my coin!"));
-                addScriptAction(new TextboxScriptAction("Here ya go!"));
-                // below line contains a created class that handles adding a coin, may be useful when it's more complicated
-                addScriptAction(new AddCoin("hasTalkedToTestNPC"));
-
-                
+                addScriptAction(new TextboxScriptAction("I've given you all I have, friend..."));
             }});
 
-            
+
         }});
 
         scriptActions.add(new UnlockPlayerScriptAction());

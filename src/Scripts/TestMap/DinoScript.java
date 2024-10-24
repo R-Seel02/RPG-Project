@@ -32,9 +32,9 @@ public class DinoScript extends Script {
                 addScriptAction(new NPCFacePlayerScriptAction());
                 addScriptAction(new TextboxScriptAction () {{
                     addText("Oh, you're still here...");
-                    addText("...You heard from Walrus that he saw me with your\nball?");
-                    addText("Well, I saw him playing with it and was worried it would\nroll into my garden.");
-                    addText("So I kicked it as far as I could into the forest to the left.");
+                    addText("...You want a duel?");
+                    addText("I'd rather not right now.");
+                    addText("I have a meeting to attend to later today.");
                     addText("Now, if you'll excuse me, I have to go.");
                 }});
                 addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
