@@ -1,12 +1,14 @@
 package Level;
 
 import GameObject.GameObject;
+import Tilesets.CommonTileset;
 import Utils.Direction;
 import Utils.Point;
 
 // This class has methods to check if a game object has collided with a map entity (map tile, enhanced map tile, npc, or trigger if applicable)
 // it is used by the game object class to determine if and where a collision occurred
 public class MapCollisionHandler {
+    protected static CommonTileset portalTile;
 
     // x axis collision logic
     // determines if a collision occurred with another entity on the map, and calculates where gameobject should be placed to resolve the collision

@@ -1,23 +1,20 @@
 package Maps;
 
+import Engine.ImageLoader;
 import EnhancedMapTiles.PushableRock;
 import GameObject.Frame;
 import Level.*;
-import NPCs.Bug;
-import NPCs.Dinosaur;
-import NPCs.TestNPC;
-
 import NPCs.Amongus;
 import NPCs.Bird;
-
+import NPCs.Bug;
+import NPCs.Dinosaur;
+// import NPCs.Portal;
+import NPCs.TestNPC;
 import NPCs.Walrus;
-
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
 import java.util.ArrayList;
-
-import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
@@ -65,6 +62,10 @@ public class TestMap extends Map {
         Bird bird = new Bird(6, getMapTile(5, 20).getLocation().subtractY(40));
         bird.setInteractScript(new BirdScript2());
         npcs.add(bird);
+
+        // Portal portal = new Portal(50, getMapTile(2, 15).getLocation().subtractY(40));
+        // portal.setInteractScript(new PortalScript());
+        // npcs.add(portal);
 
         // shopkeeper id 5
 
