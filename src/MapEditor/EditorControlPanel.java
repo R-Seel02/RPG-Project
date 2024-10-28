@@ -4,14 +4,13 @@ import Engine.Config;
 import Level.Map;
 import Level.MapTile;
 import Utils.Colors;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class EditorControlPanel extends JPanel {
 
@@ -25,7 +24,7 @@ public class EditorControlPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(Colors.CORNFLOWER_BLUE);
         setLocation(0, 0);
-        setPreferredSize(new Dimension(200, 600));
+        setPreferredSize(new Dimension(280, 600));
 
         mapNames = EditorMaps.getMapNames();
 

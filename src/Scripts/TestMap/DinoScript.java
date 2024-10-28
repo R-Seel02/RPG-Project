@@ -1,95 +1,95 @@
-package Scripts.TestMap;
+// package Scripts.TestMap;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
-import Builders.FrameBuilder;
-import Builders.MapTileBuilder;
-import GameObject.Frame;
-import Level.*;
-import ScriptActions.*;
+// import Builders.FrameBuilder;
+// import Builders.MapTileBuilder;
+// import GameObject.Frame;
+// import Level.*;
+// import ScriptActions.*;
 
-import Utils.Direction;
-import Utils.Point;
-import Utils.Visibility;
+// import Utils.Direction;
+// import Utils.Point;
+// import Utils.Visibility;
 
-// script for talking to dino npc
-// checkout the documentation website for a detailed guide on how this script works
-public class DinoScript extends Script {
+// // script for talking to dino npc
+// // checkout the documentation website for a detailed guide on how this script works
+// public class DinoScript extends Script {
 
-    @Override
-    public ArrayList<ScriptAction> loadScriptActions() {
+//     @Override
+//     public ArrayList<ScriptAction> loadScriptActions() {
 
-        ArrayList<ScriptAction> scriptActions = new ArrayList<>();
-        scriptActions.add(new LockPlayerScriptAction());
-        scriptActions.add(new TextboxScriptAction("Isn't my garden so lovely?"));
+//         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
+//         scriptActions.add(new LockPlayerScriptAction());
+//         scriptActions.add(new TextboxScriptAction("Isn't my garden so lovely?"));
 
-        scriptActions.add(new ConditionalScriptAction() {{
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
-                addRequirement(new FlagRequirement("hasTalkedToDinosaur", false));
+//         scriptActions.add(new ConditionalScriptAction() {{
+//             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+//                 addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
+//                 addRequirement(new FlagRequirement("hasTalkedToDinosaur", false));
 
-                addScriptAction(new WaitScriptAction(70));
-                addScriptAction(new NPCFacePlayerScriptAction());
-                addScriptAction(new TextboxScriptAction () {{
-                    addText("Oh, you're still here...");
-                    addText("...You want a duel?");
-                    addText("I'd rather not right now.");
-                    addText("I have a meeting to attend to later today.");
-                    addText("Now, if you'll excuse me, I have to go.");
-                }});
-                addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
+//                 addScriptAction(new WaitScriptAction(70));
+//                 addScriptAction(new NPCFacePlayerScriptAction());
+//                 addScriptAction(new TextboxScriptAction () {{
+//                     addText("Oh, you're still here...");
+//                     addText("...You want a duel?");
+//                     addText("I'd rather not right now.");
+//                     addText("I have a meeting to attend to later today.");
+//                     addText("Now, if you'll excuse me, I have to go.");
+//                 }});
+//                 addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
 
-                addScriptAction(new NPCWalkScriptAction(Direction.DOWN, 36, 2));
-                addScriptAction(new NPCWalkScriptAction(Direction.RIGHT, 196, 2));
+//                 addScriptAction(new NPCWalkScriptAction(Direction.DOWN, 36, 2));
+//                 addScriptAction(new NPCWalkScriptAction(Direction.RIGHT, 196, 2));
 
-                addScriptAction(new ScriptAction() {
-                    @Override
-                    public ScriptState execute() {
-                        // change door to the open door map tile
-                        Frame openDoorFrame = new FrameBuilder(map.getTileset().getSubImage(4, 4), 0)
-                            .withScale(map.getTileset().getTileScale())
-                            .build();
+//                 addScriptAction(new ScriptAction() {
+//                     @Override
+//                     public ScriptState execute() {
+//                         // change door to the open door map tile
+//                         Frame openDoorFrame = new FrameBuilder(map.getTileset().getSubImage(4, 4), 0)
+//                             .withScale(map.getTileset().getTileScale())
+//                             .build();
 
-                        Point location = map.getMapTile(17, 4).getLocation();
+//                         Point location = map.getMapTile(17, 4).getLocation();
 
-                        MapTile mapTile = new MapTileBuilder(openDoorFrame)
-                            .withTileType(TileType.NOT_PASSABLE)
-                            .build(location.x, location.y);
+//                         MapTile mapTile = new MapTileBuilder(openDoorFrame)
+//                             .withTileType(TileType.NOT_PASSABLE)
+//                             .build(location.x, location.y);
 
-                        map.setMapTile(17, 4, mapTile);
-                        return ScriptState.COMPLETED;
-                    }
-                });
+//                         map.setMapTile(17, 4, mapTile);
+//                         return ScriptState.COMPLETED;
+//                     }
+//                 });
 
-                addScriptAction(new NPCWalkScriptAction(Direction.UP, 50, 2));
-                addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
+//                 addScriptAction(new NPCWalkScriptAction(Direction.UP, 50, 2));
+//                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
 
-                addScriptAction(new ScriptAction() {
-                    @Override
-                    public ScriptState execute() {
-                        // change door back to the closed door map tile
-                        Frame doorFrame = new FrameBuilder(map.getTileset().getSubImage(4, 3), 0)
-                            .withScale(map.getTileset().getTileScale())
-                            .build();
+//                 addScriptAction(new ScriptAction() {
+//                     @Override
+//                     public ScriptState execute() {
+//                         // change door back to the closed door map tile
+//                         Frame doorFrame = new FrameBuilder(map.getTileset().getSubImage(4, 3), 0)
+//                             .withScale(map.getTileset().getTileScale())
+//                             .build();
 
-                        Point location = map.getMapTile(17, 4).getLocation();
+//                         Point location = map.getMapTile(17, 4).getLocation();
 
-                        MapTile mapTile = new MapTileBuilder(doorFrame)
-                            .withTileType(TileType.NOT_PASSABLE)
-                            .build(location.x, location.y);
+//                         MapTile mapTile = new MapTileBuilder(doorFrame)
+//                             .withTileType(TileType.NOT_PASSABLE)
+//                             .build(location.x, location.y);
 
-                        map.setMapTile(17, 4, mapTile);
-                        return ScriptState.COMPLETED;
-                    }
-                });
+//                         map.setMapTile(17, 4, mapTile);
+//                         return ScriptState.COMPLETED;
+//                     }
+//                 });
 
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToDinosaur", true));
-            }});
-        }});
+//                 addScriptAction(new ChangeFlagScriptAction("hasTalkedToDinosaur", true));
+//             }});
+//         }});
 
 
-        scriptActions.add(new UnlockPlayerScriptAction());
-        return scriptActions;
-    }
-}
+//         scriptActions.add(new UnlockPlayerScriptAction());
+//         return scriptActions;
+//     }
+// }
 

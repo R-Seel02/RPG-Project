@@ -455,82 +455,43 @@ public class CommonTileset extends Tileset {
         MapTileBuilder portalTile = new MapTileBuilder(portalFrame);
         mapTiles.add(portalTile);
 
-        // grass biome borders
-        // Frame waterLBorder = new FrameBuilder(getSubImage(5,0))
-        //         .withScale(tileScale)
-        //         .build();
+        // pond
+        Frame pondTLFrame = new FrameBuilder(getSubImage(5, 0))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder pondTLTile = new MapTileBuilder(pondTLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondTLTile);
 
-        // MapTileBuilder waterLTile = new MapTileBuilder(waterLBorder)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        Frame pondTRFrame = new FrameBuilder(getSubImage(5, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder pondTRTile = new MapTileBuilder(pondTRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondTRTile);
 
-        // mapTiles.add(waterLTile);
+        Frame pondBRFrame = new FrameBuilder(getSubImage(5, 1))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder pondBRTile = new MapTileBuilder(pondBRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondBRTile);
 
-        // Frame waterRBorder = new FrameBuilder(getSubImage(5,0))
-        //         .withScale(tileScale)
-        //         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-        //         .build();
+        Frame pondBLFrame = new FrameBuilder(getSubImage(5, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder pondBLTile = new MapTileBuilder(pondBLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondBLTile);
 
-        // MapTileBuilder waterRTile = new MapTileBuilder(waterRBorder)
-        //         .withTileType(TileType.NOT_PASSABLE);
-
-        // mapTiles.add(waterRTile);
-
-        // Frame waterBBorder = new FrameBuilder(getSubImage(5,1))
-        //         .withScale(tileScale)
-        //         .build();
-
-        // MapTileBuilder waterBTile = new MapTileBuilder(waterBBorder)
-        //         .withTileType(TileType.NOT_PASSABLE);
-
-        // mapTiles.add(waterBTile);
-
-        // Frame waterTBorder = new FrameBuilder(getSubImage(5,1))
-        //         .withScale(tileScale)
-        //         .withImageEffect(ImageEffect.FLIP_VERTICAL)
-        //         .build();
-
-        // MapTileBuilder waterTTile = new MapTileBuilder(waterTBorder)
-        //         .withTileType(TileType.NOT_PASSABLE);
-
-        // mapTiles.add(waterTTile);
-
-        // Frame waterTRBorder = new FrameBuilder(getSubImage(5,2))
-        //         .withScale(tileScale)
-        //         .build();
-
-        // MapTileBuilder waterTRTile = new MapTileBuilder(waterTRBorder)
-        //         .withTileType(TileType.NOT_PASSABLE);
-
-        // mapTiles.add(waterTRTile);
-
-        // Frame waterTLBorder = new FrameBuilder(getSubImage(5,2))
-        //         .withScale(tileScale)
-        //         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-        //         .build();
-
-        // MapTileBuilder waterTLTile = new MapTileBuilder(waterTLBorder)
-        //         .withTileType(TileType.NOT_PASSABLE);
-
-        // mapTiles.add(waterTLTile);
-
-        // Frame waterBRBorder = new FrameBuilder(getSubImage(5,3))
-        //         .withScale(tileScale)
-        //         .build();
-
-        // MapTileBuilder waterBRTile = new MapTileBuilder(waterBRBorder)
-        //         .withTileType(TileType.NOT_PASSABLE);
-
-        // mapTiles.add(waterBRTile);
-
-        // Frame waterBLBorder = new FrameBuilder(getSubImage(5,3))
-        //         .withScale(tileScale)
-        //         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-        //         .build();
-
-        // MapTileBuilder waterBLTile = new MapTileBuilder(waterBLBorder)
-        //         .withTileType(TileType.NOT_PASSABLE);
-
-        // mapTiles.add(waterBLTile);
+        Frame pondFrame = new FrameBuilder(getSubImage(5, 2))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder pondTile = new MapTileBuilder(pondFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondTile);
 
         return mapTiles;
     }

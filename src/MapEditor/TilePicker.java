@@ -6,8 +6,6 @@ import Level.Map;
 import Level.MapTile;
 import Level.Tileset;
 import Utils.Colors;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,6 +13,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import javax.swing.*;
 
 public class TilePicker extends JPanel {
 
@@ -27,7 +26,7 @@ public class TilePicker extends JPanel {
     public TilePicker(SelectedTileIndexHolder selectedTileIndexHolder) {
         setBackground(Colors.MAGENTA);
         setLocation(0, 0);
-        setPreferredSize(new Dimension(187, 391));
+        setPreferredSize(new Dimension(250, 391));
         setBorder(BorderFactory.createLineBorder(Color.black, 2));
         setLayout(null);
         this.selectedTileIndexHolder = selectedTileIndexHolder;

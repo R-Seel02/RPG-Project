@@ -16,7 +16,6 @@ import NPCs.ChickenGreen;
 import NPCs.ChickenOrange;
 import NPCs.ChickenRed;
 import NPCs.ChickenYellow;
-import NPCs.Dinosaur;
 import NPCs.FarmerNPC;
 import NPCs.OldGuy;
 import NPCs.QuestWoman;
@@ -30,11 +29,11 @@ import Tilesets.CommonTileset;
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
-public class TestMap extends Map {
+public class StartingMap extends Map {
 
-    public TestMap() {
-        super("test_map.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(11, 17).getLocation();
+    public StartingMap() {
+        super("starting_map.txt", new CommonTileset());
+        this.playerStartPosition = getMapTile(17, 19).getLocation();
     }
 
     @Override
@@ -55,10 +54,10 @@ public class TestMap extends Map {
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
 
-        Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
-        dinosaur.setExistenceFlag("hasTalkedToDinosaur");
-        dinosaur.setInteractScript(new DinoScript());
-        npcs.add(dinosaur);
+        // Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
+        // dinosaur.setExistenceFlag("hasTalkedToDinosaur");
+        // dinosaur.setInteractScript(new DinoScript());
+        // npcs.add(dinosaur);
         
         Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
         bug.setInteractScript(new BugScript());
