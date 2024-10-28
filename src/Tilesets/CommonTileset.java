@@ -213,6 +213,7 @@ public class CommonTileset extends Tileset {
                 .build();
 
         MapTileBuilder houseBodyTile = new MapTileBuilder(houseBodyFrame)
+                .withTopLayer(houseBodyFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(houseBodyTile);
@@ -262,15 +263,14 @@ public class CommonTileset extends Tileset {
         mapTiles.add(leftWindowTile);
 
         // right window
-        Frame rightWindowFrame = new FrameBuilder(getSubImage(4, 2))
+        Frame bottomHouseBodyFrame = new FrameBuilder(getSubImage(3, 4))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
-        MapTileBuilder rightWindowTile = new MapTileBuilder(rightWindowFrame)
+        MapTileBuilder bottomHouseBodyTile = new MapTileBuilder(bottomHouseBodyFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
-        mapTiles.add(rightWindowTile);
+        mapTiles.add(bottomHouseBodyTile);
 
         // door
         Frame doorFrame = new FrameBuilder(getSubImage(4, 3))
