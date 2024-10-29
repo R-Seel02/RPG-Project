@@ -8,7 +8,7 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.StartingMap;
+import Maps.GrassMap;
 import Players.Knight;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
@@ -100,7 +100,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("InInventory", false);
 
         // define/setup map
-        map = new StartingMap();
+        map = new GrassMap();
         map.setFlagManager(flagManager);
 
         // setup player
