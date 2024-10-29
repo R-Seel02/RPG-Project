@@ -493,6 +493,90 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(pondTile);
 
+        Frame pondLFrame = new FrameBuilder(getSubImage(5, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder pondLTile = new MapTileBuilder(pondLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondLTile);
+
+        Frame pondRFrame = new FrameBuilder(getSubImage(5, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder pondRTile = new MapTileBuilder(pondRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondRTile);
+
+        Frame pondTFrame = new FrameBuilder(getSubImage(5, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder pondTTile = new MapTileBuilder(pondTFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondTTile);
+
+        Frame pondBFrame = new FrameBuilder(getSubImage(5, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder pondBTile = new MapTileBuilder(pondBFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(pondBTile);
+
+
+        // fountain frames
+        Frame[] fountainBLFrames = new Frame[] {
+                new FrameBuilder(getSubImage(6, 0), 40)
+                        .withScale(tileScale)
+                        .build(),
+                new FrameBuilder(getSubImage(6, 1), 40)
+                        .withScale(tileScale)
+                        .build()
+        };
+        MapTileBuilder fountainBLTiles = new MapTileBuilder(fountainBLFrames)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(fountainBLTiles);
+
+        Frame[] fountainBRFrames = new Frame[] {
+                new FrameBuilder(getSubImage(6, 0), 40)
+                        .withScale(tileScale)
+                        .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                        .build(),
+                new FrameBuilder(getSubImage(6, 1), 40)
+                        .withScale(tileScale)
+                        .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                        .build()
+        };
+        MapTileBuilder fountainBRTiles = new MapTileBuilder(fountainBRFrames)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(fountainBRTiles);
+
+        Frame[] fountainTLFrames = new Frame[] {
+                new FrameBuilder(getSubImage(6, 2), 40)
+                        .withScale(tileScale)
+                        .build(),
+                new FrameBuilder(getSubImage(6, 3), 40)
+                        .withScale(tileScale)
+                        .build()
+        };
+        MapTileBuilder fountainTLTiles = new MapTileBuilder(fountainTLFrames)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(fountainTLTiles);
+
+        Frame[] fountainTRFrames = new Frame[] {
+                new FrameBuilder(getSubImage(6, 2), 40)
+                        .withScale(tileScale)
+                        .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                        .build(),
+                new FrameBuilder(getSubImage(6, 3), 40)
+                        .withScale(tileScale)
+                        .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                        .build()
+        };
+        MapTileBuilder fountainTRTiles = new MapTileBuilder(fountainTRFrames)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(fountainTRTiles);
+
         return mapTiles;
     }
 }
