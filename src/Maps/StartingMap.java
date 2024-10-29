@@ -136,7 +136,7 @@ public class StartingMap extends Map {
         chest.setInteractScript(new ChestScript());
         npcs.add(chest);
         
-        Chest2 chest2 = new Chest2(20, getMapTile(25, 12).getLocation());
+        Chest2 chest2 = new Chest2(20, getMapTile(25, 11).getLocation());
         chest2.setInteractScript(new Chest2Script());
         npcs.add(chest2);
 
