@@ -22,11 +22,14 @@ public class InventoryScreen extends Screen {
     protected int pointerLocationY;
     protected int menuItemSelected = -1;
     protected int currentMenuItemHovered = 0;
-    protected  int keyPressTimer;
+    protected int keyPressTimer;
     protected PickableObject pickableObject;
     protected PickableObject [] inventoryList;
+    protected SpriteFont healthPotCount;
+    protected SpriteFont damagePotCount;
+    protected SpriteFont defensePotCount;
   
-    public InventoryScreen(PlayLevelScreen playLevelScreen, Knight player) {
+    public InventoryScreen(PlayLevelScreen playLevelScreen, Player player) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         initialize();
@@ -36,33 +39,42 @@ public class InventoryScreen extends Screen {
     public void initialize() {
         
         
-        background = new Sprite(ImageLoader.load("InventoryScreen.png"));
-       
-
+        background = new Sprite(ImageLoader.load("NewInventoryScreen.png"));
         
-        returnToGame = new SpriteFont("Leave?", 136, 680, "Arial", 40, Color.white);
-        keyPressTimer = 0;
-        keyLocker.lockKey(Key.SPACE);
+        healthPotCount = new SpriteFont("x " + player.healthPotCount(), 1200, 100, "Arial", 80, Color.white);
+        healthPotCount.setOutlineColor(Color.black);
+        healthPotCount.setOutlineThickness(2);
+
+        damagePotCount = new SpriteFont("x " + player.damagePotCount(), 1200, 350, "Arial", 80, Color.white);
+        damagePotCount.setOutlineColor(Color.black);
+        damagePotCount.setOutlineThickness(2);
+
+        defensePotCount = new SpriteFont("x " + player.defensePotCount(), 1200, 625, "Arial", 80, Color.white);
+        defensePotCount.setOutlineColor(Color.black);
+        defensePotCount.setOutlineThickness(2);
+        
+        // returnToGame = new SpriteFont("Leave?", 136, 680, "Arial", 40, Color.white);
+        // keyPressTimer = 0;
+        // keyLocker.lockKey(Key.SPACE);
     }
  
 
     @Override
     public void update() {
-
         if (currentMenuItemHovered >= 1 ) {
             currentMenuItemHovered = 0;
         } else if (currentMenuItemHovered < 0) {
             currentMenuItemHovered = 3;
         }
 
-        if (currentMenuItemHovered == 0) {
-            returnToGame.setColor(Color.yellow);
-            pointerLocationX = 136;
-            pointerLocationY = 580;
-        } 
-        else{
-            returnToGame.setColor(Color.white);
-        }
+        // if (currentMenuItemHovered == 0) {
+        //     returnToGame.setColor(Color.yellow);
+        //     pointerLocationX = 136;
+        //     pointerLocationY = 580;
+        // } 
+        // else{
+        //     returnToGame.setColor(Color.white);
+        // }
 
         if (Keyboard.isKeyUp(Key.SPACE)) {
             keyLocker.unlockKey(Key.SPACE);
@@ -73,7 +85,14 @@ public class InventoryScreen extends Screen {
         if (Keyboard.isKeyUp(Key.I)) {
             keyLocker.unlockKey(Key.I);
         }
+
+        healthPotCount.setText("x " + player.healthPotCount());
+        damagePotCount.setText("x " + player.damagePotCount());
+        defensePotCount.setText("x " + player.defensePotCount());
+
     }
+
+
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
         // item1.draw(graphicsHandler);
@@ -104,8 +123,11 @@ public class InventoryScreen extends Screen {
                 itemSprite.draw(graphicsHandler);
             }
         }
-        returnToGame.draw(graphicsHandler);
-        graphicsHandler.drawFilledRectangle(pointerLocationX, pointerLocationY, 25, 25, Color.yellow);
+        //returnToGame.draw(graphicsHandler);
+        healthPotCount.draw(graphicsHandler);
+        damagePotCount.draw(graphicsHandler);
+        defensePotCount.draw(graphicsHandler);
+        //graphicsHandler.drawFilledRectangle(pointerLocationX, pointerLocationY, 25, 25, Color.yellow);
     }
 
     

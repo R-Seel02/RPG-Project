@@ -17,8 +17,19 @@ public abstract class Player extends GameObject {
     protected Direction currentWalkingYDirection;
     protected Direction lastWalkingXDirection;
     protected Direction lastWalkingYDirection;
+
+    // inventory
     private PickableObject[] inventoryList;
-   
+    private int[] potions;
+
+    // potion constants
+    private final int HEALTH_POT = 0;
+    private final int DAMAGE_POT = 1;
+    private final int DEFENSE_POT = 2;
+
+    // buffs
+    boolean hasDamageBuff = false;
+    boolean hasDefenseBuff = false;
     
 
     protected int health;
@@ -57,6 +68,7 @@ public abstract class Player extends GameObject {
         health = 100;
         isDead = false;
         this.inventoryList = new PickableObject[15];
+        this.potions = new int[3];
     }
 
     public void update() {
@@ -319,11 +331,15 @@ public abstract class Player extends GameObject {
 
     //Make the player take damage
     public void takeDamage(int damage){
+        if(hasDefenseBuff){
+            damage *= 0.9;
+        }
         this.health -= damage;
         if(damage >= health){
             isDead = true;
             health = 0;
         }
+        this.hasDefenseBuff = false;
     }
     
     public void heal(int healValue){
@@ -346,6 +362,61 @@ public abstract class Player extends GameObject {
 
     public boolean isDead(){
         return isDead;
+    }
+
+
+    // health potion
+    public void addHealthPot(){
+        this.potions[HEALTH_POT]++;
+    }
+
+    public void useHealthPot(){
+        // could be any amount
+        if(this.potions[HEALTH_POT] >= 0){
+            heal(15);
+            this.potions[HEALTH_POT]--;
+        }
+        
+    }
+
+    public int healthPotCount(){
+        return this.potions[HEALTH_POT];
+    }
+
+
+    // damage potion
+    public void addDamagePot(){
+        this.potions[DAMAGE_POT]++;
+    }
+
+    public void useDamagePot(){
+        if(this.potions[DAMAGE_POT] >= 0){
+            // unsure on this implementation for now
+            this.hasDamageBuff = true;
+            this.potions[DAMAGE_POT]--;
+        }
+    }
+
+    public int damagePotCount(){
+        return this.potions[DAMAGE_POT];
+    }
+
+
+    // defense potion
+    public void addDefensePot(){
+        this.potions[DEFENSE_POT]++;
+    }
+
+    public void useDefensePot(){
+        if(this.potions[DEFENSE_POT] >= 0){
+            // next damage taken will be decreased and boolean is unset
+            this.hasDefenseBuff = true;
+            this.potions[DEFENSE_POT]--;
+        }
+    }
+
+    public int defensePotCount(){
+        return this.potions[DEFENSE_POT];
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
