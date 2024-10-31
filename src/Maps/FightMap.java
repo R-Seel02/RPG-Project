@@ -20,7 +20,7 @@ public class FightMap extends Map {
         super("title_screen_map.txt", new CommonTileset());
         Point catLocation = getMapTile(19, 5).getLocation().subtractX(6).subtractY(7);
         Point enemyLocation = getMapTile(15, 5).getLocation().subtractX(6).subtractY(7);
-        cat = new Sprite(ImageLoader.loadSubImage("Knight.png", Colors.MAGENTA, 0, 0, 24, 24));
+        cat = new Sprite(ImageLoader.loadSubImage("Assassin.png", Colors.MAGENTA, 0, 0, 24, 24));
         cat.setScale(3);
         cat.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
         cat.setLocation(catLocation.x, catLocation.y);
