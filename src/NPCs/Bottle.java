@@ -25,22 +25,22 @@ public class Bottle extends NPC {
         return new HashMap<String, Frame[]>() {{
             put("STAND_LEFT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0),40)
-                .withScale(3)
-                .withBounds(0, 0, 0, 0)
+                .withScale(2)
+                .withBounds(2, 10, 2, 10)
                 .build(),
         new FrameBuilder(spriteSheet.getSprite(0, 1), 40)
-                .withScale(3)
-                .withBounds(0, 0, 0, 0)
+                .withScale(2)
+                .withBounds(2, 10, 2, 10)
                 .build()
             });
             put("STAND_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0),40)
-                .withScale(3)
-                .withBounds(0, 0, 0, 0)
+                .withScale(2)
+                .withBounds(2, 10, 2, 10)
                 .build(),
         new FrameBuilder(spriteSheet.getSprite(0, 1), 40)
-                .withScale(3)
-                .withBounds(0, 0, 0, 0)
+                .withScale(2)
+                .withBounds(2, 10, 2, 10)
                 .build()
            });
         }};

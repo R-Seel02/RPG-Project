@@ -2,7 +2,7 @@ package Screens;
 
 import Engine.*;
 import Maps.FightMap;
-import Players.Knight;
+import Players.Assassin;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 import Level.Enemy;
@@ -18,7 +18,8 @@ public class FightScreen extends Screen {
     protected SpriteFont coinCounter;
     protected KeyLocker keyLocker = new KeyLocker();
     protected PlayLevelScreen playLevelScreen;
-    protected Knight player;
+    // protected Knight player;
+    protected Assassin player;
     protected int enemyHealth; //temporary thing until I make an enemy class - Max
     protected int keyPressTimer;
     protected int menuItemSelected = -1;
@@ -32,7 +33,7 @@ public class FightScreen extends Screen {
     protected String enemySprite;
     protected int dealtDamage, takenDamage;
 
-    public FightScreen(PlayLevelScreen playLevelScreen, Knight player, Enemy enemy) {
+    public FightScreen(PlayLevelScreen playLevelScreen, Assassin player, Enemy enemy) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         this.enemy = enemy;

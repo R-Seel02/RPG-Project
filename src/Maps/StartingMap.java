@@ -67,7 +67,7 @@ public class StartingMap extends Map {
         testNPC.setInteractScript(new TestNPCScript());
         npcs.add(testNPC);
 
-        Amongus amongus = new Amongus(5, getMapTile(24, 19).getLocation().subtractY(40));
+        Amongus amongus = new Amongus(5, getMapTile(24, 21).getLocation().subtractY(40));
         amongus.setInteractScript(new AmongusScript3());
         npcs.add(amongus);
 
@@ -80,12 +80,12 @@ public class StartingMap extends Map {
         farmerNPC.setInteractScript(new QuestFarmerScript());
         npcs.add(farmerNPC);
 
-        ChickenRed chickenRed = new ChickenRed(8, getMapTile(20, 25).getLocation().subtractY(40));
+        ChickenRed chickenRed = new ChickenRed(8, getMapTile(22, 25).getLocation().subtractY(40));
         //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
         chickenRed.setInteractScript(new ChickenRedScript());
         npcs.add(chickenRed);
 
-        ChickenYellow chickenYellow = new ChickenYellow(9, getMapTile(30, 25).getLocation().subtractY(40));
+        ChickenYellow chickenYellow = new ChickenYellow(9, getMapTile(30, 22).getLocation().subtractY(40));
         //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
         chickenYellow.setInteractScript(new ChickenYellowScript());
         npcs.add(chickenYellow);
@@ -109,12 +109,12 @@ public class StartingMap extends Map {
          questWoman.setInteractScript(new QuestWomanScript());
          npcs.add(questWoman);
 
-         Bottle bottle = new Bottle(14, getMapTile(30, 5 ).getLocation().subtractY(40));
+         Bottle bottle = new Bottle(14, getMapTile(28, 17 ).getLocation().subtractY(40));
          bottle.setExistenceFlag("hasBottle");
          bottle.setInteractScript(new BottleScript());
          npcs.add(bottle);
 
-         Anchor anchor = new Anchor(15, getMapTile(32, 5 ).getLocation().subtractY(40));
+         Anchor anchor = new Anchor(15, getMapTile(5, 19 ).getLocation().subtractY(40));
          anchor.setExistenceFlag("hasAnchor");
          anchor.setInteractScript(new AnchorScript());
          npcs.add(anchor);
