@@ -40,7 +40,8 @@ public class FightScreen extends Screen {
         this.enemyHealth = enemy.getMaxHealth();
         this.keyPressTimer = 0;
         this.enemySprite = enemy.getSprite();
-        this.background = new FightMap(enemySprite);
+        this.background = new FightMap();
+        this.background.setEnemySprite(enemy.getSprite());
         this.isPlayerTurn = true;
         this.turnTimer = 100;
         this.playerHasHealed = false;
@@ -49,15 +50,15 @@ public class FightScreen extends Screen {
 
     @Override
     public void initialize() {
-        turnMessage = new SpriteFont("It is your turn.", 150, 239, "Arial", 30, Color.white);
-        instructions = new SpriteFont("Press the attack button to attack. This is a fight for your honor. Good luck.", 75, 279, "Arial", 20, Color.white);
-        healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 150, 319, "Arial", 20, Color.white);
+        turnMessage = new SpriteFont("It is your turn.", 550, 100, "Arial", 30, Color.white);
+        instructions = new SpriteFont("Press the attack button to attack. This is a fight for your honor. Good luck.", 475, 150, "Arial", 20, Color.white);
+        healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 250, 200, "Arial", 20, Color.white);
         //instructions = new SpriteFont("Press Escape to go back to the game.", 160, 279,"Arial", 20, Color.white);
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 60, "Arial", 40, Color.white);
 
-        attackButton = new SpriteFont("Attack!", 75, 350, "Arial", 50, Color.white);
-        fleeButton = new SpriteFont("Flee!", 675, 350, "Arial", 50, Color.white);
-        healButton = new SpriteFont("Heal!", 375, 350, "Arial", 50, Color.white);
+        attackButton = new SpriteFont("Attack!", 150, 550, "Arial", 50, Color.white);
+        fleeButton = new SpriteFont("Flee!", 1150, 550, "Arial", 50, Color.white);
+        healButton = new SpriteFont("Heal!", 650, 550, "Arial", 50, Color.white);
 
         attackButton.setOutlineColor(Color.white);
         attackButton.setOutlineThickness(3);
