@@ -41,6 +41,7 @@ public class PickableObject extends MapEntity{
 
         }
         
+        
         super.update();
 
     }

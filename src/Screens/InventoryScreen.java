@@ -40,7 +40,7 @@ public class InventoryScreen extends Screen {
        
 
         
-        returnToGame = new SpriteFont("Leave?", 136, 680, "Arial", 40, Color.white);
+        returnToGame = new SpriteFont("", 136, 680, "Arial", 40, Color.white);
         keyPressTimer = 0;
         keyLocker.lockKey(Key.SPACE);
     }
@@ -76,21 +76,7 @@ public class InventoryScreen extends Screen {
     }
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        // item1.draw(graphicsHandler);
-        // item2.draw(graphicsHandler);
-        // item3.draw(graphicsHandler);
-        // item4.draw(graphicsHandler);
-        // item5.draw(graphicsHandler);
-        // item6.draw(graphicsHandler);
-        // item7.draw(graphicsHandler);
-        // item8.draw(graphicsHandler);
-        // item9.draw(graphicsHandler);
-        // item10.draw(graphicsHandler);
-        // item11.draw(graphicsHandler);
-        // item12.draw(graphicsHandler);
-        // item13.draw(graphicsHandler);
-        // item14.draw(graphicsHandler);
-        // item15.draw(graphicsHandler);
+        
 
 
         background.draw(graphicsHandler);

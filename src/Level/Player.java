@@ -173,7 +173,7 @@ public abstract class Player extends GameObject {
         }
     }
     public void initializeInventory() {
-        inventoryList = new PickableObject[15]; // Or any size you'd like
+        inventoryList = new PickableObject[15]; 
     }
     public PickableObject[] getInventoryList() {
         return inventoryList;
