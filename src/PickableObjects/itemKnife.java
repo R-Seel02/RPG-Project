@@ -6,9 +6,9 @@ import GameObject.SpriteSheet;
 import Level.PickableObject;
 import Utils.Point;
 
-public class itemKnife extends PickableObject {
+public class ItemKnife extends PickableObject {
 
-    public itemKnife (Point location, Frame frame){
+    public ItemKnife (Point location, Frame frame){
         super(location, frame); new SpriteSheet(ImageLoader.load("Knife.png"), 24, 24);
 
     }

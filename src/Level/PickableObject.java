@@ -4,6 +4,7 @@ import Engine.Key;
 import Engine.Keyboard;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
+import PickableObjects.ItemAxe;
 import Utils.Point;
 
  
@@ -33,11 +34,11 @@ public class PickableObject extends MapEntity{
        
         }
 
+
         if (distance <= 55 && Keyboard.isKeyDown(INTERACT_KEY)) {
             this.setMapEntityStatus(MapEntityStatus.REMOVED);
             
             player.addToInventory(this);
-            
 
         }
         
