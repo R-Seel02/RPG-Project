@@ -90,7 +90,7 @@ public class MapEntity extends GameObject {
     public String getExistenceFlag() {
         return existenceFlag;
     }
-
+    
     public void setExistenceFlag(String existenceFlag) {
         this.existenceFlag = existenceFlag;
     }
