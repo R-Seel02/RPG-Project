@@ -7,6 +7,7 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
+import java.util.Random;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -19,10 +20,11 @@ public abstract class Player extends GameObject {
     protected Direction lastWalkingYDirection;
     private PickableObject[] inventoryList;
    
-    
-
+    //combat stuff
     protected int health;
+    protected int critChance;
     protected boolean isDead;
+    protected Random random;
 
     // values used to handle player movement
     protected float moveAmountX, moveAmountY;
@@ -54,8 +56,10 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
-        health = 100;
+        this.health = 100;
+        this.critChance = 5;
         isDead = false;
+        this.random = new Random();
         this.inventoryList = new PickableObject[15];
     }
 
@@ -183,16 +187,17 @@ public abstract class Player extends GameObject {
         this.inventoryList = inventoryList;
     }
 
-    public void addToInventory(PickableObject item){
+    public boolean addToInventory(PickableObject item){
         for (int i = 0; i < inventoryList.length; i++) {
             if (inventoryList[i] == null) { // Check if the slot is null and not
                 inventoryList[i] = item; 
                 System.out.println("Item picked up and placed at index: " + i);
-                break; 
+                return true;
             }
 
         }
         System.out.println("Inventory is full!");
+        return false;
     }
    
 
@@ -323,6 +328,15 @@ public abstract class Player extends GameObject {
         if(damage >= health){
             isDead = true;
             health = 0;
+        }
+    }
+
+    public int attack(){
+        int cc = random.nextInt(101);
+        if(cc <= critChance){
+            return 20;
+        }else{
+            return 10;
         }
     }
     

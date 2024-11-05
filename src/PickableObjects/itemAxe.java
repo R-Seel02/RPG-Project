@@ -12,5 +12,10 @@ public class ItemAxe extends PickableObject {
         super(location, frame); new SpriteSheet(ImageLoader.load("Axe.png"), 24, 24);
 
     }
+
+    public ItemAxe(){
+    // super(frame); new SpriteSheet(ImageLoader.load("Axe.png"), 24, 24);
+    // 
+    }
  }
 

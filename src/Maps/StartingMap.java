@@ -28,7 +28,6 @@ import PickableObjects.ItemKatana;
 import PickableObjects.ItemKnife;
 import PickableObjects.ItemRock;
 import PickableObjects.ItemStaff;
-import PickableObjects.itemKnife;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -173,20 +172,20 @@ public class StartingMap extends Map {
          pickableObjects.add(itemRock);
 
          
-         ItemAxe itemAxe = new ItemAxe(getMapTile(10, 15).getLocation(), new Frame(ImageLoader.load("Axe.png")));
-         pickableObjects.add(itemAxe);
+        //  ItemAxe itemAxe = new ItemAxe(getMapTile(10, 15).getLocation(), new Frame(ImageLoader.load("Axe.png")));
+        //  pickableObjects.add(itemAxe);
 
-         ItemAnchor itemAnchor = new ItemAnchor(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Anchor.png")));
-         pickableObjects.add(itemAnchor);
+        //  ItemAnchor itemAnchor = new ItemAnchor(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Anchor.png")));
+        //  pickableObjects.add(itemAnchor);
 
-         ItemKatana itemKatana = new ItemKatana(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Katana.png")));
-         pickableObjects.add(itemKatana);
+        //  ItemKatana itemKatana = new ItemKatana(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Katana.png")));
+        //  pickableObjects.add(itemKatana);
 
-         ItemKnife itemKnife = new ItemKnife(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Axe.png")));
-         pickableObjects.add(itemKnife);
+        //  ItemKnife itemKnife = new ItemKnife(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Knife.png")));
+        //  pickableObjects.add(itemKnife);
 
-         ItemStaff itemStaff = new ItemStaff(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Axe.png")));
-         pickableObjects.add(itemStaff);
+        //  ItemStaff itemStaff = new ItemStaff(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Staff.png")));
+        //  pickableObjects.add(itemStaff);
 
         
          return pickableObjects;

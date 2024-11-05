@@ -6,7 +6,9 @@ import Engine.ImageLoader;
 import GameObject.SpriteSheet;
 import Level.PickableObject;
 import Level.Script;
+import Level.ScriptState;
 import PickableObjects.ItemAxe;
+import Level.Enemy;
 import ScriptActions.*;
 
 
@@ -51,7 +53,7 @@ public class AmongusScript3 extends Script {
 
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("No more axe :c"));
-                    addScriptAction(new StartFightScriptAction("amongus.png"));
+                    addScriptAction(new StartFightScriptAction(new Enemy("Amongus", 40, 8, 3, "amongus.png")));
                     addScriptAction(new ChangeFlagScriptAction("isFighting", true));
                  }});
                 
@@ -87,11 +89,10 @@ public class AmongusScript3 extends Script {
         
                     }
                 });
-
-                 addScriptAction(new TextboxScriptAction() {{
-                     addText("sus 0_0");
-                 }});
                 addScriptAction(new ChangeFlagScriptAction("hasAxe", true));
+                addScriptAction(new AddItem("hasAxe", new ItemAxe(null, null) ));
+
+                
             }});
 
             
