@@ -16,7 +16,7 @@ public class SnowLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Assassin player;
-    protected PlayLevelScreenState playLevelScreenState;
+    protected PlayLevelScreenState snowLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
@@ -24,6 +24,7 @@ public class SnowLevelScreen extends Screen {
     protected SpriteFont coinCounter;
     protected PlayLevelScreen playLevelScreen;
     protected SnowLevelScreen snowBiome;
+
 
     //quest stuff
     protected SpriteFont quest1;
@@ -36,18 +37,18 @@ public class SnowLevelScreen extends Screen {
 
     public void initialize() {
         // setup state
-        // flagManager = new FlagManager();
+        flagManager = new FlagManager();
 
         
         // define/setup map
         map = new SnowMap();
         map.setFlagManager(flagManager);
-        // flagManager.addFlag("atStartBiome", false);
+        flagManager.addFlag("atStartBiome", false);
 
         // setup player
         player = new Assassin(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         player.setMap(map);
-        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        snowLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
 
         map.setPlayer(player);
@@ -75,12 +76,13 @@ public class SnowLevelScreen extends Screen {
         // quest1 = new SpriteFont("Retrieve the axe", 800, 75, "Arial", 30, Color.white);
         // quest1.setOutlineColor(Color.black);
         // quest1.setOutlineThickness(3);
+        playLevelScreen = new PlayLevelScreen(screenCoordinator);
 
     }
 
     public void update() {
         // based on screen state, perform specific actions
-        switch (playLevelScreenState) {
+        switch (snowLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
                 player.update();
@@ -103,11 +105,15 @@ public class SnowLevelScreen extends Screen {
                 playLevelScreen.update();
                 break;
         }
+
+        if (map.getFlagManager().isFlagSet("atStartBiome")) {
+            snowLevelScreenState = PlayLevelScreenState.START;
+        }
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
-        switch (playLevelScreenState) {
+        switch (snowLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
                 coinCounter.draw(graphicsHandler);
@@ -128,7 +134,7 @@ public class SnowLevelScreen extends Screen {
     }
 
     public PlayLevelScreenState getPlayLevelScreenState() {
-        return playLevelScreenState;
+        return snowLevelScreenState;
     }
 
 
@@ -141,7 +147,7 @@ public class SnowLevelScreen extends Screen {
     }
 
     public void backToGame() {
-        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        snowLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
     // This enum represents the different states this screen can be in
