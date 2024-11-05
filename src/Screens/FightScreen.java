@@ -1,6 +1,7 @@
 package Screens;
 
 import Engine.*;
+import Level.Player;
 import Maps.FightMap;
 import Players.Assassin;
 import SpriteFont.SpriteFont;
@@ -19,7 +20,7 @@ public class FightScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected PlayLevelScreen playLevelScreen;
     // protected Knight player;
-    protected Assassin player;
+    protected Player player;
     protected int enemyHealth; //temporary thing until I make an enemy class - Max
     protected int keyPressTimer;
     protected int menuItemSelected = -1;
@@ -33,15 +34,24 @@ public class FightScreen extends Screen {
     protected String enemySprite;
     protected int dealtDamage, takenDamage;
 
-    public FightScreen(PlayLevelScreen playLevelScreen, Assassin player, Enemy enemy) {
+    public FightScreen(PlayLevelScreen playLevelScreen, Player player, Enemy enemy) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         this.enemy = enemy;
-        this.enemyHealth = enemy.getMaxHealth();
+        this.enemyHealth = enemy.getCurrentHealth();
         this.keyPressTimer = 0;
         this.enemySprite = enemy.getSprite();
         this.background = new FightMap();
         this.background.setEnemySprite(enemy.getSprite());
+
+        if(playLevelScreen.getCharacterSelection() == 0){
+            this.background.setPlayerSprite("Assassin.png");
+        }else if(playLevelScreen.getCharacterSelection() == 1){
+            this.background.setPlayerSprite("Knight.png");
+        }else if(playLevelScreen.getCharacterSelection() == 2){
+            this.background.setPlayerSprite("error.png");
+        }
+
         this.isPlayerTurn = true;
         this.turnTimer = 100;
         this.playerHasHealed = false;
@@ -50,9 +60,9 @@ public class FightScreen extends Screen {
 
     @Override
     public void initialize() {
-        turnMessage = new SpriteFont("It is your turn.", 550, 100, "Arial", 30, Color.white);
-        instructions = new SpriteFont("Press the attack button to attack. This is a fight for your honor. Good luck.", 475, 150, "Arial", 20, Color.white);
-        healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 250, 200, "Arial", 20, Color.white);
+        turnMessage = new SpriteFont("It is your turn.", 500, 100, "Arial", 30, Color.white);
+        instructions = new SpriteFont("Press the attack button to attack. This is a fight for your honor. Good luck.", 425, 150, "Arial", 20, Color.white);
+        healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 400, 200, "Arial", 20, Color.white);
         //instructions = new SpriteFont("Press Escape to go back to the game.", 160, 279,"Arial", 20, Color.white);
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 60, "Arial", 40, Color.white);
 
@@ -117,18 +127,18 @@ public class FightScreen extends Screen {
             background.flipPlayer();
             background.flipEnemy();
         }else if(player.isDead()){
-            healthMessage = new SpriteFont("You have been bested by your foe!", 150, 319, "Arial", 20, Color.red);
-            //healthMessage.setText("You have been bested by your foe!");
-            //healthMessage.setColor(Color.red);
+            //healthMessage = new SpriteFont("You have been bested by your foe!", 150, 319, "Arial", 20, Color.red);
+            healthMessage.setText("You have been bested by your foe!");
+            healthMessage.setColor(Color.red);
             background.flipPlayer();
         }else if(enemy.isDead()){
-            healthMessage = new SpriteFont("You have killed the enemy! Congratulations.", 150, 319, "Arial", 20, Color.green);
-            //healthMessage.setText("You have beaten your enemy! Congratulations!");
-            //healthMessage.setColor(Color.green);
+            //healthMessage = new SpriteFont("You have killed the enemy! Congratulations.", 150, 319, "Arial", 20, Color.green);
+            healthMessage.setText("You have beaten your enemy! Congratulations!");
+            healthMessage.setColor(Color.green);
             background.flipEnemy();
         }else{
-            healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemy.getCurrentHealth() + " health.", 150, 319, "Arial", 20, Color.white);
-            //healthMessage.setText("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.");
+            //healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemy.getCurrentHealth() + " health.", 150, 319, "Arial", 20, Color.white);
+            healthMessage.setText("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.");
         }
     }
 
@@ -245,11 +255,11 @@ public class FightScreen extends Screen {
         instructions.draw(graphicsHandler);
         
         // player health bar
-        graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
-        graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
+        graphicsHandler.drawFilledRectangleWithBorder(275, 275, 200, 25, Color.gray, Color.black, 3);
+        graphicsHandler.drawFilledRectangle(275, 275, (player.getHealth() * 2), 25, new Color(190, 0, 0));
 
         // enemy health bar
-        graphicsHandler.drawFilledRectangleWithBorder(1175, 25, enemy.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
-        graphicsHandler.drawFilledRectangle(1175, 25, (enemy.getCurrentHealth() * 2), 25, new Color(190, 0, 0));
+        graphicsHandler.drawFilledRectangleWithBorder(975, 275, enemy.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
+        graphicsHandler.drawFilledRectangle(975, 275, (enemy.getCurrentHealth() * 2), 25, new Color(190, 0, 0));
     }
 }

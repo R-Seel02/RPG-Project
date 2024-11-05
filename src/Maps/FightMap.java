@@ -15,12 +15,15 @@ public class FightMap extends Map {
     private Sprite cat;
     private Sprite enemy;
     private String enemySprite;
+    private String playerSprite;
 
     public FightMap() {
         super("fight_map.txt", new CommonTileset());
         Point catLocation = getMapTile(7, 7).getLocation().subtractX(0).subtractY(7);
         Point enemyLocation = getMapTile(21, 7).getLocation().subtractX(15).subtractY(7);
-        cat = new Sprite(ImageLoader.loadSubImage("Assassin.png", Colors.MAGENTA, 0, 0, 24, 24));
+
+        this.playerSprite = "error.png";
+        cat = new Sprite(ImageLoader.loadSubImage(playerSprite, Colors.MAGENTA, 0, 0, 24, 24));
         cat.setScale(3);
         cat.setLocation(catLocation.x, catLocation.y);
 
@@ -61,6 +64,14 @@ public class FightMap extends Map {
         enemy.setScale(3);
         enemy.setLocation(enemyLocation.x, enemyLocation.y);
         enemy.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
+    }
+
+    public void setPlayerSprite(String sprite){
+        this.playerSprite = sprite;
+        Point catLocation = getMapTile(7, 7).getLocation().subtractX(0).subtractY(7);
+        cat = new Sprite(ImageLoader.loadSubImage(playerSprite, Colors.MAGENTA, 0, 0, 24, 24));
+        cat.setScale(3);
+        cat.setLocation(catLocation.x, catLocation.y);
     }
 
     public String getEnemySprite(){

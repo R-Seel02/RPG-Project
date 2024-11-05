@@ -20,7 +20,7 @@ import javax.swing.Timer;
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Assassin player;
+    protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
@@ -41,6 +41,8 @@ public class PlayLevelScreen extends Screen {
 
     //combat stuff
     protected Enemy currentEnemy;
+    protected int characterChoice;
+
     
     protected Timer timer = new Timer(20, null);
     protected int i = 0;
@@ -54,6 +56,11 @@ public class PlayLevelScreen extends Screen {
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+    }
+
+    public PlayLevelScreen(ScreenCoordinator screenCoordinator, int characterChoice) {
+        this.screenCoordinator = screenCoordinator;
+        this.characterChoice = characterChoice;
     }
 
     public void initialize() {
@@ -91,8 +98,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasQuestOldGuy", false);
         flagManager.addFlag("hasCompletedQuestOldGuy", false);
         flagManager.addFlag("hasFoughtSkeleton", false);
-
-
+        flagManager.addFlag("hasBeatenSeb", false);
         
         
         flagManager.addFlag("HasQuest", false);
@@ -107,7 +113,19 @@ public class PlayLevelScreen extends Screen {
         map.setFlagManager(flagManager);
 
         // setup player
-        player = new Assassin(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+        switch(characterChoice){
+            case(0):
+                player = new Assassin(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+                break;
+            case(1):
+                player = new Knight(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+                break;
+            case(2):
+                // mystery class
+                break;
+            
+        }
+        
         player.setMap(map);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
@@ -264,7 +282,9 @@ public class PlayLevelScreen extends Screen {
 
     }
 
-
+    public int getCharacterSelection(){
+        return this.characterChoice;
+    }
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
