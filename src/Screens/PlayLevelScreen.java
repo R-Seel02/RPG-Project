@@ -10,7 +10,7 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.StartingMap;
 import Players.Knight;
-import Players.Assassin;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import java.awt.Color;
@@ -20,7 +20,7 @@ import javax.swing.Timer;
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Assassin player;
+    protected Mage player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
@@ -105,7 +105,7 @@ public class PlayLevelScreen extends Screen {
         map.setFlagManager(flagManager);
 
         // setup player
-        player = new Assassin(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+        player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         player.setMap(map);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
