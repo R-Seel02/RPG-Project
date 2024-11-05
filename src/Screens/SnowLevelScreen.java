@@ -6,7 +6,7 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.SnowMap;
-import Players.Assassin;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import java.awt.Color;
@@ -15,7 +15,7 @@ import java.awt.Color;
 public class SnowLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Assassin player;
+    protected Mage player;
     protected PlayLevelScreenState snowLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
@@ -29,7 +29,7 @@ public class SnowLevelScreen extends Screen {
     //quest stuff
     protected SpriteFont quest1;
 
-    public SnowLevelScreen(PlayLevelScreen playLevelScreen, Assassin player) {
+    public SnowLevelScreen(PlayLevelScreen playLevelScreen, Mage player) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         initialize();
@@ -46,7 +46,7 @@ public class SnowLevelScreen extends Screen {
         flagManager.addFlag("atStartBiome", false);
 
         // setup player
-        player = new Assassin(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+        player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         player.setMap(map);
         snowLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);

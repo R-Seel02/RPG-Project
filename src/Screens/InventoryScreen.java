@@ -4,7 +4,7 @@ import Engine.*;
 import GameObject.Sprite;
 import Level.PickableObject;
 import Level.Player;
-import Players.Assassin;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 
@@ -26,7 +26,7 @@ public class InventoryScreen extends Screen {
     protected PickableObject pickableObject;
     protected PickableObject [] inventoryList;
   
-    public InventoryScreen(PlayLevelScreen playLevelScreen, Assassin player) {
+    public InventoryScreen(PlayLevelScreen playLevelScreen, Mage player) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         initialize();

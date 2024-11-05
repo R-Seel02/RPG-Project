@@ -1,8 +1,8 @@
 package MapEditor;
 
 import Level.Map;
-import Maps.AutumnMap;
 import Maps.CaveMap;
+import Maps.DesertMap;
 import Maps.GrassMap;
 import Maps.SnowMap;
 import Maps.StartingMap;
@@ -16,7 +16,7 @@ public class EditorMaps {
             add("TitleScreen");
             add("SnowMap");
             add("GrassMap");
-            add("AutumnMap");
+            add("DesertMap");
             add("CaveMap");
         }};
     }
@@ -31,8 +31,8 @@ public class EditorMaps {
                 return new SnowMap();
             case "GrassMap":
                 return new GrassMap();
-            case "AutumnMap":
-                return new AutumnMap();
+            case "DesertMap":
+                return new DesertMap();
             case "CaveMap":
                 return new CaveMap();
             default:
