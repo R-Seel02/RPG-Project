@@ -7,6 +7,7 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
+import java.util.Random;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -32,8 +33,12 @@ public abstract class Player extends GameObject {
     boolean hasDefenseBuff = false;
     
 
+   
+    //combat stuff
     protected int health;
+    protected int critChance;
     protected boolean isDead;
+    protected Random random;
 
     // values used to handle player movement
     protected float moveAmountX, moveAmountY;
@@ -65,8 +70,10 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
-        health = 100;
+        this.health = 100;
+        this.critChance = 5;
         isDead = false;
+        this.random = new Random();
         this.inventoryList = new PickableObject[15];
         this.potions = new int[3];
     }
@@ -340,6 +347,15 @@ public abstract class Player extends GameObject {
             health = 0;
         }
         this.hasDefenseBuff = false;
+    }
+
+    public int attack(){
+        int cc = random.nextInt(101);
+        if(cc <= critChance){
+            return 20;
+        }else{
+            return 10;
+        }
     }
     
     public void heal(int healValue){

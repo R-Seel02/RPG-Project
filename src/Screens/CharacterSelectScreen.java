@@ -23,7 +23,7 @@ public class CharacterSelectScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected int currentMenuItemHovered = 0;
     protected int menuItemSelected = -1;
-    protected int keyPressTimer;
+    protected int keyPressTimer = 20;
     protected ScreenCoordinator screenCoordinator;
 
     public CharacterSelectScreen(ScreenCoordinator screenCoordinator) {
@@ -75,10 +75,10 @@ public class CharacterSelectScreen extends Screen {
             character3.setColor(Color.yellow);
         }
 
-        if (Keyboard.isKeyUp(Key.SPACE)) {
-            keyLocker.unlockKey(Key.SPACE);
+        if (Keyboard.isKeyUp(Key.E)) {
+            keyLocker.unlockKey(Key.E);
         }
-        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE) && keyPressTimer == 0) {
+        if (!keyLocker.isKeyLocked(Key.E) && Keyboard.isKeyDown(Key.E) && keyPressTimer == 0) {
             System.out.println("here?");
             keyPressTimer = 25;
             menuItemSelected = currentMenuItemHovered;
