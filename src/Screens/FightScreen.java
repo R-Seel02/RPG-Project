@@ -1,11 +1,11 @@
 package Screens;
 
 import Engine.*;
+import Level.Enemy;
 import Maps.FightMap;
-import Players.Assassin;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import java.awt.*;
-import Level.Enemy;
 
 // This class is for the fight level screen
 public class FightScreen extends Screen {
@@ -19,7 +19,7 @@ public class FightScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected PlayLevelScreen playLevelScreen;
     // protected Knight player;
-    protected Assassin player;
+    protected Mage player;
     protected int enemyHealth; //temporary thing until I make an enemy class - Max
     protected int keyPressTimer;
     protected int menuItemSelected = -1;
@@ -33,7 +33,7 @@ public class FightScreen extends Screen {
     protected String enemySprite;
     protected int dealtDamage, takenDamage;
 
-    public FightScreen(PlayLevelScreen playLevelScreen, Assassin player, Enemy enemy) {
+    public FightScreen(PlayLevelScreen playLevelScreen, Mage player, Enemy enemy) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         this.enemy = enemy;

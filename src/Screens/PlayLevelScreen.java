@@ -9,8 +9,7 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.StartingMap;
-import Players.Knight;
-import Players.Assassin;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import java.awt.Color;
@@ -20,11 +19,12 @@ import javax.swing.Timer;
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Assassin player;
+    protected Mage player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
+    protected SnowLevelScreen snowScreen;
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
     protected InventoryScreen inventoryScreen;
@@ -59,7 +59,7 @@ public class PlayLevelScreen extends Screen {
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
-        flagManager.addFlag("hasLostBall", false);
+        flagManager.addFlag("atSnowBiome", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         flagManager.addFlag("hasFoundBall", false);
@@ -107,7 +107,7 @@ public class PlayLevelScreen extends Screen {
         map.setFlagManager(flagManager);
 
         // setup player
-        player = new Assassin(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+        player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         player.setMap(map);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
@@ -154,6 +154,7 @@ public class PlayLevelScreen extends Screen {
         fightScreen = new FightScreen(this, player, currentEnemy);
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
+        snowScreen = new SnowLevelScreen(this, player);
 
         // shop screen
 
@@ -205,6 +206,10 @@ public class PlayLevelScreen extends Screen {
             case INVENTORY:
                 inventoryScreen.update();
                 break;
+            case SNOW:
+                snowScreen.update();
+                break;
+                
         }
 
         // if flag is set at any point during gameplay, game is "won"
@@ -223,6 +228,9 @@ public class PlayLevelScreen extends Screen {
 
         if (map.getFlagManager().isFlagSet("inShop")) {
             playLevelScreenState = PlayLevelScreenState.SHOPPING;
+        }
+        if (map.getFlagManager().isFlagSet("atSnowBiome")) {
+            playLevelScreenState = PlayLevelScreenState.SNOW;
         }
         if (map.getFlagManager().isFlagSet("hasQuestBird")) {
             questBird.setFontSize(30);
@@ -291,6 +299,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case INVENTORY:
                 inventoryScreen.draw(graphicsHandler);
+                break;
+            case SNOW:
+                snowScreen.draw(graphicsHandler);
                 break;
             case SLEEPING:
                 if(i == 0){
@@ -366,6 +377,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING,INVENTORY
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING,INVENTORY, SNOW
     }
 }
