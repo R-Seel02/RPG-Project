@@ -12,7 +12,7 @@ import Utils.Direction;
 import java.awt.Color;
 
 // This class is for when the RPG game is actually being played
-public class AutumnLevelScreen extends Screen {
+public class DesertLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Knight player;
@@ -28,7 +28,7 @@ public class AutumnLevelScreen extends Screen {
     //quest stuff
     protected SpriteFont quest1;
 
-    public AutumnLevelScreen(PlayLevelScreen playLevelScreen, Knight player) {
+    public DesertLevelScreen(PlayLevelScreen playLevelScreen, Knight player) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         initialize();

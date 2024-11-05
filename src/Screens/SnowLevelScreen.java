@@ -6,7 +6,7 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.SnowMap;
-import Players.Knight;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import java.awt.Color;
@@ -15,8 +15,8 @@ import java.awt.Color;
 public class SnowLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Knight player;
-    protected PlayLevelScreenState playLevelScreenState;
+    protected Player player;
+    protected PlayLevelScreenState snowLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
@@ -25,10 +25,11 @@ public class SnowLevelScreen extends Screen {
     protected PlayLevelScreen playLevelScreen;
     protected SnowLevelScreen snowBiome;
 
+
     //quest stuff
     protected SpriteFont quest1;
 
-    public SnowLevelScreen(PlayLevelScreen playLevelScreen, Knight player) {
+    public SnowLevelScreen(PlayLevelScreen playLevelScreen, Player player) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         initialize();
@@ -36,17 +37,18 @@ public class SnowLevelScreen extends Screen {
 
     public void initialize() {
         // setup state
-        // flagManager = new FlagManager();
+        flagManager = new FlagManager();
 
         
         // define/setup map
         map = new SnowMap();
         map.setFlagManager(flagManager);
+        flagManager.addFlag("atStartBiome", false);
 
         // setup player
-        player = new Knight(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+        player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         player.setMap(map);
-        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        snowLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
 
         map.setPlayer(player);
@@ -65,6 +67,8 @@ public class SnowLevelScreen extends Screen {
         // both are supported, however preloading is recommended
         map.preloadScripts();
 
+        // playLevelScreen = new PlayLevelScreen(screenCoordinator);
+
 
         // shop screen
 
@@ -72,12 +76,13 @@ public class SnowLevelScreen extends Screen {
         // quest1 = new SpriteFont("Retrieve the axe", 800, 75, "Arial", 30, Color.white);
         // quest1.setOutlineColor(Color.black);
         // quest1.setOutlineThickness(3);
+        playLevelScreen = new PlayLevelScreen(screenCoordinator);
 
     }
 
     public void update() {
         // based on screen state, perform specific actions
-        switch (playLevelScreenState) {
+        switch (snowLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
                 player.update();
@@ -96,12 +101,19 @@ public class SnowLevelScreen extends Screen {
             case SHOPPING:
                 shopScreen.update();
                 break;
+            case START:
+                playLevelScreen.update();
+                break;
+        }
+
+        if (map.getFlagManager().isFlagSet("atStartBiome")) {
+            snowLevelScreenState = PlayLevelScreenState.START;
         }
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
-        switch (playLevelScreenState) {
+        switch (snowLevelScreenState) {
             case RUNNING:
                 map.draw(player, graphicsHandler);
                 coinCounter.draw(graphicsHandler);
@@ -115,14 +127,14 @@ public class SnowLevelScreen extends Screen {
             case SHOPPING:
                 shopScreen.draw(graphicsHandler);
                 break;
-            case SNOW_BIOME:
-                snowBiome.draw(graphicsHandler);
+            case START:
+                playLevelScreen.draw(graphicsHandler);
                 break;
         }
     }
 
     public PlayLevelScreenState getPlayLevelScreenState() {
-        return playLevelScreenState;
+        return snowLevelScreenState;
     }
 
 
@@ -135,12 +147,12 @@ public class SnowLevelScreen extends Screen {
     }
 
     public void backToGame() {
-        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        snowLevelScreenState = PlayLevelScreenState.RUNNING;
     }
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SNOW_BIOME
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, START
     }
 }

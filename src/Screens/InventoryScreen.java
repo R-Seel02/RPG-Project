@@ -4,7 +4,7 @@ import Engine.*;
 import GameObject.Sprite;
 import Level.PickableObject;
 import Level.Player;
-import Players.Assassin;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import java.awt.*;
 

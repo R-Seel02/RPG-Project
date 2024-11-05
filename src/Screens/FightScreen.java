@@ -2,11 +2,11 @@ package Screens;
 
 import Engine.*;
 import Level.Player;
+import Level.Enemy;
 import Maps.FightMap;
-import Players.Assassin;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import java.awt.*;
-import Level.Enemy;
 
 // This class is for the fight level screen
 public class FightScreen extends Screen {
@@ -33,6 +33,7 @@ public class FightScreen extends Screen {
     protected Enemy enemy;
     protected String enemySprite;
     protected int dealtDamage, takenDamage;
+
 
     public FightScreen(PlayLevelScreen playLevelScreen, Player player, Enemy enemy) {
         this.playLevelScreen = playLevelScreen;

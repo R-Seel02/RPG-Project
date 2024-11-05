@@ -1,6 +1,7 @@
 package Maps;
 
 import Level.*;
+import Scripts.TestMap.WarpStartScript;
 import Tilesets.SnowTileset;
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class SnowMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        
+        triggers.add(new Trigger(1025, 780, 10, 80, new WarpStartScript()));//680,970,10,80
         return triggers;
     }
 
