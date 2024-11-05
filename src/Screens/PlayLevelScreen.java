@@ -9,7 +9,6 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.StartingMap;
-import Players.Knight;
 import Players.Mage;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
@@ -39,6 +38,8 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont questWoman;
     protected SpriteFont questOldGuy;
 
+    //combat stuff
+    protected Enemy currentEnemy;
     
     protected Timer timer = new Timer(20, null);
     protected int i = 0;
@@ -137,10 +138,9 @@ public class PlayLevelScreen extends Screen {
         sleepMessage = new SpriteFont("You sleep to recover your strength.", 450, 650, "Arial", 30, Color.white);
         sleepMessage.setOutlineColor(Color.black);
         sleepMessage.setOutlineThickness(2);
-
         
-
-        
+        //initialize enemy
+        currentEnemy = new Enemy("default", 1, 1, 1, "error.png");
 
         // let pieces of map know which button to listen for as the "interact" button
         map.getTextbox().setInteractKey(player.getInteractKey());
@@ -150,7 +150,7 @@ public class PlayLevelScreen extends Screen {
         map.preloadScripts();
 
         winScreen = new WinScreen(this);
-        fightScreen = new FightScreen(this, player, "error.png");
+        fightScreen = new FightScreen(this, player, currentEnemy);
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
 
@@ -212,8 +212,10 @@ public class PlayLevelScreen extends Screen {
         }
 
         if (map.getFlagManager().isFlagSet("isFighting")) {
-            if(!fightScreen.getEnemySprite().equals(map.getEnemySprite())){
-                setFightScreen(map.getEnemySprite());
+            if(!fightScreen.getCurrentEnemy().equals(map.getCurrentEnemy())){
+                this.currentEnemy = map.getCurrentEnemy();
+                setFightScreen(currentEnemy);
+                System.out.println("set enemy");
             }
             playLevelScreenState = PlayLevelScreenState.FIGHTING;
         }
@@ -352,8 +354,12 @@ public class PlayLevelScreen extends Screen {
         flagManager.unsetFlag("isSleeping");
     }
 
-    public void setFightScreen(String enemySprite){
-        fightScreen = new FightScreen(this, player, enemySprite);
+    public void setFightScreen(Enemy enemy){
+        fightScreen = new FightScreen(this, player, enemy);
+    }
+
+    public Enemy getCurrentEnemy(){
+        return this.currentEnemy;
     }
 
     // This enum represents the different states this screen can be in

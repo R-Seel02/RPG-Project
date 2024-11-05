@@ -1,6 +1,7 @@
 package Screens;
 
 import Engine.*;
+import Level.Enemy;
 import Maps.FightMap;
 import Players.Mage;
 import SpriteFont.SpriteFont;
@@ -28,12 +29,17 @@ public class FightScreen extends Screen {
     protected boolean playerPerformedAction;
     protected boolean playerHasHealed;
     protected int turnTimer;
+    protected Enemy enemy;
+    protected String enemySprite;
+    protected int dealtDamage, takenDamage;
 
-    public FightScreen(PlayLevelScreen playLevelScreen, Mage player, String enemySprite) {
+    public FightScreen(PlayLevelScreen playLevelScreen, Mage player, Enemy enemy) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
-        this.enemyHealth = 100;
+        this.enemy = enemy;
+        this.enemyHealth = enemy.getMaxHealth();
         this.keyPressTimer = 0;
+        this.enemySprite = enemy.getSprite();
         this.background = new FightMap(enemySprite);
         this.isPlayerTurn = true;
         this.turnTimer = 100;
@@ -69,22 +75,28 @@ public class FightScreen extends Screen {
 
         background.rightSprites();
     }
-
+    
     //Temporary method. Hurts the "enemy" by a random value from 1 - 10.
+    //DEPRECATED -- use Enemy class built-in attack function instead
     public void attack(){
         enemyHealth -= ((int) (Math.random() * 10) + 1);
         updateMessages();
     }
 
     //Temporary method. Damages the player by a random value from 1 - 10.
+    //DEPRECATED -- use Enemy class built-in attack alongside player.takeDamage
     public void damagePlayer(){
         player.takeDamage((int) (Math.random() * 10) + 1);
         updateMessages();
     }
 
     //Returns the current enemy sprite as a temporary fix to an endless loop I'm stuck in where the PlayLevelScreen keeps resetting the fight screen
-    public String getEnemySprite(){
+    /*public String getEnemySprite(){
         return this.background.getEnemySprite();
+    }*/
+
+    public Enemy getCurrentEnemy(){
+        return this.enemy;
     }
 
     public void updateMessages(){
@@ -95,10 +107,10 @@ public class FightScreen extends Screen {
             turnMessage.setText("It is your turn!");
         }else{
             //turnMessage = new SpriteFont("The enemy attacks!", 150, 239, "Arial", 30, Color.white);
-            turnMessage.setText("The enemy attacks!");
+            turnMessage.setText(enemy.getName() + " attacks! You take " + takenDamage + " damage!");
         }
-        if(player.isDead() && enemyHealth <= 0){
-            healthMessage = new SpriteFont("You have died, but in your last stand, you took your enemy with you.", 150, 319, "Arial", 20, Color.orange);
+        if(player.isDead() && enemy.isDead()){
+            healthMessage = new SpriteFont("You have fallen, but in your last stand, you took your enemy with you.", 150, 319, "Arial", 20, Color.orange);
             //healthMessage.setText("You have fallen, but in your last stand, you took your enemy with you.");
             //healthMessage.setColor(Color.yellow);
             background.flipPlayer();
@@ -108,13 +120,13 @@ public class FightScreen extends Screen {
             //healthMessage.setText("You have been bested by your foe!");
             //healthMessage.setColor(Color.red);
             background.flipPlayer();
-        }else if(enemyHealth <= 0){
+        }else if(enemy.isDead()){
             healthMessage = new SpriteFont("You have killed the enemy! Congratulations.", 150, 319, "Arial", 20, Color.green);
             //healthMessage.setText("You have beaten your enemy! Congratulations!");
             //healthMessage.setColor(Color.green);
             background.flipEnemy();
         }else{
-            healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.", 150, 319, "Arial", 20, Color.white);
+            healthMessage = new SpriteFont("You have " + player.getHealth() + " health. The enemy has " + enemy.getCurrentHealth() + " health.", 150, 319, "Arial", 20, Color.white);
             //healthMessage.setText("You have " + player.getHealth() + " health. The enemy has " + enemyHealth + " health.");
         }
     }
@@ -165,11 +177,13 @@ public class FightScreen extends Screen {
         if (Keyboard.isKeyUp(Key.E)) {
             keyLocker.unlockKey(Key.E);
         }
+
         if(isPlayerTurn){
             if (!keyLocker.isKeyLocked(Key.E) && Keyboard.isKeyDown(Key.E)) {
                 menuItemSelected = currentMenuItemHovered;
-                if (menuItemSelected == 0 && !player.isDead() && enemyHealth > 0) {
-                    attack();
+                if (menuItemSelected == 0 && !player.isDead() && !enemy.isDead()) {
+                    int dealtDamage = player.attack();
+                    enemy.takeDamage(dealtDamage);
                     isPlayerTurn = false;
                     updateMessages();
                     keyLocker.lockKey(Key.E);
@@ -198,17 +212,16 @@ public class FightScreen extends Screen {
                     playLevelScreen.backToGame();
                     currentMenuItemHovered = 0;
                     background.rightSprites();
-                    enemyHealth = 100;
                     healthMessage.setColor(Color.white);
                     updateMessages();
                 }
             }
         }else{
-            if(enemyHealth <= 0){
-                //This area intentionally left blank.
+            if(enemy.isDead()){
                 isPlayerTurn = true;
             }else if(turnTimer == 0){
-                damagePlayer();
+                takenDamage = enemy.attack();
+                player.takeDamage(takenDamage);
                 turnTimer = 60;
                 isPlayerTurn = true;
                 playerHasHealed = false;
@@ -235,7 +248,7 @@ public class FightScreen extends Screen {
         graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
 
         // enemy health bar
-        graphicsHandler.drawFilledRectangleWithBorder(1175, 25, 200, 25, Color.gray, Color.black, 3);
-        graphicsHandler.drawFilledRectangle(1175, 25, (enemyHealth * 2), 25, new Color(190, 0, 0));
+        graphicsHandler.drawFilledRectangleWithBorder(1175, 25, enemy.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
+        graphicsHandler.drawFilledRectangle(1175, 25, (enemy.getCurrentHealth() * 2), 25, new Color(190, 0, 0));
     }
 }

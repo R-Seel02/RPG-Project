@@ -3,6 +3,7 @@ package Scripts.TestMap;
 import java.util.ArrayList;
 
 import Level.Script;
+import Level.Enemy;
 import ScriptActions.*;
 
 // script for talking to walrus npc
@@ -31,7 +32,7 @@ public class WalrusScript extends Script {
                 addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
                 addScriptAction(new TextboxScriptAction("You want a duel, you say?"));
                 addScriptAction(new TextboxScriptAction("Have at thee!"));
-                addScriptAction(new StartFightScriptAction("Walrus.png"));
+                addScriptAction(new StartFightScriptAction(new Enemy("Seb", 50, 5, 2, "walrus.png")));
                 addScriptAction(new ChangeFlagScriptAction("isFighting", true));
             }});
         }});
