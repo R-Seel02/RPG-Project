@@ -15,7 +15,7 @@ import java.awt.Color;
 public class GrassLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Knight player;
+    protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
@@ -28,7 +28,7 @@ public class GrassLevelScreen extends Screen {
     //quest stuff
     protected SpriteFont quest1;
 
-    public GrassLevelScreen(PlayLevelScreen playLevelScreen, Knight player) {
+    public GrassLevelScreen(PlayLevelScreen playLevelScreen, Player player) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         initialize();

@@ -140,6 +140,20 @@ public class SnowTileset extends Tileset {
 
         mapTiles.add(iceBorderTile);
 
+        // grass biome portal
+        Frame grassPortalTFrame = new FrameBuilder(getSubImage(1, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder grassPortalTTile = new MapTileBuilder(grassPortalTFrame);
+        mapTiles.add(grassPortalTTile);
+
+        Frame grassPortalBFrame = new FrameBuilder(getSubImage(1, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder grassPortalBTile = new MapTileBuilder(grassPortalBFrame);
+        mapTiles.add(grassPortalBTile);
+
         
         return mapTiles;
     }

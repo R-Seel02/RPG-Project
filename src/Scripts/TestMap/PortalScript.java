@@ -19,6 +19,7 @@ public class PortalScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("atSnowBiome", false));
                 addScriptAction(new TextboxScriptAction() {{
+                    addText("Would you like to travel to the Snow Biome?", new String[] { "Yes", "No" });
                     addText("Traveling to Snow Biome...");
                 }});
                 addScriptAction(new ChangeFlagScriptAction("atSnowBiome", true));

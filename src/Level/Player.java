@@ -34,7 +34,7 @@ public abstract class Player extends GameObject {
     boolean hasDefenseBuff = false;
     
     //combat stuff
-    protected int health;
+    protected int health, maxHealth;
     protected int critChance;
     protected boolean isDead;
     protected Random random;
@@ -69,7 +69,8 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         this.affectedByTriggers = true;
-        this.health = 100;
+        this.maxHealth = 100;
+        this.health = maxHealth;
         this.critChance = 5;
         isDead = false;
         this.random = new Random();
@@ -375,6 +376,10 @@ public abstract class Player extends GameObject {
         return this.health;
     }
 
+    public int getMaxHealth(){
+        return this.maxHealth;
+    }
+
     public boolean isDead(){
         return isDead;
     }
@@ -439,6 +444,36 @@ public abstract class Player extends GameObject {
     public int defensePotCount(){
         // returns defense potion count 
         return this.potions[DEFENSE_POT];
+    }
+
+    public void setMaxHealth(int health){
+        this.health = health;
+        this.maxHealth = health;
+    }
+
+    public void setCritChance(int cc){
+        this.critChance = cc;
+    }
+
+    public boolean hasAttackBuff(){
+        if(this.hasDamageBuff){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean hasDefenseBuff(){
+        if(this.hasDefenseBuff){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void removeBuffs(){
+        this.hasDamageBuff = false;
+        this.hasDefenseBuff = false;
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize

@@ -8,9 +8,10 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.StartingMap;
-import Players.Knight;
+import Maps.*;
 import Players.Assassin;
+import Players.Knight;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import java.awt.Color;
@@ -23,8 +24,10 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected FailScreen failScreen;
     protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
+    protected SnowLevelScreen snowScreen;
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
     protected InventoryScreen inventoryScreen;
@@ -66,13 +69,14 @@ public class PlayLevelScreen extends Screen {
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
-        flagManager.addFlag("hasLostBall", false);
+        flagManager.addFlag("atSnowBiome", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToTestNPC", false);
         flagManager.addFlag("isFighting", false);
         flagManager.addFlag("hasPickedup]", false);
+        flagManager.addFlag("playerDied", false);
 
         flagManager.addFlag("isSleeping", false);
         flagManager.addFlag("inShop", false);
@@ -110,8 +114,8 @@ public class PlayLevelScreen extends Screen {
 
         // define/setup map
         map = new StartingMap();
-        map.setFlagManager(flagManager);
-
+        map.setFlagManager(flagManager);        
+        
         // setup player
         switch(characterChoice){
             case(0):
@@ -121,7 +125,7 @@ public class PlayLevelScreen extends Screen {
                 player = new Knight(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
                 break;
             case(2):
-                // mystery class
+                player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
                 break;
             
         }
@@ -172,6 +176,8 @@ public class PlayLevelScreen extends Screen {
         fightScreen = new FightScreen(this, player, currentEnemy);
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
+        snowScreen = new SnowLevelScreen(this, player);
+        failScreen = new FailScreen(this);
 
         // shop screen
 
@@ -223,6 +229,12 @@ public class PlayLevelScreen extends Screen {
             case INVENTORY:
                 inventoryScreen.update();
                 break;
+            case SLEEPING:
+                break;
+            case SNOW:
+                snowScreen.update();
+                break;
+                
         }
 
         // if flag is set at any point during gameplay, game is "won"
@@ -238,9 +250,14 @@ public class PlayLevelScreen extends Screen {
             }
             playLevelScreenState = PlayLevelScreenState.FIGHTING;
         }
-
+        if(map.getFlagManager().isFlagSet("playerDied")){
+            playLevelScreenState = PlayLevelScreenState.FAIL;
+        }
         if (map.getFlagManager().isFlagSet("inShop")) {
             playLevelScreenState = PlayLevelScreenState.SHOPPING;
+        }
+        if (map.getFlagManager().isFlagSet("atSnowBiome")) {
+            playLevelScreenState = PlayLevelScreenState.SNOW;
         }
         if (map.getFlagManager().isFlagSet("hasQuestBird")) {
             questBird.setFontSize(30);
@@ -297,11 +314,14 @@ public class PlayLevelScreen extends Screen {
                 questWoman.draw(graphicsHandler);
                 questOldGuy.draw(graphicsHandler);
                 // health bar
-                graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+                graphicsHandler.drawFilledRectangleWithBorder(25, 25, player.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
                 graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
+                break;
+            case FAIL:
+                failScreen.draw(graphicsHandler);
                 break;
             case FIGHTING:
                 fightScreen.draw(graphicsHandler);
@@ -311,6 +331,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case INVENTORY:
                 inventoryScreen.draw(graphicsHandler);
+                break;
+            case SNOW:
+                snowScreen.draw(graphicsHandler);
                 break;
             case SLEEPING:
                 if(i == 0){
@@ -386,6 +409,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING,INVENTORY
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING, INVENTORY, SNOW, FAIL
     }
 }

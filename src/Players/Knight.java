@@ -17,6 +17,8 @@ public class Knight extends Player {
         super(new SpriteSheet(ImageLoader.load("Knight.png"), 24, 24), x, y, "STAND_RIGHT");
         //walkSpeed = 2.3f;
         walkSpeed = 5f;
+        super.setMaxHealth(125);
+        super.setCritChance(5);
     }
 
     public void update() {
