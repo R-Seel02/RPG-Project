@@ -130,6 +130,7 @@ public class PlayLevelScreen extends Screen {
             
         }
         
+        // player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         player.setMap(map);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);

@@ -20,6 +20,10 @@ public class CharacterSelectScreen extends Screen {
     protected SpriteFont character1;
     protected SpriteFont character2;
     protected SpriteFont character3;
+    protected Sprite background;
+    protected Sprite assassin;
+    protected Sprite knight;
+    protected Sprite mage;
     protected KeyLocker keyLocker = new KeyLocker();
     protected int currentMenuItemHovered = 0;
     protected int menuItemSelected = -1;
@@ -33,9 +37,28 @@ public class CharacterSelectScreen extends Screen {
 
     @Override
     public void initialize() {
-        character1 = new SpriteFont("Assassin?", 200, 400, "Arial", 40, Color.white);
-        character2 = new SpriteFont("Warrior?", 500, 400, "Arial", 40, Color.white);
-        character3 = new SpriteFont("Mystery Character?", 800, 400, "Arial", 40, Color.white);
+        background = new Sprite(ImageLoader.load("CharacterSelectScreen.png"));
+
+
+        assassin = new Sprite(new SpriteSheet(ImageLoader.load("Assassin.png"), 24, 24).getSprite(0,0));
+        assassin.setX(110);
+        assassin.setY(250);
+        assassin.setScale(10);
+
+        knight = new Sprite(new SpriteSheet(ImageLoader.load("Knight.png"), 24, 24).getSprite(0,0));
+        knight.setX(575);
+        knight.setY(250);
+        knight.setScale(10);
+
+        mage = new Sprite(new SpriteSheet(ImageLoader.load("Mage.png"), 24, 24).getSprite(0,0));
+        mage.setX(1050);
+        mage.setY(250);
+        mage.setScale(10);
+
+
+        character1 = new SpriteFont("Assassin", 150, 600, "Arial", 40, Color.white);
+        character2 = new SpriteFont("Warrior", 625, 600, "Arial", 40, Color.white);
+        character3 = new SpriteFont("Mage", 1100, 600, "Arial", 40, Color.white);
     }
 
     @Override
@@ -94,9 +117,14 @@ public class CharacterSelectScreen extends Screen {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
+        background.draw(graphicsHandler);
+        assassin.draw(graphicsHandler);
+        knight.draw(graphicsHandler);
+        mage.draw(graphicsHandler);
         character1.draw(graphicsHandler);
         character2.draw(graphicsHandler);
         character3.draw(graphicsHandler);
+        
     }
 
 }
