@@ -23,7 +23,7 @@ public class CaveLevelScreen extends Screen {
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
     protected PlayLevelScreen playLevelScreen;
-    protected SnowLevelScreen snowBiome;
+    // protected SnowLevelScreen snowBiome;
 
     //quest stuff
     protected SpriteFont quest1;
@@ -115,9 +115,9 @@ public class CaveLevelScreen extends Screen {
             case SHOPPING:
                 shopScreen.draw(graphicsHandler);
                 break;
-            case SNOW_BIOME:
-                snowBiome.draw(graphicsHandler);
-                break;
+            // case SNOW_BIOME:
+            //     snowBiome.draw(graphicsHandler);
+            //     break;
         }
     }
 

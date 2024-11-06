@@ -10,7 +10,7 @@ public class SnowMap extends Map {
 
     public SnowMap() {
         super("snow_map.txt", new SnowTileset());
-        this.playerStartPosition = getMapTile(27, 17).getLocation();
+        // this.playerStartPosition = getMapTile(17, 19).getLocation();
         // Portal is at x:2, y:15
     }
 

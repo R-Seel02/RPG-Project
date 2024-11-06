@@ -24,10 +24,6 @@ public class PortalScript extends Script {
                 }});
                 addScriptAction(new ChangeFlagScriptAction("atSnowBiome", true));
             }});
-
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("atSnowBiome", true));
-            }});
         }});
 
         scriptActions.add(new UnlockPlayerScriptAction());
