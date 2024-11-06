@@ -271,9 +271,11 @@ public class PlayLevelScreen extends Screen {
         if (currMap.getFlagManager().isFlagSet("atSnowBiome")) {
             currMap = snowMap;
             player.setMap(snowMap);
+            snowMap.setPlayer(player);
             player.setLocation(100,100);
             playLevelScreenState = PlayLevelScreenState.RUNNING;
-            // flagManager.unsetFlag("atSnowBiome");
+            snowMap.preloadScripts();
+            flagManager.unsetFlag("atSnowBiome");
         }
         
         
