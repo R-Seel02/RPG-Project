@@ -6,7 +6,6 @@ import Engine.ScreenManager;
 import GameObject.Rectangle;
 import Utils.Direction;
 import Utils.Point;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
