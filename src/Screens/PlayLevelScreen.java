@@ -85,6 +85,44 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasWaterTome", false);
         flagManager.addFlag("hasAnchor", false);
 
+        //forest biome Quests/NPCS
+        flagManager.addFlag("hasQuestPlagueDoctor", false);
+        flagManager.addFlag("hasCompletedQuestPlagueDoctor", false);
+        flagManager.addFlag("hasFrog", false);
+        flagManager.addFlag("hasPurpleFlower", false);
+        flagManager.addFlag("hasVial", false);
+        flagManager.addFlag("hasEyeball", false);
+        flagManager.addFlag("hasCauldron", false);
+
+        flagManager.addFlag("hasQuestMuggedWoman", false);
+        flagManager.addFlag("hasCompletedQuestMuggedWoman", false);
+        flagManager.addFlag("hasFoughtThug1", false);
+        flagManager.addFlag("hasFoughtThug2", false);
+        flagManager.addFlag("hasFoughtThug3", false);
+        flagManager.addFlag("hasFoughtAllThugs", false);
+        flagManager.addFlag("hasPurse", false);
+
+        //Winter biome Quests/NPCS
+        flagManager.addFlag("hasQuestSnowman", false);
+        flagManager.addFlag("hasCompletedQuestSnowman", false);
+        flagManager.addFlag("hasCoal", false);
+        flagManager.addFlag("hasFireTome", false);
+        flagManager.addFlag("hasSavedFish", false);
+        flagManager.addFlag("hasTalkedToFish", false);
+        flagManager.addFlag("hasFishBlessing", false);
+
+        //Desert biome Quests/NPCS
+        flagManager.addFlag("hasQuestThief", false);
+        flagManager.addFlag("hasCompletedQuestThief", false);
+        flagManager.addFlag("hasTotem", false);
+
+        flagManager.addFlag("hasQuestScaredGuy", false);
+        flagManager.addFlag("hasCompletedQuestScaredGuy", false);
+        flagManager.addFlag("hasFoughtCactus", false);
+        
+
+
+
         flagManager.addFlag("hasQuestOldGuy", false);
         flagManager.addFlag("hasCompletedQuestOldGuy", false);
         flagManager.addFlag("hasFoughtSkeleton", false);
