@@ -153,7 +153,7 @@ public class StartingMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
         triggers.add(new Trigger(120, 1010, 10, 80, new WarpSnowScript()));
-        triggers.add(new Trigger(420, 1010, 10, 80, new WarpForestScript()));
+        triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
         return triggers;
     }
 

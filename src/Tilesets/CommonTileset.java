@@ -449,11 +449,12 @@ public class CommonTileset extends Tileset {
         MapTileBuilder logoOFTile = new MapTileBuilder(grassFrame).withTopLayer(logoOFFrame);
         mapTiles.add(logoOFTile);
 
-        Frame portalTFrame = new FrameBuilder(getSubImage(4,8))
+        // snow portal frame
+        Frame snowPortalTFrame = new FrameBuilder(getSubImage(4,8))
                 .withScale(tileScale)
                 .build();
-        MapTileBuilder portalTTile = new MapTileBuilder(portalTFrame);
-        mapTiles.add(portalTTile);
+        MapTileBuilder snowPortalTTile = new MapTileBuilder(snowPortalTFrame);
+        mapTiles.add(snowPortalTTile);
 
         // pond
         Frame pondTLFrame = new FrameBuilder(getSubImage(5, 0))
@@ -577,12 +578,28 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(fountainTRTiles);
 
-        Frame portalBFrame = new FrameBuilder(getSubImage(4,8))
+        // snow portal frame
+        Frame snowPortalBFrame = new FrameBuilder(getSubImage(4,8))
                 .withScale(tileScale)
                 .withImageEffect(ImageEffect.FLIP_VERTICAL)
                 .build();
-        MapTileBuilder portalBTile = new MapTileBuilder(portalBFrame);
-        mapTiles.add(portalBTile);
+        MapTileBuilder snowPortalBTile = new MapTileBuilder(snowPortalBFrame);
+        mapTiles.add(snowPortalBTile);
+
+
+        // forest portal frames
+        Frame forestPortalTFrame = new FrameBuilder(getSubImage(5,8))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder forestPortalTTile = new MapTileBuilder(forestPortalTFrame);
+        mapTiles.add(forestPortalTTile);
+
+        Frame forestPortalBFrame = new FrameBuilder(getSubImage(5,8))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder forestPortalBTile = new MapTileBuilder(forestPortalBFrame);
+        mapTiles.add(forestPortalBTile);
 
 
 
