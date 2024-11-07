@@ -17,6 +17,8 @@ public class Mage extends Player {
         super(new SpriteSheet(ImageLoader.load("Mage.png"), 24, 24), x, y, "STAND_RIGHT");
         //walkSpeed = 2.3f;
         walkSpeed = 5f;
+        super.setMaxHealth(75);
+        super.setCritChance(7);
     }
 
     public void update() {
