@@ -1,15 +1,16 @@
 package Maps;
 
 import Level.*;
-import Tilesets.GrassTileset;
+import Scripts.TestMap.WarpStartScript;
+import Tilesets.ForestTileset;
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
-public class GrassMap extends Map {
+public class ForestMap extends Map {
 
-    public GrassMap() {
-        super("grass_map.txt", new GrassTileset());
-        this.playerStartPosition = getMapTile(5, 5).getLocation();
+    public ForestMap() {
+        super("forest_map.txt", new ForestTileset());
+        // this.playerStartPosition = getMapTile(5, 5).getLocation();
         // Portal is at x:2, y:15
     }
 
@@ -37,7 +38,7 @@ public class GrassMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        
+        triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
         return triggers;
     }
 

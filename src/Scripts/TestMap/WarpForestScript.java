@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 // trigger script at beginning of game to set that heavy emotional plot
 // checkout the documentation website for a detailed guide on how this script works
-public class WarpSnowScript extends Script {
+public class WarpForestScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -15,8 +15,8 @@ public class WarpSnowScript extends Script {
         scriptActions.add(new LockPlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction() {{
-            addText("You approach a glowing portal. It emits a freezing cold.");
-            addText("Would you like to travel to the Snow Biome?", new String[] { "Yes", "No" });
+            addText("You approach a glowing portal. \nThe sounds of trees blowing are coming out.");
+            addText("Would you like to travel to the Forest Biome?", new String[] {"Yes", "No"});
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
@@ -31,10 +31,10 @@ public class WarpSnowScript extends Script {
                 });
 
                  addScriptAction(new TextboxScriptAction() {{
-                     addText("Traveling to... Snow Biome.");
+                     addText("Traveling to... Forest Biome.");
                  }});
                  scriptActions.add(new UnlockPlayerScriptAction());
-                 scriptActions.add(new ChangeFlagScriptAction("atSnowBiome", true));
+                 scriptActions.add(new ChangeFlagScriptAction("atForestBiome", true));
             }});
 
             
@@ -51,12 +51,11 @@ public class WarpSnowScript extends Script {
                     }
                 });
                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("You walk away from the freezing portal."));
+                    addScriptAction(new TextboxScriptAction("You walk away from the noisy portal."));
                  }});
             }});
 
         }});
-
 
         scriptActions.add(new UnlockPlayerScriptAction());
 

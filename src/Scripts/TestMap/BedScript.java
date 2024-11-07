@@ -1,17 +1,11 @@
 package Scripts.TestMap;
 
 import Level.Script;
-import ScriptActions.AddCoin;
 import ScriptActions.ChangeFlagScriptAction;
-import ScriptActions.ConditionalScriptAction;
-import ScriptActions.ConditionalScriptActionGroup;
-import ScriptActions.FlagRequirement;
 import ScriptActions.LockPlayerScriptAction;
 import ScriptActions.NPCFacePlayerScriptAction;
 import ScriptActions.ScriptAction;
-import ScriptActions.TextboxScriptAction;
 import ScriptActions.UnlockPlayerScriptAction;
-
 import java.util.ArrayList;
 
 
@@ -41,7 +35,7 @@ public class BedScript extends Script{
 
         scriptActions.add(new ChangeFlagScriptAction("isSleeping", true)); 
         
-        System.out.println("set true");
+        // System.out.println("set true");
         // {{
         //     addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
         //         addRequirement(new FlagRequirement("hasTalkedToTestNPC", false));
