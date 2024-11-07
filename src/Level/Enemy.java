@@ -11,8 +11,9 @@ public class Enemy {
     protected Random random;
     protected int randomSpread;
     protected int randomNum;
+    protected int spriteWidth, spriteHeight;
     
-    public Enemy(String name, int maxHealth, int damage, int spread, String sprite){
+    public Enemy(String name, int maxHealth, int damage, int spread, String sprite, int spriteWidth, int spriteHeight){
         this.maxHealth = maxHealth;
         this.spread = spread;
         this.currentHealth = maxHealth;
@@ -23,6 +24,8 @@ public class Enemy {
         this.randomNum = 0;
         this.randomSpread = 0;
         this.random = new Random();
+        this.spriteWidth = spriteWidth;
+        this.spriteHeight = spriteHeight;
     }
 
     public String getName(){
@@ -81,6 +84,14 @@ public class Enemy {
             dam = 0;
         }
         return dam; //returns the damage
+    }
+
+    public int getSpriteWidth(){
+        return this.spriteWidth;
+    }
+
+    public int getSpriteHeight(){
+        return this.spriteHeight;
     }
 
     @Override

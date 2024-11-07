@@ -1,5 +1,6 @@
 package GameObject;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 // This class represents a Frame in an animation -- an array of Frames is an animation
@@ -10,6 +11,7 @@ public class Frame extends Sprite {
 	public Frame(BufferedImage image) {
 		super(image, 0, 0);
 	}
+	
 
 	public Frame(BufferedImage image, ImageEffect imageEffect, float scale, Rectangle bounds, int delay) {
 		super(image, 0, 0, imageEffect);
@@ -27,6 +29,11 @@ public class Frame extends Sprite {
 			setBounds(bounds);
 		}
 	}
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+	
+	
 
 	public int getDelay() {
 		return delay;

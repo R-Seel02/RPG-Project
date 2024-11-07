@@ -33,6 +33,7 @@ public class WarpSnowScript extends Script {
                  addScriptAction(new TextboxScriptAction() {{
                      addText("Traveling to... Snow Biome.");
                  }});
+                 scriptActions.add(new UnlockPlayerScriptAction());
                  scriptActions.add(new ChangeFlagScriptAction("atSnowBiome", true));
             }});
 

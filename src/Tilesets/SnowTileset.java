@@ -29,6 +29,17 @@ public class SnowTileset extends Tileset {
 
         mapTiles.add(snowTile);
 
+        // icy water border
+        Frame iceBorderFrame = new FrameBuilder(getSubImage(1,2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder iceBorderTile = new MapTileBuilder(iceBorderFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(iceBorderTile);
+
+
         // barrier
         Frame barrierFrame = new FrameBuilder(getSubImage(0,1))
                 .withScale(tileScale)
@@ -130,16 +141,7 @@ public class SnowTileset extends Tileset {
 
 
 
-        // icy water border
-        Frame iceBorderFrame = new FrameBuilder(getSubImage(1,2))
-                .withScale(tileScale)
-                .build();
-
-        MapTileBuilder iceBorderTile = new MapTileBuilder(iceBorderFrame)
-                .withTileType(TileType.NOT_PASSABLE);
-
-        mapTiles.add(iceBorderTile);
-
+        
         // grass biome portal
         Frame grassPortalTFrame = new FrameBuilder(getSubImage(1, 3))
                 .withScale(tileScale)
@@ -153,6 +155,38 @@ public class SnowTileset extends Tileset {
                 .build();
         MapTileBuilder grassPortalBTile = new MapTileBuilder(grassPortalBFrame);
         mapTiles.add(grassPortalBTile);
+
+        // ice pond tiles
+        Frame icePondBLFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder icePondBLTile = new MapTileBuilder(icePondBLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(icePondBLTile);
+
+        Frame icePondBRFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder icePondBRTile = new MapTileBuilder(icePondBRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(icePondBRTile);
+
+        Frame icePondTLFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder icePondTLTile = new MapTileBuilder(icePondTLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(icePondTLTile);
+
+        Frame icePondTRFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_H_AND_V)
+                .build();
+        MapTileBuilder icePondTRTile = new MapTileBuilder(icePondTRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(icePondTRTile);
 
         
         return mapTiles;

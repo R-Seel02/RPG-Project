@@ -10,10 +10,10 @@ import Level.Tileset;
 import java.util.ArrayList;
 
 // This class represents a "common" tileset of standard tiles defined in the CommonTileset.png file
-public class GrassTileset extends Tileset {
+public class ForestTileset extends Tileset {
 
-    public GrassTileset() {
-        super(ImageLoader.load("GrassTileset.png"), 16, 16, 3);
+    public ForestTileset() {
+        super(ImageLoader.load("ForestTileset.png"), 16, 16, 3);
     }
 
     @Override
@@ -115,6 +115,20 @@ public class GrassTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(smallPondTile);
+
+        // portal frames
+        Frame portalTFrame = new FrameBuilder(getSubImage(0, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder portalTTile = new MapTileBuilder(portalTFrame);
+        mapTiles.add(portalTTile);
+
+        Frame portalBFrame = new FrameBuilder(getSubImage(0, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder portalBTile = new MapTileBuilder(portalBFrame);
+        mapTiles.add(portalBTile);
 
         
         
