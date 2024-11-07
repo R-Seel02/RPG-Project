@@ -34,6 +34,7 @@ public class FightScreen extends Screen {
     protected String enemySprite;
     protected int dealtDamage, takenDamage;
     protected boolean itemMenu;
+    protected SpriteFont damageMessage;
 
     public FightScreen(PlayLevelScreen playLevelScreen, Player player, Enemy enemy) {
         this.playLevelScreen = playLevelScreen;
@@ -104,6 +105,8 @@ public class FightScreen extends Screen {
         backButton.setOutlineColor(Color.white);
         backButton.setOutlineThickness(3);
 
+        damageMessage = new SpriteFont("", 1000, 310, "Arial", 0, Color.white);
+
         keyLocker.lockKey(Key.E);
 
         background.rightSprites();
@@ -164,7 +167,14 @@ public class FightScreen extends Screen {
         }
         healthPot.setText("Health Potion (" + player.healthPotCount() + ")");
         atkPot.setText("Attack Potion (" + player.damagePotCount() + ")");
-        defPot.setText("DefensePotion (" + player.defensePotCount() + ")");
+        defPot.setText("Defense Potion (" + player.defensePotCount() + ")");
+
+        damageMessage.setFontSize(20);
+        if(player.lastAttackWasCrit()){
+            damageMessage.setText("CRIT! " + "-" + dealtDamage + " HP!");
+        }else{
+            damageMessage.setText("-" + dealtDamage + " HP!");
+        }
     }
 
     @Override
@@ -239,6 +249,7 @@ public class FightScreen extends Screen {
                     if(menuItemSelected == 0){
                         if(hasHealed){
                             healthPot.setText("You have already healed this turn!");
+                            healthPot.setLocation(80, 550);
                         }else if(player.getHealth() == player.getMaxHealth()){
                             healthPot.setText("You are at full health!");
                         }else if(player.healthPotCount() > 0){
@@ -258,6 +269,8 @@ public class FightScreen extends Screen {
                     }else if(menuItemSelected == 2){
                         if(player.hasDefenseBuff()){
                             defPot.setText("You already have a defense buff!");
+                            defPot.setFontSize(25);
+                            defPot.setLocation(975, 550);
                         }else if(player.defensePotCount() > 0){
                             player.useDefensePot();
                             updateMessages();
@@ -272,12 +285,15 @@ public class FightScreen extends Screen {
                         defPot.setFontSize(0);
                         healthPot.setFontSize(0);
                         backButton.setFontSize(0);
+                        healthPot.setLocation(150, 550);
+                        atkPot.setLocation(550, 550);
+                        defPot.setLocation(1050,550);
                         updateMessages();
                         keyLocker.lockKey(Key.E);
                     }
                 }else{
                     if (menuItemSelected == 0 && !player.isDead() && !enemy.isDead()) {
-                        int dealtDamage = player.attack();
+                        dealtDamage = player.attack();
                         if(player.hasAttackBuff()){
                             dealtDamage += (dealtDamage/2);
                         }
@@ -311,6 +327,7 @@ public class FightScreen extends Screen {
                         healthPot.setFontSize(0);
                         backButton.setFontSize(0);
                         updateMessages();
+                        player.emptyCritBucket();
                     }
                 }
             }
@@ -354,6 +371,8 @@ public class FightScreen extends Screen {
         healthPot.draw(graphicsHandler);
         defPot.draw(graphicsHandler);
         backButton.draw(graphicsHandler);
+
+        damageMessage.draw(graphicsHandler);
 
         // player health bar
         graphicsHandler.drawFilledRectangleWithBorder(275, 275, player.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
