@@ -449,11 +449,11 @@ public class CommonTileset extends Tileset {
         MapTileBuilder logoOFTile = new MapTileBuilder(grassFrame).withTopLayer(logoOFFrame);
         mapTiles.add(logoOFTile);
 
-        Frame portalFrame = new FrameBuilder(getSubImage(4,8))
+        Frame portalTFrame = new FrameBuilder(getSubImage(4,8))
                 .withScale(tileScale)
                 .build();
-        MapTileBuilder portalTile = new MapTileBuilder(portalFrame);
-        mapTiles.add(portalTile);
+        MapTileBuilder portalTTile = new MapTileBuilder(portalTFrame);
+        mapTiles.add(portalTTile);
 
         // pond
         Frame pondTLFrame = new FrameBuilder(getSubImage(5, 0))
@@ -576,6 +576,15 @@ public class CommonTileset extends Tileset {
         MapTileBuilder fountainTRTiles = new MapTileBuilder(fountainTRFrames)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(fountainTRTiles);
+
+        Frame portalBFrame = new FrameBuilder(getSubImage(4,8))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder portalBTile = new MapTileBuilder(portalBFrame);
+        mapTiles.add(portalBTile);
+
+
 
         return mapTiles;
     }

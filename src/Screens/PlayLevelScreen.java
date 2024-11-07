@@ -64,6 +64,7 @@ public class PlayLevelScreen extends Screen {
         flagManager = new FlagManager();
         flagManager.addFlag("atSnowBiome", false);
         flagManager.addFlag("atStartBiome", false);
+        flagManager.addFlag("atForestBiome", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         // flagManager.addFlag("hasFoundBall", false);
@@ -274,6 +275,7 @@ public class PlayLevelScreen extends Screen {
             player.setMap(snowMap);
             snowMap.setPlayer(player);
             player.setLocation(100,100);
+            snowMap.getTextbox().setInteractKey(player.getInteractKey());
             playLevelScreenState = PlayLevelScreenState.RUNNING;
             snowMap.preloadScripts();
             flagManager.unsetFlag("atSnowBiome");
