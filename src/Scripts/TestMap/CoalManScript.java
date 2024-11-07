@@ -126,7 +126,7 @@ public class CoalManScript extends Script {
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("You reach your hand into the bucket of coals."));
                     addScriptAction(new WaitScriptAction(70));
-                    addScriptAction(new TextboxScriptAction("Hey you there!."));
+                    addScriptAction(new TextboxScriptAction("Hey you there!"));
                     addScriptAction(new TextboxScriptAction("Stop trying to rob me of my coals!"));
 
                     scriptActions.add(new StartFightScriptAction(new Enemy("CoalMan", 75, 10, 2, "CoalManFight.png")));

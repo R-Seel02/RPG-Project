@@ -46,7 +46,7 @@ public class MuggedWomanScript extends Script {
 
 
                  addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("Thanks again sweetie, hope those coins \nhelped you out a bit ( ˘ ³˘)❤"));
+                    addScriptAction(new TextboxScriptAction("Thanks again sweetie, hope those coins \nhelped you out a bit ( ˘ ³˘)"));
                  }});
             }});
 

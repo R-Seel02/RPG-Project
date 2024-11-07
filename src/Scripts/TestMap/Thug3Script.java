@@ -30,7 +30,7 @@ public class Thug3Script extends Script {
                 addRequirement(new FlagRequirement("hasCompletedQuestMuggedWoman", false));
                 addRequirement(new FlagRequirement("hasPurse", false));
                 addRequirement(new FlagRequirement("hasFoughtThug2", true));
-                addRequirement(new FlagRequirement("hasFoughtThug3", true));
+                addRequirement(new FlagRequirement("hasFoughtThug1", true));
                
 
 
