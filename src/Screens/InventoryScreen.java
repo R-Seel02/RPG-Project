@@ -101,54 +101,39 @@ public class InventoryScreen extends Screen {
 
         background.draw(graphicsHandler);
         Items[] inventoryList = player.getInventoryList(); 
+        
 
-        //logic to see if the inventory list is filled with valid pickableObject
-        // for (int i = 0; i < inventoryList.length; i++) {
-        //     if (inventoryList[i] != null) {
-                
-
-        //        Sprite itemSprite = inventoryList[i].getFrame();
-                
-        //        //    inventoryList[i].getFrame().drawImage
-        //         // Sprite itemSprite = new Sprite(inventoryList[i].getFrame(), 210 + (i * 200), 68); // Adjust position for each item
-        //         itemSprite.draw(graphicsHandler);
-        //     }
-        // }
-
-        int windowWidth = 1400;
-        int windowHeight = 900;
-    
-        int columns = 5;          // Number of columns in the grid
-        int rows = 3;             // Number of rows in the grid (based on image provided)
-        int slotWidth = 120;      // Width of each inventory slot
-        int slotHeight = 120;     // Height of each inventory slot
-        int colSpacing = 20;      // Horizontal spacing between columns
-        int rowSpacing = 30;      // Vertical spacing between rows
-    
-        // Calculate the total grid width and height
-        int gridWidth = columns * slotWidth + (columns - 1) * colSpacing;
-        int gridHeight = rows * slotHeight + (rows - 1) * rowSpacing;
-    
-        // Calculate the starting position to center the grid in the window
-        int startX = (windowWidth - gridWidth) / 2;
-        int startY = (windowHeight - gridHeight) / 2;
-     
-    
-        // Loop through each inventory slot
+       // logic to see if the inventory list is filled with valid pickableObject
         for (int i = 0; i < inventoryList.length; i++) {
             if (inventoryList[i] != null) {
-                // Calculate the x and y position for the current item
-                int row = i / columns; 
-                int col = i % columns; 
-                int x = startX + col * slotWidth;    // X position for item
-                int y = startY + row * rowSpacing;   // Y position for item
-    
+                
+               int x = 95;
+               int y = 115;
+
+               for ( int j = 1; j <= i; j++){
+                 x = x + 150 ;
+                if (j > 4){
+                    y = y + 145 ;
+                }
+               }
+
+
+               Sprite itemSprite = inventoryList[i].getFrame();
+
                
-                Sprite itemSprite = inventoryList[i].getFrame();
-                itemSprite.setPosition(x, y); 
-                itemSprite.draw(graphicsHandler);
+
+                itemSprite.setPosition(x, y);
+               itemSprite.draw(graphicsHandler);
+                
+                //   inventoryList[i].getFrame().drawImage;
+
+                // Sprite itemSprite = new Sprite(inventoryList[i].getFrame(), 210 + (i * 200), 68); // Adjust position for each item
+                
             }
         }
+        
+    
+
         //returnToGame.draw(graphicsHandler);
         healthPotCount.draw(graphicsHandler);
         damagePotCount.draw(graphicsHandler);

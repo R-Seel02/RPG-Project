@@ -111,6 +111,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasOpenedChest", false);
         flagManager.addFlag("hasOpenedChest2", false);
         flagManager.addFlag("InInventory", false);
+        flagManager.addFlag("hasStaff", false);
+
 
         // define/setup map
         map = new StartingMap();

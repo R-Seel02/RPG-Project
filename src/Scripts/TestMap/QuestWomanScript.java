@@ -152,6 +152,7 @@ public class QuestWomanScript extends Script {
                  }});
                  addScriptAction(new ChangeFlagScriptAction("hasCompletedQuestWoman", true));
                  addScriptAction(new ChangeFlagScriptAction("hasQuest", false));
+                 addScriptAction(new AddCoin("hasCompletedQuestWoman",3));
             }});
 
         }});
