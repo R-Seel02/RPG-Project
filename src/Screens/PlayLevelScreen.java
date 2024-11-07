@@ -8,7 +8,7 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.StartingMap;
+import Maps.*;
 import Players.Assassin;
 import Players.Knight;
 import Players.Mage;
@@ -24,6 +24,7 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected FailScreen failScreen;
     protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
     protected SnowLevelScreen snowScreen;
@@ -41,10 +42,10 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont questWoman;
     protected SpriteFont questOldGuy;
 
-    protected int characterChoice;
-
     //combat stuff
     protected Enemy currentEnemy;
+    protected int characterChoice;
+
     
     protected Timer timer = new Timer(20, null);
     protected int i = 0;
@@ -75,6 +76,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToTestNPC", false);
         flagManager.addFlag("isFighting", false);
         flagManager.addFlag("hasPickedup]", false);
+        flagManager.addFlag("playerDied", false);
 
         flagManager.addFlag("isSleeping", false);
         flagManager.addFlag("inShop", false);
@@ -100,8 +102,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasQuestOldGuy", false);
         flagManager.addFlag("hasCompletedQuestOldGuy", false);
         flagManager.addFlag("hasFoughtSkeleton", false);
-
-
+        flagManager.addFlag("hasBeatenSeb", false);
         
         
         flagManager.addFlag("HasQuest", false);
@@ -113,8 +114,8 @@ public class PlayLevelScreen extends Screen {
 
         // define/setup map
         map = new StartingMap();
-        map.setFlagManager(flagManager);
-
+        map.setFlagManager(flagManager);        
+        
         // setup player
         switch(characterChoice){
             case(0):
@@ -177,6 +178,7 @@ public class PlayLevelScreen extends Screen {
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
         snowScreen = new SnowLevelScreen(this, player);
+        failScreen = new FailScreen(this);
 
         // shop screen
 
@@ -228,6 +230,8 @@ public class PlayLevelScreen extends Screen {
             case INVENTORY:
                 inventoryScreen.update();
                 break;
+            case SLEEPING:
+                break;
             case SNOW:
                 snowScreen.update();
                 break;
@@ -247,7 +251,9 @@ public class PlayLevelScreen extends Screen {
             }
             playLevelScreenState = PlayLevelScreenState.FIGHTING;
         }
-
+        if(map.getFlagManager().isFlagSet("playerDied")){
+            playLevelScreenState = PlayLevelScreenState.FAIL;
+        }
         if (map.getFlagManager().isFlagSet("inShop")) {
             playLevelScreenState = PlayLevelScreenState.SHOPPING;
         }
@@ -294,7 +300,9 @@ public class PlayLevelScreen extends Screen {
 
     }
 
-
+    public int getCharacterSelection(){
+        return this.characterChoice;
+    }
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
@@ -307,11 +315,14 @@ public class PlayLevelScreen extends Screen {
                 questWoman.draw(graphicsHandler);
                 questOldGuy.draw(graphicsHandler);
                 // health bar
-                graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+                graphicsHandler.drawFilledRectangleWithBorder(25, 25, player.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
                 graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
+                break;
+            case FAIL:
+                failScreen.draw(graphicsHandler);
                 break;
             case FIGHTING:
                 fightScreen.draw(graphicsHandler);
@@ -399,6 +410,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING,INVENTORY, SNOW
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING, INVENTORY, SNOW, FAIL
     }
 }

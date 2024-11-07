@@ -7,6 +7,7 @@ import Maps.GrassMap;
 import Maps.SnowMap;
 import Maps.StartingMap;
 import Maps.TitleScreenMap;
+import Maps.FightMap;
 import java.util.ArrayList;
 
 public class EditorMaps {
@@ -18,6 +19,7 @@ public class EditorMaps {
             add("GrassMap");
             add("DesertMap");
             add("CaveMap");
+            add("FightMap");
         }};
     }
 
@@ -35,6 +37,8 @@ public class EditorMaps {
                 return new DesertMap();
             case "CaveMap":
                 return new CaveMap();
+            case "FightMap":
+                return new FightMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

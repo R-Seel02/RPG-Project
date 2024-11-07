@@ -17,6 +17,8 @@ public class Assassin extends Player {
         super(new SpriteSheet(ImageLoader.load("Assassin.png"), 24, 24), x, y, "STAND_RIGHT");
         //walkSpeed = 2.3f;
         walkSpeed = 5f;
+        super.setMaxHealth(100);
+        super.setCritChance(10);
     }
 
     public void update() {
