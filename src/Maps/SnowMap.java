@@ -41,7 +41,7 @@ public class SnowMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        CoalMan coalMan = new CoalMan(1, getMapTile(2,2).getLocation().subtractY(40));
+        CoalMan coalMan = new CoalMan(1, getMapTile(17,15).getLocation().subtractY(40));
         coalMan.setInteractScript(new CoalManScript());
         npcs.add(coalMan);
 
