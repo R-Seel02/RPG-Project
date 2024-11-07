@@ -10,10 +10,10 @@ import Level.Tileset;
 import java.util.ArrayList;
 
 // This class represents a "common" tileset of standard tiles defined in the CommonTileset.png file
-public class GrassTileset extends Tileset {
+public class ForestTileset extends Tileset {
 
-    public GrassTileset() {
-        super(ImageLoader.load("GrassTileset.png"), 16, 16, 3);
+    public ForestTileset() {
+        super(ImageLoader.load("ForestTileset.png"), 16, 16, 3);
     }
 
     @Override

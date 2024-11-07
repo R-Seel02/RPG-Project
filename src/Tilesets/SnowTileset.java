@@ -154,6 +154,38 @@ public class SnowTileset extends Tileset {
         MapTileBuilder grassPortalBTile = new MapTileBuilder(grassPortalBFrame);
         mapTiles.add(grassPortalBTile);
 
+        // ice pond tiles
+        Frame icePondBLFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder icePondBLTile = new MapTileBuilder(icePondBLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(icePondBLTile);
+
+        Frame icePondBRFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder icePondBRTile = new MapTileBuilder(icePondBRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(icePondBRTile);
+
+        Frame icePondTLFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder icePondTLTile = new MapTileBuilder(icePondTLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(icePondTLTile);
+
+        Frame icePondTRFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_H_AND_V)
+                .build();
+        MapTileBuilder icePondTRTile = new MapTileBuilder(icePondTRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(icePondTRTile);
+
         
         return mapTiles;
     }

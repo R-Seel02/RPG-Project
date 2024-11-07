@@ -15,8 +15,8 @@ public class WarpForestScript extends Script {
         scriptActions.add(new LockPlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction() {{
-            addText("You approach a glowing portal. It feels like home.");
-            addText("Would you like to travel to the Starting Biome?", new String[] {"Yes", "No"});
+            addText("You approach a glowing portal. \nThe sounds of trees blowing are coming out.");
+            addText("Would you like to travel to the Forest Biome?", new String[] {"Yes", "No"});
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
@@ -31,10 +31,10 @@ public class WarpForestScript extends Script {
                 });
 
                  addScriptAction(new TextboxScriptAction() {{
-                     addText("Traveling to... Starting Biome.");
+                     addText("Traveling to... Forest Biome.");
                  }});
                  scriptActions.add(new UnlockPlayerScriptAction());
-                 scriptActions.add(new ChangeFlagScriptAction("atStartBiome", true));
+                 scriptActions.add(new ChangeFlagScriptAction("atForestBiome", true));
             }});
 
             
@@ -51,7 +51,7 @@ public class WarpForestScript extends Script {
                     }
                 });
                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("You walk away from the familiar portal."));
+                    addScriptAction(new TextboxScriptAction("You walk away from the noisy portal."));
                  }});
             }});
 
