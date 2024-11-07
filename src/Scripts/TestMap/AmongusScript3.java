@@ -3,12 +3,14 @@ package Scripts.TestMap;
 import java.util.ArrayList;
 
 import Engine.ImageLoader;
+import GameObject.Frame;
 import GameObject.SpriteSheet;
 import Level.PickableObject;
 import Level.Script;
 import Level.ScriptState;
-import PickableObjects.ItemAxe;
+// import PickableObjects.ItemAxe;
 import Level.Enemy;
+import Level.Items;
 import ScriptActions.*;
 
 
@@ -90,9 +92,9 @@ public class AmongusScript3 extends Script {
                     }
                 });
                 addScriptAction(new ChangeFlagScriptAction("hasAxe", true));
-                addScriptAction(new AddItem("hasAxe", new ItemAxe(null, null) ));
+                addScriptAction(new AddItem("hasAxe", new Items(10,new Frame (ImageLoader.load("Axe.png")))));
 
-                
+            
             }});
 
             

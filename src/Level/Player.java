@@ -18,7 +18,21 @@ public abstract class Player extends GameObject {
     protected Direction currentWalkingYDirection;
     protected Direction lastWalkingXDirection;
     protected Direction lastWalkingYDirection;
-    private PickableObject[] inventoryList;
+
+    // inventory
+    private Items[] inventoryList;
+    private int[] potions;
+
+    // potion constants
+    public static final int HEALTH_POT = 0;
+    public static final int DAMAGE_POT = 1;
+    public static final int DEFENSE_POT = 2;
+
+    // buffs
+    boolean hasDamageBuff = false;
+    boolean hasDefenseBuff = false;
+    
+
    
     //combat stuff
     protected int health;
@@ -60,7 +74,8 @@ public abstract class Player extends GameObject {
         this.critChance = 5;
         isDead = false;
         this.random = new Random();
-        this.inventoryList = new PickableObject[15];
+        this.inventoryList = new Items[15];
+        this.potions = new int[3];
     }
 
     public void update() {
@@ -177,17 +192,17 @@ public abstract class Player extends GameObject {
         }
     }
     public void initializeInventory() {
-        inventoryList = new PickableObject[15]; 
+        inventoryList = new Items[15]; 
     }
-    public PickableObject[] getInventoryList() {
+    public Items[] getInventoryList() {
         return inventoryList;
     }
 
-    public void setInventoryList(PickableObject[] inventoryList) {
+    public void setInventoryList(Items[] inventoryList) {
         this.inventoryList = inventoryList;
     }
 
-    public boolean addToInventory(PickableObject item){
+    public boolean addToInventory(Items item){
         for (int i = 0; i < inventoryList.length; i++) {
             if (inventoryList[i] == null) { // Check if the slot is null and not
                 inventoryList[i] = item; 
@@ -324,11 +339,15 @@ public abstract class Player extends GameObject {
 
     //Make the player take damage
     public void takeDamage(int damage){
+        if(hasDefenseBuff){
+            damage *= 0.9;
+        }
         this.health -= damage;
         if(damage >= health){
             isDead = true;
             health = 0;
         }
+        this.hasDefenseBuff = false;
     }
 
     public int attack(){
@@ -360,6 +379,68 @@ public abstract class Player extends GameObject {
 
     public boolean isDead(){
         return isDead;
+    }
+
+
+    // health potion
+    public void addHealthPot(){
+        // increments number of health potions
+        this.potions[HEALTH_POT]++;
+    }
+
+    public void useHealthPot(){
+        // could be any amount
+        if(this.potions[HEALTH_POT] >= 0){
+            // heals an amount and decrements the count
+            heal(15);
+            this.potions[HEALTH_POT]--;
+        }
+        
+    }
+
+    public int healthPotCount(){
+        // returns health potion count
+        return this.potions[HEALTH_POT];
+    }
+
+
+    // damage potion
+    public void addDamagePot(){
+        // increments number of damage potions
+        this.potions[DAMAGE_POT]++;
+    }
+
+    public void useDamagePot(){
+        if(this.potions[DAMAGE_POT] >= 0){
+            // unsure on this implementation for now, at least until battle screen is fleshed out
+            this.hasDamageBuff = true;
+            this.potions[DAMAGE_POT]--;
+        }
+    }
+
+    public int damagePotCount(){
+        // returns damage potion count
+        return this.potions[DAMAGE_POT];
+    }
+
+
+    // defense potion
+    public void addDefensePot(){
+        // increments number of defense potions
+        this.potions[DEFENSE_POT]++;
+    }
+
+    public void useDefensePot(){
+        if(this.potions[DEFENSE_POT] >= 0){
+            // next damage taken will be decreased and then the boolean is unset after that damage goes through
+            this.hasDefenseBuff = true;
+            this.potions[DEFENSE_POT]--;
+        }
+    }
+
+    public int defensePotCount(){
+        // returns defense potion count 
+        return this.potions[DEFENSE_POT];
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize

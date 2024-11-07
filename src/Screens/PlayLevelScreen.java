@@ -9,6 +9,8 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.StartingMap;
+import Players.Assassin;
+import Players.Knight;
 import Players.Mage;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
@@ -19,7 +21,7 @@ import javax.swing.Timer;
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Mage player;
+    protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
@@ -39,6 +41,8 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont questWoman;
     protected SpriteFont questOldGuy;
 
+    protected int characterChoice;
+
     //combat stuff
     protected Enemy currentEnemy;
     
@@ -54,6 +58,11 @@ public class PlayLevelScreen extends Screen {
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+    }
+
+    public PlayLevelScreen(ScreenCoordinator screenCoordinator, int characterChoice) {
+        this.screenCoordinator = screenCoordinator;
+        this.characterChoice = characterChoice;
     }
 
     public void initialize() {
@@ -107,7 +116,20 @@ public class PlayLevelScreen extends Screen {
         map.setFlagManager(flagManager);
 
         // setup player
-        player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+        switch(characterChoice){
+            case(0):
+                player = new Assassin(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+                break;
+            case(1):
+                player = new Knight(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+                break;
+            case(2):
+                player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+                break;
+            
+        }
+        
+        // player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         player.setMap(map);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);

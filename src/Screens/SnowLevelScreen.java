@@ -15,7 +15,7 @@ import java.awt.Color;
 public class SnowLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
-    protected Mage player;
+    protected Player player;
     protected PlayLevelScreenState snowLevelScreenState;
     protected WinScreen winScreen;
     protected ShopScreen shopScreen;
@@ -29,7 +29,7 @@ public class SnowLevelScreen extends Screen {
     //quest stuff
     protected SpriteFont quest1;
 
-    public SnowLevelScreen(PlayLevelScreen playLevelScreen, Mage player) {
+    public SnowLevelScreen(PlayLevelScreen playLevelScreen, Player player) {
         this.playLevelScreen = playLevelScreen;
         this.player = player;
         initialize();

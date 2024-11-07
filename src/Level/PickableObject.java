@@ -4,19 +4,25 @@ import Engine.Key;
 import Engine.Keyboard;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
-import PickableObjects.ItemAxe;
+// import PickableObjects.ItemAxe;
 import Utils.Point;
 
  
 
 
-public class PickableObject extends MapEntity{
+public class PickableObject extends MapEntity {
     protected Key INTERACT_KEY = Key.E;
     protected PickableObject pickableObject;
     protected PickableObject [] inventoryList;
+    protected Frame frame;
 
     public PickableObject(Point location, Frame frame) {
         super(location.x, location.y, frame);
+        this.frame = frame;
+    }
+
+    public Items convertToItem(int damage){
+        return new Items(damage, this.frame);
     }
 
 
@@ -31,14 +37,14 @@ public class PickableObject extends MapEntity{
         
         if(this.inventoryList  == null){
             this.inventoryList = new PickableObject[15];
-       
+        
         }
 
 
         if (distance <= 55 && Keyboard.isKeyDown(INTERACT_KEY)) {
             this.setMapEntityStatus(MapEntityStatus.REMOVED);
             
-            player.addToInventory(this);
+            player.addToInventory(this.convertToItem(10)); //this.converttoItem
 
         }
         

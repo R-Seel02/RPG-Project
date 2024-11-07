@@ -23,7 +23,7 @@ import NPCs.Skeleton;
 import NPCs.TestNPC;
 import NPCs.Walrus;
 import PickableObjects.ItemAnchor;
-import PickableObjects.ItemAxe;
+// import PickableObjects.ItemAxe;
 import PickableObjects.ItemKatana;
 import PickableObjects.ItemKnife;
 import PickableObjects.ItemRock;
