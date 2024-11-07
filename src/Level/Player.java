@@ -20,8 +20,7 @@ public abstract class Player extends GameObject {
     protected Direction lastWalkingYDirection;
 
     // inventory
-    private PickableObject[] inventoryList;
-   
+    private Items[] inventoryList;
     private int[] potions;
 
     // potion constants
@@ -74,7 +73,7 @@ public abstract class Player extends GameObject {
         this.critChance = 5;
         isDead = false;
         this.random = new Random();
-        this.inventoryList = new PickableObject[15];
+        this.inventoryList = new Items[15];
         this.potions = new int[3];
     }
 
@@ -192,26 +191,27 @@ public abstract class Player extends GameObject {
         }
     }
     public void initializeInventory() {
-        inventoryList = new PickableObject[15]; // Or any size you'd like
+        inventoryList = new Items[15]; 
     }
-    public PickableObject[] getInventoryList() {
+    public Items[] getInventoryList() {
         return inventoryList;
     }
 
-    public void setInventoryList(PickableObject[] inventoryList) {
+    public void setInventoryList(Items[] inventoryList) {
         this.inventoryList = inventoryList;
     }
 
-    public void addToInventory(PickableObject item){
+    public boolean addToInventory(Items item){
         for (int i = 0; i < inventoryList.length; i++) {
             if (inventoryList[i] == null) { // Check if the slot is null and not
                 inventoryList[i] = item; 
                 System.out.println("Item picked up and placed at index: " + i);
-                break; 
+                return true;
             }
 
         }
         System.out.println("Inventory is full!");
+        return false;
     }
    
 

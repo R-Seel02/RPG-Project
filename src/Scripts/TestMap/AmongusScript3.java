@@ -2,8 +2,15 @@ package Scripts.TestMap;
 
 import java.util.ArrayList;
 
+import Engine.ImageLoader;
+import GameObject.Frame;
+import GameObject.SpriteSheet;
+import Level.PickableObject;
 import Level.Script;
+import Level.ScriptState;
+// import PickableObjects.ItemAxe;
 import Level.Enemy;
+import Level.Items;
 import ScriptActions.*;
 
 
@@ -65,7 +72,9 @@ public class AmongusScript3 extends Script {
                  addScriptAction(new TextboxScriptAction() {{
                     addText("HeLLo!");
                     addText("YoU wAnT AxE?? ʘUʘ", new String[] { "Yes", "No" });
+                    
                  }});
+                 
             }});   
         }});
 
@@ -82,11 +91,10 @@ public class AmongusScript3 extends Script {
         
                     }
                 });
-
-                 addScriptAction(new TextboxScriptAction() {{
-                     addText("sus 0_0");
-                 }});
                 addScriptAction(new ChangeFlagScriptAction("hasAxe", true));
+                addScriptAction(new AddItem("hasAxe", new Items(10,new Frame (ImageLoader.load("Axe.png")))));
+
+            
             }});
 
             
@@ -100,7 +108,7 @@ public class AmongusScript3 extends Script {
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {
-                        int answer = outputManager.getFlagData("TEXTBOX_OPTION_SELECTION");
+                        int answer = outputManager.getFlagData("TEXTBOX_OPTION_SELECTION");                        
                         return answer == 1;
         
                     }

@@ -22,7 +22,12 @@ import NPCs.QuestWoman;
 import NPCs.Skeleton;
 import NPCs.TestNPC;
 import NPCs.Walrus;
+import PickableObjects.ItemAnchor;
+// import PickableObjects.ItemAxe;
+import PickableObjects.ItemKatana;
+import PickableObjects.ItemKnife;
 import PickableObjects.ItemRock;
+import PickableObjects.ItemStaff;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -153,7 +158,7 @@ public class StartingMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
         triggers.add(new Trigger(120, 1010, 10, 80, new WarpSnowScript()));
-        triggers.add(new Trigger(420, 1010, 10, 80, new WarpForestScript()));
+        triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
         return triggers;
     }
 
@@ -163,8 +168,24 @@ public class StartingMap extends Map {
 
          ItemRock itemRock = new ItemRock(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Rock.png")));
          pickableObjects.add(itemRock);
-        //  pickableObject.setInteractScript(new RockScript(pickableObject));
 
+         
+        //  ItemAxe itemAxe = new ItemAxe(getMapTile(10, 15).getLocation(), new Frame(ImageLoader.load("Axe.png")));
+        //  pickableObjects.add(itemAxe);
+
+        //  ItemAnchor itemAnchor = new ItemAnchor(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Anchor.png")));
+        //  pickableObjects.add(itemAnchor);
+
+        //  ItemKatana itemKatana = new ItemKatana(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Katana.png")));
+        //  pickableObjects.add(itemKatana);
+
+        //  ItemKnife itemKnife = new ItemKnife(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Knife.png")));
+        //  pickableObjects.add(itemKnife);
+
+        //  ItemStaff itemStaff = new ItemStaff(getMapTile(10, 3).getLocation(), new Frame(ImageLoader.load("Staff.png")));
+        //  pickableObjects.add(itemStaff);
+
+        
          return pickableObjects;
  
 

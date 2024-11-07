@@ -2,6 +2,7 @@ package Screens;
 
 import Engine.*;
 import GameObject.Sprite;
+import Level.Items;
 import Level.PickableObject;
 import Level.Player;
 import Players.Mage;
@@ -95,34 +96,44 @@ public class InventoryScreen extends Screen {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        // item1.draw(graphicsHandler);
-        // item2.draw(graphicsHandler);
-        // item3.draw(graphicsHandler);
-        // item4.draw(graphicsHandler);
-        // item5.draw(graphicsHandler);
-        // item6.draw(graphicsHandler);
-        // item7.draw(graphicsHandler);
-        // item8.draw(graphicsHandler);
-        // item9.draw(graphicsHandler);
-        // item10.draw(graphicsHandler);
-        // item11.draw(graphicsHandler);
-        // item12.draw(graphicsHandler);
-        // item13.draw(graphicsHandler);
-        // item14.draw(graphicsHandler);
-        // item15.draw(graphicsHandler);
+        
 
 
         background.draw(graphicsHandler);
-        PickableObject[] inventoryList = player.getInventoryList(); 
+        Items[] inventoryList = player.getInventoryList(); 
+        
 
-        //logic to see if the inventory list is filled with valid pickableObject
+       // logic to see if the inventory list is filled with valid pickableObject
         for (int i = 0; i < inventoryList.length; i++) {
             if (inventoryList[i] != null) {
                 
-                Sprite itemSprite = new Sprite(ImageLoader.load("Rock.png"), 210 + (i * 200), 68); // Adjust position for each item
-                itemSprite.draw(graphicsHandler);
+               int x = 95;
+               int y = 115;
+
+               for ( int j = 1; j <= i; j++){
+                 x = x + 150 ;
+                if (j > 4){
+                    y = y + 145 ;
+                }
+               }
+
+
+               Sprite itemSprite = inventoryList[i].getFrame();
+
+               
+
+                itemSprite.setPosition(x, y);
+               itemSprite.draw(graphicsHandler);
+                
+                //   inventoryList[i].getFrame().drawImage;
+
+                // Sprite itemSprite = new Sprite(inventoryList[i].getFrame(), 210 + (i * 200), 68); // Adjust position for each item
+                
             }
         }
+        
+    
+
         //returnToGame.draw(graphicsHandler);
         healthPotCount.draw(graphicsHandler);
         damagePotCount.draw(graphicsHandler);

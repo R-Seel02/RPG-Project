@@ -116,6 +116,20 @@ public class ForestTileset extends Tileset {
 
         mapTiles.add(smallPondTile);
 
+        // portal frames
+        Frame portalTFrame = new FrameBuilder(getSubImage(0, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder portalTTile = new MapTileBuilder(portalTFrame);
+        mapTiles.add(portalTTile);
+
+        Frame portalBFrame = new FrameBuilder(getSubImage(0, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder portalBTile = new MapTileBuilder(portalBFrame);
+        mapTiles.add(portalBTile);
+
         
         
         return mapTiles;
