@@ -97,4 +97,10 @@ public class Sprite extends Rectangle {
     public String toString() {
         return String.format("Sprite: x=%s y=%s width=%s height=%s bounds=(%s, %s, %s, %s)", getX(), getY(), getWidth(), getHeight(), getBounds().getX(), getBounds().getY(), getBounds().getWidth(), getBounds().getHeight()); 
     }
+
+    public void setPosition(int x, int y) {
+        
+        this.x = x;
+        this.y = y;
+    }
 }

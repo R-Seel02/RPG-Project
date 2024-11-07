@@ -20,8 +20,7 @@ public abstract class Player extends GameObject {
     protected Direction lastWalkingYDirection;
 
     // inventory
-    private PickableObject[] inventoryList;
-   
+    private Items[] inventoryList;
     private int[] potions;
 
     // potion constants
@@ -38,6 +37,8 @@ public abstract class Player extends GameObject {
     protected int critChance;
     protected boolean isDead;
     protected Random random;
+    protected boolean justCrit;
+    protected int critBucket;
 
     // values used to handle player movement
     protected float moveAmountX, moveAmountY;
@@ -74,8 +75,10 @@ public abstract class Player extends GameObject {
         this.critChance = 5;
         isDead = false;
         this.random = new Random();
-        this.inventoryList = new PickableObject[15];
+        this.inventoryList = new Items[15];
         this.potions = new int[3];
+        this.justCrit = false;
+        this.critBucket = 0;
     }
 
     public void update() {
@@ -192,26 +195,27 @@ public abstract class Player extends GameObject {
         }
     }
     public void initializeInventory() {
-        inventoryList = new PickableObject[15]; // Or any size you'd like
+        inventoryList = new Items[15]; 
     }
-    public PickableObject[] getInventoryList() {
+    public Items[] getInventoryList() {
         return inventoryList;
     }
 
-    public void setInventoryList(PickableObject[] inventoryList) {
+    public void setInventoryList(Items[] inventoryList) {
         this.inventoryList = inventoryList;
     }
 
-    public void addToInventory(PickableObject item){
+    public boolean addToInventory(Items item){
         for (int i = 0; i < inventoryList.length; i++) {
             if (inventoryList[i] == null) { // Check if the slot is null and not
                 inventoryList[i] = item; 
                 System.out.println("Item picked up and placed at index: " + i);
-                break; 
+                return true;
             }
 
         }
         System.out.println("Inventory is full!");
+        return false;
     }
    
 
@@ -351,17 +355,28 @@ public abstract class Player extends GameObject {
 
     public int attack(){
         int cc = random.nextInt(101);
-        if(cc <= critChance){
+        justCrit = false;
+        critBucket += 10;
+        if(cc <= critChance + ((critBucket / 50) * 2)){
+            justCrit = true;
             return 20;
         }else{
             return 10;
         }
     }
+
+    public boolean lastAttackWasCrit(){
+        if(justCrit){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     public void heal(int healValue){
         this.health += healValue;
-        if(health >= 100){
-            health = 100;
+        if(health >= maxHealth){
+            health = maxHealth;
         }
         if(this.isDead){
             this.isDead = false;
@@ -474,6 +489,10 @@ public abstract class Player extends GameObject {
     public void removeBuffs(){
         this.hasDamageBuff = false;
         this.hasDefenseBuff = false;
+    }
+
+    public void emptyCritBucket(){
+        this.critBucket = 0;
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize

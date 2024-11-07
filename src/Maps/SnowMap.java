@@ -1,9 +1,22 @@
 package Maps;
 
+import Engine.ImageLoader;
+import GameObject.Frame;
 import Level.*;
-import Scripts.TestMap.WarpStartScript;
+
+import PickableObjects.ItemRock;
+import Scripts.SimpleTextScript;
+import Scripts.TestMap.*;
 import Tilesets.SnowTileset;
 import java.util.ArrayList;
+
+import NPCs.Bed;
+import NPCs.Chest;
+import NPCs.Chest2;
+
+import NPCs.CoalMan;
+import NPCs.Snowman;
+import NPCs.Fish;
 
 // Represents a test map to be used in a level
 public class SnowMap extends Map {
@@ -28,7 +41,17 @@ public class SnowMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        
+        CoalMan coalMan = new CoalMan(1, getMapTile(2,2).getLocation().subtractY(40));
+        coalMan.setInteractScript(new CoalManScript());
+        npcs.add(coalMan);
+
+        Snowman snowman = new Snowman(2, getMapTile(8, 2).getLocation().subtractY(40));
+        snowman.setInteractScript(new SnowmanScript());
+        npcs.add(snowman);
+
+        Fish fish = new Fish(3, getMapTile(12, 12).getLocation().subtractY(40));
+        fish.setInteractScript(new FishScript());
+        npcs.add(fish);
 
         // shopkeeper id 5
 

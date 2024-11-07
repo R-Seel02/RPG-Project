@@ -38,6 +38,7 @@ public class AmongusScript extends Script {
 
                  addScriptAction(new TextboxScriptAction() {{
                      addText("sus 0_0");
+                     
                 //     //addText("I'm going to let you in on a little secret...\nYou can push some rocks out of the way.");
                 //     addText("Thanks for spending your money!");
                 //     // below line contains a created class that handles removing a coin, may be useful when it's more complicated
