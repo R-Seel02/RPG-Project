@@ -357,7 +357,7 @@ public abstract class Player extends GameObject {
         int cc = random.nextInt(101);
         justCrit = false;
         critBucket += 10;
-        if(cc <= critChance + ((critBucket / 50) * 2){
+        if(cc <= critChance + ((critBucket / 50) * 2)){
             justCrit = true;
             return 20;
         }else{
