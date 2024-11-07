@@ -11,14 +11,14 @@ import java.util.HashMap;
 
 // This is the class for the Cat player character
 // basically just sets some values for physics and then defines animations
-public class Knight extends Player {
+public class Assassin extends Player {
 
-    public Knight(float x, float y) {
-        super(new SpriteSheet(ImageLoader.load("Knight.png"), 24, 24), x, y, "STAND_RIGHT");
+    public Assassin(float x, float y) {
+        super(new SpriteSheet(ImageLoader.load("Assassin.png"), 24, 24), x, y, "STAND_RIGHT");
         //walkSpeed = 2.3f;
         walkSpeed = 5f;
-        super.setMaxHealth(125);
-        super.setCritChance(5);
+        super.setMaxHealth(100);
+        super.setCritChance(10);
     }
 
     public void update() {

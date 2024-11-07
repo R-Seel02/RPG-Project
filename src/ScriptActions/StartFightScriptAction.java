@@ -1,18 +1,19 @@
 package ScriptActions;
 
 import Level.ScriptState;
+import Level.Enemy;
 
 public class StartFightScriptAction extends ScriptAction {
-    protected String spriteName;
-    //protected Enemy enemy;
+    //protected String spriteName; DEPRECATED -- use enemy instead
+    protected Enemy enemy;
 
-    public StartFightScriptAction(String spriteName) {
-        this.spriteName = spriteName;
+    public StartFightScriptAction(Enemy enemy) {
+        this.enemy = enemy;
     }
 
     @Override
     public ScriptState execute() {
-        this.map.setEnemySprite(spriteName);
+        this.map.setCurrentEnemy(enemy);
         return ScriptState.COMPLETED;
     }
 }

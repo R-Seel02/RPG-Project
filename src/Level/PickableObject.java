@@ -9,7 +9,7 @@ import Utils.Point;
  
 
 
-public class PickableObject extends MapEntity{
+public class PickableObject extends MapEntity {
     protected Key INTERACT_KEY = Key.E;
     protected PickableObject pickableObject;
     protected PickableObject [] inventoryList;
@@ -30,7 +30,7 @@ public class PickableObject extends MapEntity{
         
         if(this.inventoryList  == null){
             this.inventoryList = new PickableObject[15];
-       
+        
         }
 
         if (distance <= 55 && Keyboard.isKeyDown(INTERACT_KEY)) {

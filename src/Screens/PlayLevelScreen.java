@@ -8,8 +8,11 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.SnowMap;
 import Maps.StartingMap;
+import Players.Assassin;
 import Players.Knight;
+import Players.Mage;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import java.awt.Color;
@@ -18,12 +21,16 @@ import javax.swing.Timer;
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    protected Map map;
-    protected Knight player;
+    protected Map startMap;
+    protected Map snowMap;
+    protected Map currMap;
+    protected Player player, newPlayer;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected FailScreen failScreen;
     protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
+    // protected SnowLevelScreen snowScreen;
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
     protected InventoryScreen inventoryScreen;
@@ -37,6 +44,10 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont questFarmer;
     protected SpriteFont questWoman;
     protected SpriteFont questOldGuy;
+
+    //combat stuff
+    protected Enemy currentEnemy;
+    protected int characterChoice;
 
     
     protected Timer timer = new Timer(20, null);
@@ -53,16 +64,24 @@ public class PlayLevelScreen extends Screen {
         this.screenCoordinator = screenCoordinator;
     }
 
+    public PlayLevelScreen(ScreenCoordinator screenCoordinator, int characterChoice) {
+        this.screenCoordinator = screenCoordinator;
+        this.characterChoice = characterChoice;
+    }
+
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
-        flagManager.addFlag("hasLostBall", false);
+        flagManager.addFlag("atSnowBiome", false);
+        flagManager.addFlag("atStartBiome", false);
+        flagManager.addFlag("atForestBiome", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
-        flagManager.addFlag("hasFoundBall", false);
+        // flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToTestNPC", false);
         flagManager.addFlag("isFighting", false);
         flagManager.addFlag("hasPickedup]", false);
+        flagManager.addFlag("playerDied", false);
 
         flagManager.addFlag("isSleeping", false);
         flagManager.addFlag("inShop", false);
@@ -126,8 +145,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasQuestOldGuy", false);
         flagManager.addFlag("hasCompletedQuestOldGuy", false);
         flagManager.addFlag("hasFoughtSkeleton", false);
-
-
+        flagManager.addFlag("hasBeatenSeb", false);
         
         
         flagManager.addFlag("HasQuest", false);
@@ -137,17 +155,32 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasOpenedChest2", false);
         flagManager.addFlag("InInventory", false);
 
-        // define/setup map
-        map = new StartingMap();
-        map.setFlagManager(flagManager);
-
+        // define/setup map       
+        startMap = new StartingMap();
+        startMap.setFlagManager(flagManager);
+        snowMap = new SnowMap();
+        snowMap.setFlagManager(flagManager);
+        currMap = startMap;
         // setup player
-        player = new Knight(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
-        player.setMap(map);
+        switch(characterChoice){
+            case(0):
+                player = new Assassin(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
+                break;
+            case(1):
+                player = new Knight(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
+                break;
+            case(2):
+                player = new Mage(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
+                break;
+            
+        }
+        
+        // player = new Mage(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+        player.setMap(currMap);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
 
-        map.setPlayer(player);
+        currMap.setPlayer(player);
 
         questBird = new SpriteFont("Retrieve the axe for the bird", 1000, 75, "Arial", 0, Color.white);
         questBird.setOutlineColor(Color.black);
@@ -174,22 +207,22 @@ public class PlayLevelScreen extends Screen {
         sleepMessage = new SpriteFont("You sleep to recover your strength.", 450, 650, "Arial", 30, Color.white);
         sleepMessage.setOutlineColor(Color.black);
         sleepMessage.setOutlineThickness(2);
-
         
-
-        
+        //initialize enemy
+        currentEnemy = new Enemy("default", 1, 1, 1, "error.png");
 
         // let pieces of map know which button to listen for as the "interact" button
-        map.getTextbox().setInteractKey(player.getInteractKey());
+        currMap.getTextbox().setInteractKey(player.getInteractKey());
 
         // preloads all scripts ahead of time rather than loading them dynamically
         // both are supported, however preloading is recommended
-        map.preloadScripts();
+        currMap.preloadScripts();
 
         winScreen = new WinScreen(this);
-        fightScreen = new FightScreen(this, player, "error.png");
+        fightScreen = new FightScreen(this, player, currentEnemy);
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
+        failScreen = new FailScreen(this);
 
         // shop screen
 
@@ -223,7 +256,7 @@ public class PlayLevelScreen extends Screen {
             // platformer level going
             case RUNNING:
                 player.update();
-                map.update(player);
+                currMap.update(player);
                 coinCounter.setText("Coins: " + player.getCoinCount());
                 break;
             // if level has been completed, bring up level cleared screen
@@ -241,81 +274,110 @@ public class PlayLevelScreen extends Screen {
             case INVENTORY:
                 inventoryScreen.update();
                 break;
+            case SLEEPING:
+                break;
         }
 
         // if flag is set at any point during gameplay, game is "won"
-        if (map.getFlagManager().isFlagSet("hasFoundBall")) {
-            playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
-        }
+        // if (map.getFlagManager().isFlagSet("hasFoundBall")) {
+        //     playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+        // }
 
-        if (map.getFlagManager().isFlagSet("isFighting")) {
-            if(!fightScreen.getEnemySprite().equals(map.getEnemySprite())){
-                setFightScreen(map.getEnemySprite());
+        
+
+        if (currMap.getFlagManager().isFlagSet("isFighting")) {
+            if(!fightScreen.getCurrentEnemy().equals(currMap.getCurrentEnemy())){
+                this.currentEnemy = currMap.getCurrentEnemy();
+                setFightScreen(currentEnemy);
+                System.out.println("set enemy");
             }
             playLevelScreenState = PlayLevelScreenState.FIGHTING;
         }
-
-        if (map.getFlagManager().isFlagSet("inShop")) {
+        if(currMap.getFlagManager().isFlagSet("playerDied")){
+            playLevelScreenState = PlayLevelScreenState.FAIL;
+        }
+        if (currMap.getFlagManager().isFlagSet("inShop")) {
             playLevelScreenState = PlayLevelScreenState.SHOPPING;
         }
-        if (map.getFlagManager().isFlagSet("hasQuestBird")) {
+
+        if (currMap.getFlagManager().isFlagSet("hasQuestBird")) {
             questBird.setFontSize(30);
         }
-        if (map.getFlagManager().isFlagSet("hasCompletedQuestBird")) {
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestBird")) {
             questBird.setFontSize(0);
         }
-        if (map.getFlagManager().isFlagSet("hasQuestFarmer")) {
+        if (currMap.getFlagManager().isFlagSet("hasQuestFarmer")) {
             questFarmer.setFontSize(30);
         }
-        if (map.getFlagManager().isFlagSet("hasCompletedQuestFarmer")) {
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestFarmer")) {
             questFarmer.setFontSize(0);
         }
-        if (map.getFlagManager().isFlagSet("hasQuestWoman")) {
+        if (currMap.getFlagManager().isFlagSet("hasQuestWoman")) {
             questWoman.setFontSize(30);
         }
-        if (map.getFlagManager().isFlagSet("hasCompletedQuestWoman")) {
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestWoman")) {
             questWoman.setFontSize(0);
         }
-        if (map.getFlagManager().isFlagSet("hasQuestOldGuy")) {
+        if (currMap.getFlagManager().isFlagSet("hasQuestOldGuy")) {
             questOldGuy.setFontSize(30);
         }
-        if (map.getFlagManager().isFlagSet("hasCompletedQuestOldGuy")) {
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestOldGuy")) {
             questOldGuy.setFontSize(0);
         }
         
-        if (map.getFlagManager().isFlagSet("InInventory")) {
+        if (currMap.getFlagManager().isFlagSet("InInventory")) {
             playLevelScreenState = PlayLevelScreenState.INVENTORY;
         }
 
-        if (map.getFlagManager().isFlagSet("isSleeping")) {
+        if (currMap.getFlagManager().isFlagSet("isSleeping")) {
             playLevelScreenState = PlayLevelScreenState.SLEEPING;
         }
-        
-        
-        // if (map.getFlagManager().isFlagSet("")) {
 
-        // }
+        if (currMap.getFlagManager().isFlagSet("atSnowBiome")) {
+            currMap = snowMap;
+            player.setMap(snowMap);
+            snowMap.setPlayer(player);
+            player.setLocation(100,100);
+            snowMap.getTextbox().setInteractKey(player.getInteractKey());
+            playLevelScreenState = PlayLevelScreenState.RUNNING;
+            snowMap.preloadScripts();
+            flagManager.unsetFlag("atSnowBiome");
+        }
 
+        if (currMap.getFlagManager().isFlagSet("atStartBiome")) {
+            currMap = startMap;
+            player.setMap(startMap);
+            startMap.setPlayer(player);
+            player.setLocation(100,100);
+            playLevelScreenState = PlayLevelScreenState.RUNNING;
+            startMap.preloadScripts();
+            flagManager.unsetFlag("atStartBiome");
+        }
     }
 
-
+    public int getCharacterSelection(){
+        return this.characterChoice;
+    }
 
     public void draw(GraphicsHandler graphicsHandler) {
         // based on screen state, draw appropriate graphics
         switch (playLevelScreenState) {
             case RUNNING:
-                map.draw(player, graphicsHandler);
+                currMap.draw(player, graphicsHandler);
                 coinCounter.draw(graphicsHandler);
                 questBird.draw(graphicsHandler);
                 questFarmer.draw(graphicsHandler);
                 questWoman.draw(graphicsHandler);
                 questOldGuy.draw(graphicsHandler);
                 // health bar
-                graphicsHandler.drawFilledRectangleWithBorder(25, 25, 200, 25, Color.gray, Color.black, 3);
+                graphicsHandler.drawFilledRectangleWithBorder(25, 25, player.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
                 graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));
                 break;
             case LEVEL_COMPLETED:
                 winScreen.draw(graphicsHandler);
+                break;
+            case FAIL:
+                failScreen.draw(graphicsHandler);
                 break;
             case FIGHTING:
                 fightScreen.draw(graphicsHandler);
@@ -326,6 +388,9 @@ public class PlayLevelScreen extends Screen {
             case INVENTORY:
                 inventoryScreen.draw(graphicsHandler);
                 break;
+            // case SNOW:
+            //     map = new SnowMap();
+            //     break;
             case SLEEPING:
                 if(i == 0){
                     keyLocker.lockKey(Key.E);
@@ -342,7 +407,7 @@ public class PlayLevelScreen extends Screen {
                     if(alphaLevel > 255){
                         alphaLevel = 255;
                     }
-                    map.draw(player, graphicsHandler);
+                    currMap.draw(player, graphicsHandler);
                     coinCounter.draw(graphicsHandler);
                     //quest1.draw(graphicsHandler);
                     // health bar
@@ -389,13 +454,17 @@ public class PlayLevelScreen extends Screen {
         flagManager.unsetFlag("isSleeping");
     }
 
-    public void setFightScreen(String enemySprite){
-        fightScreen = new FightScreen(this, player, enemySprite);
+    public void setFightScreen(Enemy enemy){
+        fightScreen = new FightScreen(this, player, enemy);
+    }
+
+    public Enemy getCurrentEnemy(){
+        return this.currentEnemy;
     }
 
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING,INVENTORY
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING, INVENTORY, FAIL
     }
 }

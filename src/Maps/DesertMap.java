@@ -1,15 +1,15 @@
 package Maps;
 
 import Level.*;
-import Tilesets.GrassTileset;
+import Tilesets.DesertTileset;
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
-public class AutumnMap extends Map {
+public class DesertMap extends Map {
 
-    public AutumnMap() {
-        super("autumn_map.txt", new GrassTileset());
-        // this.playerStartPosition = getMapTile(5, 5).getLocation();
+    public DesertMap() {
+        super("desert_map.txt", new DesertTileset());
+        this.playerStartPosition = getMapTile(5, 5).getLocation();
         // Portal is at x:2, y:15
     }
 
