@@ -56,36 +56,36 @@ public class MuggedWoman extends NPC {
         return new HashMap<String, Frame[]>() {{
             put("STAND_LEFT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0))
-                    .withScale(3)
+                    .withScale(2)
                     .withBounds(3, 5, 18, 20)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                     .build()
             });
             put("STAND_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0))
-                    .withScale(3)
+                    .withScale(2)
                     .withBounds(3, 5, 18, 20)
                     .build()
            });
            put("WALK_LEFT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 20)
-                        .withScale(3)
+                        .withScale(2)
                         .withBounds(3, 5, 18, 20)
                         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 20)
-                        .withScale(3)
+                        .withScale(2)
                         .withBounds(3, 5, 18, 20)
                         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                         .build()
             });
             put("WALK_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0,1), 20)
-                        .withScale(3)
+                        .withScale(2)
                         .withBounds(3, 5, 18, 20)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 20)
-                        .withScale(3)
+                        .withScale(2)
                         .withBounds(3, 5, 18, 20)
                         .build()
             });

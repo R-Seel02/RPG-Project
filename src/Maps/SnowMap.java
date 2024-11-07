@@ -48,8 +48,8 @@ public class SnowMap extends Map {
         Snowman snowman = new Snowman(2, getMapTile(8, 2).getLocation().subtractY(40));
         snowman.setInteractScript(new SnowmanScript());
         npcs.add(snowman);
-        
-        Fish fish = new Fish(3, getMapTile(12, 2).getLocation().subtractY(40));
+
+        Fish fish = new Fish(3, getMapTile(12, 12).getLocation().subtractY(40));
         fish.setInteractScript(new FishScript());
         npcs.add(fish);
 

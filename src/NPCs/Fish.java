@@ -57,7 +57,7 @@ public class Fish extends NPC {
             put("STAND_LEFT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(1, 1))
                     .withScale(3)
-                    .withBounds(3, 5, 18, 20)
+                    .withBounds(3, 5, 18, 30)
                     
                     .build()
             });

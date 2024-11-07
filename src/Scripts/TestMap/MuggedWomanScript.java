@@ -127,7 +127,7 @@ public class MuggedWomanScript extends Script {
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("Ahh! you found it! you're such a splendid\nyoung adventurer."));
                     addScriptAction(new TextboxScriptAction("Have these coins as a reward.\nsorry its so little for what you did."));
-
+                    addScriptAction(new AddCoin("hasQuestMuggedWoman",20));
                  }});
                  addScriptAction(new ChangeFlagScriptAction("hasCompletedQuestMuggedWoman", true));
                  addScriptAction(new ChangeFlagScriptAction("hasQuest", false));

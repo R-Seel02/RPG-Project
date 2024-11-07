@@ -45,6 +45,12 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont questWoman;
     protected SpriteFont questOldGuy;
     protected SpriteFont questSnowman;
+    protected SpriteFont questPlagueDoctorCauldron;
+    protected SpriteFont questPlagueDoctorFrog;
+    protected SpriteFont questPlagueDoctorPurpleFlower;
+    protected SpriteFont questPlagueDoctorEyeball;
+    protected SpriteFont questPlagueDoctorVial;
+    protected SpriteFont questMuggedWoman;
 
     //combat stuff
     protected Enemy currentEnemy;
@@ -113,6 +119,11 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasVial", false);
         flagManager.addFlag("hasEyeball", false);
         flagManager.addFlag("hasCauldron", false);
+        flagManager.addFlag("textFrog", false);
+        flagManager.addFlag("textPurpleFlower", false);
+        flagManager.addFlag("textVial", false);
+        flagManager.addFlag("textEyeball", false);
+        flagManager.addFlag("textCauldron", false);
 
         flagManager.addFlag("hasQuestMuggedWoman", false);
         flagManager.addFlag("hasCompletedQuestMuggedWoman", false);
@@ -204,6 +215,26 @@ public class PlayLevelScreen extends Screen {
         questSnowman = new SpriteFont("Find the coal for the snowman.", 950, 75, "Arial", 0, Color.white);
         questSnowman.setOutlineColor(Color.black);
         questSnowman.setOutlineThickness(3);
+
+        questPlagueDoctorCauldron = new SpriteFont("Find the Cauldron for the plague doctor.", 825, 75, "Arial", 0, Color.white);
+        questPlagueDoctorCauldron.setOutlineColor(Color.black);
+        questPlagueDoctorCauldron.setOutlineThickness(3);
+        questPlagueDoctorFrog = new SpriteFont("Find the Frog for the plague doctor.", 875, 75, "Arial", 0, Color.white);
+        questPlagueDoctorFrog.setOutlineColor(Color.black);
+        questPlagueDoctorFrog.setOutlineThickness(3);
+        questPlagueDoctorPurpleFlower = new SpriteFont("Find the Purple Flower for the plague doctor.", 775, 75, "Arial", 0, Color.white);
+        questPlagueDoctorPurpleFlower.setOutlineColor(Color.black);
+        questPlagueDoctorPurpleFlower.setOutlineThickness(3);
+        questPlagueDoctorEyeball = new SpriteFont("Find the Eyeball for the plague doctor.", 870, 75, "Arial", 0, Color.white);
+        questPlagueDoctorEyeball.setOutlineColor(Color.black);
+        questPlagueDoctorEyeball.setOutlineThickness(3);
+        questPlagueDoctorVial = new SpriteFont("Find the Vial for the plague doctor.", 875, 75, "Arial", 0, Color.white);
+        questPlagueDoctorVial.setOutlineColor(Color.black);
+        questPlagueDoctorVial.setOutlineThickness(3);
+
+        questMuggedWoman = new SpriteFont("Find the womans purse.", 1025, 75, "Arial", 0, Color.white);
+        questMuggedWoman.setOutlineColor(Color.black);
+        questMuggedWoman.setOutlineThickness(3);
 
         // set up coin counter text
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
@@ -337,7 +368,49 @@ public class PlayLevelScreen extends Screen {
         if (currMap.getFlagManager().isFlagSet("hasCompletedQuestSnowman")) {
             questSnowman.setFontSize(0);
         }
+        if (currMap.getFlagManager().isFlagSet("hasQuestMuggedWoman")) {
+            questMuggedWoman.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestMuggedWoman")) {
+            questMuggedWoman.setFontSize(0);
+        }
         
+
+        //plague doc stuff
+        if (currMap.getFlagManager().isFlagSet("hasQuestPlagueDoctor")) {
+            questPlagueDoctorCauldron.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("textCauldron")) {
+            questPlagueDoctorCauldron.setFontSize(0);
+        }
+        if (currMap.getFlagManager().isFlagSet("textCauldron")) {
+            questPlagueDoctorFrog.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("textFrog")) {
+            questPlagueDoctorFrog.setFontSize(0);
+        }
+        if (currMap.getFlagManager().isFlagSet("textFrog")) {
+            questPlagueDoctorPurpleFlower.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("textPurpleFlower")) {
+            questPlagueDoctorPurpleFlower.setFontSize(0);
+        }
+        if (currMap.getFlagManager().isFlagSet("textPurpleFlower")) {
+            questPlagueDoctorVial.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("textVial")) {
+            questPlagueDoctorVial.setFontSize(0);
+        }
+        if (currMap.getFlagManager().isFlagSet("textVial")) {
+            questPlagueDoctorEyeball.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("textEyeball")) {
+            questPlagueDoctorEyeball.setFontSize(0);
+        }
+
+
+
+
         if (currMap.getFlagManager().isFlagSet("InInventory")) {
             playLevelScreenState = PlayLevelScreenState.INVENTORY;
         }
@@ -393,6 +466,15 @@ public class PlayLevelScreen extends Screen {
                 questWoman.draw(graphicsHandler);
                 questOldGuy.draw(graphicsHandler);
                 questSnowman.draw(graphicsHandler);
+                questMuggedWoman.draw(graphicsHandler);
+
+                //plague doc stuff
+                questPlagueDoctorCauldron.draw(graphicsHandler);
+                questPlagueDoctorFrog.draw(graphicsHandler);
+                questPlagueDoctorPurpleFlower.draw(graphicsHandler);
+                questPlagueDoctorVial.draw(graphicsHandler);
+                questPlagueDoctorEyeball.draw(graphicsHandler);
+
                 // health bar
                 graphicsHandler.drawFilledRectangleWithBorder(25, 25, player.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
                 graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));

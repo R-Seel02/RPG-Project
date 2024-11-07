@@ -24,14 +24,14 @@ public class QuestWoman extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(2)
-                            .withBounds(7, 13, 11, 7)
+                            .withBounds(7, 13, 20, 20)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(2)
-                           .withBounds(7, 13, 11, 7)
+                           .withBounds(7, 13, 20, 20)
                            .build()
            });
         }};

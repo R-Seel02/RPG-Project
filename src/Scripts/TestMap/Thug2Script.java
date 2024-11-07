@@ -21,25 +21,7 @@ public class Thug2Script extends Script {
         scriptActions.add(new ConditionalScriptAction());
         
 
-        scriptActions.add(new ConditionalScriptAction() {{
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuestMuggedWoman", true));
-                addRequirement(new FlagRequirement("hasCompletedQuestMuggedWoman", false));
-                addRequirement(new FlagRequirement("hasPurse", false));
-               
-
-
-                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("Sorry bro I don't have the purse,\n I'm just in their gang cuz I thought they were cool."));
-
-                addScriptAction(new TextboxScriptAction("*The thug shows you he doesn't have the purse\nthen walks away*"));
-
-                 }});
-                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
-                 addScriptAction(new ChangeFlagScriptAction("hasFoughtThug2", true));
-            }});
-
-        }});
+        
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
@@ -63,6 +45,26 @@ public class Thug2Script extends Script {
 
         }});
 
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasQuestMuggedWoman", true));
+                addRequirement(new FlagRequirement("hasCompletedQuestMuggedWoman", false));
+                addRequirement(new FlagRequirement("hasPurse", false));
+                addRequirement(new FlagRequirement("hasFoughtThug2", false));
+               
+
+
+                 addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new TextboxScriptAction("Sorry bro I don't have the purse,\n I'm just in their gang cuz I thought they were cool."));
+
+                addScriptAction(new TextboxScriptAction("*The thug shows you he doesn't have the purse\nthen walks away*"));
+
+                 }});
+                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
+                 addScriptAction(new ChangeFlagScriptAction("hasFoughtThug2", true));
+            }});
+
+        }});
         // scriptActions.add(new ConditionalScriptAction() {{
         //     addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
         //         addRequirement(new FlagRequirement("hasCompletedQuest1", true));

@@ -70,7 +70,7 @@ public class PlagueDoctorScript extends Script {
                     addText("My potion would falter without it.");
                     addText("Be on your way.");
                  }});
-                
+                 addScriptAction(new ChangeFlagScriptAction("textCauldron", true));
             }});
 
         }});
@@ -92,7 +92,7 @@ public class PlagueDoctorScript extends Script {
                     addScriptAction(new TextboxScriptAction("I now require a Purple flower!"));
                     addScriptAction(new TextboxScriptAction("The stench of my masterpiece would be deplorable\n without it."));
                  }});
-                
+                 addScriptAction(new ChangeFlagScriptAction("textFrog", true));
             }});
 
         }});
@@ -114,7 +114,7 @@ public class PlagueDoctorScript extends Script {
                     addScriptAction(new TextboxScriptAction("Find me a vial now."));
                     addScriptAction(new TextboxScriptAction("We need something to store it in of course!"));
                  }});
-                
+                 addScriptAction(new ChangeFlagScriptAction("textPurpleFlower", true));
             }});
 
         }});
@@ -137,7 +137,7 @@ public class PlagueDoctorScript extends Script {
                     addScriptAction(new TextboxScriptAction("Collect the living Eyeball of the forest for me."));
                     addScriptAction(new TextboxScriptAction("It should prove quite the challenge but I \ntrust your resilience"));
                  }});
-                
+                 addScriptAction(new ChangeFlagScriptAction("textVial", true));
             }});
 
         }});
@@ -227,6 +227,7 @@ public class PlagueDoctorScript extends Script {
                  }});
                  addScriptAction(new ChangeFlagScriptAction("hasCompletedQuestPlagueDoctor", true));
                  addScriptAction(new ChangeFlagScriptAction("hasQuest", false));
+                 addScriptAction(new ChangeFlagScriptAction("textEyeball", true));
             }});
 
         }});

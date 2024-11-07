@@ -22,30 +22,7 @@ public class Thug3Script extends Script {
         scriptActions.add(new ConditionalScriptAction());
         
 
-        scriptActions.add(new ConditionalScriptAction() {{
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasQuestMuggedWoman", true));
-                addRequirement(new FlagRequirement("hasCompletedQuestMuggedWoman", false));
-                addRequirement(new FlagRequirement("hasPurse", false));
-               
-
-
-                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("FIGHT ME!"));
-
-                    scriptActions.add(new StartFightScriptAction(new Enemy("Thug", 100, 5, 2, "Thug3.png")));
-
-                scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
-
-                addScriptAction(new TextboxScriptAction("NOT FAIR."));
-                addScriptAction(new TextboxScriptAction("*The thug angrily stomps away*"));
-
-                 }});
-                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
-                 addScriptAction(new ChangeFlagScriptAction("hasFoughtThug3", true));
-            }});
-
-        }});
+        
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
@@ -74,6 +51,32 @@ public class Thug3Script extends Script {
                  addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
                  addScriptAction(new ChangeFlagScriptAction("hasFoughtThug3", true));
                  addScriptAction(new ChangeFlagScriptAction("hasFoughtAllThugs", true));
+            }});
+
+        }});
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasQuestMuggedWoman", true));
+                addRequirement(new FlagRequirement("hasCompletedQuestMuggedWoman", false));
+                addRequirement(new FlagRequirement("hasPurse", false));
+                addRequirement(new FlagRequirement("hasFoughtThug3", false));
+               
+
+
+                 addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new TextboxScriptAction("FIGHT ME!"));
+
+                    scriptActions.add(new StartFightScriptAction(new Enemy("Thug", 100, 5, 2, "Thug3.png")));
+
+                scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
+
+                addScriptAction(new TextboxScriptAction("NOT FAIR."));
+                addScriptAction(new TextboxScriptAction("*The thug angrily stomps away*"));
+
+                 }});
+                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
+                 addScriptAction(new ChangeFlagScriptAction("hasFoughtThug3", true));
             }});
 
         }});
