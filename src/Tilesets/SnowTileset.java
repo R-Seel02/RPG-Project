@@ -289,6 +289,13 @@ public class SnowTileset extends Tileset {
                 .build();
         MapTileBuilder cabinRearRoofRTile = new MapTileBuilder(snowFrame).withTopLayer(cabinRearRoofRFrame);
         mapTiles.add(cabinRearRoofRTile);
+
+        Frame brokenIceFrame = new FrameBuilder(getSubImage(5, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder brokenIceTile = new MapTileBuilder(brokenIceFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(brokenIceTile);
                 
 
         return mapTiles;
