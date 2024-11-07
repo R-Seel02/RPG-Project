@@ -131,6 +131,8 @@ public class CoalManScript extends Script {
 
                     scriptActions.add(new StartFightScriptAction(new Enemy("CoalMan", 75, 10, 2, "CoalManFight.png", 30, 30)));
                     addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
+                    scriptActions.add(new UnlockPlayerScriptAction());
+                    scriptActions.add(new LockPlayerScriptAction());
                 scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
                 
 
