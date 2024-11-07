@@ -26,7 +26,7 @@ public class SkeletonScript extends Script {
         
         scriptActions.add(new TextboxScriptAction("RAHHHHHHHHHHHH!!!"));
 
-        scriptActions.add(new StartFightScriptAction(new Enemy("Skeleton", 25, 5, 2, "Skeleton.png")));
+        scriptActions.add(new StartFightScriptAction(new Enemy("Skeleton", 25, 5, 2, "Skeleton.png", 24, 24)));
 
         scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
 

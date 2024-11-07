@@ -39,7 +39,7 @@ public class Thug3Script extends Script {
                     addScriptAction(new TextboxScriptAction("ME ATTACK!!"));
 
 
-                    scriptActions.add(new StartFightScriptAction(new Enemy("Thug", 100, 5, 2, "Thug3.png")));
+                    scriptActions.add(new StartFightScriptAction(new Enemy("Thug", 100, 5, 2, "Thug3.png", 30, 30)));
 
                 scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
 
@@ -67,7 +67,7 @@ public class Thug3Script extends Script {
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("FIGHT ME!"));
 
-                    scriptActions.add(new StartFightScriptAction(new Enemy("Thug", 100, 5, 2, "Thug3.png")));
+                    scriptActions.add(new StartFightScriptAction(new Enemy("Thug", 100, 5, 2, "Thug3.png", 30, 30)));
 
                 scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
 

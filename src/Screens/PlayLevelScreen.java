@@ -249,7 +249,7 @@ public class PlayLevelScreen extends Screen {
         sleepMessage.setOutlineThickness(2);
         
         //initialize enemy
-        currentEnemy = new Enemy("default", 1, 1, 1, "error.png");
+        currentEnemy = new Enemy("default", 1, 1, 1, "error.png", 24, 24);
 
         // let pieces of map know which button to listen for as the "interact" button
         currMap.getTextbox().setInteractKey(player.getInteractKey());

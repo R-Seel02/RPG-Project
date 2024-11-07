@@ -43,6 +43,7 @@ public class FightScreen extends Screen {
         this.keyPressTimer = 0;
         this.enemySprite = enemy.getSprite();
         this.background = new FightMap();
+        this.background.setEnemy(enemy);
         this.background.setEnemySprite(enemy.getSprite());
 
         if(playLevelScreen.getCharacterSelection() == 0){
