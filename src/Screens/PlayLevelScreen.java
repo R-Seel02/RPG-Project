@@ -117,13 +117,12 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasOpenedChest2", false);
         flagManager.addFlag("InInventory", false);
 
-        // define/setup map
+        // define/setup map       
         startMap = new StartingMap();
         startMap.setFlagManager(flagManager);
         snowMap = new SnowMap();
         snowMap.setFlagManager(flagManager);
-        currMap = startMap;      
-        
+        currMap = startMap;
         // setup player
         switch(characterChoice){
             case(0):
@@ -185,7 +184,6 @@ public class PlayLevelScreen extends Screen {
         fightScreen = new FightScreen(this, player, currentEnemy);
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
-        // snowScreen = new SnowLevelScreen(this, player);
         failScreen = new FailScreen(this);
 
         // shop screen
@@ -237,6 +235,8 @@ public class PlayLevelScreen extends Screen {
                 break;
             case INVENTORY:
                 inventoryScreen.update();
+                break;
+            case SLEEPING:
                 break;
         }
 
@@ -427,6 +427,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING, INVENTORY, SNOW, FAIL
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING, INVENTORY, FAIL
     }
 }
