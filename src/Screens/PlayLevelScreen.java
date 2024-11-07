@@ -8,6 +8,7 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.ForestMap;
 import Maps.SnowMap;
 import Maps.StartingMap;
 import Players.Assassin;
@@ -21,8 +22,7 @@ import javax.swing.Timer;
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    protected Map startMap;
-    protected Map snowMap;
+    protected Map startMap, snowMap, forestMap;
     protected Map currMap;
     protected Player player, newPlayer;
     protected PlayLevelScreenState playLevelScreenState;
@@ -122,6 +122,8 @@ public class PlayLevelScreen extends Screen {
         startMap.setFlagManager(flagManager);
         snowMap = new SnowMap();
         snowMap.setFlagManager(flagManager);
+        forestMap = new ForestMap();
+        forestMap.setFlagManager(flagManager);
         currMap = startMap;
         // setup player
         switch(characterChoice){
@@ -299,11 +301,20 @@ public class PlayLevelScreen extends Screen {
             currMap = snowMap;
             player.setMap(snowMap);
             snowMap.setPlayer(player);
-            player.setLocation(100,100);
+            player.setLocation(150,100);
             snowMap.getTextbox().setInteractKey(player.getInteractKey());
-            playLevelScreenState = PlayLevelScreenState.RUNNING;
             snowMap.preloadScripts();
             flagManager.unsetFlag("atSnowBiome");
+        }
+
+        if (currMap.getFlagManager().isFlagSet("atForestBiome")) {
+            currMap = forestMap;
+            player.setMap(forestMap);
+            forestMap.setPlayer(player);
+            player.setLocation(150,100);
+            forestMap.getTextbox().setInteractKey(player.getInteractKey());
+            forestMap.preloadScripts();
+            flagManager.unsetFlag("atForestBiome");
         }
 
         if (currMap.getFlagManager().isFlagSet("atStartBiome")) {
@@ -311,10 +322,11 @@ public class PlayLevelScreen extends Screen {
             player.setMap(startMap);
             startMap.setPlayer(player);
             player.setLocation(100,100);
-            playLevelScreenState = PlayLevelScreenState.RUNNING;
             startMap.preloadScripts();
             flagManager.unsetFlag("atStartBiome");
         }
+        
+        
     }
 
     public int getCharacterSelection(){

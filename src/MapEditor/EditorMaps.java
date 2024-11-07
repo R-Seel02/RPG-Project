@@ -3,7 +3,7 @@ package MapEditor;
 import Level.Map;
 import Maps.CaveMap;
 import Maps.DesertMap;
-import Maps.GrassMap;
+import Maps.ForestMap;
 import Maps.SnowMap;
 import Maps.StartingMap;
 import Maps.TitleScreenMap;
@@ -32,7 +32,7 @@ public class EditorMaps {
             case "SnowMap":
                 return new SnowMap();
             case "GrassMap":
-                return new GrassMap();
+                return new ForestMap();
             case "DesertMap":
                 return new DesertMap();
             case "CaveMap":

@@ -38,7 +38,7 @@ public class SnowMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(1025, 780, 10, 80, new WarpStartScript()));
+        triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
         return triggers;
     }
 
