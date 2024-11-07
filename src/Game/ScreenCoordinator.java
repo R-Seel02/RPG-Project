@@ -3,6 +3,7 @@ package Game;
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
+import Screens.CharacterSelectScreen;
 import Screens.CreditsScreen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
@@ -19,6 +20,9 @@ public class ScreenCoordinator extends Screen {
 	protected GameState gameState;
 	protected GameState previousGameState;
 
+	// int for choice of character
+	protected int characterChoice;
+
 	public GameState getGameState() {
 		return gameState;
 	}
@@ -26,6 +30,11 @@ public class ScreenCoordinator extends Screen {
 	// Other Screens can set the gameState of this class to force it to change the currentScreen
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
+	}
+
+	public void setGameState(GameState gameState, int characterChoice) {
+		this.gameState = gameState;
+		this.characterChoice = characterChoice;
 	}
 
 	@Override
@@ -45,11 +54,13 @@ public class ScreenCoordinator extends Screen {
 						currentScreen = new MenuScreen(this);
 						break;
 					case LEVEL:
-						currentScreen = new PlayLevelScreen(this);
+						currentScreen = new PlayLevelScreen(this, characterChoice);
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
 						break;
+					case CHARACTER_SELECT:
+						currentScreen = new CharacterSelectScreen(this);
 				}
 				currentScreen.initialize();
 			}
