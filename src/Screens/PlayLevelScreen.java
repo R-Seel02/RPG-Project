@@ -63,6 +63,7 @@ public class PlayLevelScreen extends Screen {
         // setup state
         flagManager = new FlagManager();
         flagManager.addFlag("atSnowBiome", false);
+        flagManager.addFlag("atStartBiome", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         // flagManager.addFlag("hasFoundBall", false);
@@ -277,12 +278,16 @@ public class PlayLevelScreen extends Screen {
             snowMap.preloadScripts();
             flagManager.unsetFlag("atSnowBiome");
         }
-        
-        
-        // if (map.getFlagManager().isFlagSet("")) {
 
-        // }
-
+        if (currMap.getFlagManager().isFlagSet("atStartBiome")) {
+            currMap = startMap;
+            player.setMap(startMap);
+            startMap.setPlayer(player);
+            player.setLocation(100,100);
+            playLevelScreenState = PlayLevelScreenState.RUNNING;
+            startMap.preloadScripts();
+            flagManager.unsetFlag("atStartBiome");
+        }
     }
 
 
@@ -390,6 +395,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING,INVENTORY, SNOW
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING,INVENTORY
     }
 }
