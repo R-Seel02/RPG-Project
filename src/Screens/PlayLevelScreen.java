@@ -180,13 +180,13 @@ public class PlayLevelScreen extends Screen {
         // setup player
         switch(characterChoice){
             case(0):
-                player = new Assassin(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
+                player = new Assassin(800, 860);
                 break;
             case(1):
-                player = new Knight(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
+                player = new Knight(800, 860);
                 break;
             case(2):
-                player = new Mage(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
+                player = new Mage(800, 860);
                 break;
             
         }
@@ -263,15 +263,6 @@ public class PlayLevelScreen extends Screen {
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
         failScreen = new FailScreen(this);
-
-        // shop screen
-
-        // quest stuff
-        // quest1 = new SpriteFont("Retrieve the axe", 800, 75, "Arial", 30,
-        // Color.white);
-        // quest1.setOutlineColor(Color.black);
-        // quest1.setOutlineThickness(3);
-
     }
 
     public void update() {
@@ -445,7 +436,7 @@ public class PlayLevelScreen extends Screen {
             currMap = startMap;
             player.setMap(startMap);
             startMap.setPlayer(player);
-            player.setLocation(100,100);
+            player.setLocation(800,860);
             startMap.preloadScripts();
             flagManager.unsetFlag("atStartBiome");
         }

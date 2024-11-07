@@ -72,9 +72,8 @@ public class SnowTileset extends Tileset {
 
         mapTiles.add(snowBorderTTile);
 
-        Frame snowBorderBFrame = new FrameBuilder(getSubImage(0,3))
+        Frame snowBorderBFrame = new FrameBuilder(getSubImage(2,0))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_VERTICAL)
                 .build();
 
         MapTileBuilder snowBorderBTile = new MapTileBuilder(snowBorderBFrame)
@@ -91,9 +90,8 @@ public class SnowTileset extends Tileset {
 
         mapTiles.add(snowBorderRTile);
 
-        Frame snowBorderLFrame = new FrameBuilder(getSubImage(0,4))
+        Frame snowBorderLFrame = new FrameBuilder(getSubImage(2,1))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
         MapTileBuilder snowBorderLTile = new MapTileBuilder(snowBorderLFrame)
@@ -110,9 +108,8 @@ public class SnowTileset extends Tileset {
 
         mapTiles.add(snowBorderTRTile);
 
-        Frame snowBorderTLFrame = new FrameBuilder(getSubImage(1,0))
+        Frame snowBorderTLFrame = new FrameBuilder(getSubImage(2,2))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
         MapTileBuilder snowBorderTLTile = new MapTileBuilder(snowBorderTLFrame)
@@ -129,9 +126,8 @@ public class SnowTileset extends Tileset {
 
         mapTiles.add(snowBorderBRTile);
 
-        Frame snowBorderBLFrame = new FrameBuilder(getSubImage(1,1))
+        Frame snowBorderBLFrame = new FrameBuilder(getSubImage(2,4))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
         MapTileBuilder snowBorderBLTile = new MapTileBuilder(snowBorderBLFrame)
@@ -164,31 +160,137 @@ public class SnowTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(icePondBLTile);
 
-        Frame icePondBRFrame = new FrameBuilder(getSubImage(1, 4))
+        Frame icePondBRFrame = new FrameBuilder(getSubImage(3, 1))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
         MapTileBuilder icePondBRTile = new MapTileBuilder(icePondBRFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(icePondBRTile);
 
-        Frame icePondTLFrame = new FrameBuilder(getSubImage(1, 4))
+        Frame icePondTLFrame = new FrameBuilder(getSubImage(2, 3))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_VERTICAL)
                 .build();
         MapTileBuilder icePondTLTile = new MapTileBuilder(icePondTLFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(icePondTLTile);
 
-        Frame icePondTRFrame = new FrameBuilder(getSubImage(1, 4))
+        Frame icePondTRFrame = new FrameBuilder(getSubImage(3, 0))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_H_AND_V)
                 .build();
         MapTileBuilder icePondTRTile = new MapTileBuilder(icePondTRFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(icePondTRTile);
 
-        
+        // snow cabin tiles
+        Frame cabinWallLFrame = new FrameBuilder(getSubImage(3, 2))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cabinWallLTile = new MapTileBuilder(cabinWallLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinWallLTile);
+
+        Frame cabinWallRFrame = new FrameBuilder(getSubImage(3, 2))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder cabinWallRTile = new MapTileBuilder(cabinWallRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinWallRTile);
+
+        Frame cabinWindowFrame = new FrameBuilder(getSubImage(3, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cabinWindowTile = new MapTileBuilder(cabinWindowFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinWindowTile);
+
+        Frame cabinDoorFrame = new FrameBuilder(getSubImage(3, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cabinDoorTile = new MapTileBuilder(cabinDoorFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinDoorTile);
+
+        Frame cabinRoofAngleLFrame = new FrameBuilder(getSubImage(4, 0))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cabinRoofAngleLTile = new MapTileBuilder(cabinRoofAngleLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinRoofAngleLTile);
+
+        Frame cabinRoofAngleRFrame = new FrameBuilder(getSubImage(4, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder cabinRoofAngleRTile = new MapTileBuilder(cabinRoofAngleRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinRoofAngleRTile);
+
+        Frame cabinRoofLFrame = new FrameBuilder(getSubImage(4, 1))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cabinRoofLTile = new MapTileBuilder(cabinRoofLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinRoofLTile);
+
+        Frame cabinRoofRFrame = new FrameBuilder(getSubImage(4, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder cabinRoofRTile = new MapTileBuilder(cabinRoofRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinRoofRTile);
+
+        Frame cabinWallFrame = new FrameBuilder(getSubImage(4, 2))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cabinWallTile = new MapTileBuilder(cabinWallFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinWallTile);
+
+        Frame combinedRoofLFrame = new FrameBuilder(getSubImage(4, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder combinedRoofLTile = new MapTileBuilder(combinedRoofLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(combinedRoofLTile);
+
+        Frame combinedRoofRFrame = new FrameBuilder(getSubImage(4, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder combinedRoofRTile = new MapTileBuilder(combinedRoofRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(combinedRoofRTile);
+
+        Frame roofWallMiddleFrame = new FrameBuilder(getSubImage(4, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder roofWallMiddleTile = new MapTileBuilder(roofWallMiddleFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(roofWallMiddleTile);
+
+        Frame cabinRoofMFrame = new FrameBuilder(getSubImage(5, 0))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cabinRoofMTile = new MapTileBuilder(cabinRoofMFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cabinRoofMTile);
+
+        Frame cabinRearRoofLFrame = new FrameBuilder(getSubImage(5, 2))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cabinRearRoofLTile = new MapTileBuilder(snowFrame).withTopLayer(cabinRearRoofLFrame);
+        mapTiles.add(cabinRearRoofLTile);
+
+        Frame cabinRearRoofRFrame = new FrameBuilder(getSubImage(5, 2))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder cabinRearRoofRTile = new MapTileBuilder(snowFrame).withTopLayer(cabinRearRoofRFrame);
+        mapTiles.add(cabinRearRoofRTile);
+                
+
         return mapTiles;
     }
 }

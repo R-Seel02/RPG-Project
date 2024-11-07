@@ -52,7 +52,9 @@ public class WarpStartScript extends Script {
                 });
                 addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("You walk away from the familiar portal."));
-                 }});
+                }});
+                scriptActions.add(new UnlockPlayerScriptAction());
+                addScriptAction(new WaitScriptAction(60));
             }});
 
         }});

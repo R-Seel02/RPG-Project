@@ -375,8 +375,8 @@ public abstract class Player extends GameObject {
     
     public void heal(int healValue){
         this.health += healValue;
-        if(health >= 100){
-            health = 100;
+        if(health >= maxHealth){
+            health = maxHealth;
         }
         if(this.isDead){
             this.isDead = false;
