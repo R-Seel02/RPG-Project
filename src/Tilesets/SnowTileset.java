@@ -55,7 +55,7 @@ public class SnowTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder icePuddleTile = new MapTileBuilder(iceBorderFrame).withTopLayer(icePuddleFrame)
+        MapTileBuilder icePuddleTile = new MapTileBuilder(icePuddleFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(icePuddleTile);
@@ -67,7 +67,7 @@ public class SnowTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder snowBorderTTile = new MapTileBuilder(iceBorderFrame).withTopLayer(snowBorderTFrame)
+        MapTileBuilder snowBorderTTile = new MapTileBuilder(snowBorderTFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(snowBorderTTile);
@@ -77,7 +77,7 @@ public class SnowTileset extends Tileset {
                 .withImageEffect(ImageEffect.FLIP_VERTICAL)
                 .build();
 
-        MapTileBuilder snowBorderBTile = new MapTileBuilder(iceBorderFrame).withTopLayer(snowBorderBFrame)
+        MapTileBuilder snowBorderBTile = new MapTileBuilder(snowBorderBFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(snowBorderBTile);
@@ -86,7 +86,7 @@ public class SnowTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder snowBorderRTile = new MapTileBuilder(iceBorderFrame).withTopLayer(snowBorderRFrame)
+        MapTileBuilder snowBorderRTile = new MapTileBuilder(snowBorderRFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(snowBorderRTile);
@@ -96,7 +96,7 @@ public class SnowTileset extends Tileset {
                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
-        MapTileBuilder snowBorderLTile = new MapTileBuilder(iceBorderFrame).withTopLayer(snowBorderLFrame)
+        MapTileBuilder snowBorderLTile = new MapTileBuilder(snowBorderLFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(snowBorderLTile);
@@ -105,7 +105,7 @@ public class SnowTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder snowBorderTRTile = new MapTileBuilder(iceBorderFrame).withTopLayer(snowBorderTRFrame)
+        MapTileBuilder snowBorderTRTile = new MapTileBuilder(snowBorderTRFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(snowBorderTRTile);
@@ -115,7 +115,7 @@ public class SnowTileset extends Tileset {
                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
-        MapTileBuilder snowBorderTLTile = new MapTileBuilder(iceBorderFrame).withTopLayer(snowBorderTLFrame)
+        MapTileBuilder snowBorderTLTile = new MapTileBuilder(snowBorderTLFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(snowBorderTLTile);
@@ -124,7 +124,7 @@ public class SnowTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder snowBorderBRTile = new MapTileBuilder(iceBorderFrame).withTopLayer(snowBorderBRFrame)
+        MapTileBuilder snowBorderBRTile = new MapTileBuilder(snowBorderBRFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(snowBorderBRTile);
@@ -134,7 +134,7 @@ public class SnowTileset extends Tileset {
                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
-        MapTileBuilder snowBorderBLTile = new MapTileBuilder(iceBorderFrame).withTopLayer(snowBorderBLFrame)
+        MapTileBuilder snowBorderBLTile = new MapTileBuilder(snowBorderBLFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(snowBorderBLTile);
@@ -160,7 +160,7 @@ public class SnowTileset extends Tileset {
         Frame icePondBLFrame = new FrameBuilder(getSubImage(1, 4))
                 .withScale(tileScale)
                 .build();
-        MapTileBuilder icePondBLTile = new MapTileBuilder(iceBorderFrame).withTopLayer(icePondBLFrame)
+        MapTileBuilder icePondBLTile = new MapTileBuilder(icePondBLFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(icePondBLTile);
 
@@ -168,7 +168,7 @@ public class SnowTileset extends Tileset {
                 .withScale(tileScale)
                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
-        MapTileBuilder icePondBRTile = new MapTileBuilder(iceBorderFrame).withTopLayer(icePondBRFrame)
+        MapTileBuilder icePondBRTile = new MapTileBuilder(icePondBRFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(icePondBRTile);
 
@@ -176,7 +176,7 @@ public class SnowTileset extends Tileset {
                 .withScale(tileScale)
                 .withImageEffect(ImageEffect.FLIP_VERTICAL)
                 .build();
-        MapTileBuilder icePondTLTile = new MapTileBuilder(iceBorderFrame).withTopLayer(icePondTLFrame)
+        MapTileBuilder icePondTLTile = new MapTileBuilder(icePondTLFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(icePondTLTile);
 
@@ -184,7 +184,7 @@ public class SnowTileset extends Tileset {
                 .withScale(tileScale)
                 .withImageEffect(ImageEffect.FLIP_H_AND_V)
                 .build();
-        MapTileBuilder icePondTRTile = new MapTileBuilder(iceBorderFrame).withTopLayer(icePondTRFrame)
+        MapTileBuilder icePondTRTile = new MapTileBuilder(icePondTRFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(icePondTRTile);
 
