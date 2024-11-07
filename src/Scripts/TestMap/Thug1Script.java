@@ -2,6 +2,7 @@ package Scripts.TestMap;
 
 import java.util.ArrayList;
 
+import Level.Enemy;
 import Level.Script;
 import ScriptActions.*;
 import Utils.Visibility;
@@ -32,7 +33,7 @@ public class Thug1Script extends Script {
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("So you want that purse back\nWell lets brawl for it!"));
 
-                    scriptActions.add(new StartFightScriptAction("Skeleton.png"));
+                    scriptActions.add(new StartFightScriptAction(new Enemy("Thug", 75, 7, 2, "Thug1.png")));
 
                 scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
 
@@ -61,7 +62,7 @@ public class Thug1Script extends Script {
                     addScriptAction(new TextboxScriptAction("So you beat my two bros? \n hmph, they're not real brawling champs anyways."));
                     addScriptAction(new TextboxScriptAction("Let me show you how a reeaalll pro fights."));
 
-                    scriptActions.add(new StartFightScriptAction("Skeleton.png"));
+                    scriptActions.add(new StartFightScriptAction(new Enemy("Thug", 75, 7, 2, "Thug1.png")));
 
                 scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
 

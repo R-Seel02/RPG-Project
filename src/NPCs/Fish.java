@@ -19,7 +19,7 @@ public class Fish extends NPC {
     //private float speed = 1;
     
     public Fish(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Fish.png"), 20, 22), "STAND_RIGHT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Fish.png"), 20, 22), "STAND_LEFT");
     }
 
     // this code makes the bug npc walk back and forth (left to right)
@@ -58,25 +58,26 @@ public class Fish extends NPC {
                 new FrameBuilder(spriteSheet.getSprite(1, 1))
                     .withScale(3)
                     .withBounds(3, 5, 18, 20)
-                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    
                     .build()
             });
             put("STAND_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0))
                     .withScale(3)
                     .withBounds(3, 5, 18, 20)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                     .build()
            });
            put("WALK_LEFT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 20)
                         .withScale(3)
                         .withBounds(3, 5, 18, 20)
-                        .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                        
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(1, 0), 20)
                         .withScale(3)
                         .withBounds(3, 5, 18, 20)
-                        .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                        
                         .build()
             });
             put("WALK_RIGHT", new Frame[] {

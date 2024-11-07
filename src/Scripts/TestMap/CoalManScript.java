@@ -2,8 +2,10 @@ package Scripts.TestMap;
 
 import java.util.ArrayList;
 
+import Level.Enemy;
 import Level.Script;
 import ScriptActions.*;
+import Utils.Direction;
 
 
 public class CoalManScript extends Script {
@@ -127,9 +129,10 @@ public class CoalManScript extends Script {
                     addScriptAction(new TextboxScriptAction("Hey you there!."));
                     addScriptAction(new TextboxScriptAction("Stop trying to rob me of my coals!"));
 
-                    scriptActions.add(new StartFightScriptAction("Skeleton.png"));
-
+                    scriptActions.add(new StartFightScriptAction(new Enemy("CoalMan", 75, 10, 2, "CoalManFight.png")));
+                    addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
                 scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
+                
 
                 addScriptAction(new TextboxScriptAction("Wow you're strong you really kicked my but there."));
                 addScriptAction(new TextboxScriptAction("Take all the coals you want you deserve them."));

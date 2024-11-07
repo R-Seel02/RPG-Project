@@ -44,6 +44,7 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont questFarmer;
     protected SpriteFont questWoman;
     protected SpriteFont questOldGuy;
+    protected SpriteFont questSnowman;
 
     //combat stuff
     protected Enemy currentEnemy;
@@ -198,6 +199,10 @@ public class PlayLevelScreen extends Screen {
         questOldGuy.setOutlineColor(Color.black);
         questOldGuy.setOutlineThickness(3);
 
+        questSnowman = new SpriteFont("Find the coal for the snowman.", 950, 75, "Arial", 0, Color.white);
+        questSnowman.setOutlineColor(Color.black);
+        questSnowman.setOutlineThickness(3);
+
         // set up coin counter text
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
         coinCounter.setOutlineColor(Color.black);
@@ -324,6 +329,12 @@ public class PlayLevelScreen extends Screen {
         if (currMap.getFlagManager().isFlagSet("hasCompletedQuestOldGuy")) {
             questOldGuy.setFontSize(0);
         }
+        if (currMap.getFlagManager().isFlagSet("hasQuestSnowman")) {
+            questSnowman.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestSnowman")) {
+            questSnowman.setFontSize(0);
+        }
         
         if (currMap.getFlagManager().isFlagSet("InInventory")) {
             playLevelScreenState = PlayLevelScreenState.INVENTORY;
@@ -369,6 +380,7 @@ public class PlayLevelScreen extends Screen {
                 questFarmer.draw(graphicsHandler);
                 questWoman.draw(graphicsHandler);
                 questOldGuy.draw(graphicsHandler);
+                questSnowman.draw(graphicsHandler);
                 // health bar
                 graphicsHandler.drawFilledRectangleWithBorder(25, 25, player.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
                 graphicsHandler.drawFilledRectangle(25, 25, (player.getHealth() * 2), 25, new Color(190, 0, 0));

@@ -19,7 +19,7 @@ public class CoalMan extends NPC {
     //private float speed = 1;
     
     public CoalMan(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("CoalMan.png"), 60, 30), "WALK_RIGHT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("CoalMan.png"), 60, 30), "STAND_LEFT");
     }
 
     // this code makes the bug npc walk back and forth (left to right)
@@ -55,16 +55,17 @@ public class CoalMan extends NPC {
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {{
             put("STAND_LEFT", new Frame[] {
-                new FrameBuilder(spriteSheet.getSprite(1, 1))
+                new FrameBuilder(spriteSheet.getSprite(1, 0))
                     .withScale(3)
-                    .withBounds(3, 5, 18, 20)
+                    .withBounds(30, 5, 18, 20)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                     .build()
             });
             put("STAND_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(1, 1))
                     .withScale(3)
-                    .withBounds(3, 5, 18, 20)
+                    .withBounds(10, 5, 40, 20)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                     .build()
            });
            put("WALK_LEFT", new Frame[] {

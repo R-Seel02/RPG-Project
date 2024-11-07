@@ -36,7 +36,7 @@ public class EyeballScript extends Script {
                     addText("It hisses and then charges at you.");
                 }});
 
-                scriptActions.add(new StartFightScriptAction("Skeleton.png"));
+                scriptActions.add(new StartFightScriptAction(new Enemy("Eyeball", 50, 5, 2, "Eyeball.png")));
 
                 scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Level.Script;
 import ScriptActions.*;
+import Utils.Direction;
 
 
 public class SnowmanScript extends Script {
@@ -29,12 +30,27 @@ public class SnowmanScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasQuest", true));
-                addRequirement(new FlagRequirement("hasQuestSnowMan", false));
+                addRequirement(new FlagRequirement("hasQuestSnowman", false));
 
 
 
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("You already Have a Quest."));
+                 }});
+            }});
+
+        }});
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasQuest", true));
+                addRequirement(new FlagRequirement("hasQuestSnowman", true));
+                addRequirement(new FlagRequirement("hasCoal", false));
+
+
+
+                 addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new TextboxScriptAction("Snowmen can't talk."));
                  }});
             }});
 
@@ -117,11 +133,12 @@ public class SnowmanScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasQuestSnowman", true));
                 addRequirement(new FlagRequirement("hasCompletedQuestSnowman", false));
-                addRequirement(new FlagRequirement("hasCoals", true));
+                addRequirement(new FlagRequirement("hasCoal", true));
                
 
 
                  addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new NPCStandScriptAction(Direction.LEFT));
                     addScriptAction(new TextboxScriptAction("Wow thanks a lot!."));
                     addScriptAction(new TextboxScriptAction("I can look happy again! :)."));
                     addScriptAction(new TextboxScriptAction("The coal theif apologizes to me?"));
@@ -132,6 +149,7 @@ public class SnowmanScript extends Script {
                  }});
                  addScriptAction(new ChangeFlagScriptAction("hasCompletedQuestSnowman", true));
                  addScriptAction(new ChangeFlagScriptAction("hasQuest", false));
+                 addScriptAction(new ChangeFlagScriptAction("hasFireTome", true));
             }});
 
         }});

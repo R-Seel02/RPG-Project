@@ -16,7 +16,7 @@ public class FishScript extends Script {
 
         scriptActions.add(new NPCLockScriptAction());
 
-        scriptActions.add(new NPCFacePlayerScriptAction());
+       // scriptActions.add(new NPCFacePlayerScriptAction());
 
         scriptActions.add(new ConditionalScriptAction());
         
@@ -41,37 +41,10 @@ public class FishScript extends Script {
 
         // }});
 
-        scriptActions.add(new ConditionalScriptAction() {{
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasSavedFish", false));
-                addRequirement(new FlagRequirement("hasFireTome ", false));
-                addRequirement(new FlagRequirement("hasFishBlessing", false));
-                addRequirement(new FlagRequirement("hasTalkedToFish", false));
-
-                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("Theres a fish stuck under this ice..."));
-                    addScriptAction(new TextboxScriptAction("If only I had something that could get \nrid of the ice."));
-                 }});
-            }});
-
-        }});
+        
 
 
-        scriptActions.add(new ConditionalScriptAction() {{
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("haFireTome", true));
-                addRequirement(new FlagRequirement("hasSavedFish", false));
-
-                addScriptAction(new WaitScriptAction(30));
-
-                 addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
-                // scriptActions.add(new UnlockPlayerScriptAction());
-                addScriptAction(new NPCWalkScriptAction(Direction.DOWN, 750, 4));
-                addScriptAction(new NPCWalkScriptAction(Direction.LEFT, 670, 4));
-                addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
-            }});
-
-        }});
+        
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
@@ -103,10 +76,11 @@ public class FishScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasSavedFish", true));
+                addRequirement(new FlagRequirement("hasTalkedToFish", false));
 
                  addScriptAction(new TextboxScriptAction() {{
                     //addText("You seem worthy...");
-                    addText("Sorry I can't give you much even though you save me, \nsince im a fish.");
+                    addText("Sorry I can't give you much even though \nyou saved me, since im a fish.");
                     addText("but I can give you a fish blessing.");
                     addText("Accept the fish blessing?", new String[] { "Yes", "No" });
                  }});
@@ -116,6 +90,7 @@ public class FishScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasSavedFish", true));
+                addRequirement(new FlagRequirement("hasTalkedToFish", false));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {
@@ -138,7 +113,8 @@ public class FishScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasSavedFish", false));
+                addRequirement(new FlagRequirement("hasSavedFish", true));
+                addRequirement(new FlagRequirement("hasTalkedToFish", false));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {
@@ -152,6 +128,43 @@ public class FishScript extends Script {
                     addScriptAction(new TextboxScriptAction("Hmph, your loss."));
                  }});
                  addScriptAction(new ChangeFlagScriptAction("hasTalkedToFish", true));
+            }});
+
+        }});
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasFireTome", true));
+                addRequirement(new FlagRequirement("hasSavedFish", false));
+
+                addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new TextboxScriptAction("*You use the fire tome to melt the ice*"));
+                 }});
+
+                addScriptAction(new WaitScriptAction(30));
+
+                 addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
+                // scriptActions.add(new UnlockPlayerScriptAction());
+                
+                addScriptAction(new NPCWalkScriptAction(Direction.RIGHT, 300, 4));
+                addScriptAction(new NPCStandScriptAction(Direction.RIGHT));
+                addScriptAction(new ChangeFlagScriptAction("hasSavedFish", true));
+            }});
+            
+
+        }});
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasSavedFish", false));
+                addRequirement(new FlagRequirement("hasFireTome ", false));
+                addRequirement(new FlagRequirement("hasFishBlessing", false));
+                addRequirement(new FlagRequirement("hasTalkedToFish", false));
+
+                 addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new TextboxScriptAction("Theres a fish stuck under this ice..."));
+                    addScriptAction(new TextboxScriptAction("If only I had something that could get \nrid of the ice."));
+                 }});
             }});
 
         }});
