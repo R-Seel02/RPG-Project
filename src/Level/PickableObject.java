@@ -7,7 +7,7 @@ import GameObject.SpriteSheet;
 // import PickableObjects.ItemAxe;
 import Utils.Point;
 
- 
+
 
 
 public class PickableObject extends MapEntity {
@@ -26,9 +26,6 @@ public class PickableObject extends MapEntity {
     }
 
 
-
-
-    
     public void update(Player player){
          
 
