@@ -130,6 +130,70 @@ public class ForestTileset extends Tileset {
         MapTileBuilder portalBTile = new MapTileBuilder(portalBFrame);
         mapTiles.add(portalBTile);
 
+        Frame treeRootFrame = new FrameBuilder(getSubImage(0, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeRootTile = new MapTileBuilder(treeRootFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(treeRootTile);
+
+        Frame treeTrunkFrame = new FrameBuilder(getSubImage(1, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeTrunkTile = new MapTileBuilder(grassFrame).withTopLayer(treeTrunkFrame);
+        mapTiles.add(treeTrunkTile);
+
+        Frame treeLeavesBLeftFrame = new FrameBuilder(getSubImage(2, 0))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeLeavesBLeftTile = new MapTileBuilder(grassFrame).withTopLayer(treeLeavesBLeftFrame);
+        mapTiles.add(treeLeavesBLeftTile);
+
+        Frame treeLeavesBRightFrame = new FrameBuilder(getSubImage(2, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder treeLeavesBRightTile = new MapTileBuilder(grassFrame).withTopLayer(treeLeavesBRightFrame);
+        mapTiles.add(treeLeavesBRightTile);
+
+        Frame treeLeavesTLeftFrame = new FrameBuilder(getSubImage(2, 1))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeLeavesTLeftTile = new MapTileBuilder(grassFrame).withTopLayer(treeLeavesTLeftFrame);
+        mapTiles.add(treeLeavesTLeftTile);
+
+        Frame treeLeavesTRightFrame = new FrameBuilder(getSubImage(2, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder treeLeavesTRightTile = new MapTileBuilder(grassFrame).withTopLayer(treeLeavesTRightFrame);
+        mapTiles.add(treeLeavesTRightTile);
+
+        Frame treeLeavesMFrame = new FrameBuilder(getSubImage(2, 2))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeLeavesMTile = new MapTileBuilder(grassFrame).withTopLayer(treeLeavesMFrame);
+        mapTiles.add(treeLeavesMTile);
+
+        Frame treeTopFrame = new FrameBuilder(getSubImage(2, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeTopTile = new MapTileBuilder(grassFrame).withTopLayer(treeTopFrame);
+        mapTiles.add(treeTopTile);
+
+        Frame treeTopFullFrame = new FrameBuilder(getSubImage(2, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeTopFullTile = new MapTileBuilder(grassFrame).withTopLayer(treeTopFullFrame);
+        mapTiles.add(treeTopFullTile);
+
+        Frame treeFullLeavesFrame = new FrameBuilder(getSubImage(3, 0))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeFullLeavesTile = new MapTileBuilder(grassFrame).withTopLayer(treeFullLeavesFrame);
+        mapTiles.add(treeFullLeavesTile);
+
+
         
         
         return mapTiles;

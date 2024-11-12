@@ -16,7 +16,7 @@ public class EditorMaps {
             add("StartingMap");
             add("TitleScreen");
             add("SnowMap");
-            add("GrassMap");
+            add("ForestMap");
             add("DesertMap");
             add("CaveMap");
             add("FightMap");
@@ -31,7 +31,7 @@ public class EditorMaps {
                 return new TitleScreenMap();
             case "SnowMap":
                 return new SnowMap();
-            case "GrassMap":
+            case "ForestMap":
                 return new ForestMap();
             case "DesertMap":
                 return new DesertMap();
