@@ -152,8 +152,10 @@ public class StartingMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(120, 1010, 10, 80, new WarpSnowScript()));
-        triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
+        triggers.add(new Trigger(120, 490, 10, 80, new WarpSnowScript()));
+        triggers.add(new Trigger(1550, 490, 10, 80, new WarpForestScript()));
+        triggers.add(new Trigger(1550, 1010, 10, 80, new WarpDesertScript()));
+        // triggers.add(new Trigger(120, 1010, 10, 80, new WarpVolcanoScript())); will be added when biome exists
         return triggers;
     }
 

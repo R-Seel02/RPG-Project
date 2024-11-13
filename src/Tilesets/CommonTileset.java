@@ -601,6 +601,19 @@ public class CommonTileset extends Tileset {
         MapTileBuilder forestPortalBTile = new MapTileBuilder(forestPortalBFrame);
         mapTiles.add(forestPortalBTile);
 
+        // desert portal frames
+        Frame desertPortalTFrame = new FrameBuilder(getSubImage(6,8))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder desertPortalTTile = new MapTileBuilder(desertPortalTFrame);
+        mapTiles.add(desertPortalTTile);
+
+        Frame desertPortalBFrame = new FrameBuilder(getSubImage(6,8))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder desertPortalBTile = new MapTileBuilder(desertPortalBFrame);
+        mapTiles.add(desertPortalBTile);
 
 
         return mapTiles;

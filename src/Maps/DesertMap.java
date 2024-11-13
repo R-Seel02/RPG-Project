@@ -1,6 +1,7 @@
 package Maps;
 
 import Level.*;
+import Scripts.TestMap.WarpStartScript;
 import Tilesets.DesertTileset;
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class DesertMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        
+        triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
         return triggers;
     }
 

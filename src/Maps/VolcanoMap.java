@@ -5,10 +5,10 @@ import Tilesets.ForestTileset;
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
-public class CaveMap extends Map {
+public class VolcanoMap extends Map {
 
-    public CaveMap() {
-        super("cave_map.txt", new ForestTileset());
+    public VolcanoMap() {
+        super("volcano_map.txt", new ForestTileset());
         // this.playerStartPosition = getMapTile(5, 5).getLocation();
         // Portal is at x:2, y:15
     }

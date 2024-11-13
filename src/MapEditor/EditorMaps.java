@@ -1,7 +1,7 @@
 package MapEditor;
 
 import Level.Map;
-import Maps.CaveMap;
+import Maps.VolcanoMap;
 import Maps.DesertMap;
 import Maps.ForestMap;
 import Maps.SnowMap;
@@ -18,7 +18,7 @@ public class EditorMaps {
             add("SnowMap");
             add("ForestMap");
             add("DesertMap");
-            add("CaveMap");
+            add("VolcanoMap");
             add("FightMap");
         }};
     }
@@ -35,8 +35,8 @@ public class EditorMaps {
                 return new ForestMap();
             case "DesertMap":
                 return new DesertMap();
-            case "CaveMap":
-                return new CaveMap();
+            case "VolcanoMap":
+                return new VolcanoMap();
             case "FightMap":
                 return new FightMap();
             default:
