@@ -130,6 +130,7 @@ public class ForestTileset extends Tileset {
         MapTileBuilder portalBTile = new MapTileBuilder(portalBFrame);
         mapTiles.add(portalBTile);
 
+        // tree frames
         Frame treeRootFrame = new FrameBuilder(getSubImage(0, 4))
                 .withScale(tileScale)
                 .build();

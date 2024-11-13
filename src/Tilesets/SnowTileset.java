@@ -291,6 +291,70 @@ public class SnowTileset extends Tileset {
         MapTileBuilder brokenIceTile = new MapTileBuilder(brokenIceFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(brokenIceTile);
+
+        // tree frames
+        Frame treeRootFrame = new FrameBuilder(getSubImage(5, 5))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeRootTile = new MapTileBuilder(treeRootFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(treeRootTile);
+
+        Frame treeTrunkFrame = new FrameBuilder(getSubImage(6, 5))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeTrunkTile = new MapTileBuilder(snowFrame).withTopLayer(treeTrunkFrame);
+        mapTiles.add(treeTrunkTile);
+
+        Frame treeLeavesBLeftFrame = new FrameBuilder(getSubImage(0, 5))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeLeavesBLeftTile = new MapTileBuilder(snowFrame).withTopLayer(treeLeavesBLeftFrame);
+        mapTiles.add(treeLeavesBLeftTile);
+
+        Frame treeLeavesBRightFrame = new FrameBuilder(getSubImage(0, 5))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder treeLeavesBRightTile = new MapTileBuilder(snowFrame).withTopLayer(treeLeavesBRightFrame);
+        mapTiles.add(treeLeavesBRightTile);
+
+        Frame treeLeavesTLeftFrame = new FrameBuilder(getSubImage(1, 5))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeLeavesTLeftTile = new MapTileBuilder(snowFrame).withTopLayer(treeLeavesTLeftFrame);
+        mapTiles.add(treeLeavesTLeftTile);
+
+        Frame treeLeavesTRightFrame = new FrameBuilder(getSubImage(1, 5))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder treeLeavesTRightTile = new MapTileBuilder(snowFrame).withTopLayer(treeLeavesTRightFrame);
+        mapTiles.add(treeLeavesTRightTile);
+
+        Frame treeLeavesMFrame = new FrameBuilder(getSubImage(2, 5))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeLeavesMTile = new MapTileBuilder(snowFrame).withTopLayer(treeLeavesMFrame);
+        mapTiles.add(treeLeavesMTile);
+
+        Frame treeTopFrame = new FrameBuilder(getSubImage(3, 5))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeTopTile = new MapTileBuilder(snowFrame).withTopLayer(treeTopFrame);
+        mapTiles.add(treeTopTile);
+
+        Frame treeTopFullFrame = new FrameBuilder(getSubImage(4, 5))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeTopFullTile = new MapTileBuilder(snowFrame).withTopLayer(treeTopFullFrame);
+        mapTiles.add(treeTopFullTile);
+
+        Frame treeFullLeavesFrame = new FrameBuilder(getSubImage(5, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder treeFullLeavesTile = new MapTileBuilder(snowFrame).withTopLayer(treeFullLeavesFrame);
+        mapTiles.add(treeFullLeavesTile);
                 
 
         return mapTiles;
