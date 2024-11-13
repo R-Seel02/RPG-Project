@@ -229,16 +229,14 @@ public class SnowTileset extends Tileset {
         Frame cabinRoofLFrame = new FrameBuilder(getSubImage(4, 1))
                 .withScale(tileScale)
                 .build();
-        MapTileBuilder cabinRoofLTile = new MapTileBuilder(cabinRoofLFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder cabinRoofLTile = new MapTileBuilder(snowFrame).withTopLayer(cabinRoofLFrame);
         mapTiles.add(cabinRoofLTile);
 
         Frame cabinRoofRFrame = new FrameBuilder(getSubImage(4, 1))
                 .withScale(tileScale)
                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
-        MapTileBuilder cabinRoofRTile = new MapTileBuilder(cabinRoofRFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder cabinRoofRTile = new MapTileBuilder(snowFrame).withTopLayer(cabinRoofRFrame);
         mapTiles.add(cabinRoofRTile);
 
         Frame cabinWallFrame = new FrameBuilder(getSubImage(4, 2))
@@ -251,16 +249,14 @@ public class SnowTileset extends Tileset {
         Frame combinedRoofLFrame = new FrameBuilder(getSubImage(4, 3))
                 .withScale(tileScale)
                 .build();
-        MapTileBuilder combinedRoofLTile = new MapTileBuilder(combinedRoofLFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder combinedRoofLTile = new MapTileBuilder(snowFrame).withTopLayer(combinedRoofLFrame);
         mapTiles.add(combinedRoofLTile);
 
         Frame combinedRoofRFrame = new FrameBuilder(getSubImage(4, 3))
                 .withScale(tileScale)
                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
-        MapTileBuilder combinedRoofRTile = new MapTileBuilder(combinedRoofRFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder combinedRoofRTile = new MapTileBuilder(snowFrame).withTopLayer(combinedRoofRFrame);
         mapTiles.add(combinedRoofRTile);
 
         Frame roofWallMiddleFrame = new FrameBuilder(getSubImage(4, 4))
@@ -273,8 +269,7 @@ public class SnowTileset extends Tileset {
         Frame cabinRoofMFrame = new FrameBuilder(getSubImage(5, 0))
                 .withScale(tileScale)
                 .build();
-        MapTileBuilder cabinRoofMTile = new MapTileBuilder(cabinRoofMFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder cabinRoofMTile = new MapTileBuilder(snowFrame).withTopLayer(cabinRoofMFrame);
         mapTiles.add(cabinRoofMTile);
 
         Frame cabinRearRoofLFrame = new FrameBuilder(getSubImage(5, 2))
