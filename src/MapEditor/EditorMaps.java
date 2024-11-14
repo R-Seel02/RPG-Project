@@ -2,6 +2,7 @@ package MapEditor;
 
 import Level.Map;
 import Maps.VolcanoMap;
+import Maps.BossMap;
 import Maps.DesertMap;
 import Maps.ForestMap;
 import Maps.SnowMap;
@@ -20,6 +21,7 @@ public class EditorMaps {
             add("DesertMap");
             add("VolcanoMap");
             add("FightMap");
+            add("BossMap");
         }};
     }
 
@@ -39,6 +41,8 @@ public class EditorMaps {
                 return new VolcanoMap();
             case "FightMap":
                 return new FightMap();
+            case "BossMap":
+                return new BossMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

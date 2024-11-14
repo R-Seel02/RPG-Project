@@ -8,6 +8,7 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.BossMap;
 import Maps.DesertMap;
 import Maps.ForestMap;
 import Maps.SnowMap;
@@ -23,7 +24,7 @@ import javax.swing.Timer;
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    protected Map startMap, snowMap, forestMap, desertMap;
+    protected Map startMap, snowMap, forestMap, desertMap, bossMap;
     protected Map currMap;
     protected Player player, newPlayer;
     protected PlayLevelScreenState playLevelScreenState;
@@ -84,6 +85,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("atStartBiome", false);
         flagManager.addFlag("atForestBiome", false);
         flagManager.addFlag("atDesertBiome", false);
+        flagManager.addFlag("atBossRoom", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         // flagManager.addFlag("hasFoundBall", false);
@@ -180,6 +182,8 @@ public class PlayLevelScreen extends Screen {
         forestMap.setFlagManager(flagManager);
         desertMap = new DesertMap();
         desertMap.setFlagManager(flagManager);
+        bossMap = new BossMap();
+        bossMap.setFlagManager(flagManager);
         currMap = startMap;
         // setup player
         switch(characterChoice){
@@ -444,6 +448,16 @@ public class PlayLevelScreen extends Screen {
             currMap.getTextbox().setInteractKey(player.getInteractKey());
             currMap.preloadScripts();
             flagManager.unsetFlag("atDesertBiome");
+        }
+
+        if (currMap.getFlagManager().isFlagSet("atBossRoom")) {
+            currMap = bossMap;
+            player.setMap(currMap);
+            currMap.setPlayer(player);
+            player.setLocation(660, 580);
+            currMap.getTextbox().setInteractKey(player.getInteractKey());
+            currMap.preloadScripts();
+            flagManager.unsetFlag("atBossRoom");
         }
 
         if (currMap.getFlagManager().isFlagSet("atStartBiome")) {

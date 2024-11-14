@@ -156,6 +156,7 @@ public class StartingMap extends Map {
         triggers.add(new Trigger(1550, 490, 10, 80, new WarpForestScript()));
         triggers.add(new Trigger(1550, 1010, 10, 80, new WarpDesertScript()));
         // triggers.add(new Trigger(120, 1010, 10, 80, new WarpVolcanoScript())); will be added when biome exists
+        triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
         return triggers;
     }
 
