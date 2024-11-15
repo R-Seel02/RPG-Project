@@ -630,6 +630,20 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(grassBorderTile);
 
+        // volcano portal frames
+        Frame volcanoPortalTFrame = new FrameBuilder(getSubImage(6, 7))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder volcanoPortalTTile = new MapTileBuilder(volcanoPortalTFrame);
+        mapTiles.add(volcanoPortalTTile);
+
+        Frame volcanoPortalBFrame = new FrameBuilder(getSubImage(6, 7))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder volcanoPortalBTile = new MapTileBuilder(volcanoPortalBFrame);
+        mapTiles.add(volcanoPortalBTile);
+
         return mapTiles;
     }
 }
