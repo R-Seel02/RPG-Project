@@ -168,6 +168,15 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("InInventory", false);
         flagManager.addFlag("hasStaff", false);
 
+        // bosses
+        flagManager.addFlag("treeBossDefeated", false);
+        flagManager.addFlag("snowmanBossDefeated", false);
+        flagManager.addFlag("cactusBossDefeated", false);
+        flagManager.addFlag("rockBossDefeated", false);
+
+        // enemies
+        flagManager.addFlag("skeletonDefeated", false);
+
 
         // define/setup map       
         startMap = new StartingMap();
@@ -319,10 +328,12 @@ public class PlayLevelScreen extends Screen {
         if (currMap.getFlagManager().isFlagSet("isFighting")) {
             if(!fightScreen.getCurrentEnemy().equals(currMap.getCurrentEnemy())){
                 this.currentEnemy = currMap.getCurrentEnemy();
-                setFightScreen(currentEnemy);
-                System.out.println("set enemy");
+                    setFightScreen(currentEnemy);
+                    System.out.println("set enemy");
             }
+            if(!currentEnemy.isDead()){
             playLevelScreenState = PlayLevelScreenState.FIGHTING;
+            }
         }
         if(currMap.getFlagManager().isFlagSet("playerDied")){
             playLevelScreenState = PlayLevelScreenState.FAIL;

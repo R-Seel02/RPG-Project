@@ -136,7 +136,7 @@ public class QuestOldGuyScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasQuestOldGuy", true));
-                addRequirement(new FlagRequirement("hasFoughtSkeleton", true));
+                addRequirement(new FlagRequirement("skeletonDefeated", true));
                 addRequirement(new FlagRequirement("hasCompletedQuestOldGuy", false));
 
 
