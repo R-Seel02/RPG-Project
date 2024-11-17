@@ -1,7 +1,8 @@
 package MapEditor;
 
 import Level.Map;
-import Maps.CaveMap;
+import Maps.VolcanoMap;
+import Maps.BossMap;
 import Maps.DesertMap;
 import Maps.ForestMap;
 import Maps.SnowMap;
@@ -16,10 +17,11 @@ public class EditorMaps {
             add("StartingMap");
             add("TitleScreen");
             add("SnowMap");
-            add("GrassMap");
+            add("ForestMap");
             add("DesertMap");
-            add("CaveMap");
+            add("VolcanoMap");
             add("FightMap");
+            add("BossMap");
         }};
     }
 
@@ -31,14 +33,16 @@ public class EditorMaps {
                 return new TitleScreenMap();
             case "SnowMap":
                 return new SnowMap();
-            case "GrassMap":
+            case "ForestMap":
                 return new ForestMap();
             case "DesertMap":
                 return new DesertMap();
-            case "CaveMap":
-                return new CaveMap();
+            case "VolcanoMap":
+                return new VolcanoMap();
             case "FightMap":
                 return new FightMap();
+            case "BossMap":
+                return new BossMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

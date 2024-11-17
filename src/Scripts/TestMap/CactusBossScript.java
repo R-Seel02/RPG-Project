@@ -14,9 +14,9 @@ import Utils.Visibility;
 
 // script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
-public class SnowmanBossScript extends Script {
-    protected Enemy snowmanBoss = new Enemy("SnowmanBoss", 150, 5, 2, "EvilSnowmanSprite.png", 100, 100);
-    int npcId = 4;
+public class CactusBossScript extends Script {
+    protected Enemy cactusBoss = new Enemy("CactusBoss", 150, 5, 2, "CactuswardSprite.png", 100, 100);
+    int npcId = 1;
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -27,20 +27,19 @@ public class SnowmanBossScript extends Script {
 
         scriptActions.add(new NPCFacePlayerScriptAction());
 
-        scriptActions.add(new TextboxScriptAction("Nyehehe..."));
-        scriptActions.add(new TextboxScriptAction("If you want my key, you'll have to answer my riddles \nthree..."));
-        scriptActions.add(new TextboxScriptAction("Just kidding! Let's fight!"));
+        scriptActions.add(new TextboxScriptAction("HELLO..."));
+        scriptActions.add(new TextboxScriptAction("I'm a prickly cactus. Let's fight."));
 
-        scriptActions.add(new StartFightScriptAction(snowmanBoss));
+        scriptActions.add(new StartFightScriptAction(cactusBoss));
 
         scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
 
-        scriptActions.add(new IsEnemyDefeatedScript(snowmanBoss, "snowmanBossDefeated"));
+        scriptActions.add(new IsEnemyDefeatedScript(cactusBoss, "cactusBossDefeated"));
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("snowmanBossDefeated", true));
-                scriptActions.add(new TextboxScriptAction("So this is what melting feels like..."));
+                addRequirement(new FlagRequirement("cactusBossDefeated", true));
+                scriptActions.add(new TextboxScriptAction("Ow, man."));
                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
             }});
         }});

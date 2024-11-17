@@ -141,9 +141,7 @@ public class StartingMap extends Map {
         chest2.setInteractScript(new Chest2Script());
         npcs.add(chest2);
 
-        TreeBoss treeBoss = new TreeBoss(21, getMapTile(20, 20).getLocation());
-        treeBoss.setInteractScript(new TreeBossScript());
-        npcs.add(treeBoss);
+        
 
         // Portal portal = new Portal(50, getMapTile(2, 15).getLocation().subtractY(40));
         // portal.setInteractScript(new PortalScript());
@@ -157,8 +155,11 @@ public class StartingMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(120, 1010, 10, 80, new WarpSnowScript()));
-        triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
+        triggers.add(new Trigger(120, 490, 10, 80, new WarpSnowScript()));
+        triggers.add(new Trigger(1550, 490, 10, 80, new WarpForestScript()));
+        triggers.add(new Trigger(1550, 1010, 10, 80, new WarpDesertScript()));
+        triggers.add(new Trigger(120, 1010, 10, 80, new WarpVolcanoScript()));
+        triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
         return triggers;
     }
 

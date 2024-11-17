@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 // trigger script at beginning of game to set that heavy emotional plot
 // checkout the documentation website for a detailed guide on how this script works
-public class WarpForestScript extends Script {
+public class WarpBossScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -15,8 +15,8 @@ public class WarpForestScript extends Script {
         scriptActions.add(new LockPlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction() {{
-            addText("You approach a glowing portal. \nThe sounds of trees blowing are coming out.");
-            addText("Would you like to travel to the Forest Biome?", new String[] {"Yes", "No"});
+            addText("You approach a glowing portal. \nAn ominous prescense is felt.");
+            addText("Would you like to travel to the Boss Room?", new String[] { "Yes", "No" });
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
@@ -31,10 +31,10 @@ public class WarpForestScript extends Script {
                 });
 
                  addScriptAction(new TextboxScriptAction() {{
-                     addText("Traveling to... Forest Biome.");
+                     addText("Traveling to... Boss Room.");
                  }});
                  scriptActions.add(new UnlockPlayerScriptAction());
-                 scriptActions.add(new ChangeFlagScriptAction("atForestBiome", true));
+                 scriptActions.add(new ChangeFlagScriptAction("atBossRoom", true));
             }});
 
             
@@ -51,7 +51,7 @@ public class WarpForestScript extends Script {
                     }
                 });
                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("You walk away from the windy portal."));
+                    addScriptAction(new TextboxScriptAction("You walk away from the ominous portal."));
                 }});
                 scriptActions.add(new UnlockPlayerScriptAction());
                 addScriptAction(new WaitScriptAction(60));
@@ -59,7 +59,8 @@ public class WarpForestScript extends Script {
 
         }});
 
-        scriptActions.add(new UnlockPlayerScriptAction());
+
+        
 
         return scriptActions;
     }

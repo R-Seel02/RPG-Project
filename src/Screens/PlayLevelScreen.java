@@ -8,9 +8,12 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.BossMap;
+import Maps.DesertMap;
 import Maps.ForestMap;
 import Maps.SnowMap;
 import Maps.StartingMap;
+import Maps.VolcanoMap;
 import Players.Assassin;
 import Players.Knight;
 import Players.Mage;
@@ -22,7 +25,7 @@ import javax.swing.Timer;
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    protected Map startMap, snowMap, forestMap;
+    protected Map startMap, snowMap, forestMap, desertMap, volcanoMap, bossMap;
     protected Map currMap;
     protected Player player, newPlayer;
     protected PlayLevelScreenState playLevelScreenState;
@@ -82,6 +85,9 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("atSnowBiome", false);
         flagManager.addFlag("atStartBiome", false);
         flagManager.addFlag("atForestBiome", false);
+        flagManager.addFlag("atDesertBiome", false);
+        flagManager.addFlag("atVolcanoBiome", false);
+        flagManager.addFlag("atBossRoom", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         // flagManager.addFlag("hasFoundBall", false);
@@ -185,6 +191,12 @@ public class PlayLevelScreen extends Screen {
         snowMap.setFlagManager(flagManager);
         forestMap = new ForestMap();
         forestMap.setFlagManager(flagManager);
+        desertMap = new DesertMap();
+        desertMap.setFlagManager(flagManager);
+        bossMap = new BossMap();
+        bossMap.setFlagManager(flagManager);
+        volcanoMap = new VolcanoMap();
+        volcanoMap.setFlagManager(flagManager);
         currMap = startMap;
         // setup player
         switch(characterChoice){
@@ -425,28 +437,58 @@ public class PlayLevelScreen extends Screen {
 
         if (currMap.getFlagManager().isFlagSet("atSnowBiome")) {
             currMap = snowMap;
-            player.setMap(snowMap);
-            snowMap.setPlayer(player);
-            player.setLocation(150,100);
-            snowMap.getTextbox().setInteractKey(player.getInteractKey());
-            snowMap.preloadScripts();
+            player.setMap(currMap);
+            currMap.setPlayer(player);
+            player.setLocation(150, 100);
+            currMap.getTextbox().setInteractKey(player.getInteractKey());
+            currMap.preloadScripts();
             flagManager.unsetFlag("atSnowBiome");
         }
 
         if (currMap.getFlagManager().isFlagSet("atForestBiome")) {
             currMap = forestMap;
-            player.setMap(forestMap);
-            forestMap.setPlayer(player);
-            player.setLocation(150,100);
-            forestMap.getTextbox().setInteractKey(player.getInteractKey());
-            forestMap.preloadScripts();
+            player.setMap(currMap);
+            currMap.setPlayer(player);
+            player.setLocation(150, 100);
+            currMap.getTextbox().setInteractKey(player.getInteractKey());
+            currMap.preloadScripts();
             flagManager.unsetFlag("atForestBiome");
+        }
+
+        if (currMap.getFlagManager().isFlagSet("atDesertBiome")) {
+            currMap = desertMap;
+            player.setMap(currMap);
+            currMap.setPlayer(player);
+            player.setLocation(150, 100);
+            currMap.getTextbox().setInteractKey(player.getInteractKey());
+            currMap.preloadScripts();
+            flagManager.unsetFlag("atDesertBiome");
+        }
+
+        if (currMap.getFlagManager().isFlagSet("atVolcanoBiome")) {
+            currMap = volcanoMap;
+            player.setMap(currMap);
+            currMap.setPlayer(player);
+            player.setLocation(150, 100);
+            currMap.getTextbox().setInteractKey(player.getInteractKey());
+            currMap.preloadScripts();
+            flagManager.unsetFlag("atVolcanoBiome");
+        }
+
+        if (currMap.getFlagManager().isFlagSet("atBossRoom")) {
+            currMap = bossMap;
+            player.setMap(currMap);
+            currMap.setPlayer(player);
+            player.setLocation(660, 580);
+            currMap.getTextbox().setInteractKey(player.getInteractKey());
+            currMap.preloadScripts();
+            flagManager.unsetFlag("atBossRoom");
         }
 
         if (currMap.getFlagManager().isFlagSet("atStartBiome")) {
             currMap = startMap;
-            player.setMap(startMap);
-            startMap.setPlayer(player);
+            player.setMap(currMap);
+            currMap.setPlayer(player);
             player.setLocation(800,860);
             startMap.preloadScripts();
             flagManager.unsetFlag("atStartBiome");
