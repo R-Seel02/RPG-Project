@@ -2,7 +2,7 @@ package Maps;
 
 import Level.*;
 import Scripts.TestMap.*;
-import Tilesets.ForestTileset;
+import Tilesets.VolcanoTileset;
 import java.util.ArrayList;
 
 import NPCs.RockBoss;
@@ -14,7 +14,7 @@ import NPCs.Salamander3;
 public class VolcanoMap extends Map {
 
     public VolcanoMap() {
-        super("volcano_map.txt", new ForestTileset());
+        super("volcano_map.txt", new VolcanoTileset());
         // this.playerStartPosition = getMapTile(5, 5).getLocation();
         // Portal is at x:2, y:15
     }

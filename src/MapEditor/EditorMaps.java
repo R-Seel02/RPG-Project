@@ -5,6 +5,7 @@ import Maps.VolcanoMap;
 import Maps.BossMap;
 import Maps.DesertMap;
 import Maps.ForestMap;
+import Maps.PyramidMap;
 import Maps.SnowMap;
 import Maps.StartingMap;
 import Maps.TitleScreenMap;
@@ -22,6 +23,7 @@ public class EditorMaps {
             add("VolcanoMap");
             add("FightMap");
             add("BossMap");
+            add("PyramidMap");
         }};
     }
 
@@ -43,6 +45,8 @@ public class EditorMaps {
                 return new FightMap();
             case "BossMap":
                 return new BossMap();
+            case "PyramidMap":
+                return new PyramidMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

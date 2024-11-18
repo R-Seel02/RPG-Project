@@ -1,20 +1,16 @@
 package Maps;
 
 import Level.*;
-import Scripts.TestMap.*;
+import Scripts.TestMap.LeavePyramidScript;
 import Tilesets.DesertTileset;
 import java.util.ArrayList;
 
-import NPCs.CactusBoss;
-import NPCs.ScaredGuy;
-import NPCs.Cactus;
-
 // Represents a test map to be used in a level
-public class DesertMap extends Map {
+public class PyramidMap extends Map {
 
-    public DesertMap() {
-        super("desert_map.txt", new DesertTileset());
-        this.playerStartPosition = getMapTile(5, 5).getLocation();
+    public PyramidMap() {
+        super("pyramid_map.txt", new DesertTileset());
+        // this.playerStartPosition = getMapTile(5, 5).getLocation();
         // Portal is at x:2, y:15
     }
 
@@ -25,8 +21,6 @@ public class DesertMap extends Map {
         // PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
         // enhancedMapTiles.add(pushableRock);
 
-        
-
         return enhancedMapTiles;
     }
 
@@ -34,20 +28,7 @@ public class DesertMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        CactusBoss cactusBoss = new CactusBoss(1, getMapTile(12, 8).getLocation());
-        cactusBoss.setInteractScript(new CactusBossScript());
-        npcs.add(cactusBoss);
-
-        ScaredGuy scaredGuy = new ScaredGuy(2, getMapTile(18, 8).getLocation());
-        scaredGuy.setInteractScript(new ScaredGuyScript());
-        npcs.add(scaredGuy);
-
-        Cactus cactus = new Cactus(3, getMapTile(24, 8).getLocation());
-        cactus.setInteractScript(new CactusScript());
-        npcs.add(cactus);
-
-
-
+        
 
         // shopkeeper id 5
 
@@ -57,8 +38,7 @@ public class DesertMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
-        triggers.add(new Trigger(1210, 1390, 30, 10, new WarpPyramidScript()));
+        triggers.add(new Trigger(480, 910, 30, 10, new LeavePyramidScript()));
         return triggers;
     }
 
