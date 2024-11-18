@@ -21,6 +21,7 @@ import NPCs.OldGuy;
 import NPCs.QuestWoman;
 import NPCs.Skeleton;
 import NPCs.TestNPC;
+import NPCs.TreeBoss;
 import NPCs.Walrus;
 import PickableObjects.ItemRock;
 import Scripts.SimpleTextScript;
@@ -139,6 +140,8 @@ public class StartingMap extends Map {
         Chest2 chest2 = new Chest2(20, getMapTile(25, 11).getLocation());
         chest2.setInteractScript(new Chest2Script());
         npcs.add(chest2);
+
+        
 
         // Portal portal = new Portal(50, getMapTile(2, 15).getLocation().subtractY(40));
         // portal.setInteractScript(new PortalScript());

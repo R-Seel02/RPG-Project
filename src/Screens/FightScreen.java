@@ -1,6 +1,7 @@
 package Screens;
 
 import Engine.*;
+import GameObject.Sprite;
 import Level.Player;
 import Level.Enemy;
 import Maps.FightMap;
@@ -45,7 +46,12 @@ public class FightScreen extends Screen {
         this.enemySprite = enemy.getSprite();
         this.background = new FightMap();
         this.background.setEnemy(enemy);
-        this.background.setEnemySprite(enemy.getSprite());
+        if(enemy.getSpriteHeight() >= 100 || enemy.getSpriteWidth() >= 100){
+            this.background.setEnemySpriteWithScale(enemy.getSprite(), 2);
+        }
+        else {
+            this.background.setEnemySprite(enemy.getSprite());
+        }
 
         if(playLevelScreen.getCharacterSelection() == 0){
             this.background.setPlayerSprite("Assassin.png");

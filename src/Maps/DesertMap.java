@@ -1,6 +1,8 @@
 package Maps;
 
 import Level.*;
+import NPCs.CactusBoss;
+import Scripts.TestMap.CactusBossScript;
 import Scripts.TestMap.WarpPyramidScript;
 import Scripts.TestMap.WarpStartScript;
 import Tilesets.DesertTileset;
@@ -22,6 +24,8 @@ public class DesertMap extends Map {
         // PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
         // enhancedMapTiles.add(pushableRock);
 
+        
+
         return enhancedMapTiles;
     }
 
@@ -29,7 +33,9 @@ public class DesertMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        
+        CactusBoss cactusBoss = new CactusBoss(1, getMapTile(12, 8).getLocation());
+        cactusBoss.setInteractScript(new CactusBossScript());
+        npcs.add(cactusBoss);
 
         // shopkeeper id 5
 

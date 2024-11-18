@@ -73,6 +73,15 @@ public class FightMap extends Map {
         enemy.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
     }
 
+    public void setEnemySpriteWithScale(String sprite, int scale){
+        this.enemySprite = sprite;
+        enemy = new Sprite(ImageLoader.loadSubImage(enemySprite, Colors.MAGENTA, 0, 0, badGuy.getSpriteWidth(), badGuy.getSpriteHeight()));
+        Point enemyLocation = getMapTile(21, 7).getLocation().subtractX(6).subtractY(7);
+        enemy.setScale(scale);
+        enemy.setLocation(enemyLocation.x, enemyLocation.y);
+        enemy.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
+    }
+
     public void setPlayerSprite(String sprite){
         this.playerSprite = sprite;
         Point catLocation = getMapTile(7, 7).getLocation().subtractX(0).subtractY(7);

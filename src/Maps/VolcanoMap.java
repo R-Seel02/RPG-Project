@@ -1,6 +1,10 @@
 package Maps;
 
 import Level.*;
+import NPCs.CactusBoss;
+import NPCs.RockBoss;
+import Scripts.TestMap.CactusBossScript;
+import Scripts.TestMap.RockBossScript;
 import Scripts.TestMap.WarpStartScript;
 import Tilesets.VolcanoTileset;
 import java.util.ArrayList;
@@ -28,7 +32,9 @@ public class VolcanoMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        
+        RockBoss rockBoss = new RockBoss(1, getMapTile(12, 8).getLocation());
+        rockBoss.setInteractScript(new RockBossScript());
+        npcs.add(rockBoss);
 
         // shopkeeper id 5
 
