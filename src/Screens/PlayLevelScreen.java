@@ -145,11 +145,31 @@ public class PlayLevelScreen extends Screen {
         //Desert biome Quests/NPCS
         flagManager.addFlag("hasQuestThief", false);
         flagManager.addFlag("hasCompletedQuestThief", false);
+        flagManager.addFlag("hasPulledLever1", false);
+        flagManager.addFlag("hasPulledLever2", false);
+        flagManager.addFlag("hasPulledLever3", false);
         flagManager.addFlag("hasTotem", false);
 
         flagManager.addFlag("hasQuestScaredGuy", false);
         flagManager.addFlag("hasCompletedQuestScaredGuy", false);
         flagManager.addFlag("hasFoughtCactus", false);
+
+        //lava biome
+        flagManager.addFlag("hasQuestSalamander", false);
+        flagManager.addFlag("hasCompletedQuestSalamander", false);
+        flagManager.addFlag("hasSalamander1", false);
+        flagManager.addFlag("hasSalamander2", false);
+        flagManager.addFlag("hasSalamander3", false);
+        //after finding all of the salamanders the guy takes his off human skin and shows hes salamander then cares for kids (happy ending very wholesome but creepy C:)
+        //he feels safe showing hes a salamander since he trusts you can take down the evil king
+        //mention how he evil king doesnt like salamanders (speciesism lol)
+
+        flagManager.addFlag("hasQuestGolem", false);
+        flagManager.addFlag("hasCompletedQuestGolem", false);
+        flagManager.addFlag("hasTalkedToFireSpirit", false);
+        flagManager.addFlag("hasTalkedToGolem", false);
+        flagManager.addFlag("hasFoughtGroup", false);
+        // have both meet up then they decide to fight you then you all make friends when you win then they give you something.
         
 
 
