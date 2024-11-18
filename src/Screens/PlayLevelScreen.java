@@ -54,6 +54,11 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont questPlagueDoctorEyeball;
     protected SpriteFont questPlagueDoctorVial;
     protected SpriteFont questMuggedWoman;
+    protected SpriteFont questScaredGuy;
+    protected SpriteFont returnToSalamanderGuy;
+    protected SpriteFont charles;
+    protected SpriteFont jeremy;
+    protected SpriteFont gregory;
 
     //combat stuff
     protected Enemy currentEnemy;
@@ -161,11 +166,14 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoughtCactus", false);
 
         //lava biome
-        flagManager.addFlag("hasQuestSalamander", false);
-        flagManager.addFlag("hasCompletedQuestSalamander", false);
+        flagManager.addFlag("hasQuestSalamanderGuy", false);
+        flagManager.addFlag("hasCompletedQuestSalamanderGuy", false);
         flagManager.addFlag("hasSalamander1", false);
         flagManager.addFlag("hasSalamander2", false);
         flagManager.addFlag("hasSalamander3", false);
+        flagManager.addFlag("return1", false);
+        flagManager.addFlag("return2", false);
+        flagManager.addFlag("return3", false);
         //after finding all of the salamanders the guy takes his off human skin and shows hes salamander then cares for kids (happy ending very wholesome but creepy C:)
         //he feels safe showing hes a salamander since he trusts you can take down the evil king
         //mention how he evil king doesnt like salamanders (speciesism lol)
@@ -278,6 +286,26 @@ public class PlayLevelScreen extends Screen {
         questMuggedWoman = new SpriteFont("Find the womans purse.", 1025, 75, "Arial", 0, Color.white);
         questMuggedWoman.setOutlineColor(Color.black);
         questMuggedWoman.setOutlineThickness(3);
+
+        questScaredGuy = new SpriteFont("Defeat the Cactus.", 1100, 75, "Arial", 0, Color.white);
+        questScaredGuy.setOutlineColor(Color.black);
+        questScaredGuy.setOutlineThickness(3);
+
+        returnToSalamanderGuy = new SpriteFont("Return to the man.", 1100, 75, "Arial", 0, Color.white);
+        returnToSalamanderGuy.setOutlineColor(Color.black);
+        returnToSalamanderGuy.setOutlineThickness(3);
+
+        charles = new SpriteFont("find Charles.", 1100, 75, "Arial", 0, Color.white);
+        charles.setOutlineColor(Color.black);
+        charles.setOutlineThickness(3);
+
+        jeremy = new SpriteFont("find jeremy.", 1100, 75, "Arial", 0, Color.white);
+        jeremy.setOutlineColor(Color.black);
+        jeremy.setOutlineThickness(3);
+
+        gregory = new SpriteFont("find gregory.", 1100, 75, "Arial", 0, Color.white);
+        gregory.setOutlineColor(Color.black);
+        gregory.setOutlineThickness(3);
 
         // set up coin counter text
         coinCounter = new SpriteFont("Coins: " + player.getCoinCount(), 1200, 20, "Arial", 40, Color.white);
@@ -444,6 +472,40 @@ public class PlayLevelScreen extends Screen {
             questPlagueDoctorEyeball.setFontSize(0);
         }
 
+        if (currMap.getFlagManager().isFlagSet("hasQuestScaredGuy")) {
+            questScaredGuy.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestScaredGuy")) {
+            questScaredGuy.setFontSize(0);
+        }
+
+        if (currMap.getFlagManager().isFlagSet("hasQuestSalamanderGuy")) {
+            charles.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasSalamander1")) {
+            charles.setFontSize(0);
+            returnToSalamanderGuy.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("return1")) {
+            gregory.setFontSize(30);
+            returnToSalamanderGuy.setFontSize(0);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasSalamander2")) {
+            gregory.setFontSize(0);
+            returnToSalamanderGuy.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("return2")) {
+            jeremy.setFontSize(30);
+            returnToSalamanderGuy.setFontSize(0);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasSalamander3")) {
+            jeremy.setFontSize(0);
+            returnToSalamanderGuy.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("return3")) {
+            returnToSalamanderGuy.setFontSize(0);
+        }
+
 
 
 
@@ -533,6 +595,11 @@ public class PlayLevelScreen extends Screen {
                 questOldGuy.draw(graphicsHandler);
                 questSnowman.draw(graphicsHandler);
                 questMuggedWoman.draw(graphicsHandler);
+                questScaredGuy.draw(graphicsHandler);
+                returnToSalamanderGuy.draw(graphicsHandler);
+                charles.draw(graphicsHandler);
+                gregory.draw(graphicsHandler);
+                jeremy.draw(graphicsHandler);
 
                 //plague doc stuff
                 questPlagueDoctorCauldron.draw(graphicsHandler);

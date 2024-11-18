@@ -1,13 +1,13 @@
 package Maps;
 
 import Level.*;
-import NPCs.CactusBoss;
-import NPCs.SnowmanBoss;
-import Scripts.TestMap.CactusBossScript;
-import Scripts.TestMap.SnowmanBossScript;
-import Scripts.TestMap.WarpStartScript;
+import Scripts.TestMap.*;
 import Tilesets.DesertTileset;
 import java.util.ArrayList;
+
+import NPCs.CactusBoss;
+import NPCs.ScaredGuy;
+import NPCs.Cactus;
 
 // Represents a test map to be used in a level
 public class DesertMap extends Map {
@@ -37,6 +37,17 @@ public class DesertMap extends Map {
         CactusBoss cactusBoss = new CactusBoss(1, getMapTile(12, 8).getLocation());
         cactusBoss.setInteractScript(new CactusBossScript());
         npcs.add(cactusBoss);
+
+        ScaredGuy scaredGuy = new ScaredGuy(2, getMapTile(18, 8).getLocation());
+        scaredGuy.setInteractScript(new ScaredGuyScript());
+        npcs.add(scaredGuy);
+
+        Cactus cactus = new Cactus(3, getMapTile(24, 8).getLocation());
+        cactus.setInteractScript(new CactusScript());
+        npcs.add(cactus);
+
+
+
 
         // shopkeeper id 5
 

@@ -1,13 +1,14 @@
 package Maps;
 
 import Level.*;
-import NPCs.CactusBoss;
-import NPCs.RockBoss;
-import Scripts.TestMap.CactusBossScript;
-import Scripts.TestMap.RockBossScript;
-import Scripts.TestMap.WarpStartScript;
+import Scripts.TestMap.*;
 import Tilesets.ForestTileset;
 import java.util.ArrayList;
+
+import NPCs.RockBoss;
+import NPCs.SalamanderGuy;
+import NPCs.SalamanderOther;
+import NPCs.Salamander3;
 
 // Represents a test map to be used in a level
 public class VolcanoMap extends Map {
@@ -35,6 +36,22 @@ public class VolcanoMap extends Map {
         RockBoss rockBoss = new RockBoss(1, getMapTile(12, 8).getLocation());
         rockBoss.setInteractScript(new RockBossScript());
         npcs.add(rockBoss);
+
+        SalamanderGuy salamanderGuy = new SalamanderGuy(2, getMapTile(18, 8).getLocation());
+        salamanderGuy.setInteractScript(new SalamanderGuyScript());
+        npcs.add(salamanderGuy);
+
+        SalamanderOther salamander1 = new SalamanderOther(3, getMapTile(24, 5).getLocation());
+        salamander1.setInteractScript(new Salamander1Script());
+        npcs.add(salamander1);
+
+        SalamanderOther salamander2 = new SalamanderOther(3, getMapTile(10, 15).getLocation());
+        salamander2.setInteractScript(new Salamander2Script());
+        npcs.add(salamander2);
+
+        Salamander3 salamander3 = new Salamander3(5, getMapTile(24, 15).getLocation());
+        salamander3.setInteractScript(new Salamander3Script());
+        npcs.add(salamander3);
 
         // shopkeeper id 5
 
