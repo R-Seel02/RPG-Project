@@ -2,19 +2,19 @@ package Maps;
 
 import Level.*;
 import NPCs.CactusBoss;
-import NPCs.SnowmanBoss;
+import NPCs.RockBoss;
 import Scripts.TestMap.CactusBossScript;
-import Scripts.TestMap.SnowmanBossScript;
+import Scripts.TestMap.RockBossScript;
 import Scripts.TestMap.WarpStartScript;
-import Tilesets.DesertTileset;
+import Tilesets.ForestTileset;
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
-public class DesertMap extends Map {
+public class VolcanoMap extends Map {
 
-    public DesertMap() {
-        super("desert_map.txt", new DesertTileset());
-        this.playerStartPosition = getMapTile(5, 5).getLocation();
+    public VolcanoMap() {
+        super("volcano_map.txt", new ForestTileset());
+        // this.playerStartPosition = getMapTile(5, 5).getLocation();
         // Portal is at x:2, y:15
     }
 
@@ -25,8 +25,6 @@ public class DesertMap extends Map {
         // PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
         // enhancedMapTiles.add(pushableRock);
 
-        
-
         return enhancedMapTiles;
     }
 
@@ -34,9 +32,9 @@ public class DesertMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        CactusBoss cactusBoss = new CactusBoss(1, getMapTile(12, 8).getLocation());
-        cactusBoss.setInteractScript(new CactusBossScript());
-        npcs.add(cactusBoss);
+        RockBoss rockBoss = new RockBoss(1, getMapTile(12, 8).getLocation());
+        rockBoss.setInteractScript(new RockBossScript());
+        npcs.add(rockBoss);
 
         // shopkeeper id 5
 

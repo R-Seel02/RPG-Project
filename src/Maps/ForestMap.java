@@ -17,6 +17,7 @@ import NPCs.MuggedWoman;
 import NPCs.Thug1;
 import NPCs.Thug2;
 import NPCs.Thug3;
+import NPCs.TreeBoss;
 
 // Represents a test map to be used in a level
 public class ForestMap extends Map {
@@ -80,6 +81,10 @@ public class ForestMap extends Map {
         Thug3 thug3 = new Thug3(2, getMapTile(15,15).getLocation().subtractY(40));
         thug3.setInteractScript(new Thug3Script());
         npcs.add(thug3);
+
+        TreeBoss treeBoss = new TreeBoss(21, getMapTile(20, 20).getLocation());
+        treeBoss.setInteractScript(new TreeBossScript());
+        npcs.add(treeBoss);
         
 
         

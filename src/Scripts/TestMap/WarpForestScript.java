@@ -51,8 +51,10 @@ public class WarpForestScript extends Script {
                     }
                 });
                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("You walk away from the noisy portal."));
-                 }});
+                    addScriptAction(new TextboxScriptAction("You walk away from the windy portal."));
+                }});
+                scriptActions.add(new UnlockPlayerScriptAction());
+                addScriptAction(new WaitScriptAction(60));
             }});
 
         }});

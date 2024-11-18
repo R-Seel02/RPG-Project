@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 // trigger script at beginning of game to set that heavy emotional plot
 // checkout the documentation website for a detailed guide on how this script works
-public class WarpStartScript extends Script {
+public class WarpDesertScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -15,8 +15,8 @@ public class WarpStartScript extends Script {
         scriptActions.add(new LockPlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction() {{
-            addText("You approach a glowing portal. It feels like home.");
-            addText("Would you like to travel to the Starting Biome?", new String[] {"Yes", "No"});
+            addText("You approach a glowing portal. It emits a dry heat.");
+            addText("Would you like to travel to the Desert Biome?", new String[] { "Yes", "No" });
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
@@ -31,10 +31,10 @@ public class WarpStartScript extends Script {
                 });
 
                  addScriptAction(new TextboxScriptAction() {{
-                     addText("Traveling to... Starting Biome.");
+                     addText("Traveling to... Desert Biome.");
                  }});
                  scriptActions.add(new UnlockPlayerScriptAction());
-                 scriptActions.add(new ChangeFlagScriptAction("atStartBiome", true));
+                 scriptActions.add(new ChangeFlagScriptAction("atDesertBiome", true));
             }});
 
             
@@ -51,7 +51,7 @@ public class WarpStartScript extends Script {
                     }
                 });
                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("You walk away from the familiar portal."));
+                    addScriptAction(new TextboxScriptAction("You walk away from the dry portal."));
                 }});
                 scriptActions.add(new UnlockPlayerScriptAction());
                 addScriptAction(new WaitScriptAction(60));
@@ -59,7 +59,8 @@ public class WarpStartScript extends Script {
 
         }});
 
-        scriptActions.add(new UnlockPlayerScriptAction());
+
+        
 
         return scriptActions;
     }

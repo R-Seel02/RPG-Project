@@ -13,6 +13,7 @@ public class StartFightScriptAction extends ScriptAction {
 
     @Override
     public ScriptState execute() {
+        System.out.println("fight started?");
         this.map.setCurrentEnemy(enemy);
         return ScriptState.COMPLETED;
     }

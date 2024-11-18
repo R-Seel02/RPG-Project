@@ -1,14 +1,15 @@
 package Maps;
 
 import Level.*;
-import Tilesets.ForestTileset;
+import Scripts.TestMap.WarpStartScript;
+import Tilesets.CommonTileset;
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
-public class CaveMap extends Map {
+public class BossMap extends Map {
 
-    public CaveMap() {
-        super("cave_map.txt", new ForestTileset());
+    public BossMap() {
+        super("boss_map.txt", new CommonTileset());
         // this.playerStartPosition = getMapTile(5, 5).getLocation();
         // Portal is at x:2, y:15
     }
@@ -37,7 +38,7 @@ public class CaveMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        
+        triggers.add(new Trigger(680, 680, 40, 40, new WarpStartScript()));
         return triggers;
     }
 

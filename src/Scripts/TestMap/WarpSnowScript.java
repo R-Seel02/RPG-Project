@@ -52,13 +52,15 @@ public class WarpSnowScript extends Script {
                 });
                 addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("You walk away from the freezing portal."));
-                 }});
+                }});
+                scriptActions.add(new UnlockPlayerScriptAction());
+                addScriptAction(new WaitScriptAction(60));
             }});
 
         }});
 
 
-        scriptActions.add(new UnlockPlayerScriptAction());
+        
 
         return scriptActions;
     }

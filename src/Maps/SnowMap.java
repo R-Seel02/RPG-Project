@@ -16,6 +16,7 @@ import NPCs.Chest2;
 
 import NPCs.CoalMan;
 import NPCs.Snowman;
+import NPCs.SnowmanBoss;
 import NPCs.Fish;
 
 // Represents a test map to be used in a level
@@ -41,7 +42,7 @@ public class SnowMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        CoalMan coalMan = new CoalMan(1, getMapTile(2,2).getLocation().subtractY(40));
+        CoalMan coalMan = new CoalMan(1, getMapTile(17,16).getLocation().subtractY(40));
         coalMan.setInteractScript(new CoalManScript());
         npcs.add(coalMan);
 
@@ -53,7 +54,9 @@ public class SnowMap extends Map {
         fish.setInteractScript(new FishScript());
         npcs.add(fish);
 
-        // shopkeeper id 5
+        SnowmanBoss snowmanBoss = new SnowmanBoss(4, getMapTile(8, 12).getLocation());
+        snowmanBoss.setInteractScript(new SnowmanBossScript());
+        npcs.add(snowmanBoss);
 
         return npcs;
     }

@@ -14,10 +14,10 @@ import Utils.Direction;
 import Utils.Point;
 
 // This class is for the walrus NPC
-public class Eyeball extends NPC {
+public class CactusBoss extends NPC {
 
-    public Eyeball(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Eyeball.png"), 40, 20), "STAND_RIGHT");
+    public CactusBoss(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("CactuswardSprite.png"), 100, 100), "STAND_RIGHT");
     }
 
     @Override
@@ -26,13 +26,13 @@ public class Eyeball extends NPC {
             put("STAND_LEFT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0),40)
                 .withScale(2)
-                .withBounds(2, 2, 40, 20)
+                .withBounds(20, 0, 50, 100)
                 .build(),
             });
             put("STAND_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0),40)
                 .withScale(2)
-                .withBounds(2, 2, 40, 20)
+                .withBounds(20, 0, 50, 100)
                 .build(),
            });
         }};

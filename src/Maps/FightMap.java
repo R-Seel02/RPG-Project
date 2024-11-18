@@ -8,10 +8,12 @@ import Level.Map;
 import Tilesets.CommonTileset;
 import Utils.Colors;
 import Utils.Point;
+import Level.Enemy;
 
 // Represents the map that is used as a background for the main menu and credits menu screen
 public class FightMap extends Map {
 
+    private Enemy badGuy;
     private Sprite cat;
     private Sprite enemy;
     private String enemySprite;
@@ -27,7 +29,8 @@ public class FightMap extends Map {
         cat.setScale(3);
         cat.setLocation(catLocation.x, catLocation.y);
 
-        this.enemySprite = "error.png";
+        this.badGuy = new Enemy("null", 0, 0, 0, "error.png", 24, 24);
+        this.enemySprite = badGuy.getSprite();
         enemy = new Sprite(ImageLoader.loadSubImage(enemySprite, Colors.MAGENTA, 0, 0, 24, 24));
         enemy.setScale(3);
         enemy.setLocation(enemyLocation.x, enemyLocation.y);
@@ -57,11 +60,24 @@ public class FightMap extends Map {
         }
     }
 
+    public void setEnemy(Enemy enemy){
+        this.badGuy = enemy;
+    }
+
     public void setEnemySprite(String sprite){
         this.enemySprite = sprite;
-        enemy = new Sprite(ImageLoader.loadSubImage(enemySprite, Colors.MAGENTA, 0, 0, 24, 24));
+        enemy = new Sprite(ImageLoader.loadSubImage(enemySprite, Colors.MAGENTA, 0, 0, badGuy.getSpriteWidth(), badGuy.getSpriteHeight()));
         Point enemyLocation = getMapTile(21, 7).getLocation().subtractX(6).subtractY(7);
         enemy.setScale(3);
+        enemy.setLocation(enemyLocation.x, enemyLocation.y);
+        enemy.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
+    }
+
+    public void setEnemySpriteWithScale(String sprite, int scale){
+        this.enemySprite = sprite;
+        enemy = new Sprite(ImageLoader.loadSubImage(enemySprite, Colors.MAGENTA, 0, 0, badGuy.getSpriteWidth(), badGuy.getSpriteHeight()));
+        Point enemyLocation = getMapTile(21, 7).getLocation().subtractX(6).subtractY(7);
+        enemy.setScale(scale);
         enemy.setLocation(enemyLocation.x, enemyLocation.y);
         enemy.setImageEffect(ImageEffect.FLIP_HORIZONTAL);
     }
