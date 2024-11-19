@@ -91,12 +91,12 @@ public class StartingMap extends Map {
         chickenYellow.setInteractScript(new ChickenYellowScript());
         npcs.add(chickenYellow);
 
-        ChickenOrange chickenOrange = new ChickenOrange(10, getMapTile(30, 10).getLocation().subtractY(40));
+        ChickenOrange chickenOrange = new ChickenOrange(10, getMapTile(33, 10).getLocation().subtractY(40));
         //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
         chickenOrange.setInteractScript(new ChickenOrangeScript());
         npcs.add(chickenOrange);
 
-          ChickenBlue chickenBlue = new ChickenBlue(11, getMapTile(8, 10).getLocation().subtractY(40));
+          ChickenBlue chickenBlue = new ChickenBlue(11, getMapTile(9, 10).getLocation().subtractY(40));
           //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
           chickenBlue.setInteractScript(new ChickenBlueScript());
           npcs.add(chickenBlue);

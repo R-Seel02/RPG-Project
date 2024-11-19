@@ -162,6 +162,9 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasPulledLever1", false);
         flagManager.addFlag("hasPulledLever2", false);
         flagManager.addFlag("hasPulledLever3", false);
+        flagManager.addFlag("hitLever1", false);
+        flagManager.addFlag("hitLever2", false);
+        flagManager.addFlag("hitLever3", false);
         flagManager.addFlag("hasTotem", false);
 
         flagManager.addFlag("hasQuestScaredGuy", false);

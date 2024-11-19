@@ -45,7 +45,7 @@ public class VolcanoMap extends Map {
         salamander1.setInteractScript(new Salamander1Script());
         npcs.add(salamander1);
 
-        SalamanderOther salamander2 = new SalamanderOther(3, getMapTile(10, 15).getLocation());
+        SalamanderOther salamander2 = new SalamanderOther(4, getMapTile(10, 15).getLocation());
         salamander2.setInteractScript(new Salamander2Script());
         npcs.add(salamander2);
 

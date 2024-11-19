@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import NPCs.CactusBoss;
 import NPCs.ScaredGuy;
 import NPCs.Cactus;
+import NPCs.Thief;
 
 // Represents a test map to be used in a level
 public class DesertMap extends Map {
@@ -45,6 +46,10 @@ public class DesertMap extends Map {
         Cactus cactus = new Cactus(3, getMapTile(24, 8).getLocation());
         cactus.setInteractScript(new CactusScript());
         npcs.add(cactus);
+
+        Thief thief = new Thief(4, getMapTile(24, 15).getLocation());
+        thief.setInteractScript(new ThiefScript());
+        npcs.add(thief);
 
 
 
