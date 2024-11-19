@@ -1,9 +1,8 @@
 package Scripts.TestMap;
 
-import java.util.ArrayList;
-
 import Level.Script;
 import ScriptActions.*;
+import java.util.ArrayList;
 
 
 public class QuestOldGuyScript extends Script {
@@ -127,6 +126,10 @@ public class QuestOldGuyScript extends Script {
 
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("Is anyone up to the task in this town?"));
+                    addScriptAction(new ChangeFlagScriptAction("treeBossDefeated", true));
+                    addScriptAction(new ChangeFlagScriptAction("snowmanBossDefeated", true));
+                    addScriptAction(new ChangeFlagScriptAction("cactusBossDefeated", true));
+                    addScriptAction(new ChangeFlagScriptAction("rockBossDefeated", true));
                  }});
                 
             }});
