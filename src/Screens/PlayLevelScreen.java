@@ -11,6 +11,7 @@ import Level.*;
 import Maps.BossMap;
 import Maps.DesertMap;
 import Maps.ForestMap;
+import Maps.PyramidMap;
 import Maps.SnowMap;
 import Maps.StartingMap;
 import Maps.VolcanoMap;
@@ -25,7 +26,7 @@ import javax.swing.Timer;
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    protected Map startMap, snowMap, forestMap, desertMap, volcanoMap, bossMap;
+    protected Map startMap, snowMap, forestMap, desertMap, volcanoMap, bossMap, pyramidMap;
     protected Map currMap;
     protected Player player, newPlayer;
     protected PlayLevelScreenState playLevelScreenState;
@@ -88,6 +89,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("atDesertBiome", false);
         flagManager.addFlag("atVolcanoBiome", false);
         flagManager.addFlag("atBossRoom", false);
+        flagManager.addFlag("atPyramid", false);
+        flagManager.addFlag("leftPyramid", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         // flagManager.addFlag("hasFoundBall", false);
@@ -197,6 +200,8 @@ public class PlayLevelScreen extends Screen {
         bossMap.setFlagManager(flagManager);
         volcanoMap = new VolcanoMap();
         volcanoMap.setFlagManager(flagManager);
+        pyramidMap = new PyramidMap();
+        pyramidMap.setFlagManager(flagManager);
         currMap = startMap;
         // setup player
         switch(characterChoice){
@@ -483,6 +488,26 @@ public class PlayLevelScreen extends Screen {
             currMap.getTextbox().setInteractKey(player.getInteractKey());
             currMap.preloadScripts();
             flagManager.unsetFlag("atBossRoom");
+        }
+
+        if (currMap.getFlagManager().isFlagSet("atPyramid")) {
+            currMap = pyramidMap;
+            player.setMap(currMap);
+            currMap.setPlayer(player);
+            player.setLocation(450, 830);
+            currMap.getTextbox().setInteractKey(player.getInteractKey());
+            currMap.preloadScripts();
+            flagManager.unsetFlag("atPyramid");
+        }
+
+        if (currMap.getFlagManager().isFlagSet("leftPyramid")) {
+            currMap = desertMap;
+            player.setMap(currMap);
+            currMap.setPlayer(player);
+            player.setLocation(1185, 1370);
+            currMap.getTextbox().setInteractKey(player.getInteractKey());
+            currMap.preloadScripts();
+            flagManager.unsetFlag("leftPyramid");
         }
 
         if (currMap.getFlagManager().isFlagSet("atStartBiome")) {

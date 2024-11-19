@@ -1,19 +1,15 @@
 package Maps;
 
 import Level.*;
-import NPCs.CactusBoss;
-import NPCs.RockBoss;
-import Scripts.TestMap.CactusBossScript;
-import Scripts.TestMap.RockBossScript;
-import Scripts.TestMap.WarpStartScript;
-import Tilesets.VolcanoTileset;
+import Scripts.TestMap.LeavePyramidScript;
+import Tilesets.DesertTileset;
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
-public class VolcanoMap extends Map {
+public class PyramidMap extends Map {
 
-    public VolcanoMap() {
-        super("volcano_map.txt", new VolcanoTileset());
+    public PyramidMap() {
+        super("pyramid_map.txt", new DesertTileset());
         // this.playerStartPosition = getMapTile(5, 5).getLocation();
         // Portal is at x:2, y:15
     }
@@ -32,9 +28,7 @@ public class VolcanoMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        RockBoss rockBoss = new RockBoss(1, getMapTile(12, 8).getLocation());
-        rockBoss.setInteractScript(new RockBossScript());
-        npcs.add(rockBoss);
+        
 
         // shopkeeper id 5
 
@@ -44,7 +38,7 @@ public class VolcanoMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
+        triggers.add(new Trigger(480, 910, 30, 10, new LeavePyramidScript()));
         return triggers;
     }
 
