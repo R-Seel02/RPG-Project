@@ -10,16 +10,14 @@ import SpriteFont.SpriteFont;
 import java.awt.*;
 
 // This class is for the credits screen
-public class CreditsScreen extends Screen {
+public class TutorialScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map background;
     protected KeyLocker keyLocker = new KeyLocker();
-    protected SpriteFont creditsLabel;
-    protected SpriteFont createdByLabel;
-    protected SpriteFont devLabel;
+    protected SpriteFont howToMove, howToTextBox, howToInteract, howToInventory;
     protected SpriteFont returnInstructionsLabel;
 
-    public CreditsScreen(ScreenCoordinator screenCoordinator) {
+    public TutorialScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
 
@@ -28,15 +26,18 @@ public class CreditsScreen extends Screen {
         // setup graphics on screen (background map, spritefont text)
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
-        creditsLabel = new SpriteFont("Credits", 15, 7, "Book Antiqua", 30, Color.white);
-        creditsLabel.setOutlineColor(Color.black);
-        creditsLabel.setOutlineThickness(3);
-        createdByLabel = new SpriteFont("Base game created by Alex Thimineur", 130, 121, "Book Antiqua", 20, Color.white);
-        createdByLabel.setOutlineColor(Color.black);
-        createdByLabel.setOutlineThickness(3);
-        devLabel = new SpriteFont("The Legend of Thimineur brought to you by: Max Cheezic, Matther Wheeler, Ryan Seely, Mark Pfister, Pierce Conway", 130, 150, "Book Antiqua", 22, Color.white);
-        devLabel.setOutlineColor(Color.black);
-        devLabel.setOutlineThickness(3);
+        howToMove = new SpriteFont("You can move using WASD.", 100, 150, "Book Antiqua", 30, Color.white);
+        howToMove.setOutlineColor(Color.black);
+        howToMove.setOutlineThickness(3);
+        howToTextBox = new SpriteFont("Navigate menus with W and S. Select options in combat with A and D.", 100, 200, "Book Antiqua", 30, Color.white);
+        howToTextBox.setOutlineColor(Color.black);
+        howToTextBox.setOutlineThickness(3);
+        howToInteract = new SpriteFont("Select options in menus, interact with NPCs, and pick up items using E.", 100, 250, "Book Antiqua", 30, Color.white);
+        howToInteract.setOutlineColor(Color.black);
+        howToInteract.setOutlineThickness(3);
+        howToInventory = new SpriteFont("Open and close your inventory using I.", 100, 300, "Book Antiqua", 30, Color.white);
+        howToInventory.setOutlineColor(Color.black);
+        howToInventory.setOutlineThickness(3);
         returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Book Antiqua", 30, Color.white);
         returnInstructionsLabel.setOutlineColor(Color.black);
         returnInstructionsLabel.setOutlineThickness(3);
@@ -58,9 +59,10 @@ public class CreditsScreen extends Screen {
 
     public void draw(GraphicsHandler graphicsHandler) {
         background.draw(graphicsHandler);
-        creditsLabel.draw(graphicsHandler);
-        createdByLabel.draw(graphicsHandler);
-        devLabel.draw(graphicsHandler);
+        howToInteract.draw(graphicsHandler);
+        howToMove.draw(graphicsHandler);
+        howToTextBox.draw(graphicsHandler);
+        howToInventory.draw(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
     }
 }

@@ -346,7 +346,7 @@ public class PlayLevelScreen extends Screen {
             if(!fightScreen.getCurrentEnemy().equals(currMap.getCurrentEnemy())){
                 this.currentEnemy = currMap.getCurrentEnemy();
                     setFightScreen(currentEnemy);
-                    System.out.println("set enemy");
+                    //System.out.println("set enemy");
             }
             if(!currentEnemy.isDead()){
             playLevelScreenState = PlayLevelScreenState.FIGHTING;

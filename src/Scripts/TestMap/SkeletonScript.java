@@ -74,7 +74,7 @@ public class SkeletonScript extends Script {
 
                 
                 addScriptAction(new ChangeFlagScriptAction("hasStaff", true));
-                addScriptAction(new AddItem("hasStaff", new Items(11, new Frame(ImageLoader.load("Staff.png")))));
+                addScriptAction(new AddItem("hasStaff", new Items(11, new Frame(ImageLoader.load("Staff.png")), "Staff")));
             }});
         }});
 
