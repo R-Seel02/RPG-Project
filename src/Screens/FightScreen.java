@@ -698,7 +698,7 @@ public class FightScreen extends Screen {
         graphicsHandler.drawFilledRectangle(275, 275, (player.getHealth() * 2), 25, new Color(190, 0, 0));
 
         // enemy health bar
-        graphicsHandler.drawFilledRectangleWithBorder(975, 275, enemy.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
-        graphicsHandler.drawFilledRectangle(975, 275, (enemy.getCurrentHealth() * 2), 25, new Color(190, 0, 0));
+        graphicsHandler.drawFilledRectangleWithBorder((950 + (100 - enemy.getMaxHealth())), 275, enemy.getMaxHealth() * 2, 25, Color.gray, Color.black, 3);
+        graphicsHandler.drawFilledRectangle((950 + (100 - enemy.getMaxHealth())), 275, (enemy.getCurrentHealth() * 2), 25, new Color(190, 0, 0));
     }
 }
