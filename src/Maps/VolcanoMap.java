@@ -26,7 +26,7 @@ public class VolcanoMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-         PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
+         PushableRock pushableRock = new PushableRock(getMapTile(10, 14).getLocation());
          enhancedMapTiles.add(pushableRock);
 
         return enhancedMapTiles;
@@ -44,7 +44,7 @@ public class VolcanoMap extends Map {
         salamanderGuy.setInteractScript(new SalamanderGuyScript());
         npcs.add(salamanderGuy);
 
-        SalamanderOther salamander1 = new SalamanderOther(3, getMapTile(24, 5).getLocation());
+        SalamanderOther salamander1 = new SalamanderOther(3, getMapTile(22, 5).getLocation());
         salamander1.setInteractScript(new Salamander1Script());
         npcs.add(salamander1);
 
