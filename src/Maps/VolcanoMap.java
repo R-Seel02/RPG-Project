@@ -4,11 +4,14 @@ import Level.*;
 import Scripts.TestMap.*;
 import Tilesets.VolcanoTileset;
 import java.util.ArrayList;
+import EnhancedMapTiles.PushableRock;
 
 import NPCs.RockBoss;
 import NPCs.SalamanderGuy;
 import NPCs.SalamanderOther;
 import NPCs.Salamander3;
+import NPCs.Golem;
+import NPCs.FireSpirit;
 
 // Represents a test map to be used in a level
 public class VolcanoMap extends Map {
@@ -23,8 +26,8 @@ public class VolcanoMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-        // PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
-        // enhancedMapTiles.add(pushableRock);
+         PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
+         enhancedMapTiles.add(pushableRock);
 
         return enhancedMapTiles;
     }
@@ -52,6 +55,14 @@ public class VolcanoMap extends Map {
         Salamander3 salamander3 = new Salamander3(5, getMapTile(24, 15).getLocation());
         salamander3.setInteractScript(new Salamander3Script());
         npcs.add(salamander3);
+
+        Golem golem = new Golem(6, getMapTile(10, 20).getLocation());
+        golem.setInteractScript(new GolemScript());
+        npcs.add(golem);
+
+        FireSpirit fireSpirit = new FireSpirit(7, getMapTile(10, 30).getLocation());
+        fireSpirit.setInteractScript(new FireSpiritScript());
+        npcs.add(fireSpirit);
 
         // shopkeeper id 5
 

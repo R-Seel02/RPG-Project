@@ -34,6 +34,7 @@ public class PlayLevelScreen extends Screen {
     protected FailScreen failScreen;
     protected ShopScreen shopScreen;
     protected FightScreen fightScreen;
+    protected MapScreen mapScreen;
     // protected SnowLevelScreen snowScreen;
     protected FlagManager flagManager;
     protected SpriteFont coinCounter;
@@ -56,6 +57,10 @@ public class PlayLevelScreen extends Screen {
     protected SpriteFont questPlagueDoctorVial;
     protected SpriteFont questMuggedWoman;
     protected SpriteFont questScaredGuy;
+    protected SpriteFont questThief;
+    protected SpriteFont returnTotem;
+    protected SpriteFont questGolem;
+    protected SpriteFont watchTheFight;
     protected SpriteFont returnToSalamanderGuy;
     protected SpriteFont charles;
     protected SpriteFont jeremy;
@@ -217,6 +222,8 @@ public class PlayLevelScreen extends Screen {
         // enemies
         flagManager.addFlag("skeletonDefeated", false);
 
+        flagManager.addFlag("inMap", false);
+
 
         // define/setup map       
         startMap = new StartingMap();
@@ -299,6 +306,22 @@ public class PlayLevelScreen extends Screen {
         questScaredGuy.setOutlineColor(Color.black);
         questScaredGuy.setOutlineThickness(3);
 
+        questThief = new SpriteFont("Take the item from the pyramid.", 950, 75, "Arial", 0, Color.white);
+        questThief.setOutlineColor(Color.black);
+        questThief.setOutlineThickness(3);
+
+        returnTotem = new SpriteFont("return the totem to the thief.", 1000, 75, "Arial", 0, Color.white);
+        returnTotem.setOutlineColor(Color.black);
+        returnTotem.setOutlineThickness(3);
+
+        questGolem = new SpriteFont("Talk to the Fire Spirit.", 1000, 75, "Arial", 0, Color.white);
+        questGolem.setOutlineColor(Color.black);
+        questGolem.setOutlineThickness(3);
+
+        watchTheFight = new SpriteFont("Talk to the Golem.", 1100, 75, "Arial", 0, Color.white);
+        watchTheFight.setOutlineColor(Color.black);
+        watchTheFight.setOutlineThickness(3);
+
         returnToSalamanderGuy = new SpriteFont("Return to the man.", 1100, 75, "Arial", 0, Color.white);
         returnToSalamanderGuy.setOutlineColor(Color.black);
         returnToSalamanderGuy.setOutlineThickness(3);
@@ -339,6 +362,7 @@ public class PlayLevelScreen extends Screen {
         fightScreen = new FightScreen(this, player, currentEnemy);
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
+        mapScreen = new MapScreen();
         failScreen = new FailScreen(this);
     }
 
@@ -356,6 +380,19 @@ public class PlayLevelScreen extends Screen {
     
         if (Keyboard.isKeyUp(Key.I)) {
             keyLocker.unlockKey(Key.I); // Unlock the key once it's released
+        }
+
+        if (Keyboard.isKeyDown(Key.M) && !keyLocker.isKeyLocked(Key.M)) {
+            if (playLevelScreenState == PlayLevelScreenState.RUNNING) {
+                playLevelScreenState = PlayLevelScreenState.MAP; // Switch to inventory
+            } else if (playLevelScreenState == PlayLevelScreenState.MAP) {
+                playLevelScreenState = PlayLevelScreenState.RUNNING; // Switch back to the game
+            }
+            keyLocker.lockKey(Key.M); 
+        }
+    
+        if (Keyboard.isKeyUp(Key.M)) {
+            keyLocker.unlockKey(Key.M); // Unlock the key once it's released
         }
 
         // based on screen state, perform specific actions
@@ -381,6 +418,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case INVENTORY:
                 inventoryScreen.update();
+                break;
+            case MAP:
+                mapScreen.update();
                 break;
             case SLEEPING:
                 break;
@@ -486,6 +526,29 @@ public class PlayLevelScreen extends Screen {
         if (currMap.getFlagManager().isFlagSet("hasCompletedQuestScaredGuy")) {
             questScaredGuy.setFontSize(0);
         }
+
+        if (currMap.getFlagManager().isFlagSet("hasQuestThief")) {
+            questThief.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasTotem")) {
+            questThief.setFontSize(0);
+            returnTotem.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestThief")) {
+            returnTotem.setFontSize(0);
+        }
+
+        if (currMap.getFlagManager().isFlagSet("hasQuestGolem")) {
+            questGolem.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasTalkedToFireSpirit")) {
+            questGolem.setFontSize(0);
+            watchTheFight.setFontSize(30);
+        }
+        if (currMap.getFlagManager().isFlagSet("hasCompletedQuestGolem")) {
+            watchTheFight.setFontSize(0);
+        }
+
 
         if (currMap.getFlagManager().isFlagSet("hasQuestSalamanderGuy")) {
             charles.setFontSize(30);
@@ -624,6 +687,10 @@ public class PlayLevelScreen extends Screen {
                 questSnowman.draw(graphicsHandler);
                 questMuggedWoman.draw(graphicsHandler);
                 questScaredGuy.draw(graphicsHandler);
+                questThief.draw(graphicsHandler);
+                returnTotem.draw(graphicsHandler);
+                questGolem.draw(graphicsHandler);
+                watchTheFight.draw(graphicsHandler);
                 returnToSalamanderGuy.draw(graphicsHandler);
                 charles.draw(graphicsHandler);
                 gregory.draw(graphicsHandler);
@@ -654,6 +721,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case INVENTORY:
                 inventoryScreen.draw(graphicsHandler);
+                break;
+            case MAP:
+                mapScreen.draw(graphicsHandler);
                 break;
             // case SNOW:
             //     map = new SnowMap();
@@ -713,12 +783,17 @@ public class PlayLevelScreen extends Screen {
         screenCoordinator.setGameState(GameState.INVENTORY);
     }
 
+    public void goToMap() {
+        screenCoordinator.setGameState(GameState.MAP);
+    }
+
     public void backToGame() {
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         flagManager.unsetFlag("isFighting");
         flagManager.unsetFlag("inShop");
         flagManager.unsetFlag("InInventory");
         flagManager.unsetFlag("isSleeping");
+        flagManager.unsetFlag("inMap");
     }
 
     public void setFightScreen(Enemy enemy){
@@ -732,6 +807,6 @@ public class PlayLevelScreen extends Screen {
     // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         // add shopping
-        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING, INVENTORY, FAIL
+        RUNNING, LEVEL_COMPLETED, FIGHTING, SHOPPING, SLEEPING, INVENTORY, FAIL, MAP
     }
 }
