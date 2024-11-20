@@ -1,8 +1,12 @@
 package Maps;
 
 import Level.*;
+import NPCs.FinalBoss;
+import Scripts.TestMap.FinalBossScript;
 import Scripts.TestMap.WarpStartScript;
 import Tilesets.CommonTileset;
+import Utils.Point;
+
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
@@ -28,7 +32,9 @@ public class BossMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        
+        FinalBoss finalBoss = new FinalBoss(1, getMapTile(6, 8).getLocation());
+        finalBoss.setInteractScript(new FinalBossScript());
+        npcs.add(finalBoss);
 
         // shopkeeper id 5
 

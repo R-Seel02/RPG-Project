@@ -218,6 +218,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("snowmanBossDefeated", false);
         flagManager.addFlag("cactusBossDefeated", false);
         flagManager.addFlag("rockBossDefeated", false);
+        flagManager.addFlag("finalBossDefeated", false);
 
         // enemies
         flagManager.addFlag("skeletonDefeated", false);
