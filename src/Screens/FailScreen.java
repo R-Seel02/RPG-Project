@@ -36,10 +36,10 @@ public class FailScreen extends Screen {
 
         // if E is pressed, reset level. if escape is pressed, go back to main menu
         if (Keyboard.isKeyDown(Key.E) && !keyLocker.isKeyLocked(Key.E)) {
-            System.out.println("E");
+            //System.out.println("E");
             playLevelScreen.resetLevel();
         } else if (Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)) {
-            System.out.println("Escape");
+            //System.out.println("Escape");
             playLevelScreen.goBackToMenu();
         }
     }

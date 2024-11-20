@@ -50,6 +50,10 @@ public class Skeleton extends NPC {
             currentAnimationName = "WALK_LEFT";
         }
     }
+    
+    
+
+    
 
     @Override
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {

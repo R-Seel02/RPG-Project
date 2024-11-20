@@ -132,6 +132,8 @@ public class FightScreen extends Screen {
         for(int i = 0; i < 6; i++){
             if(inventory[i] == null){
                 //This area intentionally left blank
+            }else if(inventory[i].getName() == "placeholder"){
+                //Skips any placeholder items
             }else{
                 weapons[i] = inventory[i].getName();
                 numWeapons++;
@@ -488,9 +490,13 @@ public class FightScreen extends Screen {
                             dealtDamage = player.attack();
                             enemy.takeDamage(dealtDamage);
                             keyLocker.lockKey(Key.E);
-                            updateMessages();
-                            playSound("punch.wav");
+                            if(player.lastAttackWasCrit()){
+                                playSound("crit.wav");
+                            }else{
+                                playSound("punch.wav");
+                            }
                             isPlayerTurn = false;
+                            updateMessages();
                         }else if(menuItemSelected == 2){
                             attack(0);
                             keyLocker.lockKey(Key.E);

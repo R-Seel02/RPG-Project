@@ -21,7 +21,6 @@ import NPCs.OldGuy;
 import NPCs.QuestWoman;
 import NPCs.Skeleton;
 import NPCs.TestNPC;
-import NPCs.TreeBoss;
 import NPCs.Walrus;
 import PickableObjects.ItemRock;
 import Scripts.SimpleTextScript;
@@ -91,12 +90,12 @@ public class StartingMap extends Map {
         chickenYellow.setInteractScript(new ChickenYellowScript());
         npcs.add(chickenYellow);
 
-        ChickenOrange chickenOrange = new ChickenOrange(10, getMapTile(30, 10).getLocation().subtractY(40));
+        ChickenOrange chickenOrange = new ChickenOrange(10, getMapTile(33, 10).getLocation().subtractY(40));
         //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
         chickenOrange.setInteractScript(new ChickenOrangeScript());
         npcs.add(chickenOrange);
 
-          ChickenBlue chickenBlue = new ChickenBlue(11, getMapTile(8, 10).getLocation().subtractY(40));
+          ChickenBlue chickenBlue = new ChickenBlue(11, getMapTile(9, 10).getLocation().subtractY(40));
           //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
           chickenBlue.setInteractScript(new ChickenBlueScript());
           npcs.add(chickenBlue);
@@ -155,10 +154,10 @@ public class StartingMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(120, 490, 10, 80, new WarpSnowScript()));
-        triggers.add(new Trigger(1550, 490, 10, 80, new WarpForestScript()));
-        triggers.add(new Trigger(1550, 1010, 10, 80, new WarpDesertScript()));
-        triggers.add(new Trigger(120, 1010, 10, 80, new WarpVolcanoScript()));
+        triggers.add(new Trigger(120, 1010, 10, 80, new WarpSnowScript()));
+        triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
+        triggers.add(new Trigger(1550, 490, 10, 80, new WarpDesertScript()));
+        triggers.add(new Trigger(120, 490, 10, 80, new WarpVolcanoScript()));
         triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
         return triggers;
     }

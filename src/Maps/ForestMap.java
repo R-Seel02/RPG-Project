@@ -42,7 +42,7 @@ public class ForestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        PlagueDoctor plagueDoctor = new PlagueDoctor(1, getMapTile(6,2).getLocation().subtractY(40));
+        PlagueDoctor plagueDoctor = new PlagueDoctor(1, getMapTile(8,2).getLocation().subtractY(40));
         plagueDoctor.setInteractScript(new PlagueDoctorScript());
         npcs.add(plagueDoctor);
 
@@ -66,7 +66,7 @@ public class ForestMap extends Map {
         eyeBall.setInteractScript(new EyeballScript());
         npcs.add(eyeBall);
 
-        MuggedWoman muggedWoman = new MuggedWoman(2, getMapTile(5,10).getLocation().subtractY(40));
+        MuggedWoman muggedWoman = new MuggedWoman(2, getMapTile(7,10).getLocation().subtractY(40));
         muggedWoman.setInteractScript(new MuggedWomanScript());
         npcs.add(muggedWoman);
 
@@ -88,7 +88,7 @@ public class ForestMap extends Map {
         
 
         
-
+        
         // shopkeeper id 5
 
         return npcs;

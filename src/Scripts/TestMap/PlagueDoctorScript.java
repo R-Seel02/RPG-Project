@@ -208,7 +208,7 @@ public class PlagueDoctorScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasQuestPlagueDoctor", true));
-                addRequirement(new FlagRequirement("hasCompletedQuestFarmer", false));
+                addRequirement(new FlagRequirement("hasCompletedQuestPlagueDoctor", false));
                 addRequirement(new FlagRequirement("hasCauldron", true));
                 addRequirement(new FlagRequirement("hasFrog", true));
                 addRequirement(new FlagRequirement("hasPurpleFlower", true));

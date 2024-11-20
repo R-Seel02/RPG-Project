@@ -18,7 +18,7 @@ public class Mage extends Player {
         //walkSpeed = 2.3f;
         walkSpeed = 5f;
         super.setMaxHealth(75);
-        super.setCritChance(7);
+        super.setCritChance(15);
     }
 
     public void update() {
