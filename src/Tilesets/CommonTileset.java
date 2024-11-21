@@ -561,11 +561,11 @@ public class CommonTileset extends Tileset {
         mapTiles.add(desertPortalBTile);
 
         // boss portal
-        Frame bossPortalFrame = new FrameBuilder(getSubImage(5, 7))
+        Frame bossPortalTFrame = new FrameBuilder(getSubImage(5, 7))
                 .withScale(tileScale)
                 .build();
-        MapTileBuilder bossPortalTile = new MapTileBuilder(bossPortalFrame);
-        mapTiles.add(bossPortalTile);
+        MapTileBuilder bossPortalTTile = new MapTileBuilder(bossPortalTFrame);
+        mapTiles.add(bossPortalTTile);
 
         // grass border
         Frame grassBorderFrame = new FrameBuilder(getSubImage(0, 0))
@@ -603,6 +603,64 @@ public class CommonTileset extends Tileset {
                 .build();
         MapTileBuilder houseBodyFGTile = new MapTileBuilder(sandFrame).withTopLayer(houseBodyFGFrame);
         mapTiles.add(houseBodyFGTile);
+
+        // castle tower tops
+        Frame castleConeGrassLFrame = new FrameBuilder(getSubImage(6, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder castleConeGrassLTile = new MapTileBuilder(grassFrame).withTopLayer(castleConeGrassLFrame);
+        mapTiles.add(castleConeGrassLTile);
+
+        Frame castleConeGrassRFrame = new FrameBuilder(getSubImage(6, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder castleConeGrassRTile = new MapTileBuilder(grassFrame).withTopLayer(castleConeGrassRFrame);
+        mapTiles.add(castleConeGrassRTile);
+
+        Frame castleConeStoneLFrame = new FrameBuilder(getSubImage(6, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder castleConeStoneLTile = new MapTileBuilder(houseBodyFrame).withTopLayer(castleConeStoneLFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(castleConeStoneLTile);
+
+        Frame castleConeStoneRFrame = new FrameBuilder(getSubImage(6, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder castleConeStoneRTile = new MapTileBuilder(houseBodyFrame).withTopLayer(castleConeStoneRFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(castleConeStoneRTile);
+
+        Frame castleConeGravelLFrame = new FrameBuilder(getSubImage(6, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder castleConeGravelLTile = new MapTileBuilder(greyRockFrame).withTopLayer(castleConeGravelLFrame);
+        mapTiles.add(castleConeGravelLTile);
+
+        Frame castleConeGravelRFrame = new FrameBuilder(getSubImage(6, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder castleConeGravelRTile = new MapTileBuilder(greyRockFrame).withTopLayer(castleConeGravelRFrame);
+        mapTiles.add(castleConeGravelRTile);
+
+        Frame castleConeFrame = new FrameBuilder(getSubImage(6, 5))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder castleConeTile = new MapTileBuilder(grassFrame).withTopLayer(castleConeFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(castleConeTile);
+
+        // boss portal bottom frame
+        Frame bossPortalBFrame = new FrameBuilder(getSubImage(5, 7))
+        .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder bossPortalBTile = new MapTileBuilder(bossPortalBFrame);
+        mapTiles.add(bossPortalBTile);
+
 
         return mapTiles;
     }

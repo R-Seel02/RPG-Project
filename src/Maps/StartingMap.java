@@ -158,7 +158,7 @@ public class StartingMap extends Map {
         triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
         triggers.add(new Trigger(1550, 490, 10, 80, new WarpDesertScript()));
         triggers.add(new Trigger(120, 490, 10, 80, new WarpVolcanoScript()));
-        triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
+        // triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript())); boss portal is in volcano biome
         return triggers;
     }
 

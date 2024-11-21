@@ -42,7 +42,7 @@ public class BossMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(675, 870, 40, 40, new WarpStartScript()));
+        triggers.add(new Trigger(675, 820, 40, 85, new WarpStartScript()));
         return triggers;
     }
 
