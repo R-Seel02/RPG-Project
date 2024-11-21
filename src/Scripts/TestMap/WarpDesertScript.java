@@ -14,13 +14,33 @@ public class WarpDesertScript extends Script {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
 
-        scriptActions.add(new TextboxScriptAction() {{
-            addText("You approach a glowing portal. It emits a dry heat.");
-            addText("Would you like to travel to the Desert Biome?", new String[] { "Yes", "No" });
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("unlockedDesert", false));
+
+                addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new TextboxScriptAction("You must reach the Desert Biome to unlock this portal."));
+                }});
+                scriptActions.add(new UnlockPlayerScriptAction());
+                addScriptAction(new WaitScriptAction(60));
+            }});
+
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("unlockedDesert", true));
+
+                 addScriptAction(new TextboxScriptAction() {{
+                    addText("You approach a glowing portal. It emits a dry heat.");
+                    addText("Would you like to travel to the Desert Biome?", new String[] { "Yes", "No" });
+                 }});
+            }});   
+        }});
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("unlockedDesert", true));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {
@@ -34,6 +54,7 @@ public class WarpDesertScript extends Script {
                      addText("Traveling to... Desert Biome.");
                  }});
                  scriptActions.add(new UnlockPlayerScriptAction());
+                 scriptActions.add(new ChangeFlagScriptAction("unlockedVolcano", true));
                  scriptActions.add(new ChangeFlagScriptAction("atDesertBiome", true));
             }});
 
@@ -42,6 +63,7 @@ public class WarpDesertScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("unlockedDesert", true));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {

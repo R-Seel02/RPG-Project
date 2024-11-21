@@ -5,4 +5,3 @@ public class MapEditor {
         new EditorWindow();
     }
 }
-// 17, 20
