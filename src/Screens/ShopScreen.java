@@ -28,6 +28,7 @@ public class ShopScreen extends Screen{
     protected SpriteFont returnToGame;
     protected Sprite background;
     protected Sprite shopkeeper;
+    protected Sprite[] shopkeepers = new Sprite[60];
     protected Sprite healthPotion;
     protected Sprite damagePotion;
     protected Sprite defensePotion;
@@ -83,6 +84,7 @@ public class ShopScreen extends Screen{
 
     @Override
     public void update() {
+        
         if (Keyboard.isKeyDown(Key.S) && keyPressTimer == 0) {
             keyPressTimer = 20;
             currentMenuItemHovered++;

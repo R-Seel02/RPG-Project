@@ -46,15 +46,15 @@ public class ForestMap extends Map {
         plagueDoctor.setInteractScript(new PlagueDoctorScript());
         npcs.add(plagueDoctor);
 
-        Cauldron cauldron = new Cauldron(2, getMapTile(10,2).getLocation().subtractY(40));
+        Cauldron cauldron = new Cauldron(2, getMapTile(10,20).getLocation().subtractY(40));
         cauldron.setInteractScript(new CauldronScript());
         npcs.add(cauldron);
 
-        Frog frog = new Frog(2, getMapTile(14,2).getLocation().subtractY(40));
+        Frog frog = new Frog(2, getMapTile(14,7).getLocation().subtractY(40));
         frog.setInteractScript(new FrogScript());
         npcs.add(frog);
 
-        PurpleFlower purpleFlower = new PurpleFlower(2, getMapTile(18,2).getLocation().subtractY(40));
+        PurpleFlower purpleFlower = new PurpleFlower(2, getMapTile(18,10).getLocation().subtractY(40));
         purpleFlower.setInteractScript(new PurpleFlowerScript());
         npcs.add(purpleFlower);
 
@@ -62,7 +62,7 @@ public class ForestMap extends Map {
         vial.setInteractScript(new VialScript());
         npcs.add(vial);
 
-        Eyeball eyeBall = new Eyeball(2, getMapTile(26,2).getLocation().subtractY(40));
+        Eyeball eyeBall = new Eyeball(2, getMapTile(26,30).getLocation().subtractY(40));
         eyeBall.setInteractScript(new EyeballScript());
         npcs.add(eyeBall);
 

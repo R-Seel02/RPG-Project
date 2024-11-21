@@ -363,7 +363,7 @@ public class PlayLevelScreen extends Screen {
         fightScreen = new FightScreen(this, player, currentEnemy);
         shopScreen = new ShopScreen(this, this.player);
         inventoryScreen = new InventoryScreen(this, player);
-        mapScreen = new MapScreen();
+        mapScreen = new MapScreen(0);
         failScreen = new FailScreen(this);
     }
 
@@ -387,6 +387,7 @@ public class PlayLevelScreen extends Screen {
             if (playLevelScreenState == PlayLevelScreenState.RUNNING) {
                 playLevelScreenState = PlayLevelScreenState.MAP; // Switch to inventory
             } else if (playLevelScreenState == PlayLevelScreenState.MAP) {
+                mapScreen.update();
                 playLevelScreenState = PlayLevelScreenState.RUNNING; // Switch back to the game
             }
             keyLocker.lockKey(Key.M); 
@@ -421,6 +422,7 @@ public class PlayLevelScreen extends Screen {
                 inventoryScreen.update();
                 break;
             case MAP:
+            //mapScreen.reset();
                 mapScreen.update();
                 break;
             case SLEEPING:
