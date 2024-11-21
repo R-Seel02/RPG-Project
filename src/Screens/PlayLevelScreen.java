@@ -763,8 +763,8 @@ public class PlayLevelScreen extends Screen {
 
                 i++;
 
-                if(i < 230){
-                    int alphaLevel = i * 2;
+                if(i < 150){
+                    int alphaLevel = i * 3;
                     if(alphaLevel > 255){
                         alphaLevel = 255;
                     }
