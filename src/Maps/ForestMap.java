@@ -1,6 +1,7 @@
 package Maps;
 
 import Level.*;
+import NPCs.Bed;
 import NPCs.Cauldron;
 import NPCs.Eyeball;
 import NPCs.ForestChest;
@@ -92,6 +93,10 @@ public class ForestMap extends Map {
         ForestChest2 forestChest2 = new ForestChest2(22, getMapTile(4,20).getLocation());
         forestChest2.setInteractScript(new ForestChestScript2());
         npcs.add(forestChest2);
+
+        Bed bed = new Bed(23, getMapTile(7, 22).getLocation().subtractY(40));
+        bed.setInteractScript(new BedScript());
+        npcs.add(bed);
 
         
 

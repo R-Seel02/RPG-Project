@@ -77,6 +77,10 @@ public class SnowMap extends Map {
         snowChestFake.setInteractScript(new SnowChestFakeScript());
         npcs.add(snowChestFake);
 
+        Bed bed = new Bed(9, getMapTile(7, 22).getLocation().subtractY(40));
+        bed.setInteractScript(new BedScript());
+        npcs.add(bed);
+
         return npcs;
     }
 

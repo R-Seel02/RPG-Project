@@ -1,6 +1,7 @@
 package Maps;
 
 import Level.*;
+import NPCs.Bed;
 import NPCs.Cactus;
 import NPCs.CactusBoss;
 import NPCs.ScaredGuy;
@@ -49,6 +50,10 @@ public class DesertMap extends Map {
         Thief thief = new Thief(4, getMapTile(24, 15).getLocation());
         thief.setInteractScript(new ThiefScript());
         npcs.add(thief);
+
+        Bed bed = new Bed(5, getMapTile(7, 22).getLocation().subtractY(40));
+        bed.setInteractScript(new BedScript());
+        npcs.add(bed);
 
 
 
