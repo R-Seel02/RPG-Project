@@ -5,6 +5,7 @@ import ScriptActions.ChangeFlagScriptAction;
 import ScriptActions.LockPlayerScriptAction;
 import ScriptActions.NPCFacePlayerScriptAction;
 import ScriptActions.ScriptAction;
+import ScriptActions.TextboxScriptAction;
 import ScriptActions.UnlockPlayerScriptAction;
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class BedScript extends Script{
         //     addText("You sleep to recover.");
         // }});
 
-
+        //scriptActions.add(new TextboxScriptAction("[You head inside your home.]"));
         scriptActions.add(new ChangeFlagScriptAction("isSleeping", true)); 
         
         // System.out.println("set true");

@@ -224,7 +224,7 @@ public class FightScreen extends Screen {
             dealtDamage *= 2;
         }
         if(player.hasAttackBuff()){
-            dealtDamage += 3;
+            dealtDamage += 6;
         }
         if(player.lastAttackWasCrit()){
             playSound("crit.wav");
@@ -575,7 +575,7 @@ public class FightScreen extends Screen {
             }else if(turnTimer == 0){
                 takenDamage = enemy.attack();
                 if(player.hasDefenseBuff()){
-                    takenDamage -= 3;
+                    takenDamage = (int) takenDamage/2;
                     if(takenDamage < 0){
                         takenDamage = 0;
                     }

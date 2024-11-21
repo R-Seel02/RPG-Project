@@ -17,6 +17,7 @@ public class CreditsScreen extends Screen {
     protected SpriteFont creditsLabel;
     protected SpriteFont createdByLabel;
     protected SpriteFont devLabel;
+    protected SpriteFont cascadeLabel;
     protected SpriteFont returnInstructionsLabel;
 
     public CreditsScreen(ScreenCoordinator screenCoordinator) {
@@ -34,9 +35,12 @@ public class CreditsScreen extends Screen {
         createdByLabel = new SpriteFont("Base game created by Alex Thimineur", 130, 121, "Book Antiqua", 20, Color.white);
         createdByLabel.setOutlineColor(Color.black);
         createdByLabel.setOutlineThickness(3);
-        devLabel = new SpriteFont("The Legend of Thimineur brought to you by: Max Cheezic, Matther Wheeler, Ryan Seely, Mark Pfister, Pierce Conway", 130, 150, "Book Antiqua", 22, Color.white);
+        devLabel = new SpriteFont("The Legend of Thimineur brought to you by Team Cascade.", 130, 150, "Book Antiqua", 22, Color.white);
         devLabel.setOutlineColor(Color.black);
         devLabel.setOutlineThickness(3);
+        cascadeLabel = new SpriteFont("Team Cascade is: Max Cheezic, Matther Wheeler, Ryan Seely, Mark Pfister, Pierce Conway", 130, 200, "Book Antiqua", 25, Color.white);
+        cascadeLabel.setOutlineColor(Color.black);
+        cascadeLabel.setOutlineThickness(3);
         returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Book Antiqua", 30, Color.white);
         returnInstructionsLabel.setOutlineColor(Color.black);
         returnInstructionsLabel.setOutlineThickness(3);
@@ -61,6 +65,7 @@ public class CreditsScreen extends Screen {
         creditsLabel.draw(graphicsHandler);
         createdByLabel.draw(graphicsHandler);
         devLabel.draw(graphicsHandler);
+        cascadeLabel.draw(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
     }
 }
