@@ -20,6 +20,11 @@ public class CharacterSelectScreen extends Screen {
     protected SpriteFont character1;
     protected SpriteFont character2;
     protected SpriteFont character3;
+
+    protected SpriteFont character1Desc;
+    protected SpriteFont character2Desc;
+    protected SpriteFont character3Desc;
+
     protected Sprite background;
     protected Sprite assassin;
     protected Sprite knight;
@@ -59,6 +64,11 @@ public class CharacterSelectScreen extends Screen {
         character1 = new SpriteFont("Assassin", 150, 600, "Arial", 40, Color.white);
         character2 = new SpriteFont("Warrior", 625, 600, "Arial", 40, Color.white);
         character3 = new SpriteFont("Mage", 1100, 600, "Arial", 40, Color.white);
+
+        character1Desc = new SpriteFont("(average crit % and hp)", 125, 650, "Arial", 20, Color.white);
+        character2Desc = new SpriteFont("(low crit %, high hp)", 600, 650, "Arial", 20, Color.white);
+        character3Desc = new SpriteFont("(high crit %, low hp)", 1075, 650, "Arial", 20, Color.white);
+
     }
 
     @Override
@@ -84,18 +94,27 @@ public class CharacterSelectScreen extends Screen {
 
         if (currentMenuItemHovered == 0) {
             character1.setColor(Color.yellow);
+            character1Desc.setColor(Color.yellow);
             character2.setColor(Color.white);
+            character2Desc.setColor(Color.white);
             character3.setColor(Color.white);
+            character3Desc.setColor(Color.white);
         } 
         else if (currentMenuItemHovered == 1) {
             character1.setColor(Color.white);
+            character1Desc.setColor(Color.white);
             character2.setColor(Color.yellow);
+            character2Desc.setColor(Color.yellow);
             character3.setColor(Color.white);
+            character3Desc.setColor(Color.white);
         }
         else if (currentMenuItemHovered == 2) {
             character1.setColor(Color.white);
+            character1Desc.setColor(Color.white);
             character2.setColor(Color.white);
+            character2Desc.setColor(Color.white);
             character3.setColor(Color.yellow);
+            character3Desc.setColor(Color.yellow);
         }
 
         if (Keyboard.isKeyUp(Key.E)) {
@@ -124,6 +143,9 @@ public class CharacterSelectScreen extends Screen {
         character1.draw(graphicsHandler);
         character2.draw(graphicsHandler);
         character3.draw(graphicsHandler);
+        character1Desc.draw(graphicsHandler);
+        character2Desc.draw(graphicsHandler);
+        character3Desc.draw(graphicsHandler);
         
     }
 

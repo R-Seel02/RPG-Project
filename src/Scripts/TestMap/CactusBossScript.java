@@ -15,7 +15,7 @@ import Utils.Visibility;
 // script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
 public class CactusBossScript extends Script {
-    protected Enemy cactusBoss = new Enemy("CactusBoss", 150, 5, 2, "CactuswardSprite.png", 100, 100);
+    protected Enemy cactusBoss = new Enemy("CactusBoss", 200, 16, 3, "CactuswardSprite.png", 100, 100);
     int npcId = 1;
 
     @Override
@@ -28,7 +28,7 @@ public class CactusBossScript extends Script {
         scriptActions.add(new NPCFacePlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction("HELLO..."));
-        scriptActions.add(new TextboxScriptAction("I'm a prickly cactus. Let's fight."));
+        scriptActions.add(new TextboxScriptAction("I'm a prickly cactus and I love King John Kingsley. \nLet's fight."));
 
         scriptActions.add(new StartFightScriptAction(cactusBoss));
 
