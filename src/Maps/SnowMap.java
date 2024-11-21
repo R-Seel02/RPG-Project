@@ -1,6 +1,7 @@
 package Maps;
 
 import Level.*;
+import NPCs.Bed;
 import NPCs.CoalMan;
 import NPCs.Fish;
 import NPCs.SnowChest;
