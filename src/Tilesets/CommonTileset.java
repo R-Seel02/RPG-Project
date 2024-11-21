@@ -168,13 +168,13 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.PASSABLE);
         mapTiles.add(greyRockTile);
 
-        // bush
-        Frame bushFrame = new FrameBuilder(getSubImage(3, 3))
+        // throne top
+        Frame throneTopFrame = new FrameBuilder(getSubImage(3, 3))
                 .withScale(tileScale)
                 .build();
-        MapTileBuilder bushTile = new MapTileBuilder(bushFrame)
+        MapTileBuilder throneTopTile = new MapTileBuilder(throneTopFrame)
                 .withTileType(TileType.NOT_PASSABLE);
-        mapTiles.add(bushTile);
+        mapTiles.add(throneTopTile);
 
         // house body
         Frame houseBodyFrame = new FrameBuilder(getSubImage(3, 4))
@@ -655,12 +655,19 @@ public class CommonTileset extends Tileset {
 
         // boss portal bottom frame
         Frame bossPortalBFrame = new FrameBuilder(getSubImage(5, 7))
-        .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
                 .withScale(tileScale)
                 .build();
         MapTileBuilder bossPortalBTile = new MapTileBuilder(bossPortalBFrame);
         mapTiles.add(bossPortalBTile);
 
+        // throne bottom
+        Frame throneBottomFrame = new FrameBuilder(getSubImage(6, 6))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder throneBottomTile = new MapTileBuilder(throneBottomFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(throneBottomTile);
 
         return mapTiles;
     }
