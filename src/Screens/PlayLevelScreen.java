@@ -644,7 +644,7 @@ public class PlayLevelScreen extends Screen {
             currMap = bossMap;
             player.setMap(currMap);
             currMap.setPlayer(player);
-            player.setLocation(660, 580);
+            player.setLocation(660, 790);
             currMap.getTextbox().setInteractKey(player.getInteractKey());
             currMap.preloadScripts();
             flagManager.unsetFlag("atBossRoom");

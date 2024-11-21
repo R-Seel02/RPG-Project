@@ -5,8 +5,6 @@ import NPCs.FinalBoss;
 import Scripts.TestMap.FinalBossScript;
 import Scripts.TestMap.WarpStartScript;
 import Tilesets.CommonTileset;
-import Utils.Point;
-
 import java.util.ArrayList;
 
 // Represents a test map to be used in a level
@@ -44,7 +42,7 @@ public class BossMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(680, 680, 40, 40, new WarpStartScript()));
+        triggers.add(new Trigger(675, 870, 40, 40, new WarpStartScript()));
         return triggers;
     }
 
