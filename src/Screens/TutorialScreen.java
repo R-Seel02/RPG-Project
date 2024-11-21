@@ -14,7 +14,7 @@ public class TutorialScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map background;
     protected KeyLocker keyLocker = new KeyLocker();
-    protected SpriteFont howToMove, howToTextBox, howToInteract, howToInventory;
+    protected SpriteFont howToMove, howToTextBox, howToInteract, howToInventory, howToMap;
     protected SpriteFont returnInstructionsLabel;
 
     public TutorialScreen(ScreenCoordinator screenCoordinator) {
@@ -38,6 +38,9 @@ public class TutorialScreen extends Screen {
         howToInventory = new SpriteFont("Open and close your inventory using I.", 100, 300, "Book Antiqua", 30, Color.white);
         howToInventory.setOutlineColor(Color.black);
         howToInventory.setOutlineThickness(3);
+        howToMap = new SpriteFont("Open and close your map using M.", 100, 350, "Book Antiqua", 30, Color.white);
+        howToMap.setOutlineColor(Color.black);
+        howToMap.setOutlineThickness(3);
         returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Book Antiqua", 30, Color.white);
         returnInstructionsLabel.setOutlineColor(Color.black);
         returnInstructionsLabel.setOutlineThickness(3);
@@ -63,6 +66,7 @@ public class TutorialScreen extends Screen {
         howToMove.draw(graphicsHandler);
         howToTextBox.draw(graphicsHandler);
         howToInventory.draw(graphicsHandler);
+        howToMap.draw(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
     }
 }
