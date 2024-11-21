@@ -21,8 +21,8 @@ public class PickableObject extends MapEntity {
         this.frame = frame;
     }
 
-    public Items convertToItem(int damage){
-        return new Items(damage, this.frame);
+    public Items convertToItem(int damage, String name){
+        return new Items(damage, this.frame, name);
     }
 
 
@@ -41,7 +41,7 @@ public class PickableObject extends MapEntity {
         if (distance <= 55 && Keyboard.isKeyDown(INTERACT_KEY)) {
             this.setMapEntityStatus(MapEntityStatus.REMOVED);
             
-            player.addToInventory(this.convertToItem(10)); //this.converttoItem
+            player.addToInventory(this.convertToItem(10, "placeholder")); //this.converttoItem
 
         }
         

@@ -34,6 +34,7 @@ public class WarpForestScript extends Script {
                      addText("Traveling to... Forest Biome.");
                  }});
                  scriptActions.add(new UnlockPlayerScriptAction());
+                 scriptActions.add(new ChangeFlagScriptAction("unlockedSnow", true));
                  scriptActions.add(new ChangeFlagScriptAction("atForestBiome", true));
             }});
 

@@ -93,6 +93,8 @@ public class PlayLevelScreen extends Screen {
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
+
+        // biome flags
         flagManager.addFlag("atSnowBiome", false);
         flagManager.addFlag("atStartBiome", false);
         flagManager.addFlag("atForestBiome", false);
@@ -101,6 +103,12 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("atBossRoom", false);
         flagManager.addFlag("atPyramid", false);
         flagManager.addFlag("leftPyramid", false);
+        flagManager.addFlag("unlockedSnow", false);
+        flagManager.addFlag("unlockedDesert", false);
+        flagManager.addFlag("unlockedVolcano", false);
+        flagManager.addFlag("unlockedBoss", false);
+
+
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         // flagManager.addFlag("hasFoundBall", false);
@@ -212,6 +220,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasOpenedChest2", false);
         flagManager.addFlag("InInventory", false);
         flagManager.addFlag("hasStaff", false);
+        flagManager.addFlag("startGame", false);
 
         // bosses
         flagManager.addFlag("treeBossDefeated", false);
@@ -427,6 +436,9 @@ public class PlayLevelScreen extends Screen {
                 break;
             case SLEEPING:
                 break;
+            case FAIL:
+                failScreen.update();
+                break;
         }
 
         // if flag is set at any point during gameplay, game is "won"
@@ -440,7 +452,7 @@ public class PlayLevelScreen extends Screen {
             if(!fightScreen.getCurrentEnemy().equals(currMap.getCurrentEnemy())){
                 this.currentEnemy = currMap.getCurrentEnemy();
                     setFightScreen(currentEnemy);
-                    System.out.println("set enemy");
+                    //System.out.println("set enemy");
             }
             if(!currentEnemy.isDead()){
             playLevelScreenState = PlayLevelScreenState.FIGHTING;
@@ -635,7 +647,7 @@ public class PlayLevelScreen extends Screen {
             currMap = bossMap;
             player.setMap(currMap);
             currMap.setPlayer(player);
-            player.setLocation(660, 580);
+            player.setLocation(660, 720);
             currMap.getTextbox().setInteractKey(player.getInteractKey());
             currMap.preloadScripts();
             flagManager.unsetFlag("atBossRoom");

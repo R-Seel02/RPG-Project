@@ -14,13 +14,33 @@ public class WarpSnowScript extends Script {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
 
-        scriptActions.add(new TextboxScriptAction() {{
-            addText("You approach a glowing portal. It emits a freezing cold.");
-            addText("Would you like to travel to the Snow Biome?", new String[] { "Yes", "No" });
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("unlockedSnow", false));
+
+                addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new TextboxScriptAction("You must reach the Snow Biome to unlock this portal."));
+                }});
+                scriptActions.add(new UnlockPlayerScriptAction());
+                addScriptAction(new WaitScriptAction(60));
+            }});
+
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("unlockedSnow", true));
+
+                 addScriptAction(new TextboxScriptAction() {{
+                    addText("You approach a glowing portal. It emits a freezing cold.");
+                    addText("Would you like to travel to the Snow Biome?", new String[] { "Yes", "No" });
+                 }});
+            }});   
+        }});
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("unlockedSnow", true));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {
@@ -34,6 +54,7 @@ public class WarpSnowScript extends Script {
                      addText("Traveling to... Snow Biome.");
                  }});
                  scriptActions.add(new UnlockPlayerScriptAction());
+                 scriptActions.add(new ChangeFlagScriptAction("unlockedDesert", true));
                  scriptActions.add(new ChangeFlagScriptAction("atSnowBiome", true));
             }});
 
@@ -42,6 +63,7 @@ public class WarpSnowScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("unlockedSnow", true));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {

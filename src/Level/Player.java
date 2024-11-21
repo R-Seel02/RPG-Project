@@ -357,12 +357,15 @@ public abstract class Player extends GameObject {
         int cc = random.nextInt(101);
         justCrit = false;
         critBucket += 10;
+        int dealtDamage = 5;
         if(cc <= critChance + ((critBucket / 50) * 2)){
             justCrit = true;
-            return 20;
-        }else{
-            return 10;
+            dealtDamage *= 2;   
         }
+        if(hasDamageBuff){
+            dealtDamage += 3;
+        }
+        return dealtDamage;
     }
 
     public boolean lastAttackWasCrit(){
@@ -493,6 +496,22 @@ public abstract class Player extends GameObject {
 
     public void emptyCritBucket(){
         this.critBucket = 0;
+    }
+
+    public void addToCritBucket(int i){
+        this.critBucket += i;
+    }
+
+    public boolean rollCrit(){
+        int cc = random.nextInt(101);
+        justCrit = false;
+        critBucket += 10;
+        if(cc <= critChance + ((critBucket / 50) * 2)){
+            justCrit = true;
+        }else{
+            justCrit = false;
+        }
+        return justCrit;
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize

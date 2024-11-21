@@ -196,6 +196,20 @@ public class DesertTileset extends Tileset {
         MapTileBuilder pyramidTile = new MapTileBuilder(pyramidFrame)
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(pyramidTile);
+
+        // volcano portal
+        Frame volcanoPortalTFrame = new FrameBuilder(getSubImage(3, 1))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder volcanoPortalTTile = new MapTileBuilder(volcanoPortalTFrame);
+        mapTiles.add(volcanoPortalTTile);
+
+        Frame volcanoPortalBFrame = new FrameBuilder(getSubImage(3, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder volcanoPortalBTile = new MapTileBuilder(volcanoPortalBFrame);
+        mapTiles.add(volcanoPortalBTile);
         
         return mapTiles;
     }

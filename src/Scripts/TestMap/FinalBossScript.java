@@ -15,7 +15,7 @@ import Utils.Visibility;
 // script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
 public class FinalBossScript extends Script {
-    protected Enemy finalBoss = new Enemy("FinalBoss", 150, 5, 2, "King_John_Kingsley.png", 100, 100);
+    protected Enemy finalBoss = new Enemy("FinalBoss", 300, 20, 3, "King_John_Kingsley.png", 100, 100);
     int npcId = 1;
 
     @Override

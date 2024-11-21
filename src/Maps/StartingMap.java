@@ -34,6 +34,7 @@ public class StartingMap extends Map {
     public StartingMap() {
         super("starting_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 19).getLocation();
+        //System.out.println(getMapTile(17,19).getLocation());
     }
 
     @Override
@@ -129,6 +130,7 @@ public class StartingMap extends Map {
 
 
         Bed bed = new Bed(18, getMapTile(7, 22).getLocation().subtractY(40));
+        //System.out.println(getMapTile(7, 22).getLocation().subtractY(40));
         bed.setInteractScript(new BedScript());
         npcs.add(bed);
 
@@ -158,7 +160,8 @@ public class StartingMap extends Map {
         triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
         triggers.add(new Trigger(1550, 490, 10, 80, new WarpDesertScript()));
         triggers.add(new Trigger(120, 490, 10, 80, new WarpVolcanoScript()));
-        triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
+        // triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
+        triggers.add(new Trigger(816,912,30,30,new StartGameScript(), "startGame"));
         return triggers;
     }
 

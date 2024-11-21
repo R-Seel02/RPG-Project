@@ -12,18 +12,25 @@ public class Items {
     protected Frame frame;
     protected int uniformWidth = 24;
     protected int uniformHeight = 24;
+    protected String name;
 
-
-        public Items(int damage, Frame frame ){
+        public Items(int damage, Frame frame, String name){
             this.damage = damage;
             this.frame = frame;
-            
+            this.name = name;
           }
 
-          public Frame getFrame(){
-            return this.frame;
-          }
+        public Frame getFrame(){
+          return this.frame;
+        }
 
+        public int getDamage(){
+          return this.damage;
+        }
+
+        public String getName(){
+          return this.name;
+        }
         //   private Frame resizeFrame(Frame originalFrame, int width, int height) {
         //     if (originalFrame != null) {
         //         BufferedImage originalImage = (BufferedImage) originalFrame.getImage();
