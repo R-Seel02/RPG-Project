@@ -210,6 +210,20 @@ public class DesertTileset extends Tileset {
                 .build();
         MapTileBuilder volcanoPortalBTile = new MapTileBuilder(volcanoPortalBFrame);
         mapTiles.add(volcanoPortalBTile);
+
+        // puzzle doors
+        Frame puzzleDoorClosedFrame = new FrameBuilder(getSubImage(3, 2))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder puzzleDoorClosedTile = new MapTileBuilder(puzzleDoorClosedFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(puzzleDoorClosedTile);
+
+        Frame puzzleDoorOpenFrame = new FrameBuilder(getSubImage(3, 3))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder puzzleDoorOpenTile = new MapTileBuilder(pyramidFloorFrame).withTopLayer(puzzleDoorOpenFrame);
+        mapTiles.add(puzzleDoorOpenTile);
         
         return mapTiles;
     }
