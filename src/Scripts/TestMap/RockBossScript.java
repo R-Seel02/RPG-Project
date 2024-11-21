@@ -15,7 +15,7 @@ import Utils.Visibility;
 // script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
 public class RockBossScript extends Script {
-    protected Enemy rockBoss = new Enemy("RockBoss", 225, 18, 3, "FireRockSprite.png", 100, 100);
+    protected Enemy rockBoss = new Enemy("RockBoss", 225, 16, 2, "FireRockSprite.png", 100, 100);
     int npcId = 1;
 
     @Override

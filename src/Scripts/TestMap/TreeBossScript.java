@@ -15,7 +15,7 @@ import Utils.Visibility;
 // script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
 public class TreeBossScript extends Script {
-    protected Enemy treeBoss = new Enemy("TreeBoss", 150, 12, 4, "EntSprite.png", 100, 100);
+    protected Enemy treeBoss = new Enemy("TreeBoss", 150, 10, 3, "EntSprite.png", 100, 100);
     int npcId = 21;
 
     @Override
