@@ -224,6 +224,20 @@ public class DesertTileset extends Tileset {
                 .build();
         MapTileBuilder puzzleDoorOpenTile = new MapTileBuilder(pyramidFloorFrame).withTopLayer(puzzleDoorOpenFrame);
         mapTiles.add(puzzleDoorOpenTile);
+
+        // snow portal
+        Frame snowPortalTFrame = new FrameBuilder(getSubImage(3, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder snowPortalTTile = new MapTileBuilder(snowPortalTFrame);
+        mapTiles.add(snowPortalTTile);
+
+        Frame snowPortalBFrame = new FrameBuilder(getSubImage(3, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder snowPortalBTile = new MapTileBuilder(snowPortalBFrame);
+        mapTiles.add(snowPortalBTile);
         
         return mapTiles;
     }

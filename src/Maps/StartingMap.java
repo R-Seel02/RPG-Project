@@ -164,8 +164,8 @@ public class StartingMap extends Map {
         ArrayList<Trigger> triggers = new ArrayList<>();
         triggers.add(new Trigger(120, 1010, 10, 80, new WarpSnowScript()));
         triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
-        triggers.add(new Trigger(1550, 490, 10, 80, new WarpDesertScript()));
-        triggers.add(new Trigger(120, 490, 10, 80, new WarpVolcanoScript()));
+        // triggers.add(new Trigger(1550, 490, 10, 80, new WarpDesertScript()));
+        // triggers.add(new Trigger(120, 490, 10, 80, new WarpVolcanoScript()));
         // triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
         triggers.add(new Trigger(816,912,30,30,new StartGameScript(), "startGame"));
         return triggers;

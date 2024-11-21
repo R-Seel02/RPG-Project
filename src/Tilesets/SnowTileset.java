@@ -369,6 +369,20 @@ public class SnowTileset extends Tileset {
                 .build();
         MapTileBuilder desertPortalBTile = new MapTileBuilder(desertPortalBFrame);
         mapTiles.add(desertPortalBTile);
+
+        // forest portal
+        Frame forestPortalTFrame = new FrameBuilder(getSubImage(6, 1))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder forestPortalTTile = new MapTileBuilder(forestPortalTFrame);
+        mapTiles.add(forestPortalTTile);
+
+        Frame forestPortalBFrame = new FrameBuilder(getSubImage(6, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder forestPortalBTile = new MapTileBuilder(forestPortalBFrame);
+        mapTiles.add(forestPortalBTile);
                 
 
         return mapTiles;

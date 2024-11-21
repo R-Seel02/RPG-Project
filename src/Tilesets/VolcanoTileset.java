@@ -191,7 +191,21 @@ public class VolcanoTileset extends Tileset {
         MapTileBuilder volcano18Tile = new MapTileBuilder(obsidianFrame)
                 .withTopLayer(volcano18Frame);
         mapTiles.add(volcano18Tile);
-        
+
+        // desert portal
+        Frame desertPortalTFrame = new FrameBuilder(getSubImage(0, 2))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder desertPortalTTile = new MapTileBuilder(desertPortalTFrame);
+        mapTiles.add(desertPortalTTile);
+
+        Frame desertPortalBFrame = new FrameBuilder(getSubImage(0, 2))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+        MapTileBuilder desertPortalBTile = new MapTileBuilder(desertPortalBFrame);
+        mapTiles.add(desertPortalBTile);
+
         return mapTiles;
     }
 }
