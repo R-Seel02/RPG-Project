@@ -146,7 +146,7 @@ public class ShopScreen extends Screen{
                     shopkeeperMessage.setText("What do I look like, a charity?");
                 }
             } else if (menuItemSelected == 1) {
-                if(player.getCoinCount() >= 2){
+                if(player.getCoinCount() >= 3){
                     player.setCoinCount(player.getCoinCount() - 3);
                     player.addDamagePot();
                     shopkeeperMessage.setText("Thanks for the coins pal. (+1 Damage Pot)");
@@ -157,7 +157,7 @@ public class ShopScreen extends Screen{
                 } 
             }
             else if (menuItemSelected == 2) {
-                if(player.getCoinCount() >= 2){
+                if(player.getCoinCount() >= 5){
                     player.setCoinCount(player.getCoinCount() - 5);
                     player.addDefensePot();
                     shopkeeperMessage.setText("Thanks for the coins pal. (+1 Defense Pot)");
