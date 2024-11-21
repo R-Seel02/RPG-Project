@@ -1,10 +1,11 @@
 package Maps;
 
 import Level.*;
+import NPCs.Cactus;
 import NPCs.CactusBoss;
-import Scripts.TestMap.CactusBossScript;
-import Scripts.TestMap.WarpPyramidScript;
-import Scripts.TestMap.WarpStartScript;
+import NPCs.ScaredGuy;
+import NPCs.Thief;
+import Scripts.TestMap.*;
 import Tilesets.DesertTileset;
 import java.util.ArrayList;
 
@@ -37,6 +38,21 @@ public class DesertMap extends Map {
         cactusBoss.setInteractScript(new CactusBossScript());
         npcs.add(cactusBoss);
 
+        ScaredGuy scaredGuy = new ScaredGuy(2, getMapTile(18, 8).getLocation());
+        scaredGuy.setInteractScript(new ScaredGuyScript());
+        npcs.add(scaredGuy);
+
+        Cactus cactus = new Cactus(3, getMapTile(24, 8).getLocation());
+        cactus.setInteractScript(new CactusScript());
+        npcs.add(cactus);
+
+        Thief thief = new Thief(4, getMapTile(24, 15).getLocation());
+        thief.setInteractScript(new ThiefScript());
+        npcs.add(thief);
+
+
+
+
         // shopkeeper id 5
 
         return npcs;
@@ -47,6 +63,7 @@ public class DesertMap extends Map {
         ArrayList<Trigger> triggers = new ArrayList<>();
         triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
         triggers.add(new Trigger(1210, 1390, 30, 10, new WarpPyramidScript()));
+        triggers.add(new Trigger(2280, 1740, 10, 80, new WarpVolcanoScript()));
         return triggers;
     }
 

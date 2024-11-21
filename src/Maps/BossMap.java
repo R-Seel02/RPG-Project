@@ -1,6 +1,8 @@
 package Maps;
 
 import Level.*;
+import NPCs.FinalBoss;
+import Scripts.TestMap.FinalBossScript;
 import Scripts.TestMap.WarpStartScript;
 import Tilesets.CommonTileset;
 import java.util.ArrayList;
@@ -28,7 +30,9 @@ public class BossMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        
+        FinalBoss finalBoss = new FinalBoss(1, getMapTile(13, 3).getLocation());
+        finalBoss.setInteractScript(new FinalBossScript());
+        npcs.add(finalBoss);
 
         // shopkeeper id 5
 
@@ -38,7 +42,7 @@ public class BossMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        triggers.add(new Trigger(680, 680, 40, 40, new WarpStartScript()));
+        triggers.add(new Trigger(675, 820, 40, 85, new WarpStartScript()));
         return triggers;
     }
 

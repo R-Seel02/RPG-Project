@@ -1,11 +1,14 @@
 package Maps;
 
+import EnhancedMapTiles.PushableRock;
 import Level.*;
-import NPCs.CactusBoss;
+import NPCs.FireSpirit;
+import NPCs.Golem;
 import NPCs.RockBoss;
-import Scripts.TestMap.CactusBossScript;
-import Scripts.TestMap.RockBossScript;
-import Scripts.TestMap.WarpStartScript;
+import NPCs.Salamander3;
+import NPCs.SalamanderGuy;
+import NPCs.SalamanderOther;
+import Scripts.TestMap.*;
 import Tilesets.VolcanoTileset;
 import java.util.ArrayList;
 
@@ -22,8 +25,8 @@ public class VolcanoMap extends Map {
     public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
         ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
 
-        // PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
-        // enhancedMapTiles.add(pushableRock);
+         PushableRock pushableRock = new PushableRock(getMapTile(10, 14).getLocation());
+         enhancedMapTiles.add(pushableRock);
 
         return enhancedMapTiles;
     }
@@ -36,6 +39,30 @@ public class VolcanoMap extends Map {
         rockBoss.setInteractScript(new RockBossScript());
         npcs.add(rockBoss);
 
+        SalamanderGuy salamanderGuy = new SalamanderGuy(2, getMapTile(18, 8).getLocation());
+        salamanderGuy.setInteractScript(new SalamanderGuyScript());
+        npcs.add(salamanderGuy);
+
+        SalamanderOther salamander1 = new SalamanderOther(3, getMapTile(22, 5).getLocation());
+        salamander1.setInteractScript(new Salamander1Script());
+        npcs.add(salamander1);
+
+        SalamanderOther salamander2 = new SalamanderOther(4, getMapTile(10, 15).getLocation());
+        salamander2.setInteractScript(new Salamander2Script());
+        npcs.add(salamander2);
+
+        Salamander3 salamander3 = new Salamander3(5, getMapTile(24, 15).getLocation());
+        salamander3.setInteractScript(new Salamander3Script());
+        npcs.add(salamander3);
+
+        Golem golem = new Golem(6, getMapTile(10, 20).getLocation());
+        golem.setInteractScript(new GolemScript());
+        npcs.add(golem);
+
+        FireSpirit fireSpirit = new FireSpirit(7, getMapTile(10, 30).getLocation());
+        fireSpirit.setInteractScript(new FireSpiritScript());
+        npcs.add(fireSpirit);
+
         // shopkeeper id 5
 
         return npcs;
@@ -45,6 +72,7 @@ public class VolcanoMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
         triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
+        triggers.add(new Trigger(2280, 1740, 10, 80, new WarpBossScript()));
         return triggers;
     }
 

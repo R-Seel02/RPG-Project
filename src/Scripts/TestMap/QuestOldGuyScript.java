@@ -126,10 +126,11 @@ public class QuestOldGuyScript extends Script {
 
                  addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new TextboxScriptAction("Is anyone up to the task in this town?"));
-                    addScriptAction(new ChangeFlagScriptAction("treeBossDefeated", true));
-                    addScriptAction(new ChangeFlagScriptAction("snowmanBossDefeated", true));
-                    addScriptAction(new ChangeFlagScriptAction("cactusBossDefeated", true));
-                    addScriptAction(new ChangeFlagScriptAction("rockBossDefeated", true));
+                    // uncomment if you need to playtest boss area, then check starting map and uncomment the trigger
+                    // addScriptAction(new ChangeFlagScriptAction("treeBossDefeated", true));
+                    // addScriptAction(new ChangeFlagScriptAction("snowmanBossDefeated", true));
+                    // addScriptAction(new ChangeFlagScriptAction("cactusBossDefeated", true));
+                    // addScriptAction(new ChangeFlagScriptAction("rockBossDefeated", true));
                  }});
                 
             }});

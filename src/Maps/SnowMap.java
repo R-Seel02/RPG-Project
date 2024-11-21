@@ -1,11 +1,10 @@
 package Maps;
 
-import Engine.ImageLoader;
-import GameObject.Frame;
 import Level.*;
-
-import PickableObjects.ItemRock;
-import Scripts.SimpleTextScript;
+import NPCs.CoalMan;
+import NPCs.Fish;
+import NPCs.Snowman;
+import NPCs.SnowmanBoss;
 import Scripts.TestMap.*;
 import Tilesets.SnowTileset;
 import java.util.ArrayList;
@@ -85,6 +84,7 @@ public class SnowMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
         triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
+        triggers.add(new Trigger(2280, 1740, 10, 80, new WarpDesertScript()));
         return triggers;
     }
 

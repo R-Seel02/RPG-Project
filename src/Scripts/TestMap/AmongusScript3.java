@@ -92,7 +92,7 @@ public class AmongusScript3 extends Script {
                     }
                 });
                 addScriptAction(new ChangeFlagScriptAction("hasAxe", true));
-                addScriptAction(new AddItem("hasAxe", new Items(10,new Frame (ImageLoader.load("Axe.png")))));
+                addScriptAction(new AddItem("hasAxe", new Items(10,new Frame (ImageLoader.load("Axe.png")), "Axe")));
 
             
             }});

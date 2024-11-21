@@ -1,24 +1,22 @@
 package Maps;
 
 import Level.*;
-import Scripts.TestMap.*;
-import Tilesets.ForestTileset;
-import java.util.ArrayList;
-
-import NPCs.CoalMan;
-import NPCs.PlagueDoctor;
 import NPCs.Cauldron;
-import NPCs.Frog;
-import NPCs.PurpleFlower;
-import NPCs.Vial;
 import NPCs.Eyeball;
 import NPCs.ForestChest;
 import NPCs.ForestChest2;
+import NPCs.Frog;
 import NPCs.MuggedWoman;
+import NPCs.PlagueDoctor;
+import NPCs.PurpleFlower;
 import NPCs.Thug1;
 import NPCs.Thug2;
 import NPCs.Thug3;
 import NPCs.TreeBoss;
+import NPCs.Vial;
+import Scripts.TestMap.*;
+import Tilesets.ForestTileset;
+import java.util.ArrayList;
 
 // Represents a test map to be used in a level
 public class ForestMap extends Map {
@@ -43,19 +41,19 @@ public class ForestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        PlagueDoctor plagueDoctor = new PlagueDoctor(1, getMapTile(6,2).getLocation().subtractY(40));
+        PlagueDoctor plagueDoctor = new PlagueDoctor(1, getMapTile(8,2).getLocation().subtractY(40));
         plagueDoctor.setInteractScript(new PlagueDoctorScript());
         npcs.add(plagueDoctor);
 
-        Cauldron cauldron = new Cauldron(2, getMapTile(10,2).getLocation().subtractY(40));
+        Cauldron cauldron = new Cauldron(2, getMapTile(10,20).getLocation().subtractY(40));
         cauldron.setInteractScript(new CauldronScript());
         npcs.add(cauldron);
 
-        Frog frog = new Frog(2, getMapTile(14,2).getLocation().subtractY(40));
+        Frog frog = new Frog(2, getMapTile(14,7).getLocation().subtractY(40));
         frog.setInteractScript(new FrogScript());
         npcs.add(frog);
 
-        PurpleFlower purpleFlower = new PurpleFlower(2, getMapTile(18,2).getLocation().subtractY(40));
+        PurpleFlower purpleFlower = new PurpleFlower(2, getMapTile(18,10).getLocation().subtractY(40));
         purpleFlower.setInteractScript(new PurpleFlowerScript());
         npcs.add(purpleFlower);
 
@@ -63,11 +61,11 @@ public class ForestMap extends Map {
         vial.setInteractScript(new VialScript());
         npcs.add(vial);
 
-        Eyeball eyeBall = new Eyeball(2, getMapTile(26,2).getLocation().subtractY(40));
+        Eyeball eyeBall = new Eyeball(2, getMapTile(26,30).getLocation().subtractY(40));
         eyeBall.setInteractScript(new EyeballScript());
         npcs.add(eyeBall);
 
-        MuggedWoman muggedWoman = new MuggedWoman(2, getMapTile(5,10).getLocation().subtractY(40));
+        MuggedWoman muggedWoman = new MuggedWoman(2, getMapTile(7,10).getLocation().subtractY(40));
         muggedWoman.setInteractScript(new MuggedWomanScript());
         npcs.add(muggedWoman);
 
@@ -98,7 +96,7 @@ public class ForestMap extends Map {
         
 
         
-
+        
         // shopkeeper id 5
 
         return npcs;
@@ -108,6 +106,7 @@ public class ForestMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
         triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
+        triggers.add(new Trigger(2280, 1740, 10, 80, new WarpSnowScript()));
         return triggers;
     }
 

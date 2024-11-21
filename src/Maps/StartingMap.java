@@ -35,6 +35,7 @@ public class StartingMap extends Map {
     public StartingMap() {
         super("starting_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 19).getLocation();
+        //System.out.println(getMapTile(17,19).getLocation());
     }
 
     @Override
@@ -91,12 +92,12 @@ public class StartingMap extends Map {
         chickenYellow.setInteractScript(new ChickenYellowScript());
         npcs.add(chickenYellow);
 
-        ChickenOrange chickenOrange = new ChickenOrange(10, getMapTile(30, 10).getLocation().subtractY(40));
+        ChickenOrange chickenOrange = new ChickenOrange(10, getMapTile(33, 10).getLocation().subtractY(40));
         //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
         chickenOrange.setInteractScript(new ChickenOrangeScript());
         npcs.add(chickenOrange);
 
-          ChickenBlue chickenBlue = new ChickenBlue(11, getMapTile(8, 10).getLocation().subtractY(40));
+          ChickenBlue chickenBlue = new ChickenBlue(11, getMapTile(9, 10).getLocation().subtractY(40));
           //chickenRed.setExistenceFlag("hasTalkedToChickenRed");
           chickenBlue.setInteractScript(new ChickenBlueScript());
           npcs.add(chickenBlue);
@@ -130,6 +131,7 @@ public class StartingMap extends Map {
 
 
         Bed bed = new Bed(18, getMapTile(7, 22).getLocation().subtractY(40));
+        //System.out.println(getMapTile(7, 22).getLocation().subtractY(40));
         bed.setInteractScript(new BedScript());
         npcs.add(bed);
 
@@ -164,7 +166,8 @@ public class StartingMap extends Map {
         triggers.add(new Trigger(1550, 1010, 10, 80, new WarpForestScript()));
         triggers.add(new Trigger(1550, 490, 10, 80, new WarpDesertScript()));
         triggers.add(new Trigger(120, 490, 10, 80, new WarpVolcanoScript()));
-        triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
+        // triggers.add(new Trigger(820, 40, 40, 40, new WarpBossScript()));
+        triggers.add(new Trigger(816,912,30,30,new StartGameScript(), "startGame"));
         return triggers;
     }
 

@@ -7,6 +7,7 @@ import Screens.CharacterSelectScreen;
 import Screens.CreditsScreen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
+import Screens.TutorialScreen;
 
 /*
  * Based on the current game state, this class determines which Screen should be shown
@@ -61,6 +62,10 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CHARACTER_SELECT:
 						currentScreen = new CharacterSelectScreen(this);
+						break;
+					case TUTORIAL:
+						currentScreen = new TutorialScreen(this);
+						break;
 				}
 				currentScreen.initialize();
 			}

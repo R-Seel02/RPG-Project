@@ -28,6 +28,7 @@ public class ShopScreen extends Screen{
     protected SpriteFont returnToGame;
     protected Sprite background;
     protected Sprite shopkeeper;
+    protected Sprite[] shopkeepers = new Sprite[60];
     protected Sprite healthPotion;
     protected Sprite damagePotion;
     protected Sprite defensePotion;
@@ -54,9 +55,9 @@ public class ShopScreen extends Screen{
         coinCounter.setOutlineColor(Color.black);
         coinCounter.setOutlineThickness(2);
         shopkeeperMessage = new SpriteFont("", 500, 125, "Arial", 30, Color.white);
-        // choice1 = new SpriteFont("Health Potion", 25, 125, "Arial", 30, Color.white);
-        // choice2 = new SpriteFont("Damage Potion", 25, 300, "Arial", 30, Color.white);
-        // choice3 = new SpriteFont("Defense Potion", 25, 425, "Arial", 30, Color.white);
+        choice1 = new SpriteFont("Health Potion (2 coins)", 165, 125, "Arial", 20, Color.white);
+        choice2 = new SpriteFont("Damage Potion (3 coins)", 165, 300, "Arial", 20, Color.white);
+        choice3 = new SpriteFont("Defense Potion (5 coins)", 165, 425, "Arial", 20, Color.white);
         returnToGame = new SpriteFont("Leave?", 50, 575, "Arial", 40, Color.white);
 
         // health potion
@@ -83,6 +84,7 @@ public class ShopScreen extends Screen{
 
     @Override
     public void update() {
+        
         if (Keyboard.isKeyDown(Key.S) && keyPressTimer == 0) {
             keyPressTimer = 20;
             currentMenuItemHovered++;
@@ -145,7 +147,7 @@ public class ShopScreen extends Screen{
                 }
             } else if (menuItemSelected == 1) {
                 if(player.getCoinCount() >= 2){
-                    player.setCoinCount(player.getCoinCount() - 2);
+                    player.setCoinCount(player.getCoinCount() - 3);
                     player.addDamagePot();
                     shopkeeperMessage.setText("Thanks for the coins pal. (+1 Damage Pot)");
                     coinCounter.setText("Coins: " + player.getCoinCount());
@@ -156,7 +158,7 @@ public class ShopScreen extends Screen{
             }
             else if (menuItemSelected == 2) {
                 if(player.getCoinCount() >= 2){
-                    player.setCoinCount(player.getCoinCount() - 2);
+                    player.setCoinCount(player.getCoinCount() - 5);
                     player.addDefensePot();
                     shopkeeperMessage.setText("Thanks for the coins pal. (+1 Defense Pot)");
                     coinCounter.setText("Coins: " + player.getCoinCount());
@@ -186,9 +188,9 @@ public class ShopScreen extends Screen{
         healthPotion.draw(graphicsHandler);
         damagePotion.draw(graphicsHandler);
         defensePotion.draw(graphicsHandler);
-        //choice1.draw(graphicsHandler);
-        //choice2.draw(graphicsHandler);
-        //choice3.draw(graphicsHandler);
+        choice1.draw(graphicsHandler);
+        choice2.draw(graphicsHandler);
+        choice3.draw(graphicsHandler);
         shopkeeperMessage.draw(graphicsHandler);
         coinCounter.draw(graphicsHandler);
         returnToGame.draw(graphicsHandler);
