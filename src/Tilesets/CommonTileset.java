@@ -597,6 +597,13 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(houseBodyBGTile);
 
+        // foreground house body
+        Frame houseBodyFGFrame = new FrameBuilder(getSubImage(3, 4))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder houseBodyFGTile = new MapTileBuilder(sandFrame).withTopLayer(houseBodyFGFrame);
+        mapTiles.add(houseBodyFGTile);
+
         return mapTiles;
     }
 }
