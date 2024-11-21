@@ -37,24 +37,24 @@ public class PyramidMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        DesertChest desertChest = new DesertChest(1, getMapTile(2, 5).getLocation());
+        DesertChest desertChest = new DesertChest(1, getMapTile(4, 15).getLocation());
         desertChest.setInteractScript(new DesertChestScript());
         npcs.add(desertChest);
 
         
-        Lever lever1 = new Lever(1, getMapTile(7, 3).getLocation());
+        Lever lever1 = new Lever(2, getMapTile(7, 3).getLocation());
         lever1.setInteractScript(new Lever1Script());
         npcs.add(lever1);
 
-        Lever lever2 = new Lever(2, getMapTile(7, 18).getLocation());
+        Lever lever2 = new Lever(3, getMapTile(7, 18).getLocation());
         lever2.setInteractScript(new Lever2Script());
         npcs.add(lever2);
 
-        Lever lever3 = new Lever(3, getMapTile(14, 10).getLocation());
+        Lever lever3 = new Lever(4, getMapTile(14, 10).getLocation());
         lever3.setInteractScript(new Lever3Script());
         npcs.add(lever3);
 
-        Totem totem = new Totem(4, getMapTile(10, 4).getLocation());
+        Totem totem = new Totem(5, getMapTile(10, 4).getLocation());
         totem.setInteractScript(new TotemScript());
         npcs.add(totem);
         // shopkeeper id 5

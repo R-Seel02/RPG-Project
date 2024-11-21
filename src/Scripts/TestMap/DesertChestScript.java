@@ -20,14 +20,14 @@ public class DesertChestScript extends Script{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasOpenedDesertChest", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("You have recived 1 coins from the chest");
+                    addText("You have recived 10 coins from the chest");
                     
                 
                 }});
                 
                 
                 addScriptAction(new ChangeFlagScriptAction("hasOpenedDesertChest", true));
-                addScriptAction(new AddCoin("hasOpenedDesertChest",1));
+                addScriptAction(new AddCoin("hasOpenedDesertChest",10));
                 
             }});
             
