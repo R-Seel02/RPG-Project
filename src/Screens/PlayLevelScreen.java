@@ -93,6 +93,8 @@ public class PlayLevelScreen extends Screen {
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
+
+        // biome flags
         flagManager.addFlag("atSnowBiome", false);
         flagManager.addFlag("atStartBiome", false);
         flagManager.addFlag("atForestBiome", false);
@@ -101,6 +103,12 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("atBossRoom", false);
         flagManager.addFlag("atPyramid", false);
         flagManager.addFlag("leftPyramid", false);
+        flagManager.addFlag("unlockedSnow", false);
+        flagManager.addFlag("unlockedDesert", false);
+        flagManager.addFlag("unlockedVolcano", false);
+        flagManager.addFlag("unlockedBoss", false);
+
+
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
         // flagManager.addFlag("hasFoundBall", false);

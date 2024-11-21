@@ -1,23 +1,20 @@
 package Maps;
 
 import Level.*;
-import Scripts.TestMap.*;
-import Tilesets.ForestTileset;
-import java.util.ArrayList;
-
-import NPCs.CoalMan;
-import NPCs.PlagueDoctor;
 import NPCs.Cauldron;
-import NPCs.Frog;
-import NPCs.PurpleFlower;
-import NPCs.Vial;
 import NPCs.Eyeball;
-
+import NPCs.Frog;
 import NPCs.MuggedWoman;
+import NPCs.PlagueDoctor;
+import NPCs.PurpleFlower;
 import NPCs.Thug1;
 import NPCs.Thug2;
 import NPCs.Thug3;
 import NPCs.TreeBoss;
+import NPCs.Vial;
+import Scripts.TestMap.*;
+import Tilesets.ForestTileset;
+import java.util.ArrayList;
 
 // Represents a test map to be used in a level
 public class ForestMap extends Map {
@@ -98,6 +95,7 @@ public class ForestMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
         triggers.add(new Trigger(120, 100, 10, 80, new WarpStartScript()));
+        triggers.add(new Trigger(2280, 1740, 10, 80, new WarpSnowScript()));
         return triggers;
     }
 
