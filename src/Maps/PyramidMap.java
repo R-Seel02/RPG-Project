@@ -1,6 +1,10 @@
 package Maps;
 
 import Level.*;
+import NPCs.Chest;
+import NPCs.DesertChest;
+import Scripts.TestMap.ChestScript;
+import Scripts.TestMap.DesertChestScript;
 import Scripts.TestMap.LeavePyramidScript;
 import Tilesets.DesertTileset;
 import java.util.ArrayList;
@@ -28,9 +32,11 @@ public class PyramidMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        
+        DesertChest desertChest = new DesertChest(1, getMapTile(2, 5).getLocation());
+        desertChest.setInteractScript(new DesertChestScript());
+        npcs.add(desertChest);
 
-        // shopkeeper id 5
+        
 
         return npcs;
     }

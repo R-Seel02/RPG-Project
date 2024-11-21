@@ -24,21 +24,7 @@ public class Items {
             return this.frame;
           }
 
-        //   private Frame resizeFrame(Frame originalFrame, int width, int height) {
-        //     if (originalFrame != null) {
-        //         BufferedImage originalImage = (BufferedImage) originalFrame.getImage();
-        //         BufferedImage resizedImage = resizeBufferedImage(originalImage, width, height);
-        //         return new Frame(resizedImage); // Assuming Frame has a constructor that takes BufferedImage
-        //     }
-        //     return originalFrame;
-        // }
-        // private BufferedImage resizeBufferedImage(BufferedImage originalImage, int width, int height) {
-        //     BufferedImage resizedImage = new BufferedImage(width, height, originalImage.getType());
-        //     Graphics2D g2d = resizedImage.createGraphics();
-        //     g2d.drawImage(originalImage, 24, 24, width, height, null);
-        //     g2d.dispose();
-        //     return resizedImage;
-        // }
+       
     }
 
 

@@ -176,8 +176,15 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasOpenedChest2", false);
         flagManager.addFlag("InInventory", false);
         flagManager.addFlag("hasStaff", false);
-
-        // bosses
+        flagManager.addFlag("hasOpenedHiddenChest", false);
+        flagManager.addFlag("hasOpenedForestChest", false);
+        flagManager.addFlag("hasOpenedForestChest2", false);
+        flagManager.addFlag("hasOpenedDesertChest", false);
+        flagManager.addFlag("hasOpenedSnowChest", false);
+        flagManager.addFlag("hasOpenedSnowChest2", false);
+        flagManager.addFlag("hasOpenedSnowChest3", false);
+        flagManager.addFlag("hasFoughtChest", false);
+        // bosses"hasFoughtChest"
         flagManager.addFlag("treeBossDefeated", false);
         flagManager.addFlag("snowmanBossDefeated", false);
         flagManager.addFlag("cactusBossDefeated", false);

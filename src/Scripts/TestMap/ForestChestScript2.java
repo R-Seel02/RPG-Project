@@ -6,7 +6,8 @@ import Level.Script;
 import ScriptActions.*;
 
 
-public class Chest2Script extends Script{
+
+public class ForestChestScript2 extends Script{
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -17,22 +18,22 @@ public class Chest2Script extends Script{
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasOpenedChest2", false));
+                addRequirement(new FlagRequirement("hasOpenedForestChest2", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("You have recived 3 coins from the chest");
+                    addText("You have recived 5 coins from the chest");
                     
                 
                 }});
                 
                 
-                addScriptAction(new ChangeFlagScriptAction("hasOpenedChest2", true));
-                addScriptAction(new AddCoin("hasOpenedChest2",3));
+                addScriptAction(new ChangeFlagScriptAction("hasOpenedForestChest2", true));
+                addScriptAction(new AddCoin("hasOpenedForestChest2",5));
                 
             }});
             
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasOpenedChest2", true));
+                addRequirement(new FlagRequirement("hasOpenedForestChest2", true));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("The chest is empty.");
                     

@@ -18,6 +18,10 @@ import NPCs.CoalMan;
 import NPCs.Snowman;
 import NPCs.SnowmanBoss;
 import NPCs.Fish;
+import NPCs.SnowChest;
+import NPCs.SnowChest2;
+import NPCs.SnowChest3;
+import NPCs.SnowChestFake;
 
 // Represents a test map to be used in a level
 public class SnowMap extends Map {
@@ -57,6 +61,22 @@ public class SnowMap extends Map {
         SnowmanBoss snowmanBoss = new SnowmanBoss(4, getMapTile(8, 12).getLocation());
         snowmanBoss.setInteractScript(new SnowmanBossScript());
         npcs.add(snowmanBoss);
+        
+        SnowChest snowChest = new SnowChest(5, getMapTile(28, 13).getLocation());
+        snowChest.setInteractScript(new SnowChestScript());
+        npcs.add(snowChest);
+
+        SnowChest2 snowChest2 = new SnowChest2(6, getMapTile(14, 26).getLocation());
+        snowChest2.setInteractScript(new SnowChestScript2());
+        npcs.add(snowChest2);
+
+        SnowChest3 snowChest3 = new SnowChest3(7, getMapTile(46, 23).getLocation());
+        snowChest3.setInteractScript(new SnowChestScript3());
+        npcs.add(snowChest3);
+
+        SnowChestFake snowChestFake = new SnowChestFake(8, getMapTile(46, 35).getLocation());
+        snowChestFake.setInteractScript(new SnowChestFakeScript());
+        npcs.add(snowChestFake);
 
         return npcs;
     }

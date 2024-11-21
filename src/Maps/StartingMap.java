@@ -17,6 +17,7 @@ import NPCs.ChickenOrange;
 import NPCs.ChickenRed;
 import NPCs.ChickenYellow;
 import NPCs.FarmerNPC;
+import NPCs.HiddenChest;
 import NPCs.OldGuy;
 import NPCs.QuestWoman;
 import NPCs.Skeleton;
@@ -139,6 +140,11 @@ public class StartingMap extends Map {
         Chest2 chest2 = new Chest2(20, getMapTile(25, 11).getLocation());
         chest2.setInteractScript(new Chest2Script());
         npcs.add(chest2);
+
+        HiddenChest hiddenChest = new HiddenChest(20, getMapTile(16, 12).getLocation());
+        hiddenChest.setInteractScript(new HiddenChestScript());
+        npcs.add(hiddenChest);
+
 
         
 

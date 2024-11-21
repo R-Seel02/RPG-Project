@@ -12,7 +12,8 @@ import NPCs.Frog;
 import NPCs.PurpleFlower;
 import NPCs.Vial;
 import NPCs.Eyeball;
-
+import NPCs.ForestChest;
+import NPCs.ForestChest2;
 import NPCs.MuggedWoman;
 import NPCs.Thug1;
 import NPCs.Thug2;
@@ -85,6 +86,15 @@ public class ForestMap extends Map {
         TreeBoss treeBoss = new TreeBoss(21, getMapTile(20, 20).getLocation());
         treeBoss.setInteractScript(new TreeBossScript());
         npcs.add(treeBoss);
+
+        ForestChest forestChest = new ForestChest(22, getMapTile(25, 25).getLocation());
+        forestChest.setInteractScript(new ForestChestScript());
+        npcs.add(forestChest);
+
+        ForestChest2 forestChest2 = new ForestChest2(22, getMapTile(4,20).getLocation());
+        forestChest2.setInteractScript(new ForestChestScript2());
+        npcs.add(forestChest2);
+
         
 
         

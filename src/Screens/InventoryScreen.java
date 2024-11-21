@@ -108,12 +108,12 @@ public class InventoryScreen extends Screen {
             if (inventoryList[i] != null) {
                 
                int x = 95;
-               int y = 115;
+               int y = 110;
 
                for ( int j = 1; j <= i; j++){
-                 x = x + 150 ;
+                 x = x + 145 ;
                 if (j > 4){
-                    y = y + 145 ;
+                    y = y + 160 ;
                 }
                }
 
@@ -125,9 +125,6 @@ public class InventoryScreen extends Screen {
                 itemSprite.setPosition(x, y);
                itemSprite.draw(graphicsHandler);
                 
-                //   inventoryList[i].getFrame().drawImage;
-
-                // Sprite itemSprite = new Sprite(inventoryList[i].getFrame(), 210 + (i * 200), 68); // Adjust position for each item
                 
             }
         }
