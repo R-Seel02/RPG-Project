@@ -2,6 +2,7 @@ package Maps;
 
 import EnhancedMapTiles.PushableRock;
 import Level.*;
+import NPCs.Bed;
 import NPCs.FireSpirit;
 import NPCs.Golem;
 import NPCs.RockBoss;
@@ -62,6 +63,10 @@ public class VolcanoMap extends Map {
         FireSpirit fireSpirit = new FireSpirit(7, getMapTile(10, 30).getLocation());
         fireSpirit.setInteractScript(new FireSpiritScript());
         npcs.add(fireSpirit);
+
+        Bed bed = new Bed(8, getMapTile(7, 22).getLocation().subtractY(40));
+        bed.setInteractScript(new BedScript());
+        npcs.add(bed);
 
         // shopkeeper id 5
 

@@ -131,7 +131,6 @@ public class StartingMap extends Map {
 
 
         Bed bed = new Bed(18, getMapTile(7, 22).getLocation().subtractY(40));
-        //System.out.println(getMapTile(7, 22).getLocation().subtractY(40));
         bed.setInteractScript(new BedScript());
         npcs.add(bed);
 
