@@ -565,6 +565,9 @@ public class FightScreen extends Screen {
                         updateMessages();
                         player.emptyCritBucket();
                         player.removeBuffs();
+                        if(!enemy.isDead()){
+                            enemy.heal(enemy.getMaxHealth());
+                        }
                     }
                 }
             }
