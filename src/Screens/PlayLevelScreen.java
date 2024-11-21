@@ -220,6 +220,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasOpenedChest2", false);
         flagManager.addFlag("InInventory", false);
         flagManager.addFlag("hasStaff", false);
+        flagManager.addFlag("startGame", false);
 
         // bosses
         flagManager.addFlag("treeBossDefeated", false);
