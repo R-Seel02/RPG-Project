@@ -19,14 +19,14 @@ public class ChestScript extends Script{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasOpenedChest", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("You have recived 2 coins from the chest");
+                    addText("You have recived 7 coins from the chest");
                     
                 
                 }});
                 
                 
                 addScriptAction(new ChangeFlagScriptAction("hasOpenedChest", true));
-                addScriptAction(new AddCoin("hasOpenedChest",2));
+                addScriptAction(new AddCoin("hasOpenedChest",7));
                 
             }});
             

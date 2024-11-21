@@ -19,14 +19,14 @@ public class SnowChestScript2 extends Script{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasOpenedSnowChest2", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("You have recived 4 coins from the chest");
+                    addText("You have recived 8 coins from the chest");
                     
                 
                 }});
                 
                 
                 addScriptAction(new ChangeFlagScriptAction("hasOpenedSnowChest2", true));
-                addScriptAction(new AddCoin("hasOpenedSnowChest2",6));
+                addScriptAction(new AddCoin("hasOpenedSnowChest2",8));
                 
             }});
             

@@ -36,7 +36,7 @@ public class SnowChestFakeScript extends Script {
                     addScriptAction(new TextboxScriptAction("Ahh a Greedy one? \n I guess I'll have to teach you a lesson on taking too much"));
                     addScriptAction(new TextboxScriptAction("Let me show you how a reeaalll pro fights."));
 
-                    scriptActions.add(new StartFightScriptAction(new Enemy("FakeChest", 120, 4, 3, "TreasureChest.png", 24, 24)));
+                    scriptActions.add(new StartFightScriptAction(new Enemy("FakeChest", 120, 4, 7, "TreasureChest.png", 24, 24)));
 
                 scriptActions.add(new ChangeFlagScriptAction("isFighting", true));
 
