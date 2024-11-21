@@ -238,6 +238,20 @@ public class DesertTileset extends Tileset {
                 .build();
         MapTileBuilder snowPortalBTile = new MapTileBuilder(snowPortalBFrame);
         mapTiles.add(snowPortalBTile);
+
+        // cactus
+        Frame cactusBFrame = new FrameBuilder(getSubImage(4, 0))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cactusBTile = new MapTileBuilder(cactusBFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(cactusBTile);
+
+        Frame cactusTFrame = new FrameBuilder(getSubImage(4, 1))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder cactusTTile = new MapTileBuilder(sandFrame).withTopLayer(cactusTFrame);
+        mapTiles.add(cactusTTile);
         
         return mapTiles;
     }
