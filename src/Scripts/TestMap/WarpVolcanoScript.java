@@ -14,22 +14,22 @@ public class WarpVolcanoScript extends Script {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
 
+        // scriptActions.add(new ConditionalScriptAction() {{
+        //     addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+        //         // addRequirement(new FlagRequirement("unlockedVolcano", false));
+
+        //         addScriptAction(new TextboxScriptAction() {{
+        //             addScriptAction(new TextboxScriptAction("You must reach the Volcano Biome to unlock this portal."));
+        //         }});
+        //         scriptActions.add(new UnlockPlayerScriptAction());
+        //         addScriptAction(new WaitScriptAction(60));
+        //     }});
+
+        // }});
+
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("unlockedVolcano", false));
-
-                addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new TextboxScriptAction("You must reach the Volcano Biome to unlock this portal."));
-                }});
-                scriptActions.add(new UnlockPlayerScriptAction());
-                addScriptAction(new WaitScriptAction(60));
-            }});
-
-        }});
-
-        scriptActions.add(new ConditionalScriptAction() {{
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("unlockedVolcano", true));
+                // addRequirement(new FlagRequirement("unlockedVolcano", true));
 
                  addScriptAction(new TextboxScriptAction() {{
                     addText("You approach a glowing portal. \nIt emits a blazing inferno.");
@@ -62,7 +62,7 @@ public class WarpVolcanoScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("unlockedVolcano", true));
+                // addRequirement(new FlagRequirement("unlockedVolcano", true));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {
