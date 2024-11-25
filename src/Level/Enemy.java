@@ -72,7 +72,7 @@ public class Enemy {
     }
 
     public int attack(){
-        int damSpread = random.nextInt(spread + 1); //generates a random number between 0 (inclusive) and the health of the enemy (inclusive)
+        int damSpread = random.nextInt(spread); //generates a random number between 0 (inclusive) and the spread of the enemy (inclusive)
         int dam = 0; //initializes a counter for damage
         randomNum = random.nextInt(2); //generates a random number, 0 or 1
         if(randomNum == 0){ //if the number is 0, the damage spread is added

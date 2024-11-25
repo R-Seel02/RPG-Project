@@ -444,6 +444,7 @@ public class FightScreen extends Screen {
         }
 
         if(isPlayerTurn){
+            updateMessages();
             if (!keyLocker.isKeyLocked(Key.E) && Keyboard.isKeyDown(Key.E)) {
                 menuItemSelected = currentMenuItemHovered;
                 if(itemMenu){
@@ -579,6 +580,7 @@ public class FightScreen extends Screen {
                 takenDamage = enemy.attack();
                 if(player.hasDefenseBuff()){
                     takenDamage = (int) takenDamage/2;
+                    System.out.println(takenDamage);
                     if(takenDamage < 0){
                         takenDamage = 0;
                     }
@@ -588,10 +590,11 @@ public class FightScreen extends Screen {
                 if(player.isDead()){
                     playLevelScreen.flagManager.setFlag("playerDied");
                 }
+                //System.out.println(takenDamage);
+                updateMessages();
                 turnTimer = 90;
                 isPlayerTurn = true;
                 hasHealed = false;
-                updateMessages();
             }else{
                 turnTimer--;
             }

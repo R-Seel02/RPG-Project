@@ -572,6 +572,10 @@ public class PlayLevelScreen extends Screen {
         if (currMap.getFlagManager().isFlagSet("hasCompletedQuestGolem")) {
             watchTheFight.setFontSize(0);
         }
+        
+        if (currMap.getFlagManager().isFlagSet("hasWon")){
+            playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+        }
 
 
         if (currMap.getFlagManager().isFlagSet("hasQuestSalamanderGuy")) {

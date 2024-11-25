@@ -40,6 +40,7 @@ public class FinalBossScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("finalBossDefeated", true));
                 scriptActions.add(new TextboxScriptAction("Light... weight... baby....."));
+                scriptActions.add(new ChangeFlagScriptAction("hasWon", true));
                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
             }});
         }});

@@ -342,15 +342,15 @@ public abstract class Player extends GameObject {
 
     //Make the player take damage
     public void takeDamage(int damage){
-        if(hasDefenseBuff){
-            damage *= 0.9;
-        }
+        //if(hasDefenseBuff){
+        //    damage *= 0.9;
+        //}
         this.health -= damage;
         if(damage >= health){
             isDead = true;
             health = 0;
         }
-        this.hasDefenseBuff = false;
+        //this.hasDefenseBuff = false;
     }
 
     public int attack(){
