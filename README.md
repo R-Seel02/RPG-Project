@@ -5,6 +5,10 @@ This is a game created for Quinnipiac's SER225 Agile Development class.
 Students will be paired up in teams for an entire semester, and will utilize agile development to work further on this game.
 This usually involves adding features and fixing bugs (I'm sure there are bugs...)
 
+## Yeah, but what is the game?
+This is The Legend of Thimineur. It's a 2D top-down RPG game where you play as an adventurer trying to take down the evil King John Kingsley.
+You don't remember much. All you know is you woke up outside your house and that Kingsley kicked your butt. He needs to go, and you'll be the one to do it - once you're powerful enough to beat him!
+
 ## How to run this project?
 I did not use any external libraries for this, so you can clone this repo as is and run it out of the box with Java (min version 8).
 I recommend using an IDE such as IntelliJ or Eclipse to run this game.
