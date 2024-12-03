@@ -19,4 +19,5 @@ It can be accessed at [https://a-r-t.github.io/SER-225-Game-RPG/](https://a-r-t.
 Changes to content in the `docs` folder will not show up on the website unless they are pushed to the `master` branch.
 
 ## Credits
-**Alex Thimineur**: Programmed the game, made the art.
+**Max Cheezic, Matthew Wheeler, Ryan Seely, Mark Pfister, Pierce Conway**: Development, story, art
+**Alex Thimineur**: Programmed the game engine
