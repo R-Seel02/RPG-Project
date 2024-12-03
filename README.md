@@ -20,4 +20,4 @@ Changes to content in the `docs` folder will not show up on the website unless t
 
 ## Credits
 **Max Cheezic, Matthew Wheeler, Ryan Seely, Mark Pfister, Pierce Conway**: Development, story, art
-**Alex Thimineur**: Programmed the game engine
+\n**Alex Thimineur**: Programmed the game engine
