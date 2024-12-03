@@ -10,10 +10,7 @@ import Game.GameState;
 import Game.ScreenCoordinator;
 import GameObject.Sprite;
 import GameObject.SpriteSheet;
-import Level.Player;
 import SpriteFont.SpriteFont;
-import Game.ScreenCoordinator;
-
 import java.awt.Color;
 
 public class CharacterSelectScreen extends Screen {
@@ -121,7 +118,6 @@ public class CharacterSelectScreen extends Screen {
             keyLocker.unlockKey(Key.E);
         }
         if (!keyLocker.isKeyLocked(Key.E) && Keyboard.isKeyDown(Key.E) && keyPressTimer == 0) {
-            System.out.println("here?");
             keyPressTimer = 25;
             menuItemSelected = currentMenuItemHovered;
             screenCoordinator.setGameState(GameState.LEVEL, menuItemSelected);
