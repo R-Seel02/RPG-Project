@@ -40,7 +40,7 @@ public class WarpVolcanoScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("unlockedVolcano", true));
+                // addRequirement(new FlagRequirement("unlockedVolcano", true));
                 addRequirement(new CustomRequirement() {
                     @Override
                     public boolean isRequirementMet() {
